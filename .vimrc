@@ -1,7 +1,6 @@
 set nocompatible
 set encoding=utf-8
-source $VIMRUNTIME/vimrc_example.vim
-source $VIMRUNTIME/mswin.vim
+
 set modelines=0
 
 set tabstop=2
