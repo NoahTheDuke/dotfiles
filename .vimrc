@@ -44,7 +44,7 @@ vnoremap <F1> <ESC>
 nnoremap j gj
 nnoremap k gk
 inoremap jj <ESC>
-nnoremap ; : 
+nnoremap ; :
 nnoremap : ;
 let mapleader = ","
 nnoremap <leader><space> :noh<cr>
@@ -69,13 +69,13 @@ if has("gui_running")
 endif
 
 map <C-n> :call ToggleNumbers()<CR>
-let b:numbered = 1 
-function! ToggleNumbers() 
-  if( b:numbered == 0 ) 
+let b:numbered = 1
+function! ToggleNumbers()
+  if( b:numbered == 0 )
       set relativenumber
-      let b:numbered = 1 
-  else 
+      let b:numbered = 1
+  else
       set number
-      let b:numbered = 0 
-  endif 
-endfunction 
+      let b:numbered = 0
+  endif
+endfunction
