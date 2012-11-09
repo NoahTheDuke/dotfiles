@@ -1,4 +1,4 @@
-﻿" nocompatible is a must, as is utf-8
+" nocompatible is a must, as is utf-8
 set nocompatible
 set encoding=utf-8
 
@@ -38,12 +38,14 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
-nnoremap j gj
-nnoremap k gk
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
+nnoremap j gj
+nnoremap k gk
 inoremap jj <ESC>
+nnoremap ; : 
+nnoremap : ;
 let mapleader = ","
 nnoremap <leader><space> :noh<cr>
 nnoremap <tab> %
