@@ -1,5 +1,4 @@
-
-" nocompatible is a must, as is utf-8
+﻿" nocompatible is a must, as is utf-8
 set nocompatible
 set encoding=utf-8
 
