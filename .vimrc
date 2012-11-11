@@ -10,8 +10,8 @@ set softtabstop=2
 set expandtab
 set smartindent
 set showmatch
-set ignorecase
-set smartcase
+"set ignorecase
+"set smartcase
 set hlsearch
 set incsearch
 syntax on
@@ -67,15 +67,3 @@ if has("gui_running")
     set guifont=Consolas:h11
   endif
 endif
-
-map <C-n> :call ToggleNumbers()<CR>
-let b:numbered = 1
-function! ToggleNumbers()
-  if( b:numbered == 0 )
-      set relativenumber
-      let b:numbered = 1
-  else
-      set number
-      let b:numbered = 0
-  endif
-endfunction
