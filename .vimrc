@@ -1,6 +1,8 @@
 " nocompatible is a must, as is utf-8
 set nocompatible
 set encoding=utf-8
+set clipboard+=unnamed
+set paste
 
 set modelines=0
 set backspace=indent,eol,start
@@ -10,8 +12,6 @@ set softtabstop=2
 set expandtab
 set smartindent
 set showmatch
-"set ignorecase
-"set smartcase
 set hlsearch
 set incsearch
 syntax on
@@ -26,7 +26,7 @@ set relativenumber
 set undofile
 
 set wrap
-set textwidth=79
+set textwidth=85
 set formatoptions=qrn1
 
 " Key bindings and maps
