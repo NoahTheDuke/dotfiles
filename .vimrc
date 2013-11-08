@@ -3,6 +3,20 @@ set nocompatible
 set encoding=utf-8
 set clipboard+=unnamed
 set paste
+filetype off                   " required!
+
+set rtp+=$HOME/vimfiles/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+Bundle 'justinmk/vim-sneak'
+Bundle 'tpope/vim-repeat'
+Bundle 'Yggdroot/indentLine'
+Bundle 'bling/vim-airline'
+
+filetype plugin indent on     " required!
 
 set modelines=0
 set backspace=indent,eol,start
@@ -14,6 +28,8 @@ set smartindent
 set showmatch
 set hlsearch
 set incsearch
+set laststatus=2
+set noshowmode
 syntax on
 
 set title
@@ -41,12 +57,12 @@ inoremap <right> <nop>
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
-nnoremap j gj
-nnoremap k gk
+"nnoremap j gj
+"nnoremap k gk
 inoremap jj <ESC>
-nnoremap ; :
-nnoremap : ;
-let mapleader = ","
+inoremap # X<BS>#
+"nnoremap ; :
+"let mapleader = ","
 nnoremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
