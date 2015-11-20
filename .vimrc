@@ -12,11 +12,11 @@ call vundle#begin('~/vimfiles/')
 " required!
 Plugin 'gmarik/vundle'
 
+Plugin 'tpope/vim-sensible'
 Plugin 'justinmk/vim-sneak'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
-"Plugin 'Yggdroot/indentLine'
 Plugin 'bling/vim-airline'
 Plugin 'osyo-manga/vim-over'
 Plugin 'scrooloose/nerdcommenter'
@@ -35,9 +35,9 @@ au FileType python setlocal completeopt-=preview
 let g:airline#extensions#syntastic#enabled = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_enable_balloons = 0
-let g:syntastic_python_checkers = ['pyflakes']
 let g:syntastic_haskell_checkers = ['hlint']
 let g:syntastic_enable_signs = 0
+let g:syntastic_python_checkers = ['pyflakes']
 let g:syntastic_python_pep8_args = '--ignore=E125,E501'
 
 set modelines=0
@@ -70,7 +70,6 @@ set autoread
 set wrap
 set textwidth=89
 set formatoptions=qrn1
-"set foldmethod=indent
 
 " Key bindings and maps
 nnoremap <up> <nop>
@@ -93,15 +92,15 @@ vnoremap <tab> %
 au FileType python nnoremap <F9> :exec '!python' shellescape(@%, 1)<cr>
 
 au FocusLost * :wa
-highlight texBoldStyle gui=none
-highlight texItalStyle gui=none
-highlight texBoldItalStyle gui=none
-highlight texItalBoldStyle gui=none
+highlight texBoldStyle gui=NONE
+highlight texItalStyle gui=NONE
+highlight texBoldItalStyle gui=NONE
+highlight texItalBoldStyle gui=NONE
 
 let g:hybrid_use_Xresources = 1
 let g:haskell_conceal = 0
-"colorscheme hybrid
 color Dracula
+
 """"""""""""""
 " Functions! "
 """"""""""""""
