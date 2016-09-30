@@ -1,67 +1,99 @@
-" nocompatible is a must, as is utf-8
-set nocompatible
-set encoding=utf-8
-set clipboard+=unnamedplus
-set paste
-
 call plug#begin('~/.vim/plugged')
 
-Plug 'Rename2'
+" general
 Plug 'bling/vim-airline'
-Plug 'dag/vim2hs'
-Plug 'justinmk/vim-sneak'
 Plug 'osyo-manga/vim-over'
-Plug 'rking/ag.vim'
-Plug 'scrooloose/syntastic'
-Plug 'sheerun/vim-polyglot'
+Plug 'Rename2'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
+Plug 'mileszs/ack.vim'
+
+" movement
+Plug 'junegunn/vim-easy-align'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+
+" programming language support
+Plug 'dag/vim2hs'
+Plug 'rust-lang/rust.vim'
+Plug 'scrooloose/syntastic'
+Plug 'sheerun/vim-polyglot'
+Plug 'tweekmonster/braceless.vim'
+
+" writing
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'lambdalisue/vim-fullscreen'
+
+" colors
 Plug 'dracula/vim'
+Plug 'w0ng/vim-hybrid'
 
 call plug#end()
 
-cabbrev %s OverCommandLine<cr>%s
-au FileType python setlocal completeopt-=preview
+" necessary internal changes
+set clipboard+=unnamed
+set paste
+set modelines=0
+set formatoptions=qrn1
+
+" colors, etc
+color Dracula
+highlight texBoldStyle gui=NONE
+highlight texItalStyle gui=NONE
+highlight texBoldItalStyle gui=NONE
+highlight texItalBoldStyle gui=NONE
+let g:hybrid_custom_term_colors = 1
+
+" ackgrep -> rg
+let g:ackprg = 'rg --vimgrep'
+
+" braceless settings
+autocmd FileType python BracelessEnable +indent +highlight
+
+" airline settings
 let g:airline#extensions#syntastic#enabled = 1
+
+" polyglot settings
+let g:polyglot_disabled = ['python']
+
+" syntastic settings
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_enable_signs = 0
-let g:syntastic_enable_balloons = 0
 let g:syntastic_haskell_checkers = ['hlint']
 let g:syntastic_python_checkers = ['flake8']
-let g:polyglot_disabled = ['python']
 let g:syntastic_python_flake8_args='--ignore=E501'
 
-set modelines=0
-set backspace=indent,eol,start
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set expandtab
-set smartindent
-set showmatch
-set hlsearch
-set incsearch
-set laststatus=2
-set noshowmode
+" cwd, save, reload
 set autochdir
-set display+=lastline
-syntax on
-
-set title
-set visualbell
-set noerrorbells
-
-set number
-set relativenumber
+au FocusLost * :wa
 set autoread
 
-set wrap
-set textwidth=80
-set formatoptions=qrn1
+" searching
+set hlsearch
+set incsearch
+set showmatch
+
+" tabs
+set shiftwidth=4
+set expandtab
+set nosmartindent
+set softtabstop=4
+set tabstop=4
+
+" what to display
+set title
+set noshowmode
+set noerrorbells
+set visualbell
+set display+=lastline
+set laststatus=2
+
+" Relative and current line numbers
+set number
+set relativenumber
 
 " Store swap files in fixed location, not current directory.
 set undofile
@@ -71,34 +103,20 @@ set undodir=~/.vim/undofiles
 set dir=~/.vim/swapfiles
 
 " Key bindings and maps
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 nnoremap Q <nop>
 inoremap jj <ESC>
 inoremap # X<BS>#
-nnoremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
 nnoremap Y y$
-
-au FocusLost * :wa
-highlight texBoldStyle gui=NONE
-highlight texItalStyle gui=NONE
-highlight texBoldItalStyle gui=NONE
-highlight texItalBoldStyle gui=NONE
-
-let g:hybrid_use_Xresources = 1
-let g:haskell_conceal = 0
-color dracula
+cabbrev %s OverCommandLine<cr>%s
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+vnoremap <C-a> :s/\%V-\=\d\+/\=submatch(0)+1/g
+vnoremap <C-x> :s/\%V-\=\d\+/\=submatch(0)-1/g
 
 """"""""""""""
 " Functions! "
