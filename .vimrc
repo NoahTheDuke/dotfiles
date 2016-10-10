@@ -4,6 +4,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'bling/vim-airline'
 Plug 'osyo-manga/vim-over'
 Plug 'Rename2'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'mileszs/ack.vim'
@@ -49,13 +50,13 @@ let g:hybrid_custom_term_colors = 1
 let g:ackprg = 'rg --vimgrep'
 
 " braceless settings
-autocmd FileType python BracelessEnable +indent +highlight
+autocmd FileType python BracelessEnable +highlight "+indent "+highlight
 
 " airline settings
 let g:airline#extensions#syntastic#enabled = 1
 
 " polyglot settings
-let g:polyglot_disabled = ['python']
+let g:polyglot_disabled = ['python', 'rust']
 
 " syntastic settings
 let g:syntastic_always_populate_loc_list = 1
