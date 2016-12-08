@@ -32,13 +32,13 @@ Plug 'w0ng/vim-hybrid'
 call plug#end()
 
 " necessary internal changes
-set clipboard+=unnamed
+set clipboard=unnamedplus
 set paste
 set modelines=0
 set formatoptions=qrn1
 
 " colors, etc
-color Dracula
+color dracula
 highlight texBoldStyle gui=NONE
 highlight texItalStyle gui=NONE
 highlight texBoldItalStyle gui=NONE
@@ -46,16 +46,17 @@ highlight texItalBoldStyle gui=NONE
 let g:hybrid_custom_term_colors = 1
 
 " ackgrep -> rg
-let g:ackprg = 'rg --vimgrep'
+let g:ackprg = 'rg --no-heading --vimgrep'
 
 " braceless settings
 autocmd FileType python BracelessEnable +indent +highlight
+let g:braceless_format = {'clean_slices': 0}
 
 " airline settings
 let g:airline#extensions#syntastic#enabled = 1
 
 " polyglot settings
-let g:polyglot_disabled = ['python']
+let g:polyglot_disabled = ['python', 'rust']
 
 " syntastic settings
 let g:syntastic_always_populate_loc_list = 1
@@ -64,7 +65,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_haskell_checkers = ['hlint']
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_args='--ignore=E501'
+let g:syntastic_python_flake8_args = ['--ignore=E402,E126']
 
 " cwd, save, reload
 set autochdir
@@ -90,6 +91,7 @@ set noerrorbells
 set visualbell
 set display+=lastline
 set laststatus=2
+set cc=120
 
 " Relative and current line numbers
 set number
@@ -117,6 +119,7 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 vnoremap <C-a> :s/\%V-\=\d\+/\=submatch(0)+1/g
 vnoremap <C-x> :s/\%V-\=\d\+/\=submatch(0)-1/g
+command Rg Ack
 
 """"""""""""""
 " Functions! "
@@ -124,8 +127,10 @@ vnoremap <C-x> :s/\%V-\=\d\+/\=submatch(0)-1/g
 "Set the font and size
 if has("gui_running")
   if has("gui_gtk2")
-    set guifont=Monospace\ 11
+    set guifont=Inconsolata\ 13
   elseif has("gui_win32")
     set guifont=Consolas:h11
   endif
 endif
+
+call feedkeys("\<C-CR>")
