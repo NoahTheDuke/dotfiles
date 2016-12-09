@@ -13,6 +13,7 @@ Plug 'mileszs/ack.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
 
 " programming language support
 Plug 'dag/vim2hs'
@@ -50,7 +51,7 @@ let g:hybrid_custom_term_colors = 1
 let g:ackprg = 'rg --vimgrep'
 
 " braceless settings
-autocmd FileType python BracelessEnable +highlight "+indent "+highlight
+autocmd FileType python BracelessEnable +highlight +indent
 
 " airline settings
 let g:airline#extensions#syntastic#enabled = 1
@@ -65,7 +66,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_haskell_checkers = ['hlint']
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_args='--ignore=E501'
+let g:syntastic_python_flake8_args = ['--ignore=E302,E305']
 
 " cwd, save, reload
 set autochdir
@@ -91,6 +92,7 @@ set noerrorbells
 set visualbell
 set display+=lastline
 set laststatus=2
+set cc=120
 
 " Relative and current line numbers
 set number
