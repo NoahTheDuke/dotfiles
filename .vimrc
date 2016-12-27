@@ -2,28 +2,30 @@ call plug#begin('~/.vim/plugged')
 
 " general
 Plug 'bling/vim-airline'
+Plug 'mileszs/ack.vim'
 Plug 'osyo-manga/vim-over'
 Plug 'Rename2'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
-Plug 'mileszs/ack.vim'
 
 " movement
+Plug 'easymotion/vim-easymotion'
+Plug 'ervandew/supertab'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'wellle/targets.vim'
 
 " programming language support
 Plug 'dag/vim2hs'
+Plug 'davidhalter/jedi-vim'
 Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/syntastic'
 Plug 'sheerun/vim-polyglot'
-Plug 'tweekmonster/braceless.vim'
 
 " writing
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-Plug 'lambdalisue/vim-fullscreen'
 
 " colors
 Plug 'dracula/vim'
@@ -33,9 +35,11 @@ call plug#end()
 
 " necessary internal changes
 set clipboard=unnamedplus
-set paste
 set modelines=0
 set formatoptions=qrn1
+set guioptions+=C
+set guioptions-=m
+set guioptions-=T
 
 " colors, etc
 color dracula
@@ -47,10 +51,6 @@ let g:hybrid_custom_term_colors = 1
 
 " ackgrep -> rg
 let g:ackprg = 'rg --no-heading --vimgrep'
-
-" braceless settings
-autocmd FileType python BracelessEnable +indent +highlight
-let g:braceless_format = {'clean_slices': 0}
 
 " airline settings
 let g:airline#extensions#syntastic#enabled = 1
@@ -65,7 +65,13 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_haskell_checkers = ['hlint']
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_args = ['--ignore=E402,E126']
+let g:syntastic_python_flake8_args = ['--ignore=E501,E402,E126']
+
+" jedi-vim settings
+let g:jedi#smart_auto_mappings = 0
+
+" supertab settings
+let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " cwd, save, reload
 set autochdir
@@ -132,5 +138,3 @@ if has("gui_running")
     set guifont=Consolas:h11
   endif
 endif
-
-call feedkeys("\<C-CR>")
