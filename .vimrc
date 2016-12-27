@@ -15,6 +15,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'wellle/targets.vim'
+Plug 'tpope/vim-unimpaired'
 
 " programming language support
 Plug 'dag/vim2hs'
@@ -49,7 +50,6 @@ highlight texBoldItalStyle gui=NONE
 highlight texItalBoldStyle gui=NONE
 let g:hybrid_custom_term_colors = 1
 
-" ackgrep -> rg
 let g:ackprg = 'rg --no-heading --vimgrep'
 
 " airline settings
@@ -65,7 +65,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_haskell_checkers = ['hlint']
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_args = ['--ignore=E501,E402,E126']
+let g:syntastic_python_flake8_args = ['--ignore=E501,E302,E305,E402,E126']
 
 " jedi-vim settings
 let g:jedi#smart_auto_mappings = 0
