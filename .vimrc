@@ -18,7 +18,6 @@ Plug 'wellle/targets.vim'
 Plug 'tpope/vim-unimpaired'
 
 " programming language support
-Plug 'dag/vim2hs'
 Plug 'davidhalter/jedi-vim'
 Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/syntastic'
@@ -37,7 +36,7 @@ call plug#end()
 " necessary internal changes
 set clipboard=unnamedplus
 set modelines=0
-set formatoptions=qrn1
+set formatoptions=tqrn1
 set guioptions+=C
 set guioptions-=m
 set guioptions-=T
@@ -56,14 +55,14 @@ let g:ackprg = 'rg --no-heading --vimgrep'
 let g:airline#extensions#syntastic#enabled = 1
 
 " polyglot settings
-let g:polyglot_disabled = ['python', 'rust']
+let g:polyglot_disabled = ['rust']
+let python_highlight_all = 1
 
 " syntastic settings
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_haskell_checkers = ['hlint']
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args = ['--ignore=E501,E302,E305,E402,E126']
 
