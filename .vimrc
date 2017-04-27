@@ -10,7 +10,6 @@ Plug 'tpope/vim-sensible'
 
 " movement
 Plug 'easymotion/vim-easymotion'
-Plug 'ervandew/supertab'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
@@ -22,14 +21,14 @@ Plug 'davidhalter/jedi-vim'
 Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/syntastic'
 Plug 'sheerun/vim-polyglot'
+Plug 'wlangstroth/vim-racket'
 
 " writing
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 
 " colors
-Plug 'dracula/vim'
-Plug 'w0ng/vim-hybrid'
+Plug 'dracula/vim', {'as': 'dracula-vim'}
 
 call plug#end()
 
@@ -65,12 +64,11 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args = ['--ignore=E501,E302,E305,E402,E126']
+let g:syntastic_enable_racket_racket_checker = 1
+let g:syntastic_racket_checkers = ['racket']
 
 " jedi-vim settings
 let g:jedi#smart_auto_mappings = 0
-
-" supertab settings
-let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " cwd, save, reload
 set autochdir
