@@ -4,4 +4,4 @@
 [credential]
 	helper = wincred
 [alias]
-	lg = log --color --graph --pretty=format:'%C(auto)%h%Creset » %d%s %Cgreen(%cr) %C(bold magenta)<%an>%Creset'
+	lg = log --color --graph --pretty=format:'%C(auto)%h%Creset Â» %d%s %Cgreen(%cr) %C(bold magenta)<%an>%Creset'
