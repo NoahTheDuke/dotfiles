@@ -17,6 +17,7 @@ Plug 'wellle/targets.vim'
 Plug 'tpope/vim-unimpaired'
 
 " programming language support
+Plug 'dag/vim2hs'
 Plug 'davidhalter/jedi-vim'
 Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/syntastic'
@@ -39,6 +40,8 @@ set formatoptions=tqrn1
 set guioptions+=C
 set guioptions-=m
 set guioptions-=T
+set tw=120
+autocmd Filetype gitcommit setlocal spell textwidth=80
 
 " colors, etc
 color dracula
@@ -62,6 +65,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_haskell_checkers = ['hlint']
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args = ['--ignore=E501,E302,E305,E402,E126']
 let g:syntastic_enable_racket_racket_checker = 1
@@ -69,6 +73,7 @@ let g:syntastic_racket_checkers = ['racket']
 
 " jedi-vim settings
 let g:jedi#smart_auto_mappings = 0
+autocmd FileType python setlocal completeopt-=preview
 
 " cwd, save, reload
 set autochdir
@@ -124,9 +129,6 @@ vnoremap <C-a> :s/\%V-\=\d\+/\=submatch(0)+1/g
 vnoremap <C-x> :s/\%V-\=\d\+/\=submatch(0)-1/g
 command Rg Ack
 
-""""""""""""""
-" Functions! "
-""""""""""""""
 "Set the font and size
 if has("gui_running")
   if has("gui_gtk2")
