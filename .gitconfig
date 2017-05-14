@@ -1,7 +1,14 @@
-[user]
-	name = Noah
-	email = nbtheduke@gmail.com
 [credential]
-	helper = wincred
+    helper = wincred
+[user]
+    email = nbtheduke@gmail.com
+    name = Noah Bogart
+[core]
+	editor = gvim
+	autocrlf = input
 [alias]
-	lg = log --color --graph --pretty=format:'%C(auto)%h%Creset » %d%s %Cgreen(%cr) %C(bold magenta)<%an>%Creset'
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    lg = log --color --graph --pretty=format:'%C(auto)%h%Creset »%C(red)%d%Creset %s %Cgreen(%cr) %C(bold magenta)<%an>%Creset' --abbrev-commit
+[commit]
+	template = ~/.gitmessage
