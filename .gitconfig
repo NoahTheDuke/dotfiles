@@ -1,7 +1,14 @@
+[alias]
+	graph = log --graph --all --decorate --stat --date=iso
+	lg = log --graph --pretty=format:'%C(auto)%h%Creset -> %d%s %Cgreen(%cr) %C(bold magenta)<%an>%Creset'
+	praise = blame
+	today = log --since=00:00:00 --all --no-merges --oneline --author=nbtheduke@gmail.com
+; [core]
+; 	autocrlf = false
+[credential]
+	helper = wincred
+[diff]
+	indentHeuristic = on
 [user]
 	name = Noah
 	email = nbtheduke@gmail.com
-[credential]
-	helper = wincred
-[alias]
-	lg = log --color --graph --pretty=format:'%C(auto)%h%Creset » %d%s %Cgreen(%cr) %C(bold magenta)<%an>%Creset'
