@@ -94,7 +94,7 @@ syn keyword pythonStatement     as assert async await
 syn keyword pythonStatement     break continue del exec global lambda
 syn keyword pythonStatement     nonlocal pass return with yield
 
-" Decorators (new in Python 2.4)
+" Decorators
 syn match pythonDecorator   "@" display nextgroup=pythonFunction skipwhite
 
 " Operator Symbols
@@ -231,21 +231,26 @@ syn match pythonHexError    "\<0[xX]\X\+[lL]\=\>" display
 
 if exists("python_highlight_builtins") && python_highlight_builtins != 0
   " Builtin functions, types and objects
-  syn keyword pythonBuiltinObj  __debug__ None Ellipsis NotImplemented
+  syn keyword pythonBuiltinConst  __debug__ Ellipsis None NotImplemented
+  syn keyword pythonBuiltinConst  quit exit copywrite license credits
 
-  syn keyword pythonBuiltinFunc __import__ abs all any apply ascii
-  syn keyword pythonBuiltinFunc basestring bool buffer bytearray bytes callable
-  syn keyword pythonBuiltinFunc chr classmethod cmp coerce compile complex
-  syn keyword pythonBuiltinFunc delattr dict dir divmod enumerate eval
-  syn keyword pythonBuiltinFunc execfile file filter float frozenset getattr
-  syn keyword pythonBuiltinFunc globals hasattr hash help hex id
-  syn keyword pythonBuiltinFunc input int intern isinstance
-  syn keyword pythonBuiltinFunc issubclass iter len list locals long map max
-  syn keyword pythonBuiltinFunc min object oct open ord pow property print range
-  syn keyword pythonBuiltinFunc raw_input reduce reload repr memoryview
-  syn keyword pythonBuiltinFunc reversed round set setattr
-  syn keyword pythonBuiltinFunc slice sorted staticmethod str sum super tuple
-  syn keyword pythonBuiltinFunc type unichr unicode vars xrange zip
+  syn keyword pythonBuiltinFunc __import__ abs all any
+  syn keyword pythonBuiltinFunc ascii bin bool bytearray
+  syn keyword pythonBuiltinFunc bytes callable chr classmethod
+  syn keyword pythonBuiltinFunc compile complex delattr dict
+  syn keyword pythonBuiltinFunc dir divmod enumerate eval
+  syn keyword pythonBuiltinFunc exec filter float format
+  syn keyword pythonBuiltinFunc frozenset getattr globals hasattr
+  syn keyword pythonBuiltinFunc hash help hex id
+  syn keyword pythonBuiltinFunc input int isinstance issubclass
+  syn keyword pythonBuiltinFunc iter len list locals
+  syn keyword pythonBuiltinFunc map max memoryview min
+  syn keyword pythonBuiltinFunc next object oct open
+  syn keyword pythonBuiltinFunc ord pow print property
+  syn keyword pythonBuiltinFunc range repr reversed round
+  syn keyword pythonBuiltinFunc set setattr slice sorted
+  syn keyword pythonBuiltinFunc staticmethod str sum super
+  syn keyword pythonBuiltinFunc tuple type vars zip
 endif
 
 if exists("python_highlight_exceptions") && python_highlight_exceptions != 0
@@ -291,22 +296,22 @@ if version >= 508 || !exists("did_python_syn_inits")
     command -nargs=+ HiLink hi def link <args>
   endif
 
-  HiLink pythonBoolean      Boolean
-  HiLink pythonCoding       Special
-  HiLink pythonComment      Comment
-  HiLink pythonConditional  Conditional
-  HiLink pythonDecorator    Define
-  HiLink pythonException    Exception
-  HiLink pythonFunction     Function
-  HiLink pythonImport       Include
-  HiLink pythonOperator     Operator
-  HiLink pythonRepeat       Repeat
-  HiLink pythonRun          Special
-  HiLink pythonStatement    Statement
-  HiLink pythonTodo         Todo
+  HiLink pythonBoolean          Boolean
+  HiLink pythonCoding           Special
+  HiLink pythonComment          Comment
+  HiLink pythonConditional      Conditional
+  HiLink pythonDecorator        Define
+  HiLink pythonException        Exception
+  HiLink pythonFunction         Function
+  HiLink pythonImport           Include
+  HiLink pythonOperator         Operator
+  HiLink pythonRepeat           Repeat
+  HiLink pythonRun              Special
+  HiLink pythonStatement        Statement
+  HiLink pythonTodo             Todo
 
-  HiLink pythonInlineFunction   Function
   HiLink pythonDefine           Define
+  HiLink pythonInlineFunction   Function
 
   HiLink pythonError        Error
   HiLink pythonIndentError  Error
@@ -338,7 +343,7 @@ if version >= 508 || !exists("did_python_syn_inits")
   HiLink pythonOctalError   Error
   HiLink pythonHexError     Error
 
-  HiLink pythonBuiltinObj   Structure
+  HiLink pythonBuiltinConst Structure
   HiLink pythonBuiltinFunc  Identifier
 
   HiLink pythonExClass  Structure

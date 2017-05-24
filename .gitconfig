@@ -1,10 +1,14 @@
 [alias]
 	graph = log --graph --all --decorate --stat --date=iso
 	lg = log --graph --pretty=format:'%C(auto)%h%Creset -> %d%s %Cgreen(%cr) %C(bold magenta)<%an>%Creset'
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	praise = blame
 	today = log --since=00:00:00 --all --no-merges --oneline --author=nbtheduke@gmail.com
 ; [core]
 ; 	autocrlf = false
+[commit]
+	template = ~/.gitmessage
 [credential]
 	helper = wincred
 [diff]
