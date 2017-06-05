@@ -4,7 +4,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'bling/vim-airline'
 Plug 'mileszs/ack.vim'
 Plug 'osyo-manga/vim-over'
-Plug 'Rename2'
+Plug 'ReekenX/vim-rename2'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 
@@ -34,7 +34,7 @@ Plug 'dracula/vim', {'as': 'dracula-vim'}
 call plug#end()
 
 " necessary internal changes
-set clipboard=unnamedplus
+set clipboard+=unnamedplus
 set modelines=0
 set formatoptions=tqrn1
 set guioptions+=C
@@ -42,16 +42,10 @@ set guioptions-=m
 set guioptions-=T
 set tw=120
 autocmd Filetype gitcommit setlocal spell textwidth=80
+let g:ackprg = 'rg --no-heading --vimgrep'
 
 " colors, etc
 color dracula
-highlight texBoldStyle gui=NONE
-highlight texItalStyle gui=NONE
-highlight texBoldItalStyle gui=NONE
-highlight texItalBoldStyle gui=NONE
-let g:hybrid_custom_term_colors = 1
-
-let g:ackprg = 'rg --no-heading --vimgrep'
 
 " airline settings
 let g:airline#extensions#syntastic#enabled = 1
@@ -78,6 +72,7 @@ autocmd FileType python setlocal completeopt-=preview
 " cwd, save, reload
 set autochdir
 au FocusLost * :wa
+" au FocusGained * :checktime " Neovim setting only
 set autoread
 
 " searching
@@ -111,6 +106,9 @@ set backup
 set backupdir=~/.vim/backupfiles
 set undodir=~/.vim/undofiles
 set dir=~/.vim/swapfiles
+
+set list
+set lcs=eol:¬,tab:>\ ,trail:~
 
 " Key bindings and maps
 inoremap <F1> <ESC>
