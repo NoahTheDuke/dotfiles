@@ -5,8 +5,8 @@
 	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	praise = blame
 	today = log --since=00:00:00 --all --no-merges --oneline --author=nbtheduke@gmail.com
-; [core]
-; 	autocrlf = false
+[core]
+	autocrlf = false
 [commit]
 	template = ~/.gitmessage
 [credential]
