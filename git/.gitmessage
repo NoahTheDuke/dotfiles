@@ -1,23 +1,33 @@
 
-# <type><(scope)>: <subject>
+# <type>[ (<scope>)]: <subject>
 
 
-# <body>: Use the third-person, present tense: "changes" not "changed" nor "change".
-#
-# BREAKING CHANGE:
-# Closes #nnnn
-#
-# Allowed <type> values:
-# * feat (new feature for the user, not a new feature for build script)
-# * fix (bug fix for the user, not a fix to a build script)
-# * docs (changes to the documentation)
-# * style (formatting, missing semi colons, etc; no production code change)
-# * refactor (refactoring production code, eg. renaming a variable)
-# * test (adding missing tests, refactoring tests; no production code change)
-# * chore (updating grunt tasks etc; no production code change)
-#
-# The <scope> can be empty (e.g. if the change is a global or difficult to assign to a single component),
-# in which case the parentheses are omitted.
+# <body>
+
+
+# [<notes>]
 #
 # 50-character subject line
-# 80-character wrapped longer description.
+# 80-character wrapped longer description
+# Sections wrapped in [] are optional, as noted below
+#
+# Allowed <type> values:
+# * chore (updating ant/node/powershell tasks etc; no production code change)
+# * docs (changes to the documentation)
+# * feat (new feature for users in production code, not in a build script)
+# * fix (bug fix for users in production code, not in a build script)
+# * refactor (refactoring production code, eg. rewriting a function for clarity)
+# * style (formatting, etc; no production code change)
+# * test (adding missing tests, refactoring tests; no production code change)
+#
+# The <scope> is optional only if the change is a global or difficult to assign
+# to a single component.
+#
+# <body>: Use the third-person, present tense: "Changes X", not "Changed X" nor
+# "Change X". If multiple changes are bundled, make sure to either space the
+# lines correctly or prepend with a * to create a bullet-point list.
+#
+# Allowed <notes> types:
+# * BREAKING CHANGE: Requires a description of the change.
+# * Closes #nnnn: Double check to make sure you have the right issue noted, as
+#    Gitlab closes issues automatically from commit messages.
