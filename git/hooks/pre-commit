@@ -1,3 +1,11 @@
-#!/bin/sh
+#!/usr/bin/env bash
+# This pre-commit hook looks for `fdescribe`, `fcontext`, `fit`, `fspecify` and `fexample` in the
+# staged files and exits with an error code of 1 if there are such changes.
 
-exec powershell.exe -NoProfile -ExecutionPolicy Bypass -File ".\git\hooks\pre-commit.ps1"
+if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+	. $HOME/dotfiles/git/hooks/pre-commit.bash
+elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+	exec powershell.exe -NoProfile -ExecutionPolicy Bypass -File $HOME/dotfiles/git/hooks/pre-commit.ps1
+elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
+	exec powershell.exe -NoProfile -ExecutionPolicy Bypass -File $HOME/dotfiles/git/hooks/pre-commit.ps1
+fi

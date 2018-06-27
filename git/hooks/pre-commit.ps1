@@ -1,7 +1,3 @@
-# This pre-commit hook looks for `fdescribe`, `fcontext`, `fit`, `fspecify` and `fexample` in the
-# staged files and exits with an error code of 1 if there are such changes.
-#
-
 $STATUS = 0
 
 $words = "fdescribe", "fcontext", "fit", "fspecify", "fexample"
