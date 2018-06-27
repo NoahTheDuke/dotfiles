@@ -1,3 +1,7 @@
+; Put this in ~/.gitconfig, leave the rest
+; [include]
+; 	path = ~/dotfiles/git/.gitconfig
+
 [alias]
 	graph = log --graph --all --decorate --stat --date=iso
 	lg = log --graph --pretty=format:'%C(auto)%h%Creset -> %d %s %Cgreen(%cr) %C(bold magenta)<%an>%Creset'
@@ -5,9 +9,11 @@
 	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	praise = blame
 	today = log --since=00:00:00 --all --no-merges --oneline --author=nbtheduke@gmail.com
+	blamo = log -p -M --follow --stat --
 [core]
-	; autocrlf = false
-	; editor = 'C:\\Program Files (x86)\\Vim\\vim80\\gvim.exe' -f -i NONE
+; 	autocrlf = false
+; 	editor = 'C:\\Program Files (x86)\\Vim\\vim80\\gvim.exe' -f -i NONE
+	hooksPath = ~/dotfiles/git/hooks
 [commit]
 	template = ~/dotfiles/git/.gitmessage
 ; [credential]
