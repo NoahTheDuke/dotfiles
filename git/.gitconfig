@@ -8,7 +8,7 @@
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit
 	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	praise = blame
-	today = log --since=00:00:00 --all --no-merges --oneline --author=nbtheduke@gmail.com
+	today = log --since=00:00:00 --all --no-merges --oneline
 	blamo = log -p -M --follow --stat --
 [core]
 ; 	autocrlf = false
@@ -20,6 +20,6 @@
 ; 	helper = wincred
 [diff]
 	indentHeuristic = on
-[user]
-	name = Noah
-	email = nbtheduke@gmail.com
+; [user]
+; 	name = Noah
+; 	email = nbtheduke@gmail.com

@@ -2,10 +2,12 @@
 # This pre-commit hook looks for `fdescribe`, `fcontext`, `fit`, `fspecify` and `fexample` in the
 # staged files and exits with an error code of 1 if there are such changes.
 
-if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-	. $HOME/dotfiles/git/hooks/pre-commit.bash
-elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
-	exec powershell.exe -NoProfile -ExecutionPolicy Bypass -File $HOME/dotfiles/git/hooks/pre-commit.ps1
-elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
-	exec powershell.exe -NoProfile -ExecutionPolicy Bypass -File $HOME/dotfiles/git/hooks/pre-commit.ps1
+if [ "$(echo $(uname -s) | cut -c 1-6)" == "Darwin" ]; then
+    . $HOME/dotfiles/git/hooks/pre-commit.bash
+elif [ "$(echo $(uname -s) | cut -c 1-5)" == "Linux" ]; then
+    . $HOME/dotfiles/git/hooks/pre-commit.bash
+elif [ "$(echo $(uname -s) | cut -c 1-10)" == "MINGW32_NT" ]; then
+    exec powershell.exe -NoProfile -ExecutionPolicy Bypass -File $HOME/dotfiles/git/hooks/pre-commit.ps1
+elif [ "$(echo $(uname -s) | cut -c 1-10)" == "MINGW64_NT" ]; then
+    exec powershell.exe -NoProfile -ExecutionPolicy Bypass -File $HOME/dotfiles/git/hooks/pre-commit.ps1
 fi
