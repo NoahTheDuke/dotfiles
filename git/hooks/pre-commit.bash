@@ -1,11 +1,10 @@
 STATUS=0
 
-for focus in fdescribe fcontext fit fspecify fexample; do
-    if [ $(git diff --staged | rg "^\+\s*$focus\(") ]
+for item in fdescribe fcontext fit fspecify fexample focus; do
+    if [ -n "`git diff --staged | rg "^\+\s*$item\(?"`" ]
     then
-        echo "You forgot to remove a $focus in the following files:"
-        git diff --staged --name-only -G"^\s*$focus\("
-        echo ""
+        echo "You forgot to remove a $item in the following files:"
+        git diff --staged --name-only -G"^\+?\s*$item\(?"
         STATUS=1
     fi
 done

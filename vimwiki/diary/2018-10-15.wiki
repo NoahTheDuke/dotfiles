@@ -1,0 +1,10 @@
+== :think: 2018-10-15: ==
+* [X] Add Item::SaleNotFoundError to Rollbar ignores
+* [o] Add owner_id to Contract
+    * [X] create the migration, pt-online-schema-change
+    * [X] declare association on contract
+    * [ ] add setting the value on the contract service
+    * [ ] write a test for unit testing contract service
+        * [ ] create user in a before, add email to params obj in let
+* [ ] Store owner on Contract in Contract Sync Service
+* [X] Create a Tableless model to hold Mail-In Service Levels

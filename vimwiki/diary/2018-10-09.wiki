@@ -1,0 +1,5 @@
+== :thinking_face:  2018-10-09: ==
+* [X] Integrate suggestions made by @Zach for Admin/Items re: Processing Locations and Origin Types
+* [X] mega meeting with team
+* [ ] 1 v 1 me irl meeting with @kat.fairbanks
+* [ ] Deep dive into Change Fulfillment system

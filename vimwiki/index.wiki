@@ -1,0 +1,9 @@
+[[diary/diary|Daily Shit]]
+
+[[Deploying]]
+
+[[scratch]]
+
+[[edn schema]]
+
+[[may gift ideas]]

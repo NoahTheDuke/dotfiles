@@ -1,0 +1,6 @@
+def attr=(value)
+
+contract.name = 'foo;'
+owner.owned_contracts << contract
+
+remember to pair with the tests

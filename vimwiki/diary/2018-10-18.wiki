@@ -1,0 +1,9 @@
+= 2018-10-18 =
+
+== To-Do ==
+* [ ] Finish and deploy this damnable contract/owner thing
+* [ ] Write `just` script to automate deploys
+* [ ] Create desktop materials order
+    * [ ] Mechanical keyboard
+    * [ ] Fancy monitor
+    * [ ] Trackpad

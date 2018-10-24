@@ -1,0 +1,5 @@
+== :ring: 2018-10-17: ==
+* [X] Clean up Mail In Label PR
+* [X] Deploy Mail In Label
+* [ ] Finish Contract Owner PR
+* [X] 1v1 with Kat
