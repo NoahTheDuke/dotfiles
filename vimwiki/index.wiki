@@ -4,6 +4,13 @@
 
 [[scratch]]
 
-[[edn schema]]
+[[seller]]
+
 
 [[may gift ideas]]
+
+= Netrunner/Nisei Stuff =
+* [[edn schema]]
+* [[plans]]
+
+[[wedding]]
