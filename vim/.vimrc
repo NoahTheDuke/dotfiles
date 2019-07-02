@@ -28,23 +28,26 @@ Plug 'https://github.com/bling/vim-airline.git'
 Plug 'https://github.com/mbbill/undotree.git'
 Plug 'https://github.com/osyo-manga/vim-over.git'
 Plug 'https://github.com/tpope/vim-fugitive.git'
+Plug 'https://github.com/ruanyl/vim-gh-line.git'
 
 " directory display/movement
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
 Plug 'https://github.com/scrooloose/nerdtree.git'
 
 " in-file editing
+Plug 'https://github.com/AndrewRadev/splitjoin.vim.git'
 Plug 'https://github.com/AndrewRadev/switch.vim.git'
+" Plug 'https://github.com/guns/vim-sexp.git'
 Plug 'https://github.com/junegunn/vim-easy-align.git'
 Plug 'https://github.com/tpope/vim-bundler.git'
 Plug 'https://github.com/tpope/vim-commentary.git'
 Plug 'https://github.com/tpope/vim-endwise.git'
 Plug 'https://github.com/tpope/vim-repeat.git'
+" Plug 'https://github.com/tpope/vim-sexp-mappings-for-regular-people.git'
 Plug 'https://github.com/tpope/vim-speeddating.git'
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/tpope/vim-unimpaired.git'
 Plug 'https://github.com/wellle/targets.vim.git'
-Plug 'https://github.com/AndrewRadev/splitjoin.vim.git'
 
 " movement
 Plug 'https://github.com/andymass/vim-matchup.git'
@@ -61,7 +64,7 @@ Plug 'https://github.com/Shougo/deoplete.nvim.git'
 Plug 'https://github.com/roxma/nvim-yarp.git'
 Plug 'https://github.com/roxma/vim-hug-neovim-rpc.git'
 Plug 'https://github.com/wokalski/autocomplete-flow.git'
-Plug 'https://github.com/ludovicchabant/vim-gutentags.git'
+" Plug 'https://github.com/ludovicchabant/vim-gutentags.git'
 
 " tools for specific programming languages
 Plug 'https://github.com/sheerun/vim-polyglot.git'
@@ -74,13 +77,9 @@ Plug 'https://github.com/tpope/vim-rails.git', { 'for': 'ruby' }
 Plug 'https://github.com/tpope/vim-salve.git', { 'for': 'clojure' }
 Plug 'https://github.com/lumiliet/vim-twig.git'
 
-" writing
-Plug 'https://github.com/junegunn/goyo.vim.git'
-Plug 'https://github.com/junegunn/limelight.vim.git'
-"
 " colors
 Plug 'git@github.com:noahtheduke/dracula-vim.git'
-Plug 'https://github.com/swalladge/paper.vim.git'
+Plug 'https://github.com/agudulin/vim-colors-alabaster.git'
 
 call plug#end()
 
@@ -89,8 +88,8 @@ call plug#end()
 
 " necessary internal changes
 " set clipboard+=unnamedplus  " Unix only
-" set clipboard+=unnamed  " Windows only
-set clipboard=unnamed  " Mac only
+set clipboard+=unnamed  " Windows only
+" set clipboard=unnamed  " Mac only
 set encoding=utf-8  " Supposed to be set by vim-sensible, but isn't always set.
 set formatoptions=tqrn1
 set guioptions=grtC
@@ -204,6 +203,8 @@ let g:clojure_maxlines = 250
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#keyword_patterns = {}
+let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.#]*'
 
 " Tagbar
 " let g:tagbar_ctags_bin = 'C:\Users\NoahBogart\Personal\bin\ctags\ctags.exe'
@@ -273,11 +274,10 @@ let g:vimwiki_list = [{
 " * jj  -> Escape: Classic input mode remap, for speed and no hand-movement.
 " * F1  -> Escape: Obvious, but extremely helpful when the hand misses.
 " * Q   -> nop:    I don't use Ex/Command mode, and I hit this a lot on accident. GONE.
-" * tab -> %:      Cursor on a bracket, brace, parenthesis, etc jumps to the matching pair.
 " * Y   -> y$:     Now matches the other capital letter commands: D, C, etc.
 " * V   -> v$:     Now matches the other capital letter commands: D, C, etc.
-" * \#   -> #:      All this does is enter a single letter (X), delete the letter, and reenter the comment character. This
-"     fixes an issue with smartindent.
+" * #   -> #:      All this does is enter a single letter (X), delete the letter, and reenter the comment character.
+"                  This fixes an issue with smartindent.
 " * Ctrl-a/Ctrl-x: Within a visual selection, increments or decrements the first number on each line selected.
 
 inoremap <F1> <ESC>
