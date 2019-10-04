@@ -1,25 +1,6 @@
-+----------+---------+----------+---------+---------------------+
-| id       | deck_id | quantity | card_id | title               |
-+----------+---------+----------+---------+---------------------+
-| 85908608 | 1224681 |        1 |    1746 | The Nihilist        |
-| 85908631 | 1224316 |        3 |    1746 | The Nihilist        |
-| 85927750 | 1224733 |        3 |    1746 | The Nihilist        |
-| 85929788 | 1224948 |        3 |    1746 | The Nihilist        |
-| 85909427 | 1224440 |        1 |    1747 | The Class Act       |
-| 85916435 | 1224322 |        2 |    1747 | The Class Act       |
-| 85916485 | 1224777 |        1 |    1747 | The Class Act       |
-| 85917869 | 1208432 |        2 |    1747 | The Class Act       |
-| 85921112 | 1224836 |        1 |    1747 | The Class Act       |
-| 85912156 | 1220724 |        2 |    1748 | The Artist          |
-| 85916359 | 1224552 |        2 |    1748 | The Artist          |
-| 85916507 | 1224219 |        1 |    1748 | The Artist          |
-| 85920420 | 1224828 |        1 |    1749 | Nanoetching Matrix  |
-| 85916434 | 1224322 |        1 |    1750 | Tiered Subscription |
-| 85917868 | 1208432 |        1 |    1750 | Tiered Subscription |
-| 85918056 | 1224799 |        3 |    1750 | Tiered Subscription |
-| 85940199 | 1225098 |        2 |    1751 | Tiered Subscription |
-| 85946460 | 1225205 |        2 |    1751 | Tiered Subscription |
-| 85940200 | 1225098 |        3 |    1752 | Congratulations!    |
-| 85946461 | 1225205 |        3 |    1752 | Congratulations!    |
-| 85946639 | 1225201 |        1 |    1752 | Congratulations!    |
-+----------+---------+----------+---------+---------------------+
+highland ridge:
+  - https://www.highlandridgeapts.com/
+  - only 9 months
+boulevard:
+  - https://liveboulevardapts.com/
+  - 6 month, $50 per month extra, available end of sept

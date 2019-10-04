@@ -1,12 +1,20 @@
-{:user {:plugins [[cider/cider-nrepl "0.17.0"]
-                  [com.jakemccrary/lein-test-refresh "0.22.0"]
-                  [jonase/eastwood "0.2.5"]
-                  [lein-cljfmt "0.5.7"]
+{:user {
+        :plugins [
+                  [com.jakemccrary/lein-test-refresh "0.24.1"]
+                  [jonase/eastwood "0.3.6"]
+                  [lein-kibit "0.1.7"]
+                  [lein-cljfmt "0.6.4"]
                   [lein-topology "0.2.0"]
-                  [lein-gossip "0.1.0-SNAPSHOT"]
-                  [lein-kibit "0.1.5"]
-                  [venantius/ultra "0.5.2"]]
+                  [lein-bikeshed "0.5.2"]
+                  [lein-ancient "0.6.15"]
+                  ]
         :eastwood {:exclude-linters [:no-ns-form-found]}
         :test-refresh {:changes-only true
                        :quiet true
-                       :watch-dirs ["test"]}}}
+                       :watch-dirs ["test"]}
+        :aliases {"var-graph" ["with-profile" "+clj-usage-graph" "run"
+                               "-m" "com.gfredericks.clj-usage-graph/var-graph"]
+                  "namespace-graph" ["with-profile" "+clj-usage-graph" "run"
+                                     "-m" "com.gfredericks.clj-usage-graph/namespace-graph"]
+                  } }
+ :clj-usage-graph {:dependencies [[com.gfredericks/clj-usage-graph "0.3.0"]]}}
