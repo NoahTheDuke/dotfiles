@@ -1,6 +1,0 @@
-* [ ] I want to move the card text out of cards, and have a table that holds all of the
-      card text.
-* [ ] I want move all jnet card defs to their own files (one of these fuckin branches
-      smdh)
-* [ ] unify all of the symbols to be the nisei/nrdb official usage
-* [ ] 

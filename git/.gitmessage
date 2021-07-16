@@ -1,5 +1,5 @@
 
-# <type>[ (<scope>)]: <subject>
+# <type>: <subject>
 
 
 # <body>
@@ -19,9 +19,6 @@
 # * refactor (refactoring production code, eg. rewriting a function for clarity)
 # * style (formatting, etc; no production code change)
 # * test (adding missing tests, refactoring tests; no production code change)
-#
-# The <scope> is optional only if the change is a global or difficult to assign
-# to a single component.
 #
 # <body>: Use the third-person, present tense: "Changes X", not "Changed X" nor
 # "Change X". If multiple changes are bundled, make sure to either space the

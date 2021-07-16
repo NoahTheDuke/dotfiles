@@ -11,8 +11,6 @@
 	blamo = log -p -M --follow --stat --
 	lint-ruby = "!git diff origin/master --name-only | xargs ls -1 2>/dev/null | rg '\\.rb$' | rg -v 'schema.rb' | xargs rubocop -a"
 [core]
-; 	autocrlf = false
-; 	editor = 'C:\\Program Files (x86)\\Vim\\vim80\\gvim.exe' -f -i NONE
 	hooksPath = ~/dotfiles/git/hooks
 	editor = gvim -f -i NONE
 [commit]
@@ -23,5 +21,5 @@
 	indentHeuristic = on
 	colorMoved = on
 ; [user]
-; 	name = Noah
-; 	email = nbtheduke@gmail.com
+; 	name = Noah Bogart
+; 	email = noah.bogart@hey.com

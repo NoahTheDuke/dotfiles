@@ -1,4 +1,0 @@
-== :aaw_yeah: 2018-10-08: ==
-* [X] Fix bugs with existing Processing Location PR
-* [-] Create release, `git push -f` that baby to master with impunity
-* [X] Begin work on next stage of Processing Locations

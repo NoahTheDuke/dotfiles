@@ -1,6 +1,0 @@
-highland ridge:
-  - https://www.highlandridgeapts.com/
-  - only 9 months
-boulevard:
-  - https://liveboulevardapts.com/
-  - 6 month, $50 per month extra, available end of sept

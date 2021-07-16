@@ -1,6 +1,7 @@
 " Table of Contents
 " =================
 
+" * Settings that must be set before plugins are loaded
 " * [Plugins](#plugins)
 " * [Vim Settings](#settings)
 " * [Plugin Settings](#plugin-settings)
@@ -8,10 +9,12 @@
 " * [Plugin Keybinds](#plugin-keybinds)
 " * [Font Defaults](#font-defaults)
 
+" Init settings
+let g:loaded_matchit = 1
+let g:ale_disable_lsp = 1
+
 " Plugins
 " =======
-
-let g:loaded_matchit = 1
 
 call plug#begin('~/.vim/plugged')
 
@@ -27,23 +30,23 @@ Plug 'https://github.com/vimwiki/vimwiki', { 'branch': 'dev' }
 Plug 'https://github.com/bling/vim-airline.git'
 Plug 'https://github.com/mbbill/undotree.git'
 Plug 'https://github.com/osyo-manga/vim-over.git'
-Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'https://github.com/ruanyl/vim-gh-line.git'
+Plug 'https://github.com/tpope/vim-fugitive.git'
+Plug 'https://github.com/tpope/vim-rhubarb.git'
 
 " directory display/movement
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
-Plug 'https://github.com/scrooloose/nerdtree.git'
+Plug 'https://github.com/lambdalisue/fern.vim.git'
+Plug 'https://github.com/previm/previm.git', {'for': 'markdown'}
 
 " in-file editing
 Plug 'https://github.com/AndrewRadev/splitjoin.vim.git'
 Plug 'https://github.com/AndrewRadev/switch.vim.git'
-" Plug 'https://github.com/guns/vim-sexp.git'
+Plug 'https://github.com/guns/vim-sexp.git'
 Plug 'https://github.com/junegunn/vim-easy-align.git'
-Plug 'https://github.com/tpope/vim-bundler.git'
 Plug 'https://github.com/tpope/vim-commentary.git'
-Plug 'https://github.com/tpope/vim-endwise.git'
 Plug 'https://github.com/tpope/vim-repeat.git'
-" Plug 'https://github.com/tpope/vim-sexp-mappings-for-regular-people.git'
+Plug 'https://github.com/tpope/vim-sexp-mappings-for-regular-people.git'
 Plug 'https://github.com/tpope/vim-speeddating.git'
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/tpope/vim-unimpaired.git'
@@ -51,8 +54,8 @@ Plug 'https://github.com/wellle/targets.vim.git'
 
 " movement
 Plug 'https://github.com/andymass/vim-matchup.git'
-Plug 'https://github.com/easymotion/vim-easymotion.git'
 Plug 'https://github.com/jremmen/vim-ripgrep.git'
+Plug 'https://github.com/wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 
 " general programming editing
 Plug 'https://github.com/tpope/vim-dispatch.git'
@@ -60,26 +63,29 @@ Plug 'https://github.com/tpope/vim-projectionist.git'
 Plug 'https://github.com/tpope/vim-sleuth.git'
 Plug 'https://github.com/w0rp/ale.git'
 Plug 'https://github.com/janko-m/vim-test.git'
-Plug 'https://github.com/Shougo/deoplete.nvim.git'
-Plug 'https://github.com/roxma/nvim-yarp.git'
-Plug 'https://github.com/roxma/vim-hug-neovim-rpc.git'
-Plug 'https://github.com/wokalski/autocomplete-flow.git'
-" Plug 'https://github.com/ludovicchabant/vim-gutentags.git'
+Plug 'https://github.com/godlygeek/tabular.git'
+" Plug 'https://github.com/eraserhd/parinfer-rust.git', {'do': 'cargo build --release'}
 
 " tools for specific programming languages
-Plug 'https://github.com/sheerun/vim-polyglot.git'
-Plug 'https://github.com/ambv/black.git', { 'for': 'python' }
-Plug 'https://github.com/davidhalter/jedi-vim.git', { 'for': 'python' }
-Plug 'https://github.com/plasticboy/vim-markdown.git'
-Plug 'https://github.com/rust-lang/rust.vim.git'
-Plug 'https://github.com/tpope/vim-fireplace.git', { 'for': 'clojure' }
-Plug 'https://github.com/tpope/vim-rails.git', { 'for': 'ruby' }
-Plug 'https://github.com/tpope/vim-salve.git', { 'for': 'clojure' }
+Plug 'https://github.com/psf/black.git', {'for': 'python'}
+" Plug 'https://github.com/liquidz/vim-iced.git', {'for': 'clojure'}
+" Plug 'https://github.com/liquidz/vim-iced-coc-source', {'for': 'clojure'}
+Plug 'https://github.com/tpope/vim-fireplace.git', {'for': 'clojure'}
+Plug 'https://github.com/ludovicchabant/vim-gutentags.git'
 Plug 'https://github.com/lumiliet/vim-twig.git'
+Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'release'}
+Plug 'https://github.com/plasticboy/vim-markdown.git'
+Plug 'https://github.com/rust-lang/rust.vim.git', {'for': 'rust'}
+Plug 'https://github.com/sheerun/vim-polyglot.git'
+Plug 'https://github.com/tpope/vim-fireplace.git', {'for': 'clojure'}
+Plug 'https://github.com/tpope/vim-rails.git', {'for': 'ruby'}
+Plug 'https://github.com/vlime/vlime.git', {'rtp': 'vim/'}
+Plug 'https://github.com/samsaga2/vim-z80', {'for': 'asm'}
 
 " colors
-Plug 'git@github.com:noahtheduke/dracula-vim.git'
-Plug 'https://github.com/agudulin/vim-colors-alabaster.git'
+Plug 'https://github.com/dracula/vim.git', {'as': 'dracula-vim'}
+
+Plug '~/Personal/vim-just'
 
 call plug#end()
 
@@ -88,34 +94,49 @@ call plug#end()
 
 " necessary internal changes
 " set clipboard+=unnamedplus  " Unix only
-set clipboard+=unnamed  " Windows only
-" set clipboard=unnamed  " Mac only
+" set clipboard+=unnamed  " Windows only
+set clipboard=unnamed  " Mac only
 set encoding=utf-8  " Supposed to be set by vim-sensible, but isn't always set.
+scriptencoding utf-8
 set formatoptions=tqrn1
 set guioptions=grtC
 set modelines=0
-set tw=88
+set textwidth=88
+set cmdheight=2
+set shortmess+=c
+set signcolumn=number
+set updatetime=300
+set wildignorecase
 
-if executable("rg")
+if executable('rg')
     set grepprg=rg\ --vimgrep\ --no-heading
     set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
 " cwd, save, reload
 set autochdir
-au FocusLost * :wa
+
+augroup autosave
+    autocmd FocusLost * :wa
+augroup END
 
 " filetypes
-autocmd Filetype gitcommit setlocal spell textwidth=80
-au BufNewFile,BufReadPost *.axvw set filetype=xml
-au BufNewFile,BufReadPost *.md set filetype=markdown
+augroup filetypes
+  autocmd Filetype gitcommit setlocal spell textwidth=80
+  autocmd BufNewFile,BufReadPost *.axvw set filetype=xml
+  autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+  autocmd BufNewFile,BufReadPost *.asd set filetype=lisp
+  autocmd BufNewFile,BufReadPost *.asm set filetype=z80
+augroup END
 
 " searching
+set incsearch
 set hlsearch
 set showmatch
 
 " tabs
 set shiftwidth=4
+set tabstop=4
 set expandtab
 set nosmartindent
 set softtabstop=-1
@@ -125,12 +146,8 @@ set title
 set noshowmode
 set noerrorbells
 set visualbell
-set cc=88
+set colorcolumn=88
 set showcmd
-
-" Disable hover tooltips
-set noballooneval
-let g:netrw_nobeval=1
 
 " Relative and current line numbers
 set number
@@ -143,7 +160,7 @@ set undofile
 set undodir=~/.vim/undofiles
 
 set list
-set lcs=tab:>\ ,eol:¬,trail:~
+set listchars=tab:>\ ,eol:¬,trail:~
 
 " netrw settings
 let g:netrw_banner = 0
@@ -154,75 +171,90 @@ let g:netrw_winsize = 10
 
 set wildignore+=*\\tmp\\*,*\\target\\*,*\\out\\*
 
-" ebth-specific
-set includeexpr=substitute(v:fname,'^\\~\/','~/dev/ebth-com/app/javascript/','')
-set suffixesadd=.js,.md
-
 " Plugin and Language Settings
 " ===============
-
-" colors, etc
+" colors
 color dracula
+
+function! ShowColourSchemeName()
+  return get(g:, 'colors_name', 'default')
+endfunction
+
+function! SetDraculaColors()
+    if ShowColourSchemeName() ==? 'dracula'
+        hi! link Macro DraculaOrange
+        hi! link Operator DraculaOrange
+    endif
+endfunction
+
+augroup MyColors
+    call SetDraculaColors()
+
+    hi! link SpecialKey Comment
+    hi! link typescriptFunctionCall Function
+    hi! link typescriptFunctionMember Function
+    hi! link typescriptKeywordOp Operator
+    hi! link typescriptMember Function
+    hi! link typescriptOperator Operator
+augroup END
 
 " airline settings
 let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'default'
+let g:airline#extensions#whitespace#mixed_indent_algo = 1
 let g:airline_highlighting_cache = 1
-let g:airline_powerline_fonts = 1
 
 " ALE settings
-let g:ale_completion_enabled = 1
-let g:ale_set_balloons=0
+let g:ale_completion_enabled = 0
+let g:ale_set_balloons = 0
 let g:ale_sign_column_always = 1
 let g:ale_lint_delay = 200
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_linters = {
+    \ 'clojure': [''],
     \ 'java': [''],
-    \ 'javascript': ['flow', 'eslint'],
+    \ 'javascript': ['eslint'],
     \ 'python': ['flake8'],
     \ 'ruby': ['rubocop']
     \ }
 let g:ale_fixers = {
-    \ 'javascript': ['prettier'],
+    \ 'javascript': ['eslint'],
+    \ 'typescript': ['eslint'],
     \ 'ruby': ['rubocop']
     \ }
-
-let g:ale_javascript_prettier_options = '--single-quote --print-width 88 --tab-width 4'
 
 " Clojure settings
 let g:clojure_syntax_keywords = {
     \ 'clojureMacro':
-    \   ["effect", "req", "msg", "wait-for", "continue-ability",
-    \    "rename", "do-game", "deftest-pending", "changes-val-macro",
-    \    "when-let*"]
+    \   ['effect', 'req', 'msg', 'wait-for', 'continue-ability',
+    \    'do-game', 'deftest-pending', 'changes-val-macro',
+    \    'when-let*', 'before-each']
     \ }
-" Indent awareness without limits
-let g:clojure_maxlines = 250
 
-" Deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#keyword_patterns = {}
-let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.#]*'
+augroup clojure
+  autocmd FileType clojure setlocal lispwords+=before-each,do-game
+augroup END
 
-" Tagbar
-" let g:tagbar_ctags_bin = 'C:\Users\NoahBogart\Personal\bin\ctags\ctags.exe'
-let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
+" vim-iced
+let g:iced#buffer#stdout#mods = 'belowright'
+let g:iced_enable_clj_kondo_analysis = v:true
+let g:iced_enable_clj_kondo_local_analysis = v:true
+let g:iced_enable_auto_indent = v:false
+let g:iced_enable_default_key_mappings = v:true
+nmap <Nop>(iced_document_popup_open) <Plug>(iced_document_popup_open)
 
-" NERDTree
-autocmd vimenter * NERDTree
-
-" polyglot settings
-let python_highlight_all = 1
+" polyglot/language settings
+let g:python_highlight_all = 1
 let java_highlight_functions = 1
-let g:javascript_plugin_flow = 1
-
+let javascript_plugin_flow = 1
+let g:typescript_ignore_browserwords = 1
 
 " jedi-vim settings
 let g:jedi#smart_auto_mappings = 0
 let g:jedi#completions_enabled = 0
-autocmd FileType python setlocal completeopt-=preview
 
 " vim markdown settings
 let g:vim_markdown_folding_disabled = 1
@@ -240,26 +272,32 @@ let g:ctrlp_user_command = 'fd --type f --color=never "" %s'
 let g:ctrlp_use_caching = 0
 
 " vim-test settings
-let test#strategy = "dispatch"
+let test#strategy = 'dispatch'
 let test#ruby#minitest#options = '--no-color'
-let test#clojure#fireplacetest#executable = 'lein eftest'
 
 " Splitjoin
-nmap sj :SplitjoinSplit<CR>
-nmap sk :SplitjoinJoin<CR>
+" nmap sj :SplitjoinSplit<CR>
+" nmap sk :SplitjoinJoin<CR>
 let g:splitjoin_trailing_comma = 1
 
-" Sadly, these next bits have to be hardcoded, because I haven't put in the effort to learn enough vimscript to write
-" a function that would accomplish the same thing. However, I spend all my time at a single workstation, so this isn't too
-" much of a hassle. In the future, I will have to put in that effort, which is v sad.
+" switch.vim
+augroup switches
+  autocmd FileType lisp let b:switch_custom_definitions =
+        \ [
+        \   {
+        \     '"\(\k\+\)"': '''\1',
+        \     '''\(\k\+\)': ':\1',
+        \     ':\(\k\+\)': '#:\1',
+        \     '#:\(\k\+\)':  '"\1"\2',
+        \   },
+        \ ]
+augroup END
 
-" spacing the sidebars correctly for 88 text width
-let g:NERDTree = 27
-let g:tagbar_width = 27
+" minimap.vim settings
+let g:minimap_highlight_range=1
 
-" And here are my Vimwiki settings, which are vast and elaborate because vimwiki is vast
-" and elaborate.
-
+" vimwiki
+let g:vimwiki_global_ext = 0
 let g:vimwiki_list = [{
   \ 'path': '~/dotfiles/vimwiki/',
   \ 'template_path': '~/dotfiles/vimwiki/templates/',
@@ -267,6 +305,16 @@ let g:vimwiki_list = [{
   \ 'path_html': '~/vimwiki/site_html/',
   \ 'template_ext': '.tpl'
   \ }]
+
+" coc.nvim
+let g:coc_default_semantic_highlight_groups = 0
+let g:node_client_debug = 1
+" let g:coc_node_args = ['--nolazy', '--inspect=6045']
+
+" csv.vim
+let g:csv_nomap_bs = 1
+let g:csv_nomap_cr = 1
+let g:csv_nomap_space = 1
 
 " Keybinds
 " ========
@@ -291,6 +339,13 @@ nnoremap V <C-V>$
 vnoremap <C-a> :s/\%V-\=\d\+/\=submatch(0)+1/g
 vnoremap <C-x> :s/\%V-\=\d\+/\=submatch(0)-1/g
 
+" nnoremap <A-j> :m .+1<CR>==
+" nnoremap <A-k> :m .-2<CR>==
+" inoremap <A-j> <Esc>:m .+1<CR>==gi
+" inoremap <A-k> <Esc>:m .-2<CR>==gi
+" vnoremap <A-j> :m '>+1<CR>gv=gv
+" vnoremap <A-k> :m '<-2<CR>gv=gv
+
 " Python comment indentation fix
 inoremap # X<BS>#
 
@@ -300,36 +355,199 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 " Plugin Keybinds
 " ---------------
 
-" * %s -> OverCommandLine: When writing a regex, if it's a regex over the whole file, instead activate OverCommandLine to
-"     see the changes as they're typed.
-" * ga -> EasyAlign:       Activates EasyAlign in visual mode and for a motion/text object.
-" * \\w, \\W -> EasyMotion: Changes the EasyMotion default of searching forward per word to searching the whole file per
-"     word.
+" * ga -> EasyAlign: Activates EasyAlign in visual mode and for a motion/text object.
 " * F5 -> Toggles undotree.
-
-cabbrev %s OverCommandLine<cr>%s
+" * F6 -> Toggles Fern
+" * F7 -> Toggles Minimap
 
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
 
-nmap \\w <Plug>(easymotion-bd-w)
-nmap \\W <Plug>(easymotion-bd-W)
-
 nmap <F5> :UndotreeToggle<CR>
-nmap <F6> :NERDTreeToggle<CR>
+nmap <F6> :Fern . -drawer -toggle<CR>
+nmap <F7> :MinimapToggle<CR>
+
+let g:previm_open_cmd = 'open -a Firefox'
+
+let g:sexp_mappings = {'sexp_indent': '', 'sexp_indent_top': ''}
+nmap \\\\a <Plug>(iced_format)
+nmap \\\\b <Plug>(iced_format_all)
+
+" coc.nvim keybinds
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-@> coc#refresh()
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Highlight the symbol and its references when holding the cursor.
+augroup highlight
+    autocmd CursorHold * silent call CocActionAsync('highlight')
+augroup END
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+" Applying codeAction to the selected region.
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction-cursor)
+nmap <leader>af  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Map function and class text objects
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+" Remap <C-f> and <C-b> for scroll float windows/popups.
+nnoremap <silent><nowait><expr> <C-f> coc#float#has_float() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <silent><nowait><expr> <C-b> coc#float#has_float() ? coc#float#scroll(0) : "\<C-b>"
+inoremap <silent><nowait><expr> <C-f> coc#float#has_float() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+inoremap <silent><nowait><expr> <C-b> coc#float#has_float() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+vnoremap <silent><nowait><expr> <C-f> coc#float#has_float() ? coc#float#scroll(1) : "\<C-f>"
+vnoremap <silent><nowait><expr> <C-b> coc#float#has_float() ? coc#float#scroll(0) : "\<C-b>"
+
+" Use CTRL-S for selections ranges.
+" Requires 'textDocument/selectionRange' support of language server.
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+nmap <silent> rtl :call CocAction('runCommand', 'lsp-clojure-thread-last-all')<CR>
+
+" Mappings for CoCList
+" Show all diagnostics.
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+" open url in floating window
+nnoremap <silent> <leader>o :call <SID>Open()<CR>
+
+function! s:Open()
+  let res = CocAction('openLink')
+  if res | return | endif
+  let line = getline('.')
+  " match url
+  let url = matchstr(line, '\vhttps?:\/\/[^)\]''" ]+')
+  if !empty(url)
+    let output = system('open '. url)
+  else
+    let mail = matchstr(line, '\v([A-Za-z0-9_\.-]+)\@([A-Za-z0-9_\.-]+)\.([a-z\.]+)')
+    if !empty(mail)
+      let output = system('open mailto:' . mail)
+    else
+      let output = system('open ' . expand('%:p:h'))
+    endif
+  endif
+  if v:shell_error && output !=# ''
+    echoerr output
+  endif
+endfunction
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+    " in a vim or help file
+    if (index(['vim', 'help'], &filetype) >= 0)
+        execute 'h ' . expand('<cword>')
+    " Connected to an iced repl
+    " elseif (iced#nrepl#is_connected())
+    "     call iced#repl#execute('document_popup_open', [])
+    " coc.nvim is good to go
+    elseif (coc#rpc#ready())
+        call CocActionAsync('doHover')
+    " default
+    else
+        execute '!' . &keywordprg . ' ' . expand('<cword>')
+    endif
+endfunction
+
+nnoremap <silent> gd :call <SID>go_to_definition()<CR>
+
+function! s:go_to_definition()
+    " Connected to an iced repl
+    " if (iced#nrepl#is_connected())
+    "     call iced#nrepl#navigate#jump_to_def([])
+    " coc.nvim is good to go
+    if (coc#rpc#ready())
+        call CocActionAsync('jumpDefinition')
+    " no default action
+    else
+        execute ':normal! gd'
+    endif
+endfunction
+
+set runtimepath^=/Users/noah/Personal/coc-clojure
 
 " Font Defaults
 " =============
 
 "Set the font and size
-if has("gui_running")
-  if has("gui_gtk2")
-    set guifont=Inconsolata\ 13
-  elseif has("gui_win32")
-   set guifont=Consolas:h11
+if has('gui_running')
+  set mouse=a
+
+  if has('gui_gtk2')
+    set guifont=FiraCode-Light\ 14
+  elseif has('gui_win32')
+   set guifont=FiraCode-Light:h14
   else
     set macligatures
-    set guifont=FiraCode-Light:h13
-    set mouse=a
+    set guifont=FiraCode-Light:h14
   endif
 endif
