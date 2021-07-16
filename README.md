@@ -16,10 +16,5 @@ This will create a powershell file with the changes applied. Use that as the lin
 Vim
 =====
 
-Because I use [literate-vimrc](https://github.com/thcipriani/literate-vimrc), `~/.vimrc` needs to say:
-```viml
-execute literatevimrc#load('~/dotfiles/vim/.vimrc.md')
-```
-and `vim/autoload/` needs to be moved to `~/.vim` or `~/vimfiles` (Unix or Windows, respectively). After it loads once,
-type `:PlugInstall`, and then copy the new `~/.vim/plugged/literate-vimrc/autoload/literatevimrc.vim` to
-`~/(.vim/vimfiles)/autoload` to use the most up-to-date version of literate-vimrc.
+`vim/autoload/` needs to be moved to `~/.vim` or `~/vimfiles` (Unix or Windows, respectively). After it loads once,
+type `:PlugInstall`.
