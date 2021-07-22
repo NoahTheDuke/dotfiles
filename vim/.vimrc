@@ -58,34 +58,29 @@ Plug 'https://github.com/jremmen/vim-ripgrep.git'
 Plug 'https://github.com/wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 
 " general programming editing
-Plug 'https://github.com/tpope/vim-dispatch.git'
-Plug 'https://github.com/tpope/vim-projectionist.git'
-Plug 'https://github.com/tpope/vim-sleuth.git'
-Plug 'https://github.com/w0rp/ale.git'
-Plug 'https://github.com/janko-m/vim-test.git'
+Plug 'https://github.com/conormcd/matchindent.vim'
 Plug 'https://github.com/godlygeek/tabular.git'
-" Plug 'https://github.com/eraserhd/parinfer-rust.git', {'do': 'cargo build --release'}
+Plug 'https://github.com/janko-m/vim-test.git'
+Plug 'https://github.com/tpope/vim-projectionist.git'
+Plug 'https://github.com/w0rp/ale.git'
 
 " tools for specific programming languages
-Plug 'https://github.com/psf/black.git', {'for': 'python'}
-" Plug 'https://github.com/liquidz/vim-iced.git', {'for': 'clojure'}
-" Plug 'https://github.com/liquidz/vim-iced-coc-source', {'for': 'clojure'}
-Plug 'https://github.com/tpope/vim-fireplace.git', {'for': 'clojure'}
 Plug 'https://github.com/ludovicchabant/vim-gutentags.git'
 Plug 'https://github.com/lumiliet/vim-twig.git'
 Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'release'}
-Plug 'https://github.com/plasticboy/vim-markdown.git'
+Plug 'https://github.com/NoahTheDuke/vim-just.git', {'for': 'just'}
+Plug 'https://github.com/plasticboy/vim-markdown.git', {'for': 'markdown'}
+Plug 'https://github.com/psf/black.git', {'for': 'python'}
 Plug 'https://github.com/rust-lang/rust.vim.git', {'for': 'rust'}
+Plug 'https://github.com/samsaga2/vim-z80', {'for': 'asm'}
 Plug 'https://github.com/sheerun/vim-polyglot.git'
 Plug 'https://github.com/tpope/vim-fireplace.git', {'for': 'clojure'}
+Plug 'https://github.com/tpope/vim-fireplace.git', {'for': 'clojure'}
 Plug 'https://github.com/tpope/vim-rails.git', {'for': 'ruby'}
-Plug 'https://github.com/vlime/vlime.git', {'rtp': 'vim/'}
-Plug 'https://github.com/samsaga2/vim-z80', {'for': 'asm'}
+Plug 'https://github.com/vlime/vlime.git', {'rtp': 'vim/', 'for': 'lisp'}
 
 " colors
 Plug 'https://github.com/dracula/vim.git', {'as': 'dracula-vim'}
-
-Plug '~/Personal/vim-just'
 
 call plug#end()
 
@@ -205,6 +200,12 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'default'
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
 let g:airline_highlighting_cache = 1
+" top line is default, other lines are additions
+let g:airline#extensions#c_like_langs =
+    \ [
+    \   'arduino', 'c', 'cpp', 'cuda', 'go', 'javascript', 'ld', 'php',
+    \   'typescript'
+    \ ]
 
 " ALE settings
 let g:ale_completion_enabled = 0
@@ -401,10 +402,9 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> <leader>gy <Plug>(coc-type-definition)
+nmap <silent> <leader>gi <Plug>(coc-implementation)
+nmap <silent> <leader>gr <Plug>(coc-references)
 
 " Highlight the symbol and its references when holding the cursor.
 augroup highlight

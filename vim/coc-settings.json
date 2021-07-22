@@ -1,0 +1,40 @@
+{
+    "languageserver": {
+        "racket": {
+            "command": "racket",
+            "args": [
+                "--lib",
+                "racket-langserver"
+            ],
+            "filetypes": [
+                "scheme",
+                "racket"
+            ],
+            "trace.server": "verbose"
+        }
+    },
+    "markdownlint.config": {
+        "default": true,
+        "MD024": {
+            "siblings_only": true
+        },
+        "MD025": {
+            "front_matter_title": ""
+        },
+        "line_length": false
+    },
+    "coc.preferences.enableMarkdown": true,
+    "signature.enable": true,
+    "signature.triggerSignatureWait": 1000,
+    "codeLens.enable": true,
+    "diagnostic.displayByAle": false,
+    "coc.source.iced.enabled": true,
+    "tsserver.trace.server": "verbose",
+    "clojure.executable": "/Users/noah/Personal/clojure-lsp/clojure-lsp",
+    "clojure.startup-message": true,
+    "clojure.trace.server": "verbose",
+    "clojure.initialization-options.text-document-sync-kind": ":incremental",
+    "clojure.initialization-options.use-metadata-for-privacy?": true,
+    "clojure.initialization-options.ignore-classpath-directories": true,
+    "javascript.suggestionActions.enabled": false
+}

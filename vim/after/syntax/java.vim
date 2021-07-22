@@ -1,3 +1,7 @@
+if polyglot#init#is_disabled(expand('<sfile>:p'), 'java', 'syntax/java.vim')
+  finish
+endif
+
 " Vim syntax file
 " Language:	Java
 " Maintainer:	Claudio Fleiner <claudio@fleiner.com>
