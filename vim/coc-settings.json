@@ -22,15 +22,15 @@
             "siblings_only": true
         }
     },
-    "coc.preferences.enableMarkdown": true,
-    "signature.enable": true,
-    "signature.triggerSignatureWait": 1000,
-    "codeLens.enable": false,
-    "diagnostic.displayByAle": false,
-    "clojure.startup-message": true,
     "clojure.initialization-options.semantic-tokens?": true,
+    "clojure.initialization-options.show-docs-arity-on-same-line?": false,
+    "clojure.startup-message": true,
     "clojure.trace.server": "verbose",
-    "javascript.suggestionActions.enabled": false,
+    "coc.preferences.enableMarkdown": true,
+    "codeLens.enable": true,
+    "codeLens.position": "eol",
+    "codeLens.separator": " ⏵",
+    "diagnostic.displayByAle": false,
     "rust-analyzer.cargo.allFeatures": true,
     "rust-analyzer.cargo.autoreload": true,
     "rust-analyzer.checkOnSave.enable": true,
@@ -42,5 +42,7 @@
     "rust-analyzer.inlayHints.typeHintsSeparator": "‣ ",
     "rust-analyzer.lens.methodReferences": true,
     "rust-analyzer.procMacro.enable": true,
-    "rust-analyzer.updates.channel": "stable"
+    "rust-analyzer.updates.channel": "stable",
+    "signature.enable": true,
+    "signature.triggerSignatureWait": 1000
 }

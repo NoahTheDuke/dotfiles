@@ -22,7 +22,7 @@ function! Cond(cond, ...)
   return a:cond ? opts : extend(opts, { 'on': [], 'for': [] })
 endfunction
 
-call plug#begin('~/.vim/plugged')
+call plug#begin()
 
 " Be sensible
 Plug 'https://github.com/tpope/vim-sensible.git'
@@ -107,7 +107,7 @@ call plug#end()
 " necessary internal changes
 " set clipboard+=unnamedplus  " Unix only
 " set clipboard+=unnamed  " Windows only
-set clipboard=unnamed  " Mac only
+" set clipboard=unnamed  " Mac only
 set encoding=utf-8  " Supposed to be set by vim-sensible, but isn't always set.
 scriptencoding utf-8
 set formatoptions=tqrn1
@@ -119,6 +119,7 @@ set shortmess+=c
 set signcolumn=number
 set updatetime=300
 set wildignorecase
+set mouse=a
 
 if executable('rg')
     set grepprg=rg\ --vimgrep\ --no-heading
@@ -166,10 +167,10 @@ set number
 
 " Store backup and undo files in fixed location, not current directory.
 set noswapfile
-set backup
-set backupdir=~/.vim/backupfiles
 set undofile
-set undodir=~/.vim/undofiles
+if !has('nvim')
+  set undodir=~/.vim/undofiles
+endif
 
 set list
 set listchars=tab:>\ ,eol:¬,trail:~
@@ -246,18 +247,6 @@ let g:ale_fixers = {
     \ }
 let g:ale_linters_ignore = ['markdownlint']
 
-" Clojure settings
-let g:clojure_syntax_keywords = {
-    \ 'clojureMacro':
-    \   ['effect', 'req', 'msg', 'wait-for', 'continue-ability',
-    \    'do-game', 'deftest-pending', 'changes-val-macro',
-    \    'when-let*', 'before-each']
-    \ }
-
-augroup clojure
-  autocmd FileType clojure setlocal lispwords+=before-each,do-game
-augroup END
-
 " polyglot/language settings
 let g:python_highlight_all = 1
 let java_highlight_functions = 1
@@ -330,7 +319,7 @@ let g:vimwiki_list = [{
 
 " coc.nvim
 let g:coc_default_semantic_highlight_groups = 0
-let g:node_client_debug = 1
+" let g:node_client_debug = 1
 " let g:coc_node_args = ['--nolazy', '--inspect=6045']
 
 " csv.vim
@@ -397,6 +386,7 @@ let g:previm_open_cmd = 'open -a Firefox'
 
 if has('nvim')
   source ~/dotfiles/vim/conjure.vim
+  source ~/dotfiles/vim/neovide.vim
 else
   source ~/dotfiles/vim/vim-iced.vim
 endif
@@ -406,9 +396,7 @@ source ~/dotfiles/vim/coc-nvim.vim
 " =============
 
 "Set the font and size
-if has('gui_running')
-  set mouse=a
-
+if has('gui_running') || has('nvim')
   if has('gui_gtk2')
     set guifont=FiraCode-Light\ 14
   elseif has('gui_win32')
@@ -416,7 +404,9 @@ if has('gui_running')
   elseif has('gui_macvim')
     set guifont=FiraCode-Light:h14
     set macligatures
+  elseif exists('g:neovide')
+    set guifont=Fira\ Code\ Retina:h12
   else
-    set guifont=FiraCode-Light:h14
+    set guifont=FiraCode-Retina:h12
   endif
 endif

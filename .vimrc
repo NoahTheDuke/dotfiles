@@ -1,4 +1,4 @@
-" put this file in ~
+set clipboard+=unnamedplus
 source ~/dotfiles/vim/.vimrc
 
 " debug/light vimrc settings
