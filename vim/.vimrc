@@ -17,11 +17,6 @@ let g:polyglot_disabled = ['autoindent', 'csv']
 " Plugins
 " =======
 
-function! Cond(cond, ...)
-  let opts = get(a:000, 0, {})
-  return a:cond ? opts : extend(opts, { 'on': [], 'for': [] })
-endfunction
-
 call plug#begin()
 
 " Be sensible
@@ -30,14 +25,11 @@ Plug 'https://github.com/tpope/vim-sensible.git'
 " core functionality
 Plug 'https://github.com/qpkorr/vim-bufkill.git'
 Plug 'https://github.com/ReekenX/vim-rename2.git'
-Plug 'https://github.com/vimwiki/vimwiki', { 'branch': 'dev' }
+Plug 'https://github.com/ypcrts/securemodelines.git'
 
 " Buffer/status line
-Plug 'https://github.com/bling/vim-airline.git'
-" Plug 'https://github.com/bling/vim-airline.git', Cond(!has('nvim'))
-" Plug 'https://github.com/kyazdani42/nvim-web-devicons.git', Cond(has('nvim'))
-" Plug 'https://github.com/akinsho/bufferline.nvim.git', Cond(has('nvim'))
-" Plug 'https://github.com/hoob3rt/lualine.nvim.git', Cond(has('nvim'))
+Plug 'https://github.com/vim-airline/vim-airline.git'
+Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 
 " visual/display
 Plug 'https://github.com/mbbill/undotree.git'
@@ -73,7 +65,7 @@ Plug 'https://github.com/wfxr/minimap.vim.git', {'do': ':!cargo install --locked
 Plug 'https://github.com/conormcd/matchindent.vim'
 Plug 'https://github.com/godlygeek/tabular.git'
 Plug 'https://github.com/janko-m/vim-test.git'
-Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'release'}
+Plug 'https://github.com/neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'https://github.com/tpope/vim-projectionist.git'
 Plug 'https://github.com/w0rp/ale.git'
 
@@ -90,14 +82,13 @@ Plug 'https://github.com/sheerun/vim-polyglot.git'
 Plug 'https://github.com/tpope/vim-rails.git', {'for': 'ruby'}
 Plug 'https://github.com/vlime/vlime.git', {'rtp': 'vim/', 'for': 'lisp'}
 
-" iced for vim8
-Plug 'https://github.com/liquidz/vim-iced.git', Cond(!has('nvim'), {'for': 'clojure'})
 " conjure for nvim
-Plug 'https://github.com/Olical/conjure.git', Cond(has('nvim'), {'tag': 'v4.23.0'})
-Plug 'https://github.com/walterl/conjure-macroexpand.git', Cond(has('nvim'))
+Plug 'https://github.com/Olical/conjure.git', {'tag': 'v4.23.0'}
+Plug 'https://github.com/walterl/conjure-macroexpand.git'
 
 " colors
 Plug 'https://github.com/dracula/vim.git', {'as': 'dracula-vim'}
+Plug 'https://github.com/NLKNguyen/papercolor-theme.git'
 
 call plug#end()
 
@@ -116,7 +107,7 @@ set modelines=0
 set textwidth=88
 set cmdheight=2
 set shortmess+=c
-set signcolumn=number
+set signcolumn=yes
 set updatetime=300
 set wildignorecase
 set mouse=a
@@ -127,10 +118,12 @@ if executable('rg')
 endif
 
 " cwd, save, reload
+set autoread
 set autochdir
 
 augroup autosave
     autocmd FocusLost * :wa
+    autocmd FocusGained,BufEnter * :checktime
 augroup END
 
 " filetypes
@@ -187,7 +180,10 @@ set wildignore+=*\\tmp\\*,*\\target\\*,*\\out\\*
 " Plugin and Language Settings
 " ===============
 " colors
-color dracula
+" set background=dark
+" colorscheme dracula
+set background=light
+colorscheme PaperColor
 
 function! ShowColourSchemeName()
   return get(g:, 'colors_name', 'default')
@@ -214,7 +210,7 @@ augroup END
 " airline settings
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#coc#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tabline#formatter = 'default'
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
 let g:airline_highlighting_cache = 1
@@ -224,6 +220,7 @@ let g:airline#extensions#c_like_langs =
     \   'arduino', 'c', 'cpp', 'cuda', 'go', 'javascript', 'ld', 'php',
     \   'typescript'
     \ ]
+let g:airline_theme="papercolor"
 
 " ALE settings
 let g:ale_completion_enabled = 0
@@ -304,30 +301,13 @@ augroup switches
         \ ]
 augroup END
 
-" minimap.vim settings
-let g:minimap_highlight_range=1
-
-" vimwiki
-let g:vimwiki_global_ext = 0
-let g:vimwiki_list = [{
-  \ 'path': '~/dotfiles/vimwiki/',
-  \ 'template_path': '~/dotfiles/vimwiki/templates/',
-  \ 'template_default': 'default',
-  \ 'path_html': '~/vimwiki/site_html/',
-  \ 'template_ext': '.tpl'
-  \ }]
-
-" coc.nvim
-let g:coc_default_semantic_highlight_groups = 0
-" let g:node_client_debug = 1
-" let g:coc_node_args = ['--nolazy', '--inspect=6045']
-
 " csv.vim
 let g:csv_nomap_bs = 1
 let g:csv_nomap_cr = 1
 let g:csv_nomap_space = 1
 
-" minimap
+" minimap.vim settings
+let g:minimap_highlight_range=1
 let g:minimap_width = 10
 let g:minimap_git_colors = 1
 
@@ -386,7 +366,6 @@ let g:previm_open_cmd = 'open -a Firefox'
 
 if has('nvim')
   source ~/dotfiles/vim/conjure.vim
-  source ~/dotfiles/vim/neovide.vim
 else
   source ~/dotfiles/vim/vim-iced.vim
 endif
@@ -400,13 +379,9 @@ if has('gui_running') || has('nvim')
   if has('gui_gtk2')
     set guifont=FiraCode-Light\ 14
   elseif has('gui_win32')
-   set guifont=FiraCode-Light:h14
+    set guifont=FiraCode-Light:h14
   elseif has('gui_macvim')
     set guifont=FiraCode-Light:h14
     set macligatures
-  elseif exists('g:neovide')
-    set guifont=Fira\ Code\ Retina:h12
-  else
-    set guifont=FiraCode-Retina:h12
   endif
 endif

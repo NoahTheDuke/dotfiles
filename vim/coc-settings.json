@@ -22,14 +22,20 @@
             "siblings_only": true
         }
     },
+    "clojure.enable": true,
+    // "clojure.executable": "~/Personal/clojure-lsp/clojure-lsp",
+    "clojure.initialization-options.copy-kond-configs?": true,
     "clojure.initialization-options.semantic-tokens?": true,
-    "clojure.initialization-options.show-docs-arity-on-same-line?": false,
+    "clojure.initialization-options.hover": {
+        "clojuredocs": true,
+        "arity-on-same-line?": false
+    },
     "clojure.startup-message": true,
     "clojure.trace.server": "verbose",
     "coc.preferences.enableMarkdown": true,
     "codeLens.enable": true,
-    "codeLens.position": "eol",
-    "codeLens.separator": " ⏵",
+    "codeLens.position": "right_align",
+    "codeLens.separator": " >",
     "diagnostic.displayByAle": false,
     "rust-analyzer.cargo.allFeatures": true,
     "rust-analyzer.cargo.autoreload": true,
@@ -44,5 +50,7 @@
     "rust-analyzer.procMacro.enable": true,
     "rust-analyzer.updates.channel": "stable",
     "signature.enable": true,
-    "signature.triggerSignatureWait": 1000
+    "tsserver.log": "verbose",
+    "signature.triggerSignatureWait": 1000,
+    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd"
 }

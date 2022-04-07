@@ -1,6 +1,3 @@
-set clipboard+=unnamedplus
-source ~/dotfiles/vim/.vimrc
-
 " debug/light vimrc settings
 " set nocompatible
 " set encoding=utf-8
@@ -14,6 +11,12 @@ source ~/dotfiles/vim/.vimrc
 " set runtimepath-=$HOME/.local/share/nvim/site
 " set runtimepath-=$HOME/.local/share/nvim/site/after
 "
-" set runtimepath^=$HOME/.vim/plugged/coc.nvim
-" set runtimepath^=/Users/noah/Personal/coc-clojure
 " let g:node_client_debug = 1
+" set runtimepath^=$HOME/Personal/coc.nvim
+set runtimepath^=$HOME/Personal/coc-clojure
+
+" neovim-qt settings are loaded automatically, so this is a link for ease of access
+" ~/.config/nvim/ginit.vim
+"
+set clipboard+=unnamedplus
+source ~/dotfiles/vim/.vimrc
