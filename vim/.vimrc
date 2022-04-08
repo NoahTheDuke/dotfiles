@@ -180,16 +180,14 @@ set wildignore+=*\\tmp\\*,*\\target\\*,*\\out\\*
 " Plugin and Language Settings
 " ===============
 " colors
-" set background=dark
 " colorscheme dracula
-set background=light
 colorscheme PaperColor
 
 function! ShowColourSchemeName()
   return get(g:, 'colors_name', 'default')
 endfunction
 
-function! SetDraculaColors()
+function! SetOrangeColors()
     if ShowColourSchemeName() ==? 'dracula'
         hi! link Macro DraculaOrange
         hi! link Operator DraculaOrange
@@ -197,7 +195,7 @@ function! SetDraculaColors()
 endfunction
 
 augroup MyColors
-    call SetDraculaColors()
+    call SetOrangeColors()
 
     hi! link SpecialKey Comment
     hi! link typescriptFunctionCall Function

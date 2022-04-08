@@ -18,5 +18,6 @@ set runtimepath^=$HOME/Personal/coc-clojure
 " neovim-qt settings are loaded automatically, so this is a link for ease of access
 " ~/.config/nvim/ginit.vim
 "
+set background=light
 set clipboard+=unnamedplus
 source ~/dotfiles/vim/.vimrc
