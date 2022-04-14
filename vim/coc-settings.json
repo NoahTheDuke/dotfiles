@@ -37,6 +37,10 @@
     "codeLens.position": "right_align",
     "codeLens.separator": " >",
     "diagnostic.displayByAle": false,
+    "javascript.suggestionActions.enabled": false,
+    "jedi.startupMessage": true,
+    "jedi.markupKindPreferred": "markdown",
+    "jedi.trace.server": "verbose",
     "rust-analyzer.cargo.allFeatures": true,
     "rust-analyzer.cargo.autoreload": true,
     "rust-analyzer.checkOnSave.enable": true,
@@ -51,6 +55,5 @@
     "rust-analyzer.updates.channel": "stable",
     "signature.enable": true,
     "tsserver.log": "verbose",
-    "signature.triggerSignatureWait": 1000,
-    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd"
+    "signature.triggerSignatureWait": 1000
 }

@@ -1,9 +1,19 @@
 # bash/zsh git prompt support
 #
-# Copyright (C) 2018 David Xu
+#    Copyright (C) 2021 David Xu
 #
-# Based on the earlier work by Shawn O. Pearce <spearce@spearce.org>
-# Distributed under the GNU General Public License, version 2.0.
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 # This script allows you to see the current branch in your prompt,
 # posh-git style.
@@ -19,93 +29,71 @@
 # This script should work out of the box. Available options are set through
 # your git configuration files. This allows you to control the prompt display on a
 # per-repository basis.
-# ```
-# bash.describeStyle
-# bash.enableFileStatus
-# bash.enableGitStatus
-# bash.showStatusWhenZero
-# bash.showUpstream
-# ```
 #
-# bash.describeStyle
-# ------------------
+### bash.branchBehindAndAheadDisplay
+#
+# This option controls whether and how to display the number of commits by which
+# the current branch is behind or ahead of its remote.
+#
+# *   `full`: _Default_. Display count alongside the appropriate up/down arrow. If
+#     both behind and ahead, use two separate arrows.
+# *   `compact`: Display count alongside the appropriate up/down arrow. If both
+#     behind and ahead, display the behind count, then a double arrow, then the
+#     ahead count.
+# *   `minimal`: Display the up/down or double arrow as appropriate, with no
+#     counts.
+#
+# ### bash.describeStyle
 #
 # This option controls if you would like to see more information about the
 # identity of commits checked out as a detached `HEAD`. This is also controlled
 # by the legacy environment variable `GIT_PS1_DESCRIBESTYLE`.
 #
-# Option   | Description
-# -------- | -----------
-# contains | relative to newer annotated tag `(v1.6.3.2~35)`
-# branch   | relative to newer tag or branch `(master~4)`
-# describe | relative to older annotated tag `(v1.6.3.1-13-gdd42c2f)`
-# default  | exactly matching tag
 #
-# bash.enableFileStatus
-# ---------------------
+# *  `contains`: relative to newer annotated tag `(v1.6.3.2~35)`
+# *  `branch`: relative to newer tag or branch `(master~4)`
+# *  `describe`: relative to older annotated tag `(v1.6.3.1-13-gdd42c2f)`
+# *  `default`: exactly matching tag
 #
-# Option | Description
-# ------ | -----------
-# true   | _Default_. The script will query for all file indicators every time.
-# false  | No file indicators will be displayed. The script will not query
-#          upstream for differences. Branch color-coding information is still
-#          displayed.
+# ### bash.enableFileStatus
 #
-# bash.enableGitStatus
-# --------------------
+# *  `true`: _Default_. The script will query for all file indicators every time.
+# *  `false`: No file indicators will be displayed. The script will not query
+#     upstream for differences. Branch color-coding information is still
+#     displayed.
 #
-# Option | Description
-# ------ | -----------
-# true   | _Default_. Color coding and indicators will be shown.
-# false  | The script will not run.
+# ### bash.enableGitStatus
 #
-# bash.showStashState
-# -------------------
+# *  `true`: _Default_. Color coding and indicators will be shown.
+# *  `false`: The script will not run.
 #
-# Option | Description
-# ------ | -----------
-# true   | _Default_. An indicator will display if the stash is not empty.
-# false  | An indicator will not display the stash status.
+# ### bash.enableStashStatus
 #
-# bash.showStashCount
-# -------------------
+# *  `true`: _Default_. An indicator will display if the stash is not empty.
+# *  `false`: An indicator will not display the stash status.
 #
-# Option | Description
-# ------ | -----------
-# true   | _Default_. The count of refs in stash will also be shown if `bash.showStashState` is true.
-# false  | The count of refs in stash will not be shown.
+# ### bash.showStatusWhenZero
 #
-# bash.showStatusWhenZero
-# -----------------------
+# *  `true`:   Indicators will be shown even if there are no updates to the index or
+#     working tree.
+# *  `false`: _Default_. No file change indicators will be shown if there are no
+#    changes to the index or working tree.
 #
-# Option | Description
-# ------ | -----------
-# true   | Indicators will be shown even if there are no updates to the index or
-#          working tree.
-# false  | _Default_. No file change indicators will be shown if there are no
-#          changes to the index or working tree.
-#
-# bash.showUpstream
-# -----------------
+# ### bash.showUpstream
 #
 # By default, `__posh_git_ps1` will compare `HEAD` to your `SVN` upstream if it can
 # find one, or `@{upstream}` otherwise. This is also controlled by the legacy
 # environment variable `GIT_PS1_SHOWUPSTREAM`.
 #
-# Option | Description
-# ------ | -----------
-# legacy | Does not use the `--count` option available in recent versions of
-#          `git-rev-list`
-# git    | _Default_. Always compares `HEAD` to `@{upstream}`
-# svn    | Always compares `HEAD` to `SVN` upstream
+# *  `legacy`: Does not use the `--count` option available in recent versions of
+#    `git-rev-list`
+# *  `git`: _Default_. Always compares `HEAD` to `@{upstream}`
+# *  `svn`: Always compares `HEAD` to `SVN` upstream
 #
-# bash.enableStatusSymbol
-# -----------------------
-
-# Option | Description
-# ------ | -----------
-# true   | _Default_. Status symbols (`≡` `↑` `↓` `↕`) will be shown.
-# false  | No status symbol will be shown, saving some prompt length.
+# ### bash.enableStatusSymbol
+#
+# *  `true`: _Default_. Status symbols (`≡` `↑` `↓` `↕`) will be shown.
+# *  `false`: No status symbol will be shown, saving some prompt length.
 #
 ###############################################################################
 
@@ -148,45 +136,64 @@ __posh_git_echo () {
         return;
     fi
 
+    local Red='\033[0;31m'
+    local Green='\033[0;32m'
+    local BrightRed='\033[0;91m'
+    local BrightGreen='\033[0;92m'
+    local BrightYellow='\033[0;93m'
+    local BrightCyan='\033[0;96m'
+
     local DefaultForegroundColor=$(__posh_color '\e[m') # Default no color
     local DefaultBackgroundColor=
 
     local BeforeText='['
-    local BeforeForegroundColor=$(__posh_color '\e[1;33m') # Yellow
+    local BeforeForegroundColor=$(__posh_color $BrightYellow) # Yellow
     local BeforeBackgroundColor=
     local DelimText=' |'
-    local DelimForegroundColor=$(__posh_color '\e[1;33m') # Yellow
+    local DelimForegroundColor=$(__posh_color $BrightYellow) # Yellow
     local DelimBackgroundColor=
 
     local AfterText=']'
-    local AfterForegroundColor=$(__posh_color '\e[1;33m') # Yellow
+    local AfterForegroundColor=$(__posh_color $BrightYellow) # Yellow
     local AfterBackgroundColor=
 
-    local BranchForegroundColor=$(__posh_color '\e[1;36m')  # Cyan
+    local BranchForegroundColor=$(__posh_color $BrightCyan)  # Cyan
     local BranchBackgroundColor=
-    local BranchAheadForegroundColor=$(__posh_color '\e[1;32m') # Green
+    local BranchAheadForegroundColor=$(__posh_color $BrightGreen) # Green
     local BranchAheadBackgroundColor=
-    local BranchBehindForegroundColor=$(__posh_color '\e[0;31m') # Red
+    local BranchBehindForegroundColor=$(__posh_color $BrightRed) # Red
     local BranchBehindBackgroundColor=
-    local BranchBehindAndAheadForegroundColor=$(__posh_color '\e[1;33m') # Yellow
+    local BranchBehindAndAheadForegroundColor=$(__posh_color $BrightYellow) # Yellow
     local BranchBehindAndAheadBackgroundColor=
 
     local BeforeIndexText=''
-    local BeforeIndexForegroundColor=$(__posh_color '\e[1;32m') # Dark green
+    local BeforeIndexForegroundColor=$(__posh_color $Green) # Dark green
     local BeforeIndexBackgroundColor=
 
-    local IndexForegroundColor=$(__posh_color '\e[1;32m') # Dark green
+    local IndexForegroundColor=$(__posh_color $Green) # Dark green
     local IndexBackgroundColor=
 
-    local WorkingForegroundColor=$(__posh_color '\e[0;31m') # Dark red
+    local WorkingForegroundColor=$(__posh_color $Red) # Dark red
     local WorkingBackgroundColor=
 
-    local StashForegroundColor=$(__posh_color '\e[0;34m') # Darker blue
+    local StashForegroundColor=$(__posh_color $BrightRed) # Red
     local StashBackgroundColor=
-    local StashText=\\'$'
+    local BeforeStash='('
+    local AfterStash=')'
+
+    local LocalDefaultStatusSymbol=''
+    local LocalWorkingStatusSymbol=' !'
+    local LocalWorkingStatusColor=$(__posh_color "$Red")
+    local LocalStagedStatusSymbol=' ~'
+    local LocalStagedStatusColor=$(__posh_color "$BrightCyan")
 
     local RebaseForegroundColor=$(__posh_color '\e[0m') # reset
     local RebaseBackgroundColor=
+
+    local BranchBehindAndAheadDisplay=`git config --get bash.branchBehindAndAheadDisplay`
+    if [ -z "$BranchBehindAndAheadDisplay" ]; then
+        BranchBehindAndAheadDisplay="full"
+    fi
 
     local EnableFileStatus=`git config --bool bash.enableFileStatus`
     case "$EnableFileStatus" in
@@ -200,17 +207,11 @@ __posh_git_echo () {
         false) ShowStatusWhenZero=false ;;
         *)     ShowStatusWhenZero=false ;;
     esac
-    local ShowStashState=`git config --bool bash.showStashState`
-    case "$ShowStashState" in
-        true)  ShowStashState=true ;;
-        false) ShowStashState=false ;;
-        *)     ShowStashState=true ;;
-    esac
-    local ShowStashCount=`git config --bool bash.showStashCount`
-    case "$ShowStashCount" in
-        true)   ShowStashCount=true ;;
-        false)  ShowStashCount=false ;;
-        *)      ShowStashCount=true ;;
+    local EnableStashStatus=`git config --bool bash.enableStashStatus`
+    case "$EnableStashStatus" in
+        true)  EnableStashStatus=true ;;
+        false) EnableStashStatus=false ;;
+        *)     EnableStashStatus=true ;;
     esac
     local EnableStatusSymbol=`git config --bool bash.enableStatusSymbol`
     case "$EnableStatusSymbol" in
@@ -228,7 +229,7 @@ __posh_git_echo () {
       BranchIdenticalStatusSymbol=$' \xE2\x89\xA1' # Three horizontal lines
       BranchAheadStatusSymbol=$' \xE2\x86\x91' # Up Arrow
       BranchBehindStatusSymbol=$' \xE2\x86\x93' # Down Arrow
-      BranchBehindAndAheadStatusSymbol=$' \xE2\x86\x95' # Up and Down Arrow
+      BranchBehindAndAheadStatusSymbol=$'\xE2\x86\x95' # Up and Down Arrow
       BranchWarningStatusSymbol=' ?'
     fi
 
@@ -315,9 +316,9 @@ __posh_git_echo () {
             b='GIT_DIR!'
         fi
     elif [ 'true' = "$(git rev-parse --is-inside-work-tree 2>/dev/null)" ]; then
-        if $ShowStashState; then
+        if $EnableStashStatus; then
             git rev-parse --verify refs/stash >/dev/null 2>&1 && hasStash=true
-            if $ShowStashCount && $hasStash; then
+            if $hasStash; then
                 stashCount=$(git stash list | wc -l | tr -d '[:space:]')
             fi
         fi
@@ -344,6 +345,9 @@ __posh_git_echo () {
                 M )
                     (( indexModified++ ))
                     ;;
+                T )
+                    (( indexModified++ ))
+                    ;;
                 R )
                     (( indexModified++ ))
                     ;;
@@ -367,6 +371,9 @@ __posh_git_echo () {
                 M )
                     (( filesModified++ ))
                     ;;
+                T )
+                    (( filesModified++ ))
+                    ;;
                 D )
                     (( filesDeleted++ ))
                     ;;
@@ -385,11 +392,28 @@ __posh_git_echo () {
 
     # branch
     if (( $__POSH_BRANCH_BEHIND_BY > 0 && $__POSH_BRANCH_AHEAD_BY > 0 )); then
-        gitstring+="$BranchBehindAndAheadBackgroundColor$BranchBehindAndAheadForegroundColor$branchstring$BranchBehindAndAheadStatusSymbol"
+        gitstring+="$BranchBehindAndAheadBackgroundColor$BranchBehindAndAheadForegroundColor$branchstring"
+        if [ "$BranchBehindAndAheadDisplay" = "full" ]; then
+            gitstring+="$BranchBehindStatusSymbol$__POSH_BRANCH_BEHIND_BY$BranchAheadStatusSymbol$__POSH_BRANCH_AHEAD_BY"
+        elif [ "$BranchBehindAndAheadDisplay" = "compact" ]; then
+            gitstring+=" $__POSH_BRANCH_BEHIND_BY$BranchBehindAndAheadStatusSymbol$__POSH_BRANCH_AHEAD_BY"
+        else
+            gitstring+=" $BranchBehindAndAheadStatusSymbol"
+        fi
     elif (( $__POSH_BRANCH_BEHIND_BY > 0 )); then
-        gitstring+="$BranchBehindBackgroundColor$BranchBehindForegroundColor$branchstring$BranchBehindStatusSymbol"
+        gitstring+="$BranchBehindBackgroundColor$BranchBehindForegroundColor$branchstring"
+        if [ "$BranchBehindAndAheadDisplay" = "full" -o "$BranchBehindAndAheadDisplay" = "compact" ]; then
+            gitstring+="$BranchBehindStatusSymbol$__POSH_BRANCH_BEHIND_BY"
+        else
+            gitstring+="$BranchBehindStatusSymbol"
+        fi
     elif (( $__POSH_BRANCH_AHEAD_BY > 0 )); then
-        gitstring+="$BranchAheadBackgroundColor$BranchAheadForegroundColor$branchstring$BranchAheadStatusSymbol"
+        gitstring+="$BranchAheadBackgroundColor$BranchAheadForegroundColor$branchstring"
+        if [ "$BranchBehindAndAheadDisplay" = "full" -o "$BranchBehindAndAheadDisplay" = "compact" ]; then
+            gitstring+="$BranchAheadStatusSymbol$__POSH_BRANCH_AHEAD_BY"
+        else
+            gitstring+="$BranchAheadStatusSymbol"
+        fi
     elif (( $divergence_return_code )); then
         # ahead and behind are both 0, but there was some problem while executing the command.
         gitstring+="$BranchBackgroundColor$BranchForegroundColor$branchstring$BranchWarningStatusSymbol"
@@ -398,10 +422,13 @@ __posh_git_echo () {
         gitstring+="$BranchBackgroundColor$BranchForegroundColor$branchstring$BranchIdenticalStatusSymbol"
     fi
 
+    gitstring+="${rebase:+$RebaseForegroundColor$RebaseBackgroundColor$rebase}"
+
     # index status
     if $EnableFileStatus; then
         local indexCount="$(( $indexAdded + $indexModified + $indexDeleted + $indexUnmerged ))"
         local workingCount="$(( $filesAdded + $filesModified + $filesDeleted + $filesUnmerged ))"
+
         if (( $indexCount != 0 )) || $ShowStatusWhenZero; then
             gitstring+="$IndexBackgroundColor$IndexForegroundColor +$indexAdded ~$indexModified -$indexDeleted"
         fi
@@ -417,20 +444,28 @@ __posh_git_echo () {
         if (( $filesUnmerged != 0 )); then
             gitstring+=" $WorkingBackgroundColor$WorkingForegroundColor!$filesUnmerged"
         fi
-    fi
-    gitstring+="${rebase:+$RebaseForegroundColor$RebaseBackgroundColor$rebase}"
 
-    # after-branch text
-    gitstring+="$AfterBackgroundColor$AfterForegroundColor$AfterText"
+        local localStatusSymbol=$LocalDefaultStatusSymbol
+        local localStatusColor=$DefaultForegroundColor
+       
+        if (( workingCount != 0 )); then
+            localStatusSymbol=$LocalWorkingStatusSymbol
+            localStatusColor=$LocalWorkingStatusColor
+        elif (( indexCount != 0 )); then
+            localStatusSymbol=$LocalStagedStatusSymbol
+            localStatusColor=$LocalStagedStatusColor
+        fi
 
-    if $ShowStashState && $hasStash; then
-        gitstring+="$StashBackgroundColor$StashForegroundColor "$StashText
-        if $ShowStashCount; then
-            gitstring+=$stashCount
+        gitstring+="$DefaultBackgroundColor$localStatusColor$localStatusSymbol$DefaultForegroundColor"
+
+        if $EnableStashStatus && $hasStash; then
+            gitstring+="$DefaultBackgroundColor$DefaultForegroundColor $StashBackgroundColor$StashForegroundColor$BeforeStash$stashCount$AfterStash"
         fi
     fi
-    gitstring+="$DefaultBackgroundColor$DefaultForegroundColor"
-    echo "$gitstring"
+
+    # after-branch text
+    gitstring+="$AfterBackgroundColor$AfterForegroundColor$AfterText$DefaultBackgroundColor$DefaultForegroundColor"
+    echo " $gitstring"
 }
 
 # Returns the location of the .git/ directory.
