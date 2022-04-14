@@ -1,1 +1,7 @@
 syntax sync fromstart
+
+highlight link typescriptFunctionCall Function
+highlight link typescriptFunctionMember Function
+highlight link typescriptKeywordOp Operator
+highlight link typescriptMember Function
+highlight link typescriptOperator Operator
