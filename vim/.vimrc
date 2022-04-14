@@ -89,6 +89,7 @@ Plug 'https://github.com/walterl/conjure-macroexpand.git'
 " colors
 Plug 'https://github.com/dracula/vim.git', {'as': 'dracula-vim'}
 Plug 'https://github.com/NLKNguyen/papercolor-theme.git'
+Plug 'https://github.com/sainnhe/everforest.git'
 
 call plug#end()
 
@@ -181,28 +182,35 @@ set wildignore+=*\\tmp\\*,*\\target\\*,*\\out\\*
 " ===============
 " colors
 " colorscheme dracula
-colorscheme PaperColor
 
-function! ShowColourSchemeName()
+set background=light
+colorscheme PaperColor
+let g:airline_theme="papercolor"
+
+" set background=light
+" let g:everforest_background = 'hard'
+" let g:everforest_better_performance = 1
+" colorscheme everforest
+
+function! ShowColorSchemeName()
   return get(g:, 'colors_name', 'default')
 endfunction
 
-function! SetOrangeColors()
-    if ShowColourSchemeName() ==? 'dracula'
-        hi! link Macro DraculaOrange
-        hi! link Operator DraculaOrange
-    endif
+function! SetCustomColors()
+  if ShowColorSchemeName() ==? 'dracula'
+    hi! link Macro DraculaOrange
+    hi! link Operator DraculaOrange
+  elseif ShowColorSchemeName() ==? 'PaperColor'
+    hi! Function guifg=#008700 ctermfg=28
+    hi! Macro guifg=#d75f00 ctermfg=166
+    hi! link ClojureString String
+  endif
 endfunction
 
 augroup MyColors
-    call SetOrangeColors()
+    autocmd FocusGained,BufEnter * call SetCustomColors()
 
     hi! link SpecialKey Comment
-    hi! link typescriptFunctionCall Function
-    hi! link typescriptFunctionMember Function
-    hi! link typescriptKeywordOp Operator
-    hi! link typescriptMember Function
-    hi! link typescriptOperator Operator
 augroup END
 
 " airline settings
@@ -218,7 +226,6 @@ let g:airline#extensions#c_like_langs =
     \   'arduino', 'c', 'cpp', 'cuda', 'go', 'javascript', 'ld', 'php',
     \   'typescript'
     \ ]
-let g:airline_theme="papercolor"
 
 " ALE settings
 let g:ale_completion_enabled = 0
@@ -276,6 +283,7 @@ let g:ctrlp_max_depth = 1000
 " from: https://bluz71.github.io/2017/10/26/turbocharge-the-ctrlp-vim-plugin.html
 let g:ctrlp_user_command = 'fd --type f --color=never "" %s'
 let g:ctrlp_use_caching = 0
+let g:ctrlp_show_hidden = 1
 
 " vim-test settings
 let test#strategy = 'dispatch'
@@ -362,24 +370,18 @@ nmap <F7> :MinimapToggle<CR>
 
 let g:previm_open_cmd = 'open -a Firefox'
 
-if has('nvim')
-  source ~/dotfiles/vim/conjure.vim
-else
-  source ~/dotfiles/vim/vim-iced.vim
-endif
+source ~/dotfiles/vim/conjure.vim
 source ~/dotfiles/vim/coc-nvim.vim
 
 " Font Defaults
 " =============
 
 "Set the font and size
-if has('gui_running') || has('nvim')
-  if has('gui_gtk2')
-    set guifont=FiraCode-Light\ 14
-  elseif has('gui_win32')
-    set guifont=FiraCode-Light:h14
-  elseif has('gui_macvim')
-    set guifont=FiraCode-Light:h14
-    set macligatures
-  endif
+if has('gui_gtk2')
+  set guifont=FiraCode-Light\ 14
+elseif has('gui_win32')
+  set guifont=FiraCode-Light:h14
+elseif has('gui_macvim')
+  set guifont=FiraCode-Light:h14
+  set macligatures
 endif
