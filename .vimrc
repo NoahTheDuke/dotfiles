@@ -21,3 +21,4 @@ set runtimepath^=$HOME/Personal/coc-clojure
 set background=light
 set clipboard+=unnamedplus
 source ~/dotfiles/vim/.vimrc
+set cc=80

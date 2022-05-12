@@ -1,5 +1,5 @@
 " settings
-let g:coc_default_semantic_highlight_groups = 0
+let g:coc_default_semantic_highlight_groups = 1
 
 " keybinds
 function! s:check_back_space() abort

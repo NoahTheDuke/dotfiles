@@ -447,7 +447,7 @@ __posh_git_echo () {
 
         local localStatusSymbol=$LocalDefaultStatusSymbol
         local localStatusColor=$DefaultForegroundColor
-       
+
         if (( workingCount != 0 )); then
             localStatusSymbol=$LocalWorkingStatusSymbol
             localStatusColor=$LocalWorkingStatusColor

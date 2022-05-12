@@ -35,6 +35,7 @@ Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 Plug 'https://github.com/mbbill/undotree.git'
 Plug 'https://github.com/osyo-manga/vim-over.git'
 Plug 'https://github.com/ruanyl/vim-gh-line.git'
+Plug 'https://github.com/shumphrey/fugitive-gitlab.vim.git'
 Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'https://github.com/tpope/vim-rhubarb.git'
 
@@ -71,6 +72,7 @@ Plug 'https://github.com/w0rp/ale.git'
 
 " tools for specific programming languages
 Plug 'https://github.com/bakpakin/fennel.vim.git'
+Plug 'https://github.com/bfontaine/zprint.vim.git', {'for': 'clojure'}
 Plug 'https://github.com/guns/vim-sexp.git', {'for': 'clojure'}
 Plug 'https://github.com/lumiliet/vim-twig.git'
 Plug 'https://github.com/NoahTheDuke/vim-just.git', {'for': 'just'}
