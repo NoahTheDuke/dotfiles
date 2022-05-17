@@ -93,6 +93,7 @@ Plug 'https://github.com/walterl/conjure-macroexpand.git'
 Plug 'https://github.com/dracula/vim.git', {'as': 'dracula-vim'}
 Plug 'https://github.com/NLKNguyen/papercolor-theme.git'
 Plug 'https://github.com/sainnhe/everforest.git'
+Plug 'https://github.com:sonph/onehalf.git', {'rtp': 'vim'}
 
 call plug#end()
 
@@ -186,14 +187,18 @@ set wildignore+=*\\tmp\\*,*\\target\\*,*\\out\\*
 " colors
 " colorscheme dracula
 
-set background=light
-colorscheme PaperColor
-let g:airline_theme="papercolor"
+" set background=light
+" colorscheme PaperColor
+" let g:airline_theme="papercolor"
 
 " set background=light
 " let g:everforest_background = 'hard'
 " let g:everforest_better_performance = 1
 " colorscheme everforest
+
+set background=light
+colorscheme onehalflight
+let g:airline_theme="onehalflight"
 
 function! ShowColorSchemeName()
   return get(g:, 'colors_name', 'default')
