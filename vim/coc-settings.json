@@ -1,4 +1,6 @@
 {
+    "suggest.triggerCompletionWait": 50,
+    "suggest.minTriggerInputLength": 2,
     "languageserver": {
         "racket": {
             "command": "racket",
@@ -16,12 +18,12 @@
             "filetypes": ["tex", "plaintex", "context"]
         }
     },
-    "markdownlint.config": {
-        "default": true,
-        "MD024": {
-            "siblings_only": true
-        }
-    },
+    // "markdownlint.config": {
+    //     "default": true,
+    //     "MD024": {
+    //         "siblings_only": true
+    //     }
+    // },
     "clojure.enable": true,
     // "clojure.executable": "~/Personal/clojure-lsp/clojure-lsp",
     "clojure.initialization-options.copy-kond-configs?": true,
@@ -43,9 +45,9 @@
     "codeLens.separator": "->",
     "diagnostic.displayByAle": false,
     "javascript.suggestionActions.enabled": false,
-    "jedi.startupMessage": true,
-    "jedi.markupKindPreferred": "markdown",
-    "jedi.trace.server": "verbose",
+    // "jedi.startupMessage": true,
+    // "jedi.markupKindPreferred": "markdown",
+    // "jedi.trace.server": "verbose",
     "rust-analyzer.cargo.allFeatures": true,
     "rust-analyzer.cargo.autoreload": true,
     "rust-analyzer.checkOnSave.enable": true,
@@ -61,5 +63,6 @@
     "signature.enable": true,
     "signature.triggerSignatureWait": 1000,
     "tsserver.log": "verbose",
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
     "zig.path": "~/zls/zls"
 }

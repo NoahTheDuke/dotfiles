@@ -103,7 +103,7 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 " open url in floating window
-nnoremap <silent> <leader>o :call <SID>Open()<CR>
+command! -nargs=0 Open :call <SID>Open()
 
 function! s:Open()
   let res = CocAction('openLink')

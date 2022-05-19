@@ -65,7 +65,6 @@ Plug 'https://github.com/wfxr/minimap.vim.git', {'do': ':!cargo install --locked
 " general programming editing
 Plug 'https://github.com/conormcd/matchindent.vim'
 Plug 'https://github.com/godlygeek/tabular.git'
-Plug 'https://github.com/janko-m/vim-test.git'
 Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'https://github.com/tpope/vim-projectionist.git'
 Plug 'https://github.com/w0rp/ale.git'
@@ -83,7 +82,7 @@ Plug 'https://github.com/samsaga2/vim-z80', {'for': 'asm'}
 Plug 'https://github.com/sheerun/vim-polyglot.git'
 Plug 'https://github.com/tpope/vim-rails.git', {'for': 'ruby'}
 Plug 'https://github.com/vlime/vlime.git', {'rtp': 'vim/', 'for': 'lisp'}
-Plug 'https://github.com/pappasam/coc-jedi.git', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
+" Plug 'https://github.com/pappasam/coc-jedi.git', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
 
 " conjure for nvim
 Plug 'https://github.com/Olical/conjure.git', {'tag': 'v4.23.0'}
@@ -292,10 +291,6 @@ let g:ctrlp_max_depth = 1000
 let g:ctrlp_user_command = 'fd --type f --color=never "" %s'
 let g:ctrlp_use_caching = 0
 let g:ctrlp_show_hidden = 1
-
-" vim-test settings
-let test#strategy = 'dispatch'
-let test#ruby#minitest#options = '--no-color'
 
 " Splitjoin
 " nmap sj :SplitjoinSplit<CR>

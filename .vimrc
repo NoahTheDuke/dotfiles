@@ -12,6 +12,9 @@
 " set runtimepath-=$HOME/.local/share/nvim/site/after
 "
 " let g:node_client_debug = 1
+" let $NVIM_COC_LOG_LEVEL='debug'
+" let $NVIM_COC_LOG_FILE = '/tmp/coc-nvim.log'
+" let g:coc_node_args = ['-r', expand('~/.config/yarn/global/node_modules/source-map-support/register')]
 " set runtimepath^=$HOME/Personal/coc.nvim
 set runtimepath^=$HOME/Personal/coc-clojure
 
@@ -21,4 +24,6 @@ set runtimepath^=$HOME/Personal/coc-clojure
 set background=light
 set clipboard+=unnamedplus
 source ~/dotfiles/vim/.vimrc
+" source ~/dotfiles/vim/conjure.vim
+" source ~/dotfiles/vim/coc-nvim.vim
 set cc=80
