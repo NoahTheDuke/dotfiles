@@ -92,7 +92,7 @@ Plug 'https://github.com/walterl/conjure-macroexpand.git'
 Plug 'https://github.com/dracula/vim.git', {'as': 'dracula-vim'}
 Plug 'https://github.com/NLKNguyen/papercolor-theme.git'
 Plug 'https://github.com/sainnhe/everforest.git'
-Plug 'https://github.com:sonph/onehalf.git', {'rtp': 'vim'}
+Plug 'https://github.com/sonph/onehalf.git', {'rtp': 'vim'}
 
 call plug#end()
 

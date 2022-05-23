@@ -1,5 +1,6 @@
 set mouse=a
 
+" neovim-qt settings
 if exists('g:GuiLoaded')
     let g:airline#extensions#tabline#enabled = 0
     set showtabline=2
@@ -20,4 +21,12 @@ if exists('g:GuiLoaded')
     snoremap <silent><RightMouse> <C-G>:call GuiShowContextMenu()<CR>gv
 
     command! -nargs=? GuiNewWindow call GuiNewWindow("<args>")
+endif
+
+" vimr settings
+if has("gui_vimr")
+    " let g:airline#extensions#tabline#enabled = 1
+    " set showtabline=2
+
+    VimRSetFontAndSize "Fira Code Retina", 14
 endif

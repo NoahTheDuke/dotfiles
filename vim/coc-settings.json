@@ -36,10 +36,14 @@
         "clojuredocs": true,
         "arity-on-same-line?": false
     },
-    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd",
+    // "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd",
     "clojure.startup-message": true,
     "clojure.trace.server": "verbose",
     "coc.preferences.enableMarkdown": true,
+    "suggest.triggerCompletionWait": 50,
+    // "suggest.minTriggerInputLength": 2,
+    "coc.preferences.excludeImageLinksInMarkdownDocument": true,
+    "coc.preferences.renameFillCurrent": false,
     "codeLens.enable": true,
     "codeLens.position": "eol",
     "codeLens.separator": "->",
@@ -61,8 +65,7 @@
     "rust-analyzer.procMacro.enable": true,
     "rust-analyzer.updates.channel": "stable",
     "signature.enable": true,
-    "signature.triggerSignatureWait": 1000,
     "tsserver.log": "verbose",
-    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
-    "zig.path": "~/zls/zls"
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true
+    // "zig.path": "~/zls/zls"
 }
