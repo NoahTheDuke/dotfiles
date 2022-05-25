@@ -1,5 +1,5 @@
 " settings
-let g:coc_default_semantic_highlight_groups = 1
+let g:coc_default_semantic_highlight_groups = 0
 
 " keybinds
 function! s:check_back_space() abort
@@ -51,7 +51,7 @@ nmap <leader>af  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
 " Apply codelens action
-nmap <leader>cl <Plug>(coc-codelens-action)
+nmap <leader>cla <Plug>(coc-codelens-action)
 
 " Map function and class text objects
 xmap if <Plug>(coc-funcobj-i)
@@ -77,12 +77,10 @@ nmap <silent> <C-s> <Plug>(coc-range-select)
 xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocAction('format')
+command! -nargs=0 Format :call CocActionAsync('format')
 
 " Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
-nmap <silent> rtf :call CocAction('runCommand', 'lsp-clojure-thread-first-all')<CR>
-nmap <silent> rtl :call CocAction('runCommand', 'lsp-clojure-thread-last-all')<CR>
+command! -nargs=0 OR :call CocActionAsync('runCommand', 'editor.action.organizeImport')
 
 " Mappings for CoCList
 " Show all diagnostics.
@@ -106,7 +104,7 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 command! -nargs=0 Open :call <SID>Open()
 
 function! s:Open()
-  let res = CocAction('openLink')
+  let res = CocActionAsync('openLink')
   if res | return | endif
   let line = getline('.')
   " match url

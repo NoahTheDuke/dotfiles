@@ -1,6 +1,18 @@
 {
-    "suggest.triggerCompletionWait": 50,
+    // coc.nvim/global settings
+    "coc.preferences.excludeImageLinksInMarkdownDocument": true,
+    "coc.preferences.renameFillCurrent": false,
+    "coc.preferences.enableMessageDialog": true,
+    "codeLens.enable": true,
+    "codeLens.position": "eol",
+    "codeLens.separator": "->",
+    "diagnostic.displayByAle": false,
+    "semanticTokens.filetypes": ["*"],
     "suggest.minTriggerInputLength": 2,
+    "suggest.triggerCompletionWait": 50,
+    "signature.enable": true,
+
+    // manual language servers
     "languageserver": {
         "racket": {
             "command": "racket",
@@ -18,12 +30,8 @@
             "filetypes": ["tex", "plaintex", "context"]
         }
     },
-    // "markdownlint.config": {
-    //     "default": true,
-    //     "MD024": {
-    //         "siblings_only": true
-    //     }
-    // },
+
+    // coc extensions
     "clojure.enable": true,
     // "clojure.executable": "~/Personal/clojure-lsp/clojure-lsp",
     "clojure.initialization-options.copy-kond-configs?": true,
@@ -36,36 +44,30 @@
         "clojuredocs": true,
         "arity-on-same-line?": false
     },
-    // "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd",
     "clojure.startup-message": true,
     "clojure.trace.server": "verbose",
     "coc.preferences.enableMarkdown": true,
-    "suggest.triggerCompletionWait": 50,
-    // "suggest.minTriggerInputLength": 2,
-    "coc.preferences.excludeImageLinksInMarkdownDocument": true,
-    "coc.preferences.renameFillCurrent": false,
-    "codeLens.enable": true,
-    "codeLens.position": "eol",
-    "codeLens.separator": "->",
-    "diagnostic.displayByAle": false,
     "javascript.suggestionActions.enabled": false,
-    // "jedi.startupMessage": true,
-    // "jedi.markupKindPreferred": "markdown",
-    // "jedi.trace.server": "verbose",
-    "rust-analyzer.cargo.allFeatures": true,
+    // "markdownlint.config": {
+    //     "default": true,
+    //     "MD024": {
+    //         "siblings_only": true
+    //     }
+    // },
+    "rust-analyzer.cargo.features": "all",
     "rust-analyzer.cargo.autoreload": true,
     "rust-analyzer.checkOnSave.enable": true,
     "rust-analyzer.completion.autoimport.enable": true,
-    "rust-analyzer.inlayHints.chainingHints": false,
+    "rust-analyzer.inlayHints.chainingHints.enable": true,
     "rust-analyzer.inlayHints.chainingHintsSeparator": "‣ ",
     "rust-analyzer.inlayHints.enable": true,
-    "rust-analyzer.inlayHints.typeHints": false,
+    "rust-analyzer.inlayHints.typeHints.enable": false,
     "rust-analyzer.inlayHints.typeHintsSeparator": "‣ ",
-    "rust-analyzer.lens.methodReferences": true,
+    "rust-analyzer.lens.references.trait.enable": true,
+    "rust-analyzer.lens.references.enumVariant.enable": true,
+    "rust-analyzer.lens.references.method.enable": true,
     "rust-analyzer.procMacro.enable": true,
     "rust-analyzer.updates.channel": "stable",
-    "signature.enable": true,
     "tsserver.log": "verbose",
     "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true
-    // "zig.path": "~/zls/zls"
 }

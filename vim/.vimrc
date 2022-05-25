@@ -65,7 +65,7 @@ Plug 'https://github.com/wfxr/minimap.vim.git', {'do': ':!cargo install --locked
 " general programming editing
 Plug 'https://github.com/conormcd/matchindent.vim'
 Plug 'https://github.com/godlygeek/tabular.git'
-Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+Plug 'https://github.com/neoclide/coc.nvim.git', {'branch': 'release'}
 Plug 'https://github.com/tpope/vim-projectionist.git'
 Plug 'https://github.com/w0rp/ale.git'
 
