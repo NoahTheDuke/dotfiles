@@ -47,6 +47,7 @@ Plug 'https://github.com/previm/previm.git', {'for': 'markdown'}
 " in-file editing
 Plug 'https://github.com/AndrewRadev/splitjoin.vim.git'
 Plug 'https://github.com/AndrewRadev/switch.vim.git'
+Plug 'https://github.com/editorconfig/editorconfig-vim.git'
 Plug 'https://github.com/guns/vim-sexp.git'
 Plug 'https://github.com/junegunn/vim-easy-align.git'
 Plug 'https://github.com/tpope/vim-commentary.git'
@@ -319,6 +320,8 @@ let g:csv_nomap_space = 1
 let g:minimap_highlight_range=1
 let g:minimap_width = 10
 let g:minimap_git_colors = 1
+
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 " Keybinds
 " ========
