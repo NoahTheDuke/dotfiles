@@ -43,13 +43,15 @@ Plug 'https://github.com/tpope/vim-rhubarb.git'
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
 Plug 'https://github.com/lambdalisue/fern.vim.git'
 Plug 'https://github.com/previm/previm.git', {'for': 'markdown'}
+Plug 'https://github.com/wfxr/minimap.vim.git', {'do': ':!cargo install --locked code-minimap'}
+Plug 'https://github.com/jremmen/vim-ripgrep.git'
 
 " in-file editing
 Plug 'https://github.com/AndrewRadev/splitjoin.vim.git'
 Plug 'https://github.com/AndrewRadev/switch.vim.git'
+Plug 'https://github.com/andymass/vim-matchup.git'
 Plug 'https://github.com/editorconfig/editorconfig-vim.git'
 Plug 'https://github.com/guns/vim-sexp.git'
-Plug 'https://github.com/junegunn/vim-easy-align.git'
 Plug 'https://github.com/tpope/vim-commentary.git'
 Plug 'https://github.com/tpope/vim-repeat.git'
 Plug 'https://github.com/tpope/vim-sexp-mappings-for-regular-people.git'
@@ -58,14 +60,8 @@ Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/tpope/vim-unimpaired.git'
 Plug 'https://github.com/wellle/targets.vim.git'
 
-" movement
-Plug 'https://github.com/andymass/vim-matchup.git'
-Plug 'https://github.com/jremmen/vim-ripgrep.git'
-Plug 'https://github.com/wfxr/minimap.vim.git', {'do': ':!cargo install --locked code-minimap'}
-
 " general programming editing
 Plug 'https://github.com/conormcd/matchindent.vim'
-Plug 'https://github.com/godlygeek/tabular.git'
 Plug 'https://github.com/neoclide/coc.nvim.git', {'branch': 'release'}
 Plug 'https://github.com/tpope/vim-projectionist.git'
 Plug 'https://github.com/w0rp/ale.git'
