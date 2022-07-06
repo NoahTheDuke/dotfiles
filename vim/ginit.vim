@@ -8,8 +8,8 @@ if exists('g:GuiLoaded')
     GuiAdaptiveColor 1
     GuiAdaptiveFont 1
     GuiAdaptiveStyle Fusion
-    GuiFont Fira Code Retina:h12
-    GuiPopupmenu 0
+    GuiFont Fira Code:h14
+    GuiPopupmenu 1
     GuiRenderLigatures 1
     GuiScrollBar 1
     GuiTabline 1

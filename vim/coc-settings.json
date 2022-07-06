@@ -33,6 +33,7 @@
 
     // coc extensions
     "clojure.enable": true,
+    // "clojure.lsp-version": "2022.04.18-00.59.32",
     // "clojure.executable": "~/Personal/clojure-lsp/clojure-lsp",
     "clojure.initialization-options.copy-kond-configs?": true,
     "clojure.initialization-options.log-path": "/tmp/clojure-lsp.out",
