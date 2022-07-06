@@ -60,3 +60,5 @@ keymap("v", "<C-x>", ":s#\\%V/-\\=\\d\\+#\\=submatch(0)-1#g", opts)
 keymap("n", "<F5>", ":UndotreeToggle<CR>", opts)
 keymap("n", "<F6>", ":Fern . -drawer -toggle<CR>", opts)
 keymap("n", "<F7>", ":MinimapToggle<CR>", opts)
+
+keymap("n", "<F10>", [[:echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>]], opts)

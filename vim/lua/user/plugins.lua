@@ -195,15 +195,28 @@ return packer.startup(function(use)
         vim.g["EditorConfig_exclude_patterns"] = {'fugitive://.*'}
       end
     }
-    -- use "https://github.com/sheerun/vim-polyglot"
     use {
       "https://github.com/neoclide/coc.nvim",
       branch = "release",
       config = function()
-        vim.cmd("source ../../coc-nvim.vim")
+        vim.cmd("source " .. "$HOME/dotfiles/vim/coc-nvim.vim")
       end
     }
-    use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
+    use {
+        "nvim-treesitter/nvim-treesitter",
+        run = ":TSUpdate",
+        config = function()
+            require("nvim-treesitter.configs").setup {
+                ensure_installed = { "clojure", "lua", "javascript", "typescript", "rust" },
+                highlight = {
+                    enable = true,
+                    disable = { "clojure" },
+                },
+                incremental_selection = { enable = true },
+                textobjects = { enable = true },
+            }
+        end
+    }
 
     -- language plugins
 
@@ -233,7 +246,7 @@ return packer.startup(function(use)
     use {"https://github.com/ekalinin/Dockerfile.vim", ft="dockerfile"}
 
     -- fennel
-    use {"https://github.com/bakpakin/fennel.vim", ft = "fennel"}
+    use {"https://github.com/jaawerth/fennel.vim", ft = "fennel"}
 
     -- git
     use {"https://github.com/tpope/vim-git"}
@@ -257,7 +270,7 @@ return packer.startup(function(use)
     use {"https://github.com/NoahTheDuke/vim-just", ft = "just"}
 
     -- lua
-    use {"https://github.com/tbastos/vim-lua", ft = "lua"}
+    use {"https://github.com/euclidianAce/BetterLua.vim", ft = "lua"}
 
     -- markdown
     use {"https://github.com/plasticboy/vim-markdown", ft = "markdown"}
@@ -304,7 +317,7 @@ return packer.startup(function(use)
     use {"https://github.com/ziglang/zig.vim", ft = "zig"}
 
     -- colors
-    use {"https://github.com/dracula/vim", as = "dracula"}
+    use {"https://github.com/Mofiqul/dracula.nvim"}
 
     -- Must be final call
     if PACKER_BOOTSTRAP then
