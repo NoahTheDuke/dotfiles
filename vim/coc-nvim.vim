@@ -106,11 +106,15 @@ command! -nargs=0 Open :call <SID>Open()
 function! s:Open()
   let res = CocActionAsync('openLink')
   if res | return | endif
-  let line = getline('.')
   " match url
+  let line = getline('.')
   let url = matchstr(line, '\vhttps?:\/\/[^)\]''" ]+')
   if !empty(url)
-    let output = system('open '. url)
+    echo 'opening "' . url . '"'
+    let output = system('open ' . url)
+    if output ==# ''
+      let output = system('firefox ' . url)
+    endif
   else
     let mail = matchstr(line, '\v([A-Za-z0-9_\.-]+)\@([A-Za-z0-9_\.-]+)\.([a-z\.]+)')
     if !empty(mail)

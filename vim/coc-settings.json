@@ -1,6 +1,10 @@
 {
     // coc.nvim/global settings
     "coc.preferences.excludeImageLinksInMarkdownDocument": true,
+    "hover.floatConfig": { "winblend": 0 },
+    "suggest.floatConfig": { "winblend": 0 },
+    "signature.floatConfig": { "winblend": 0 },
+    "diagnostic.floatConfig": { "winblend": 0 },
     "coc.preferences.renameFillCurrent": false,
     "coc.preferences.enableMessageDialog": true,
     "codeLens.enable": true,
