@@ -1,20 +1,21 @@
 {
     // coc.nvim/global settings
-    "coc.preferences.excludeImageLinksInMarkdownDocument": true,
-    "hover.floatConfig": { "winblend": 0 },
-    "suggest.floatConfig": { "winblend": 0 },
-    "signature.floatConfig": { "winblend": 0 },
-    "diagnostic.floatConfig": { "winblend": 0 },
-    "coc.preferences.renameFillCurrent": false,
+    "coc.preferences.enableMarkdown": true,
     "coc.preferences.enableMessageDialog": true,
+    "coc.preferences.excludeImageLinksInMarkdownDocument": true,
+    "coc.preferences.renameFillCurrent": false,
     "codeLens.enable": true,
     "codeLens.position": "eol",
     "codeLens.separator": "->",
     "diagnostic.displayByAle": false,
-    "semanticTokens.filetypes": ["*"],
+    "diagnostic.floatConfig": { "winblend": 0 },
+    "hover.floatConfig": { "winblend": 0 },
+    // "semanticTokens.filetypes": ["*"],
+    "signature.enable": true,
+    "signature.floatConfig": { "winblend": 0 },
+    "suggest.floatConfig": { "winblend": 0 },
     "suggest.minTriggerInputLength": 2,
     "suggest.triggerCompletionWait": 50,
-    "signature.enable": true,
 
     // manual language servers
     "languageserver": {
@@ -51,8 +52,9 @@
     },
     "clojure.startup-message": true,
     "clojure.trace.server": "verbose",
-    "coc.preferences.enableMarkdown": true,
     "javascript.suggestionActions.enabled": false,
+    "sumneko-lua.enableNvimLuaDev": true,
+    "sumneko-lua.checkUpdate": true,
     // "markdownlint.config": {
     //     "default": true,
     //     "MD024": {
@@ -74,5 +76,6 @@
     "rust-analyzer.procMacro.enable": true,
     "rust-analyzer.updates.channel": "stable",
     "tsserver.log": "verbose",
-    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+    "Lua.telemetry.enable": false
 }
