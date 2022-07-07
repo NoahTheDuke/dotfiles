@@ -121,10 +121,37 @@ return packer.startup(function(use)
       end
     } -- <C-p>
 
-    use "https://github.com/jremmen/vim-ripgrep" -- :Rg
     use "https://github.com/tpope/vim-projectionist"
-    use "https://github.com/nvim-telescope/telescope.nvim"
-    use "https://github.com/nvim-telescope/telescope-media-files.nvim"
+    use {
+      "https://github.com/ryanoasis/vim-devicons",
+      -- config = function()
+      --   require("nvim-web-devicons").setup({default = true})
+      -- end
+    }
+    use {
+      "https://github.com/nvim-telescope/telescope.nvim",
+      config = function()
+        local actions = require("telescope.actions")
+        require("telescope").setup({
+          defaults = {
+            mappings = {
+              i = {
+                ["<esc>"] = actions.close,
+                ["<C-u>"] = false,
+                ["<C-j>"] = actions.move_selection_next,
+                ["<C-k>"] = actions.move_selection_previous,
+              },
+            },
+          }
+        })
+      end,
+    }
+    use {
+      "https://github.com/nvim-telescope/telescope-media-files.nvim",
+      config = function()
+        require('telescope').load_extension('media_files')
+      end
+    }
 
     -- editing
     use {

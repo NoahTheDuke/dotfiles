@@ -7,6 +7,7 @@ local options = {
   completeopt = { "menuone", "noselect" },
   conceallevel = 0,
   expandtab = true,
+  foldenable = false,
   formatoptions = "tqrn1j",
   guioptions = "grtC",
   list = true,

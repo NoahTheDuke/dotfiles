@@ -8,7 +8,7 @@ if exists('g:GuiLoaded')
     GuiAdaptiveColor 1
     GuiAdaptiveFont 1
     GuiAdaptiveStyle Fusion
-    GuiFont Fira Code:h14
+    GuiFont Fira Code Retina Nerd Font Complete:h14
     GuiPopupmenu 1
     GuiRenderLigatures 1
     GuiScrollBar 1
@@ -28,5 +28,5 @@ if has("gui_vimr")
     " let g:airline#extensions#tabline#enabled = 1
     " set showtabline=2
 
-    VimRSetFontAndSize "Fira Code Retina", 14
+    VimRSetFontAndSize "Fira Code Retina Nerd Font Complete", 14
 endif
