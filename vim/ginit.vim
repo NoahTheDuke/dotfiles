@@ -8,7 +8,7 @@ if exists('g:GuiLoaded')
     GuiAdaptiveColor 1
     GuiAdaptiveFont 1
     GuiAdaptiveStyle Fusion
-    GuiFont Fira Code Retina Nerd Font Complete:h14
+    GuiFont FiraCode Nerd Font:h14:w57
     GuiPopupmenu 1
     GuiRenderLigatures 1
     GuiScrollBar 1
