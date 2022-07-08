@@ -167,32 +167,35 @@ return packer.startup(function(use)
     "https://github.com/AndrewRadev/switch.vim",
     config = function()
       vim.cmd [[
-      augroup switches
-      autocmd FileType lisp let b:switch_custom_definitions =
-      \ [
-      \   {
-        \     '"\(\k\+\)"': '''\1',
-        \     '''\(\k\+\)': ':\1',
-        \     ':\(\k\+\)': '#:\1',
-        \     '#:\(\k\+\)':  '"\1"\2',
-        \   },
-        \ ]
+        augroup switches
+          autocmd FileType lisp let b:switch_custom_definitions =
+            \ [
+            \   {
+            \     '"\(\k\+\)"': '''\1',
+            \     '''\(\k\+\)': ':\1',
+            \     ':\(\k\+\)': '#:\1',
+            \     '#:\(\k\+\)':  '"\1"\2',
+            \   },
+            \ ]
         augroup END
-        ]]
-      end
-    } -- gs: "abc" -> "abc -> :abc
-    use "https://github.com/tpope/vim-surround" -- ysa) ysa)
-    -- use {
-    --   "kylechui/nvim-surround",
-    --   config = function()
-    --     require("nvim-surround").setup()
-    --   end,
-    -- }
-    use { -- gcc
+      ]]
+    end
+  } -- gs: "abc" -> "abc -> :abc
+
+  -- use "https://github.com/tpope/vim-surround" -- ysa) ysa)
+  use {
+    "~/personal/nvim-surround",
+    config = function()
+      require("nvim-surround").setup({})
+    end,
+  }
+
+  -- gcc
+  use {
     "https://github.com/terrortylor/nvim-comment",
     config = function()
       require("nvim_comment").setup({ comment_empty = false })
-    end,
+    end
   }
   use "https://github.com/tpope/vim-repeat"
   use "https://github.com/tpope/vim-unimpaired" -- [b, ]b, etc
