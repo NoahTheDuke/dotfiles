@@ -184,7 +184,7 @@ return packer.startup(function(use)
 
   -- use "https://github.com/tpope/vim-surround" -- ysa) ysa)
   use {
-    "~/personal/nvim-surround",
+    "https://github.com/kylechui/nvim-surround",
     config = function()
       require("nvim-surround").setup({})
     end,
@@ -213,6 +213,7 @@ return packer.startup(function(use)
       vim.g["conjure#mapping#def_word"] = false
       vim.g["conjure#mapping#doc_word"] = false
       vim.g["conjure#client#clojure#nrepl#eval#raw_out"] = true
+      vim.g["conjure#log#wrap"] = true
     end
   }
   use "https://github.com/walterl/conjure-macroexpand"
@@ -238,8 +239,8 @@ return packer.startup(function(use)
           require("nvim-treesitter.configs").setup {
               ensure_installed = { "clojure", "lua", "javascript", "typescript", "rust" },
               highlight = {
-                  enable = true,
-                  disable = { "clojure" },
+                  enable = false,
+                  -- disable = { "clojure" },
               },
               incremental_selection = { enable = true },
               textobjects = { enable = true },

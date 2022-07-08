@@ -4,7 +4,7 @@ local options = {
   clipboard = "unnamedplus",
   cmdheight = 2,
   colorcolumn = "88",
-  completeopt = { "menuone", "noselect" },
+  completeopt = table.concat({ "menuone", "noselect" }, ","),
   conceallevel = 0,
   expandtab = true,
   foldenable = false,
@@ -42,7 +42,7 @@ local options = {
 vim.cmd("set iskeyword+=-")
 
 for k, v in pairs(options) do
-  vim.opt[k] = v
+  pcall(vim.api.nvim_set_option, k, v)
 end
 
 -- idk how to do g:vars yet
