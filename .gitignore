@@ -1,4 +1,4 @@
 .DS_Store
 vimwiki/Deploying.wiki
-.clj-kondo
-.lsp
+.cache
+nvim/plugin

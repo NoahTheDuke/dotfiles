@@ -61,41 +61,11 @@ local hilink = function(from, to)
   vim.api.nvim_command("highlight link " .. from .. " " .. to)
 end
 
+-- Coc Semantic Highlighting
 hilink("CocSemEvent", "Identifier")
 hilink("CocSemMacro", "Macro")
 hilink("CocSemVariable", "Identifier")
---
--- hilink("CocSemNamespace", "")
--- hilink("CocSemType", "")
--- hilink("CocSemClass", "")
--- hilink("CocSemEnum", "")
--- hilink("CocSemInterface", "")
--- hilink("CocSemStruct", "")
--- hilink("CocSemTypeParameter", "")
--- hilink("CocSemParameter", "")
--- hilink("CocSemVariable", "")
--- hilink("CocSemProperty", "")
--- hilink("CocSemEnumMember", "")
--- hilink("CocSemEvent", "")
--- hilink("CocSemFunction", "")
--- hilink("CocSemMethod", "")
--- hilink("CocSemMacro", "")
--- hilink("CocSemKeyword", "")
--- hilink("CocSemModifier", "")
--- hilink("CocSemComment", "")
--- hilink("CocSemString", "")
--- hilink("CocSemNumber", "")
--- hilink("CocSemRegexp", "")
--- hilink("CocSemOperator", "")
--- hilink("CocSemDecorator", "")
 
--- CocSemDeclaration
--- CocSemDefinition
--- CocSemReadonly
--- CocSemStatic
--- CocSemDeprecated
--- CocSemAbstract
--- CocSemAsync
--- CocSemModification
--- CocSemDocumentation
--- CocSemDefaultLibrary
+-- TreeSitter Highlighting
+hilink("TSCharacterSpecial", "SpecialChar")
+hilink("TSPunctSpecial", "SpecialChar")

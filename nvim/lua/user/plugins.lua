@@ -214,6 +214,7 @@ return packer.startup(function(use)
       vim.g["conjure#mapping#doc_word"] = false
       vim.g["conjure#client#clojure#nrepl#eval#raw_out"] = true
       vim.g["conjure#log#wrap"] = true
+      -- vim.g["conjure#extract#tree_sitter#enabled"] = false
     end
   }
   use "https://github.com/walterl/conjure-macroexpand"
@@ -229,24 +230,35 @@ return packer.startup(function(use)
     "https://github.com/neoclide/coc.nvim",
     branch = "release",
     config = function()
-      vim.cmd("source " .. "$HOME/dotfiles/vim/coc-nvim.vim")
+      vim.cmd("source " .. "$HOME/dotfiles/nvim/coc-nvim.vim")
     end
   }
   use {
-      "https://github.com/nvim-treesitter/nvim-treesitter",
-      run = ":TSUpdate",
-      config = function()
-          require("nvim-treesitter.configs").setup {
-              ensure_installed = { "clojure", "lua", "javascript", "typescript", "rust" },
-              highlight = {
-                  enable = false,
-                  -- disable = { "clojure" },
-              },
-              incremental_selection = { enable = true },
-              textobjects = { enable = true },
-          }
-      end
+    "https://github.com/nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+    config = function()
+      require("nvim-treesitter.configs").setup {
+        ensure_installed = {
+          "clojure",
+          "javascript",
+          "lua",
+          "query",
+          "rust",
+          "typescript",
+        },
+        highlight = { enable = true },
+        incremental_selection = { enable = true },
+        textobjects = { enable = true },
+        playground = { enable = true },
+        query_linter = {
+          enable = true,
+          use_virtual_text = true,
+          lint_events = {"BufWrite", "CursorHold"},
+        },
+      }
+    end
   }
+  use {"https://github.com/nvim-treesitter/playground"}
 
   -- language plugins
 
