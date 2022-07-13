@@ -70,7 +70,7 @@ hilink("CocSemVariable", "Identifier")
 
 -- TreeSitter Highlighting
 hilink("TSCharacterSpecial", "SpecialChar")
-hilink("TSFunctionMacro", "Macro")
+hilink("TSFuncMacro", "Macro")
 hilink("TSPunctSpecial", "SpecialChar")
 hilink("TSStringRegex", "Constant")
 hilink("TSVariableBuiltin", "Identifier")
