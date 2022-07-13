@@ -1,53 +1,73 @@
-local options = {
-  autochdir = true,
-  backup = false,
-  clipboard = "unnamedplus",
-  cmdheight = 2,
-  colorcolumn = "88",
-  completeopt = table.concat({ "menuone", "noselect" }, ","),
-  conceallevel = 0,
-  expandtab = true,
-  foldenable = false,
-  formatoptions = "tqrn1j",
-  guioptions = "grtC",
-  list = true,
-  listchars = "tab:> ,eol:¬,trail:~,nbsp:+",
-  modelines = 0,
-  mouse = "a",
-  number = true,
-  pumheight = 10,
-  scrolloff = 2,
-  shiftwidth = 4,
-  shortmess = "filnxtToOFAc",
-  showmatch = true,
-  showmode = false,
-  showtabline = 0,
-  signcolumn = "yes",
-  softtabstop = -1,
-  splitbelow = true,
-  splitright = true,
-  swapfile = false,
-  tabstop = 4,
-  termguicolors = true,
-  textwidth = 88,
-  title = true,
-  undofile = true,
-  updatetime = 300,
-  visualbell = true,
-  whichwrap = "<,>,[,],b,s,h,l",
-  wildignore = "*\\tmp\\*,*\\target\\*,*\\out\\*",
-  wildignorecase = true,
+vim.opt.autochdir = true
+vim.opt.backup = false
+vim.opt.clipboard = "unnamedplus"
+vim.opt.cmdheight = 2
+vim.opt.colorcolumn = "88"
+vim.opt.completeopt = { "menuone", "noselect" }
+vim.opt.conceallevel = 0
+vim.opt.expandtab = true
+vim.opt.foldenable = false
+vim.opt.formatoptions = {
+  ["1"] = true, -- Don't break a line after a one-letter word.  It's broken before it instead (if possible).
+  ["c"] = true, -- Auto-wrap comments using 'textwidth', inserting the current comment leader automatically.
+  ["j"] = true, -- Where it makes sense, remove a comment leader when joining lines.
+  ["o"] = true,
+  ["n"] = true, -- When formatting text, recognize numbered lists.
+  ["q"] = true, -- Allow formatting of comments with "gq".
+  ["r"] = true, -- Automatically insert the current comment leader after hitting <Enter> in Insert mode.
+  ["t"] = true, -- Auto-wrap text using 'textwidth'
 }
-
-vim.cmd("set iskeyword+=-")
-
-for k, v in pairs(options) do
-  pcall(vim.api.nvim_set_option, k, v)
-end
-
--- idk how to do g:vars yet
--- let g:netrw_banner = 0
--- let g:netrw_liststyle = 3
--- let g:netrw_browse_split = 4
--- let g:netrw_altv = 1
--- let g:netrw_winsize = 10
+vim.opt.list = true
+vim.opt.listchars = {
+  eol = "¬",
+  nbsp = "+",
+  tab = "> ",
+  trail = "~",
+}
+vim.opt.modelines = 0
+vim.opt.mouse = "a"
+vim.opt.number = true
+vim.opt.pumheight = 10
+vim.opt.scrolloff = 2
+vim.opt.shiftwidth = 4
+vim.opt.shortmess = {
+  ["A"] = true, -- no "ATTENTION" message when an existing swap file is found
+  ["c"] = true, -- don't give ins-completion-menu messages
+  ["F"] = true, -- don't give the file info when editing a file
+  ["f"] = true, -- use "(3 of 5)" instead of "(file 3 of 5)"
+  ["i"] = true, -- use "[noeol]" instead of "[Incomplete last line]"
+  ["l"] = true, -- use "999L, 888B" instead of "999 lines, 888 bytes"
+  ["n"] = true, -- use [New] instead of [New file]
+  ["O"] = true, -- message for reading a file overwrites any previous message
+  ["o"] = true, -- overwrite message for writing a file when reading a file
+  ["T"] = true, -- truncate messages in the middle if they are too long to fit on the command line
+  ["t"] = true, -- truncate file message
+  ["x"] = true, -- [dos] instead of [dos format]
+}
+vim.opt.showmatch = true
+vim.opt.showmode = false
+vim.opt.showtabline = 0
+vim.opt.signcolumn = "yes"
+vim.opt.softtabstop = -1
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.swapfile = false
+vim.opt.tabstop = 4
+vim.opt.termguicolors = true
+vim.opt.textwidth = 88
+vim.opt.title = true
+vim.opt.undofile = true
+vim.opt.updatetime = 300
+vim.opt.visualbell = true
+vim.opt.whichwrap = {
+  ["b"] = true, --  <BS>    Normal and Visual
+  ["s"] = true, --  <Space> Normal and Visual
+  ["h"] = true, --  "h"     Normal and Visual
+  ["l"] = true, --  "l"     Normal and Visual
+  ["<"] = true, --  <Left>  Normal and Visual
+  [">"] = true, --  <Right> Normal and Visual
+  ["["] = true, --  <Left>  Insert and Replace
+  ["]"] = true, --  <Right> Insert and Replace
+}
+vim.opt.wildignore = { "*\\tmp\\*", "*\\target\\*", "*\\out\\*" }
+vim.opt.wildignorecase = true

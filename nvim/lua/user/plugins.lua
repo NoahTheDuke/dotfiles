@@ -1,13 +1,13 @@
-local fn = vim.fn
+local nvim = require "vendor.nvim"
 
 -- disable filetype.vim, load filetype.lua instead
 vim.g.did_load_filetypes = 0
 vim.g.do_filetype_lua = 1
 
 -- Automatically install packer
-local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system {
+local install_path = vim.fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  PACKER_BOOTSTRAP = vim.fn.system {
     "git",
     "clone",
     "--depth",
@@ -21,7 +21,7 @@ end
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
 local puc_id = vim.api.nvim_create_augroup("packer_user_config", {})
-vim.api.nvim_create_autocmd({"BufWritePost"}, {
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   group = puc_id,
   pattern = "plugins.lua",
   command = "source <afile> | PackerSync",
@@ -37,7 +37,7 @@ end
 packer.init {
   display = {
     open_fn = function()
-      return require("packer.util").float {border = "rounded"}
+      return require("packer.util").float { border = "rounded" }
     end,
   },
 }
@@ -78,7 +78,7 @@ return packer.startup(function(use)
   }
   use "https://github.com/vim-airline/vim-airline-themes"
 
-  use {"https://github.com/mbbill/undotree"} -- :UndotreeToggle
+  use { "https://github.com/mbbill/undotree" } -- :UndotreeToggle
 
   use {
     "https://github.com/wfxr/minimap.vim",
@@ -158,7 +158,7 @@ return packer.startup(function(use)
     "https://github.com/AndrewRadev/splitjoin.vim",
     config = function()
       vim.cmd [[
-      let g:splitjoin_trailing_comma = 1
+        let g:splitjoin_trailing_comma = 1
       ]]
     end
   } -- gS, gJ
@@ -223,7 +223,7 @@ return packer.startup(function(use)
   use {
     "https://github.com/editorconfig/editorconfig-vim",
     config = function()
-      vim.g["EditorConfig_exclude_patterns"] = {'fugitive://.*'}
+      vim.g["EditorConfig_exclude_patterns"] = { 'fugitive://.*' }
     end
   }
   use {
@@ -253,122 +253,114 @@ return packer.startup(function(use)
         query_linter = {
           enable = true,
           use_virtual_text = true,
-          lint_events = {"BufWrite", "CursorHold"},
+          lint_events = { "BufWrite", "CursorHold" },
         },
       }
     end
   }
-  use {"https://github.com/nvim-treesitter/playground"}
+  use { "https://github.com/nvim-treesitter/playground" }
 
   -- language plugins
 
   -- asciidoc
-  use {"https://github.com/asciidoc/vim-asciidoc", ft = "asciidoc"}
+  use { "https://github.com/asciidoc/vim-asciidoc", ft = "asciidoc" }
 
   -- asm
-  use {"https://github.com/samsaga2/vim-z80", ft = "asm"}
+  use { "https://github.com/samsaga2/vim-z80", ft = "asm" }
 
   -- clojure
   -- not set to ft so the files load in the correct order
-  use {"https://github.com/clojure-vim/clojure.vim"}
+  use { "https://github.com/clojure-vim/clojure.vim" }
   use { "~/personal/zprint.vim", ft = "clojure" }
 
   -- common lisp
-  use {"https://github.com/vlime/vlime", rtp = "vim/", ft = "lisp"}
+  use { "https://github.com/vlime/vlime", rtp = "vim/", ft = "lisp" }
 
   -- dhall
-  use {"https://github.com/vmchale/dhall-vim", ft = "dhall"}
+  use { "https://github.com/vmchale/dhall-vim", ft = "dhall" }
 
   -- docker-compose
-  use {"https://github.com/ekalinin/Dockerfile.vim", ft="dockerfile"}
+  use { "https://github.com/ekalinin/Dockerfile.vim", ft = "dockerfile" }
 
   -- fennel
-  use {"https://github.com/jaawerth/fennel.vim", ft = "fennel"}
+  use { "https://github.com/jaawerth/fennel.vim", ft = "fennel" }
 
   -- git
-  use {"https://github.com/tpope/vim-git"}
+  use { "https://github.com/tpope/vim-git" }
 
   -- html5
-  use {"https://github.com/othree/html5.vim", ft = "html"}
+  use { "https://github.com/othree/html5.vim", ft = "html" }
 
   -- javascript
-  use {"https://github.com/pangloss/vim-javascript", ft = {"flow", "javascript"}}
+  use { "https://github.com/pangloss/vim-javascript", ft = { "flow", "javascript" } }
 
   -- json5
-  use {"https://github.com/GutenYe/json5.vim", ft = "json5"}
+  use { "https://github.com/GutenYe/json5.vim", ft = "json5" }
 
   -- json
   use {
-      "https://github.com/elzr/vim-json",
-      ft = "json",
-      config = function()
-          vim.g["vim_json_syntax_conceal"] = 0
-      end
+    "https://github.com/elzr/vim-json",
+    ft = "json",
+    config = function()
+      vim.g["vim_json_syntax_conceal"] = 0
+    end
   }
 
   -- jsonc
-  use {"https://github.com/neoclide/jsonc.vim", ft = "jsonc"}
+  use { "https://github.com/neoclide/jsonc.vim", ft = "jsonc" }
 
   -- justfiles
-  use {"https://github.com/NoahTheDuke/vim-just", ft = "just"}
+  use { "https://github.com/NoahTheDuke/vim-just", ft = "just" }
 
   -- lua
-  use {"https://github.com/euclidianAce/BetterLua.vim", ft = "lua"}
+  use { "https://github.com/euclidianAce/BetterLua.vim", ft = "lua" }
 
   -- markdown
-  use {"https://github.com/plasticboy/vim-markdown", ft = "markdown"}
+  use { "https://github.com/plasticboy/vim-markdown", ft = "markdown" }
 
   -- python
-  use {"https://github.com/psf/black", ft = "python"}
-  use {"https://github.com/raimon49/requirements.txt.vim", ft = "requirements"}
+  use { "https://github.com/psf/black", ft = "python" }
+  use { "https://github.com/raimon49/requirements.txt.vim", ft = "requirements" }
 
   -- racket
-  use {"https://github.com/wlangstroth/vim-racket", ft = "racket"}
+  use { "https://github.com/wlangstroth/vim-racket", ft = "racket" }
 
   -- rst
-  use {"https://github.com/marshallward/vim-restructuredtext"}
+  use { "https://github.com/marshallward/vim-restructuredtext" }
 
   -- ruby/rails
-  use {"https://github.com/vim-ruby/vim-ruby", ft = "ruby"}
-  use {"https://github.com/tpope/vim-rails", ft = "ruby"}
+  use { "https://github.com/vim-ruby/vim-ruby", ft = "ruby" }
+  use { "https://github.com/tpope/vim-rails", ft = "ruby" }
 
   -- rust
-  use {"https://github.com/rust-lang/rust.vim", ft = "rust"}
+  use { "https://github.com/rust-lang/rust.vim", ft = "rust" }
 
   -- sh/bash/etc
-  use {"https://github.com/arzg/vim-sh"}
+  use { "https://github.com/arzg/vim-sh" }
 
   -- stylus
-  use {"https://github.com/wavded/vim-stylus", ft = "stylus"}
+  use { "https://github.com/wavded/vim-stylus", ft = "stylus" }
 
   -- toml
-  use {"https://github.com/cespare/vim-toml", ft = "toml"}
+  use { "https://github.com/cespare/vim-toml", ft = "toml" }
 
   -- twig
-  use {"https://github.com/lumiliet/vim-twig", ft = "twig"}
+  use { "https://github.com/lumiliet/vim-twig", ft = "twig" }
 
   -- typescript
-  use {"https://github.com/HerringtonDarkholme/yats.vim", ft = "typescript"}
+  use { "https://github.com/HerringtonDarkholme/yats.vim", ft = "typescript" }
 
   -- vue
-  use {"https://github.com/posva/vim-vue", ft = "vue"}
+  use { "https://github.com/posva/vim-vue", ft = "vue" }
 
   -- xml
-  use {"https://github.com/amadeus/vim-xml", ft = "xml"}
+  use { "https://github.com/amadeus/vim-xml", ft = "xml" }
 
   -- zig
-  use {"https://github.com/ziglang/zig.vim", ft = "zig"}
+  use { "https://github.com/ziglang/zig.vim", ft = "zig" }
 
   -- colors
-  use {
-      "https://github.com/Mofiqul/dracula.nvim",
-      disable = false,
-  }
-  use {
-      "https://github.com/dracula/vim",
-      as = "dracula",
-      disable = true,
-  }
+  use "https://github.com/Mofiqul/dracula.nvim"
 
   -- Must be final call
   if PACKER_BOOTSTRAP then
@@ -376,8 +368,8 @@ return packer.startup(function(use)
   end
 end)
 
-  -- require "nvim-treesitter.configs".setup {
-  --   matchup = {
-  --     enable = true,
-  --   },
-  -- }
+-- require "nvim-treesitter.configs".setup {
+--   matchup = {
+--     enable = true,
+--   },
+-- }

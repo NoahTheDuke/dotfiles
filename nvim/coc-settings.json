@@ -54,6 +54,8 @@
     "javascript.suggestionActions.enabled": false,
     "sumneko-lua.enableNvimLuaDev": true,
     "sumneko-lua.checkUpdate": true,
+    "Lua.telemetry.enable": false,
+    "Lua.hint.enable": false,
     // "markdownlint.config": {
     //     "default": true,
     //     "MD024": {
@@ -75,6 +77,5 @@
     "rust-analyzer.procMacro.enable": true,
     "rust-analyzer.updates.channel": "stable",
     "tsserver.log": "verbose",
-    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
-    "Lua.telemetry.enable": false
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true
 }

@@ -1,3 +1,5 @@
+local nvim = require "vendor.nvim"
+
 local colorscheme = "dracula"
 
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
@@ -9,9 +11,9 @@ end
 local highlight = function(group, fg, bg, attr)
   fg = fg and "guifg=" .. fg or "guifg=NONE"
   bg = bg and "guibg=" .. bg or "guibg=NONE"
-  attr = attr and "gui=" ..attr or "gui=NONE"
+  attr = attr and "gui=" .. attr or "gui=NONE"
 
-  vim.api.nvim_command("highlight " .. group .. " ".. fg .. " " .. bg .. " ".. attr)
+  nvim.command("highlight! " .. group .. " " .. fg .. " " .. bg .. " " .. attr)
 end
 
 local colors = require('dracula').colors()
@@ -58,7 +60,7 @@ highlight("Ignore", colors.comment)
 
 
 local hilink = function(from, to)
-  vim.api.nvim_command("highlight link " .. from .. " " .. to)
+  nvim.command("highlight! link " .. from .. " " .. to)
 end
 
 -- Coc Semantic Highlighting
@@ -68,4 +70,7 @@ hilink("CocSemVariable", "Identifier")
 
 -- TreeSitter Highlighting
 hilink("TSCharacterSpecial", "SpecialChar")
+hilink("TSFunctionMacro", "Macro")
 hilink("TSPunctSpecial", "SpecialChar")
+hilink("TSStringRegex", "Constant")
+hilink("TSVariableBuiltin", "Identifier")
