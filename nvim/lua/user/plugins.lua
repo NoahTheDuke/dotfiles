@@ -238,6 +238,7 @@ return packer.startup(function(use)
     run = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup {
+        auto_install = true,
         ensure_installed = {
           "clojure",
           "javascript",
