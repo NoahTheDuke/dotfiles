@@ -1,0 +1,10 @@
+[Unit]
+Description=xremap
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=xremap home/noah/dotfiles/keybinds/xremap-config.yml --watch
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,5 @@
+modmap:
+  - name: Rotate specials
+    remap:
+      CapsLock: Ctrl_L
+      Ctrl_L: Backspace

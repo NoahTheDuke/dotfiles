@@ -64,7 +64,11 @@ nvim.set_keymap("n", "<F10>",
   [[:echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>]]
   , opts)
 
-nvim.set_keymap("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)
-nvim.set_keymap("n", "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<cr>", opts)
-nvim.set_keymap("n", "<leader>fb", "<cmd>lua require('telescope.builtin').buffers()<cr>", opts)
-nvim.set_keymap("n", "<leader>fh", "<cmd>lua require('telescope.builtin').help_tags()<cr>", opts)
+vim.cmd [[
+  nnoremap <expr> <leader>ff ':lua require("telescope.builtin").find_files({cwd = "' . FindRootDirectory() . '"})<cr>'
+]]
+vim.cmd [[
+  nnoremap <expr> <leader>fg ':lua require("telescope.builtin").live_grep({cwd = "' . FindRootDirectory() . '"})<cr>'
+]]
+nvim.set_keymap("n", "<leader>fb", ":lua require('telescope.builtin').buffers()<CR>", opts)
+nvim.set_keymap("n", "<leader>fh", ":lua require('telescope.builtin').help_tags()<CR>", opts)

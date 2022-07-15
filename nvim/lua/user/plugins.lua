@@ -233,6 +233,25 @@ return packer.startup(function(use)
       vim.cmd("source " .. "$HOME/dotfiles/nvim/coc-nvim.vim")
     end
   }
+
+  use {
+    "https://github.com/airblade/vim-rooter",
+    config = function ()
+      vim.g["rooter_manual_only"] = 1
+      vim.g["rooter_silent_chdir"] = 1
+      vim.g["rooter_patterns"] = {
+        -- exclusions come first
+        "!node_modules",
+        -- then inclusions
+        ".git",
+        "Cargo.toml",
+        "deps.edn",
+        "package.json",
+        "project.clj",
+      }
+    end,
+  }
+
   use {
     "https://github.com/nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
