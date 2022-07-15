@@ -205,7 +205,13 @@ return packer.startup(function(use)
   use "https://github.com/wellle/targets.vim"
 
   -- sexpr editing
-  use "https://github.com/guns/vim-sexp"
+  use {
+    "https://github.com/guns/vim-sexp",
+    setup = function()
+      -- The autocmd doesn't work if I run this in config so I gotta hardcode the whole list
+      vim.g["sexp_filetypes"] = 'clojure,scheme,lisp,timl,fennel'
+    end,
+  }
   use "https://github.com/tpope/vim-sexp-mappings-for-regular-people"
   use {
     "https://github.com/Olical/conjure",
