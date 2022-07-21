@@ -65,10 +65,10 @@ nvim.set_keymap("n", "<F10>",
   , opts)
 
 vim.cmd [[
-  nnoremap <expr> <leader>ff ':lua require("telescope.builtin").find_files({cwd = "' . FindRootDirectory() . '"})<cr>'
+  nnoremap <silent> <expr> <leader>ff ':lua require("telescope.builtin").find_files({cwd = "' . FindRootDirectory() . '"})<cr>'
 ]]
 vim.cmd [[
-  nnoremap <expr> <leader>fg ':lua require("telescope.builtin").live_grep({cwd = "' . FindRootDirectory() . '"})<cr>'
+  nnoremap <silent> <expr> <leader>fg ':lua require("telescope.builtin").live_grep({cwd = "' . FindRootDirectory() . '"})<cr>'
 ]]
 nvim.set_keymap("n", "<leader>fb", ":lua require('telescope.builtin').buffers()<CR>", opts)
 nvim.set_keymap("n", "<leader>fh", ":lua require('telescope.builtin').help_tags()<CR>", opts)

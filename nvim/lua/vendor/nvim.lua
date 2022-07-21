@@ -1,3 +1,5 @@
+-- from https://github.com/norcalli/nvim.lua
+
 -- Bring vim into local scope.
 local vim = vim
 local api = vim.api

@@ -67,13 +67,13 @@ return packer.startup(function(use)
   -- }
   use {
     "https://github.com/vim-airline/vim-airline",
-    config = function()
-      vim.g["airline#extensions#ale#enabled"] = 1
-      vim.g["airline#extensions#coc#enabled"] = 1
-      vim.g["airline#extensions#tabline#enabled"] = 1
-      vim.g["airline#extensions#tabline#formatter"] = 'default'
-      vim.g["airline#extensions#whitespace#mixed_indent_algo"] = 1
-      vim.g["airline_highlighting_cache"] = 1
+    setup = function()
+      local utils = require "user.utils"
+      utils.g_set("airline#extensions#coc#enabled", 1)
+      utils.g_set("airline#extensions#tabline#enabled", 1)
+      utils.g_set("airline#extensions#tabline#formatter", 'default')
+      utils.g_set("airline#extensions#whitespace#mixed_indent_algo", 1)
+      utils.g_set("airline_highlighting_cache", 1)
     end
   }
   use "https://github.com/vim-airline/vim-airline-themes"
@@ -108,15 +108,15 @@ return packer.startup(function(use)
     "https://github.com/ctrlpvim/ctrlp.vim",
     config = function()
       vim.cmd [[
-      let g:ctrlp_custom_ignore = {
-        \ 'dir':  '/target/',
-        \ }
-      let g:ctrlp_max_files = 0
-      let g:ctrlp_max_depth = 1000
-      " from: https://bluz71.github.io/2017/10/26/turbocharge-the-ctrlp-vim-plugin.html
-      let g:ctrlp_user_command = 'fd --type f --color=never "" %s'
-      let g:ctrlp_use_caching = 0
-      let g:ctrlp_show_hidden = 1
+        let g:ctrlp_custom_ignore = {
+          \ 'dir':  '/target/',
+          \ }
+        let g:ctrlp_max_files = 0
+        let g:ctrlp_max_depth = 1000
+        " from: https://bluz71.github.io/2017/10/26/turbocharge-the-ctrlp-vim-plugin.html
+        let g:ctrlp_user_command = 'fd --type f --color=never "" %s'
+        let g:ctrlp_use_caching = 0
+        let g:ctrlp_show_hidden = 1
       ]]
     end
   } -- <C-p>
@@ -220,7 +220,6 @@ return packer.startup(function(use)
       vim.g["conjure#mapping#doc_word"] = false
       vim.g["conjure#client#clojure#nrepl#eval#raw_out"] = true
       vim.g["conjure#log#wrap"] = true
-      -- vim.g["conjure#extract#tree_sitter#enabled"] = false
     end
   }
   use "https://github.com/walterl/conjure-macroexpand"
@@ -263,7 +262,6 @@ return packer.startup(function(use)
     run = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup {
-        auto_install = true,
         ensure_installed = {
           "clojure",
           "javascript",
@@ -286,6 +284,25 @@ return packer.startup(function(use)
   }
   use { "https://github.com/nvim-treesitter/playground" }
 
+  use {
+    'https://github.com/glacambre/firenvim',
+    run = function()
+      vim.fn['firenvim#install'](0)
+    end,
+    config = function()
+      vim.g["firenvim_config"] = {
+        globalSettings = {
+          alt = "all",
+        },
+        localSettings = {
+          [".*"] = {
+            takeover = "never",
+          },
+        },
+      }
+    end,
+  }
+
   -- language plugins
 
   -- asciidoc
@@ -297,7 +314,13 @@ return packer.startup(function(use)
   -- clojure
   -- not set to ft so the files load in the correct order
   use { "https://github.com/clojure-vim/clojure.vim" }
-  use { "~/personal/zprint.vim", ft = "clojure" }
+  use {
+    "https://github.com/bfontaine/zprint.vim",
+    ft = "clojure",
+    setup = function()
+      vim.g["zprint#make_autocmd"] = 0
+    end
+  }
 
   -- common lisp
   use { "https://github.com/vlime/vlime", rtp = "vim/", ft = "lisp" }
