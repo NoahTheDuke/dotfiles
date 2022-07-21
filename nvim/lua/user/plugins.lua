@@ -244,9 +244,6 @@ return packer.startup(function(use)
       vim.g["rooter_manual_only"] = 1
       vim.g["rooter_silent_chdir"] = 1
       vim.g["rooter_patterns"] = {
-        -- exclusions come first
-        "!node_modules",
-        -- then inclusions
         ".git",
         "Cargo.toml",
         "deps.edn",
@@ -312,7 +309,30 @@ return packer.startup(function(use)
 
   -- clojure
   -- not set to ft so the files load in the correct order
-  use { "https://github.com/clojure-vim/clojure.vim" }
+  use {
+    "https://github.com/clojure-vim/clojure.vim",
+    config = function()
+      vim.g.clojure_syntax_keywords = {
+        clojureMacro = {
+          'effect',
+          'req',
+          'msg',
+          'wait-for',
+          'continue-ability',
+          'do-game',
+          'deftest-pending',
+          'changes-val-macro',
+          'when-let*',
+          'before-each',
+        }
+      }
+      vim.cmd [[
+        augroup clojure
+          autocmd FileType clojure setlocal lispwords+=before-each,do-game
+        augroup END
+      ]]
+    end,
+  }
   use {
     "https://github.com/bfontaine/zprint.vim",
     ft = "clojure",
