@@ -53,16 +53,16 @@ return packer.startup(function(use)
   use "https://github.com/ypcrts/securemodelines" -- Pure security
 
   -- visual/display
-  -- use { 'feline-nvim/feline.nvim',
+  -- use { "feline-nvim/feline.nvim",
   --   config = function()
-  --     require('conf/feline')
+  --     require("conf/feline")
   --   end
   -- }
-  -- use { 'kdheepak/tabline.nvim',
+  -- use { "kdheepak/tabline.nvim",
   --   config = function()
-  --     require('conf/tabline')
+  --     require("conf/tabline")
   --   end,
-  --   requires = { {'kyazdani42/nvim-web-devicons', opt = true} }
+  --   requires = { {"kyazdani42/nvim-web-devicons", opt = true} }
   -- }
   use {
     "https://github.com/vim-airline/vim-airline",
@@ -70,7 +70,7 @@ return packer.startup(function(use)
       local utils = require "user.utils"
       utils.g_set("airline#extensions#coc#enabled", 1)
       utils.g_set("airline#extensions#tabline#enabled", 1)
-      utils.g_set("airline#extensions#tabline#formatter", 'default')
+      utils.g_set("airline#extensions#tabline#formatter", "default")
       utils.g_set("airline#extensions#whitespace#mixed_indent_algo", 1)
       utils.g_set("airline_highlighting_cache", 1)
     end
@@ -82,16 +82,16 @@ return packer.startup(function(use)
   use {
     "https://github.com/wfxr/minimap.vim",
     config = function()
-      vim.g["minimap_highlight_range"] = 1
-      vim.g["minimap_width"] = 10
-      vim.g["minimap_git_colors"] = 1
+      vim.g.minimap_highlight_range = 1
+      vim.g.minimap_width = 10
+      vim.g.minimap_git_colors = 1
     end
   } -- :MinimapToggle
   use {
     "https://github.com/previm/previm",
     ft = "md",
     config = function()
-      vim.g["previm_open_cmd"] = "open -a Firefox"
+      vim.g.previm_open_cmd = "open -a Firefox"
     end
   } -- :PreviewOpen
 
@@ -106,17 +106,15 @@ return packer.startup(function(use)
   use {
     "https://github.com/ctrlpvim/ctrlp.vim",
     config = function()
-      vim.cmd [[
-        let g:ctrlp_custom_ignore = {
-          \ 'dir':  '/target/',
-          \ }
-        let g:ctrlp_max_files = 0
-        let g:ctrlp_max_depth = 1000
-        " from: https://bluz71.github.io/2017/10/26/turbocharge-the-ctrlp-vim-plugin.html
-        let g:ctrlp_user_command = 'fd --type f --color=never "" %s'
-        let g:ctrlp_use_caching = 0
-        let g:ctrlp_show_hidden = 1
-      ]]
+      vim.g.ctrlp_custom_ignore = {
+        dir = "/target/",
+      }
+      vim.g.ctrlp_max_files = 0
+      vim.g.ctrlp_max_depth = 1000
+      -- from: https://bluz71.github.io/2017/10/26/turbocharge-the-ctrlp-vim-plugin.html
+      vim.g.ctrlp_user_command = 'fd --type f --color=never "" %s'
+      vim.g.ctrlp_use_caching = 0
+      vim.g.ctrlp_show_hidden = 1
     end
   } -- <C-p>
 
@@ -148,7 +146,7 @@ return packer.startup(function(use)
   use {
     "https://github.com/nvim-telescope/telescope-media-files.nvim",
     config = function()
-      require('telescope').load_extension('media_files')
+      require("telescope").load_extension("media_files")
     end
   }
 
@@ -156,9 +154,7 @@ return packer.startup(function(use)
   use {
     "https://github.com/AndrewRadev/splitjoin.vim",
     config = function()
-      vim.cmd [[
-        let g:splitjoin_trailing_comma = 1
-      ]]
+      vim.g.splitjoin_trailing_comma = 1
     end
   } -- gS, gJ
 
@@ -208,7 +204,7 @@ return packer.startup(function(use)
     "https://github.com/guns/vim-sexp",
     setup = function()
       -- The autocmd doesn't work if I run this in config so I gotta hardcode the whole list
-      vim.g["sexp_filetypes"] = 'clojure,scheme,lisp,timl,fennel'
+      vim.g.sexp_filetypes = "clojure,scheme,lisp,timl,fennel"
     end,
   }
   use "https://github.com/tpope/vim-sexp-mappings-for-regular-people"
@@ -227,7 +223,7 @@ return packer.startup(function(use)
   use {
     "https://github.com/editorconfig/editorconfig-vim",
     config = function()
-      vim.g["EditorConfig_exclude_patterns"] = { 'fugitive://.*' }
+      vim.g.EditorConfig_exclude_patterns = { "fugitive://.*" }
     end
   }
   use {
@@ -241,9 +237,9 @@ return packer.startup(function(use)
   use {
     "https://github.com/airblade/vim-rooter",
     config = function ()
-      vim.g["rooter_manual_only"] = 1
-      vim.g["rooter_silent_chdir"] = 1
-      vim.g["rooter_patterns"] = {
+      vim.g.rooter_manual_only = 1
+      vim.g.rooter_silent_chdir = 1
+      vim.g.rooter_patterns = {
         ".git",
         "Cargo.toml",
         "deps.edn",
@@ -281,17 +277,28 @@ return packer.startup(function(use)
   use { "https://github.com/nvim-treesitter/playground" }
 
   use {
-    'https://github.com/glacambre/firenvim',
+    "https://github.com/glacambre/firenvim",
     run = function()
-      vim.fn['firenvim#install'](0)
+      vim.fn["firenvim#install"](0)
     end,
     config = function()
-      vim.g["firenvim_config"] = {
+      vim.g.firenvim_config = {
         globalSettings = {
           alt = "all",
         },
         localSettings = {
-          [".*"] = {
+          [ [[.*]] ] = {
+            cmdline = "firenvim",
+            priority = 0,
+            selector = 'textarea:not([readonly]):not([class="handsontableInput"]), div[role="textbox"]',
+            takeover = "always",
+          },
+          [ [[.*notion\.so.*]] ] = {
+            priority = 9,
+            takeover = "never",
+          },
+          [ [[.*docs\.google\.com.*]] ] = {
+            priority = 9,
             takeover = "never",
           },
         },
@@ -314,16 +321,16 @@ return packer.startup(function(use)
     config = function()
       vim.g.clojure_syntax_keywords = {
         clojureMacro = {
-          'effect',
-          'req',
-          'msg',
-          'wait-for',
-          'continue-ability',
-          'do-game',
-          'deftest-pending',
-          'changes-val-macro',
-          'when-let*',
-          'before-each',
+          "effect",
+          "req",
+          "msg",
+          "wait-for",
+          "continue-ability",
+          "do-game",
+          "deftest-pending",
+          "changes-val-macro",
+          "when-let*",
+          "before-each",
         }
       }
       vim.cmd [[
@@ -370,7 +377,7 @@ return packer.startup(function(use)
     "https://github.com/elzr/vim-json",
     ft = "json",
     config = function()
-      vim.g["vim_json_syntax_conceal"] = 0
+      vim.g.vim_json_syntax_conceal = 0
     end
   }
 
