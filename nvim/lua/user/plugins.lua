@@ -18,14 +18,6 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.cmd [[packadd packer.nvim]]
 end
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-local puc_id = vim.api.nvim_create_augroup("packer_user_config", {})
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  group = puc_id,
-  pattern = "plugins.lua",
-  command = "source <afile> | PackerSync",
-})
-
 -- Use a protected call so we don"t error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
@@ -119,12 +111,7 @@ return packer.startup(function(use)
   } -- <C-p>
 
   use "https://github.com/tpope/vim-projectionist"
-  use {
-    "https://github.com/ryanoasis/vim-devicons",
-    -- config = function()
-    --   require("nvim-web-devicons").setup({default = true})
-    -- end
-  }
+  use "https://github.com/ryanoasis/vim-devicons"
   use {
     "https://github.com/nvim-telescope/telescope.nvim",
     config = function()
@@ -274,7 +261,7 @@ return packer.startup(function(use)
       }
     end
   }
-  use { "https://github.com/nvim-treesitter/playground" }
+  use "https://github.com/nvim-treesitter/playground"
 
   use {
     "https://github.com/glacambre/firenvim",
@@ -293,14 +280,10 @@ return packer.startup(function(use)
             selector = 'textarea:not([readonly]):not([class="handsontableInput"]), div[role="textbox"]',
             takeover = "always",
           },
-          [ [[.*notion\.so.*]] ] = {
-            priority = 9,
-            takeover = "never",
-          },
-          [ [[.*docs\.google\.com.*]] ] = {
-            priority = 9,
-            takeover = "never",
-          },
+          [ [[.*discord\.com.*]] ] = { priority = 9, takeover = "never" },
+          [ [[.*docs\.google\.com.*]] ] = { priority = 9, takeover = "never" },
+          [ [[.*notion\.so.*]] ] = { priority = 9, takeover = "never" },
+          [ [[.*twitter\.com.*]] ] = { priority = 9, takeover = "never" },
         },
       }
     end,
