@@ -1,8 +1,9 @@
 {
     // coc.nvim/global settings
     "coc.preferences.enableMarkdown": true,
-    "coc.preferences.enableMessageDialog": true,
+    "coc.preferences.enableMessageDialog": false,
     "coc.preferences.excludeImageLinksInMarkdownDocument": true,
+    "coc.preferences.useQuickfixForLocations": false,
     "codeLens.enable": true,
     "codeLens.position": "eol",
     "codeLens.separator": "->",
@@ -12,6 +13,8 @@
     //"semanticTokens.filetypes": ["*"],
     "signature.enable": true,
     "signature.floatConfig": { "winblend": 0 },
+    "suggest.noselect": true,
+    "suggest.detailField": "abbr",
     "suggest.floatConfig": { "winblend": 0 },
     "suggest.minTriggerInputLength": 2,
     "suggest.triggerCompletionWait": 50,
