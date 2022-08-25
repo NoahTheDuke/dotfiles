@@ -10,6 +10,7 @@
     "diagnostic.floatConfig": { "winblend": 0 },
     "hover.floatConfig": { "winblend": 0 },
     //"semanticTokens.filetypes": ["*"],
+    "suggest.noselect": true,
     "signature.enable": true,
     "signature.floatConfig": { "winblend": 0 },
     "suggest.floatConfig": { "winblend": 0 },
