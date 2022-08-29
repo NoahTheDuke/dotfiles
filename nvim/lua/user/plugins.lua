@@ -45,17 +45,6 @@ return packer.startup(function(use)
   use "https://github.com/ypcrts/securemodelines" -- Pure security
 
   -- visual/display
-  -- use { "feline-nvim/feline.nvim",
-  --   config = function()
-  --     require("conf/feline")
-  --   end
-  -- }
-  -- use { "kdheepak/tabline.nvim",
-  --   config = function()
-  --     require("conf/tabline")
-  --   end,
-  --   requires = { {"kyazdani42/nvim-web-devicons", opt = true} }
-  -- }
   use {
     "https://github.com/vim-airline/vim-airline",
     setup = function()
@@ -110,7 +99,8 @@ return packer.startup(function(use)
     end
   } -- <C-p>
 
-  use "https://github.com/tpope/vim-projectionist"
+  use "https://github.com/tpope/vim-projectionist" -- :A, etc
+
   use "https://github.com/ryanoasis/vim-devicons"
   use {
     "https://github.com/nvim-telescope/telescope.nvim",
@@ -248,8 +238,12 @@ return packer.startup(function(use)
           "query",
           "rust",
           "typescript",
+          "vue",
         },
-        highlight = { enable = true },
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = true,
+        },
         incremental_selection = { enable = true },
         textobjects = { enable = true },
         playground = { enable = true },
@@ -409,7 +403,7 @@ return packer.startup(function(use)
   use { "https://github.com/HerringtonDarkholme/yats.vim", ft = "typescript" }
 
   -- vue
-  use { "https://github.com/posva/vim-vue", ft = "vue" }
+  use { "https://github.com/leafOfTree/vim-vue-plugin", ft = "vue" }
 
   -- xml
   use { "https://github.com/amadeus/vim-xml", ft = "xml" }

@@ -41,8 +41,6 @@
 
     // coc extensions
     "clojure.enable": true,
-    // "clojure.lsp-version": "2022.04.18-00.59.32",
-    // "clojure.executable": "~/Personal/clojure-lsp/clojure-lsp",
     "clojure.initialization-options.copy-kond-configs?": true,
     "clojure.initialization-options.log-path": "/tmp/clojure-lsp.out",
     "clojure.initialization-options.semantic-tokens?": true,
@@ -54,18 +52,15 @@
         "arity-on-same-line?": false
     },
     "clojure.startup-message": true,
-    "clojure.trace.server": "verbose",
+    // "clojure.trace.server": "verbose",
+    // "java.trace.server": "verbose",
+    "java.jdt.ls.vmargs": "-Dosgi.requir[dJavaVersion=11 -Dfile.encoding=UTF-8 -Dlog.level=ALL -noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication",
+    "java.home": "/usr/lib/jvm/java-11-openjdk-amd64",
     "javascript.suggestionActions.enabled": false,
     "sumneko-lua.enableNvimLuaDev": true,
     "sumneko-lua.checkUpdate": true,
     "Lua.telemetry.enable": false,
     "Lua.hint.enable": false,
-    // "markdownlint.config": {
-    //     "default": true,
-    //     "MD024": {
-    //         "siblings_only": true
-    //     }
-    // },
     "rust-analyzer.cargo.features": "all",
     "rust-analyzer.cargo.autoreload": true,
     "rust-analyzer.checkOnSave.enable": true,
@@ -82,6 +77,10 @@
     "rust-analyzer.lens.references.method.enable": true,
     "rust-analyzer.procMacro.enable": true,
     "rust-analyzer.updates.channel": "stable",
-    "tsserver.log": "verbose",
-    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true
+    // "tsserver.log": "verbose",
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+    "volar.takeOverMode.enabled": true
+    // "volar-document-features.trace.server": "verbose",
+    // "volar-language-features.trace.server": "verbose",
+    // "volar-language-features-2.trace.server": "verbose"
 }

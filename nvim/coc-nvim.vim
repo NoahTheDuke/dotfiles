@@ -108,16 +108,11 @@ endfunction
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-    " in a vim or help file
-    if (index(['vim', 'help'], &filetype) >= 0)
-        execute 'h ' . expand('<cword>')
-    " coc.nvim is good to go
-    elseif (coc#rpc#ready())
-        call CocActionAsync('doHover')
-    " default
-    else
-        execute '!' . &keywordprg . ' ' . expand('<cword>')
-    endif
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
 endfunction
 
 nnoremap <silent> gd :call <SID>go_to_definition()<CR>
