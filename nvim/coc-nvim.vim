@@ -81,28 +81,7 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 command! -nargs=0 Open :call <SID>Open()
 
 function! s:Open()
-  let res = CocActionAsync('openLink')
-  if res | return | endif
-  " match url
-  let line = getline('.')
-  let url = matchstr(line, '\vhttps?:\/\/[^)\]''" ]+')
-  if !empty(url)
-    echo 'opening "' . url . '"'
-    let output = system('open ' . url)
-    if output ==# ''
-      let output = system('firefox ' . url)
-    endif
-  else
-    let mail = matchstr(line, '\v([A-Za-z0-9_\.-]+)\@([A-Za-z0-9_\.-]+)\.([a-z\.]+)')
-    if !empty(mail)
-      let output = system('open mailto:' . mail)
-    else
-      let output = system('open ' . expand('%:p:h'))
-    endif
-  endif
-  if v:shell_error && output !=# ''
-    echoerr output
-  endif
+  call CocActionAsync('openLink')
 endfunction
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>

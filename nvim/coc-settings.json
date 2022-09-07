@@ -61,6 +61,7 @@
     "sumneko-lua.checkUpdate": true,
     "Lua.telemetry.enable": false,
     "Lua.hint.enable": false,
+    "python.linting.pylintEnabled": true,
     "rust-analyzer.cargo.features": "all",
     "rust-analyzer.cargo.autoreload": true,
     "rust-analyzer.checkOnSave.enable": true,

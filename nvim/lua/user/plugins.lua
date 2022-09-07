@@ -84,21 +84,6 @@ return packer.startup(function(use)
   -- movement/directory
   use "https://github.com/lambdalisue/fern.vim" -- :Fern . -drawer -toggle
 
-  use {
-    "https://github.com/ctrlpvim/ctrlp.vim",
-    config = function()
-      vim.g.ctrlp_custom_ignore = {
-        dir = "/target/",
-      }
-      vim.g.ctrlp_max_files = 0
-      vim.g.ctrlp_max_depth = 1000
-      -- from: https://bluz71.github.io/2017/10/26/turbocharge-the-ctrlp-vim-plugin.html
-      vim.g.ctrlp_user_command = 'fd --type f --color=never "" %s'
-      vim.g.ctrlp_use_caching = 0
-      vim.g.ctrlp_show_hidden = 1
-    end
-  } -- <C-p>
-
   use "https://github.com/tpope/vim-projectionist" -- :A, etc
 
   use "https://github.com/ryanoasis/vim-devicons"
@@ -119,12 +104,6 @@ return packer.startup(function(use)
         }
       })
     end,
-  }
-  use {
-    "https://github.com/nvim-telescope/telescope-media-files.nvim",
-    config = function()
-      require("telescope").load_extension("media_files")
-    end
   }
 
   -- editing
@@ -154,7 +133,6 @@ return packer.startup(function(use)
     end
   } -- gs: "abc" -> "abc -> :abc
 
-  -- use "https://github.com/tpope/vim-surround" -- ysa) ysa)
   use {
     "https://github.com/kylechui/nvim-surround",
     config = function()
@@ -232,7 +210,6 @@ return packer.startup(function(use)
     config = function()
       require("nvim-treesitter.configs").setup {
         ensure_installed = {
-          "clojure",
           "javascript",
           "lua",
           "query",
@@ -242,20 +219,19 @@ return packer.startup(function(use)
         },
         highlight = {
           enable = true,
-          additional_vim_regex_highlighting = true,
         },
         incremental_selection = { enable = true },
         textobjects = { enable = true },
-        playground = { enable = true },
-        query_linter = {
-          enable = true,
-          use_virtual_text = true,
-          lint_events = { "BufWrite", "CursorHold" },
-        },
+        -- playground = { enable = true },
+        -- query_linter = {
+        --   enable = true,
+        --   use_virtual_text = true,
+        --   lint_events = { "BufWrite", "CursorHold" },
+        -- },
       }
     end
   }
-  use "https://github.com/nvim-treesitter/playground"
+  -- use "https://github.com/nvim-treesitter/playground"
 
   use {
     "https://github.com/glacambre/firenvim",
@@ -328,9 +304,6 @@ return packer.startup(function(use)
   -- common lisp
   use { "https://github.com/vlime/vlime", rtp = "vim/", ft = "lisp" }
 
-  -- dhall
-  use { "https://github.com/vmchale/dhall-vim", ft = "dhall" }
-
   -- docker-compose
   use { "https://github.com/ekalinin/Dockerfile.vim", ft = "dockerfile" }
 
@@ -344,7 +317,7 @@ return packer.startup(function(use)
   use { "https://github.com/othree/html5.vim", ft = "html" }
 
   -- javascript
-  use { "https://github.com/pangloss/vim-javascript", ft = { "flow", "javascript" } }
+  use { "https://github.com/pangloss/vim-javascript", ft = { "javascript" } }
 
   -- json5
   use { "https://github.com/GutenYe/json5.vim", ft = "json5" }
@@ -419,9 +392,3 @@ return packer.startup(function(use)
     require("packer").sync()
   end
 end)
-
--- require "nvim-treesitter.configs".setup {
---   matchup = {
---     enable = true,
---   },
--- }

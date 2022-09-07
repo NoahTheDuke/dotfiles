@@ -3,8 +3,6 @@ if not status_ok then
   return
 end
 
-telescope.load_extension('media_files')
-
 local actions = require "telescope.actions"
 
 telescope.setup {
@@ -12,7 +10,7 @@ telescope.setup {
 
     prompt_prefix = " ",
     selection_caret = " ",
-    path_display = { "smart" },
+    path_display = { "shorten" },
 
     mappings = {
       i = {
@@ -83,15 +81,5 @@ telescope.setup {
     find_files = {
       find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
     },
-  },
-  extensions = {
-    media_files = {
-      filetypes = { "gif", "jpeg", "jpg", "mp4", "pdf", "png", "webm" },
-    }
-    -- Your extension configuration goes here:
-    -- extension_name = {
-    --   extension_config_key = value,
-    -- }
-    -- please take a look at the readme of the extension you want to configure
   },
 }
