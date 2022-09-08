@@ -81,43 +81,17 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 command! -nargs=0 Open :call <SID>Open()
 
 function! s:Open()
-  let res = CocActionAsync('openLink')
-  if res | return | endif
-  " match url
-  let line = getline('.')
-  let url = matchstr(line, '\vhttps?:\/\/[^)\]''" ]+')
-  if !empty(url)
-    echo 'opening "' . url . '"'
-    let output = system('open ' . url)
-    if output ==# ''
-      let output = system('firefox ' . url)
-    endif
-  else
-    let mail = matchstr(line, '\v([A-Za-z0-9_\.-]+)\@([A-Za-z0-9_\.-]+)\.([a-z\.]+)')
-    if !empty(mail)
-      let output = system('open mailto:' . mail)
-    else
-      let output = system('open ' . expand('%:p:h'))
-    endif
-  endif
-  if v:shell_error && output !=# ''
-    echoerr output
-  endif
+  call CocActionAsync('openLink')
 endfunction
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-    " in a vim or help file
-    if (index(['vim', 'help'], &filetype) >= 0)
-        execute 'h ' . expand('<cword>')
-    " coc.nvim is good to go
-    elseif (coc#rpc#ready())
-        call CocActionAsync('doHover')
-    " default
-    else
-        execute '!' . &keywordprg . ' ' . expand('<cword>')
-    endif
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
 endfunction
 
 nnoremap <silent> gd :call <SID>go_to_definition()<CR>
