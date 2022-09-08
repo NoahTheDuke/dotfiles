@@ -284,6 +284,7 @@ return packer.startup(function(use)
           [ [[.*docs\.google\.com.*]] ] = { priority = 9, takeover = "never" },
           [ [[.*notion\.so.*]] ] = { priority = 9, takeover = "never" },
           [ [[.*twitter\.com.*]] ] = { priority = 9, takeover = "never" },
+          [ [[.*twitch\.tv.*]] ] = { priority = 9, takeover = "never" },
         },
       }
     end,
