@@ -76,6 +76,41 @@ return packer.startup(function(use)
     end
   } -- :PreviewOpen
 
+  use {
+    "https://github.com/phaazon/mind.nvim",
+    branch = "v2.2",
+    requires = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("mind").setup({
+        keymaps = {
+          normal = {
+            mc = "add_inside_end_index",
+            mI = "add_inside_start",
+            mi = "add_inside_end",
+            ml = "copy_node_link",
+            mL = "copy_node_link_index",
+            md = "delete",
+            mO = "add_above",
+            mo = "add_below",
+            mq = "quit",
+            mr = "rename",
+            mR = "change_icon",
+            mu = "make_url",
+            mx = "select",
+          },
+          selection = {
+            mI = "move_inside_start",
+            mi = "move_inside_end",
+            mO = "move_above",
+            mo = "move_below",
+            mq = "quit",
+            mx = "select",
+          }
+        }
+      })
+    end
+  }
+
   -- git stuff
   use "https://github.com/tpope/vim-fugitive" -- :Git [blah blah]
   use "https://github.com/shumphrey/fugitive-gitlab.vim" -- Sets up gitlab settings
@@ -217,9 +252,7 @@ return packer.startup(function(use)
           "typescript",
           "vue",
         },
-        highlight = {
-          enable = true,
-        },
+        highlight = { enable = true },
         incremental_selection = { enable = true },
         textobjects = { enable = true },
         -- playground = { enable = true },
@@ -275,9 +308,6 @@ return packer.startup(function(use)
     config = function()
       vim.g.clojure_syntax_keywords = {
         clojureMacro = {
-          "effect",
-          "req",
-          "msg",
           "wait-for",
           "continue-ability",
           "do-game",
