@@ -39,10 +39,12 @@ return packer.startup(function(use)
   -- lua support
   use "https://github.com/nvim-lua/plenary.nvim"
 
+  -- bug fixes
+  use "https://github.com/ypcrts/securemodelines" -- Pure security
+
   -- core functionality
   use "https://github.com/qpkorr/vim-bufkill" -- :BD, :BW
   use "https://github.com/ReekenX/vim-rename2" -- :Rename
-  use "https://github.com/ypcrts/securemodelines" -- Pure security
 
   -- visual/display
   use {
@@ -205,6 +207,7 @@ return packer.startup(function(use)
       vim.g["conjure#mapping#doc_word"] = false
       vim.g["conjure#client#clojure#nrepl#eval#raw_out"] = true
       vim.g["conjure#log#wrap"] = true
+      vim.g["conjure#extract#tree_sitter#enabled"] = true
     end
   }
   use "https://github.com/walterl/conjure-macroexpand"
@@ -252,10 +255,13 @@ return packer.startup(function(use)
           "typescript",
           "vue",
         },
-        highlight = { enable = true },
+        highlight = {
+          enable = true,
+          disable = { "clojure" },
+        },
         incremental_selection = { enable = true },
         textobjects = { enable = true },
-        -- playground = { enable = true },
+        playground = { enable = true },
         -- query_linter = {
         --   enable = true,
         --   use_virtual_text = true,
@@ -264,7 +270,7 @@ return packer.startup(function(use)
       }
     end
   }
-  -- use "https://github.com/nvim-treesitter/playground"
+  use "https://github.com/nvim-treesitter/playground"
 
   use {
     "https://github.com/glacambre/firenvim",

@@ -28,9 +28,9 @@ nmap <silent> <leader>gi <Plug>(coc-implementation)
 nmap <silent> <leader>gr <Plug>(coc-references)
 
 " Highlight the symbol and its references when holding the cursor.
-augroup highlight
-    autocmd CursorHold * silent call CocActionAsync('highlight')
-augroup END
+" augroup highlight
+"     autocmd CursorHold * silent call CocActionAsync('highlight')
+" augroup END
 
 nmap <leader>rn <Plug>(coc-rename)
 nmap <leader>rf <Plug>(coc-refactor)
@@ -78,11 +78,7 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 " open url in floating window
-command! -nargs=0 Open :call <SID>Open()
-
-function! s:Open()
-  call CocActionAsync('openLink')
-endfunction
+command! -nargs=0 Open :call CocActionAsync('openLink')
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
