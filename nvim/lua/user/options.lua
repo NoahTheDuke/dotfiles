@@ -52,6 +52,7 @@ vim.opt.softtabstop = -1
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.swapfile = false
+vim.opt.synmaxcol = 1000
 vim.opt.tabstop = 4
 vim.opt.termguicolors = true
 vim.opt.textwidth = 88
