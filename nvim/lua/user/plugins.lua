@@ -96,7 +96,7 @@ return packer.startup(function(use)
             mo = "add_below",
             mq = "quit",
             mr = "rename",
-            mR = "change_icon",
+            mR = "change_icon_menu",
             mu = "make_url",
             mx = "select",
           },
@@ -248,6 +248,7 @@ return packer.startup(function(use)
     config = function()
       require("nvim-treesitter.configs").setup {
         ensure_installed = {
+          "clojure",
           "javascript",
           "lua",
           "query",
