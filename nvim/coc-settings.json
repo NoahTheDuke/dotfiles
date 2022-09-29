@@ -75,7 +75,8 @@
     "rust-analyzer.updates.channel": "stable",
     // "tsserver.log": "verbose",
     "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
-    "volar.takeOverMode.enabled": true
+    "volar.takeOverMode.enabled": true,
+    "git.enableGutters": true
     // "volar-document-features.trace.server": "verbose",
     // "volar-language-features.trace.server": "verbose",
     // "volar-language-features-2.trace.server": "verbose"
