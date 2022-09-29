@@ -24,6 +24,25 @@ if not status_ok then
   return
 end
 
+-- Utility settings loader
+local setup = function(mod, remote)
+  if remote == nil then
+    -- If plugin does not need "require" setup, then just set it up.
+    require(mod)
+  else
+    local status = pcall(require, remote)
+    if not status then
+      print(remote .. " is not downloaded.")
+      return
+    else
+      local local_config = require(mod)
+      if type(local_config) == "table" then
+        local_config.setup()
+      end
+    end
+  end
+end
+
 -- Have packer use a popup window
 packer.init {
   display = {
@@ -47,18 +66,22 @@ return packer.startup(function(use)
   use "https://github.com/ReekenX/vim-rename2" -- :Rename
 
   -- visual/display
+  -- use {
+  --   "https://github.com/vim-airline/vim-airline",
+  --   setup = function()
+  --     local utils = require "user.utils"
+  --     utils.g_set("airline#extensions#coc#enabled", 1)
+  --     utils.g_set("airline#extensions#tabline#enabled", 1)
+  --     utils.g_set("airline#extensions#tabline#formatter", "default")
+  --     utils.g_set("airline#extensions#whitespace#mixed_indent_algo", 1)
+  --     utils.g_set("airline_highlighting_cache", 1)
+  --   end
+  -- }
+  -- use "https://github.com/vim-airline/vim-airline-themes"
   use {
-    "https://github.com/vim-airline/vim-airline",
-    setup = function()
-      local utils = require "user.utils"
-      utils.g_set("airline#extensions#coc#enabled", 1)
-      utils.g_set("airline#extensions#tabline#enabled", 1)
-      utils.g_set("airline#extensions#tabline#formatter", "default")
-      utils.g_set("airline#extensions#whitespace#mixed_indent_algo", 1)
-      utils.g_set("airline_highlighting_cache", 1)
-    end
+    "https://github.com/nvim-lualine/lualine.nvim",
+    config = setup("plugins.lualine", "lualine"),
   }
-  use "https://github.com/vim-airline/vim-airline-themes"
 
   use { "https://github.com/mbbill/undotree" } -- :UndotreeToggle
 
@@ -119,7 +142,8 @@ return packer.startup(function(use)
   use "https://github.com/tpope/vim-rhubarb" -- :GitBrowse
 
   -- movement/directory
-  use "https://github.com/lambdalisue/fern.vim" -- :Fern . -drawer -toggle
+  -- use "https://github.com/lambdalisue/fern.vim" -- :Fern . -drawer -toggle
+  use "https://github.com/kyazdani42/nvim-tree.lua"
 
   use "https://github.com/tpope/vim-projectionist" -- :A, etc
 
