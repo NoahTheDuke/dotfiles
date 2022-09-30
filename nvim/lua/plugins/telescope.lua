@@ -1,11 +1,6 @@
-local status_ok, telescope = pcall(require, "telescope")
-if not status_ok then
-  return
-end
-
 local actions = require "telescope.actions"
 
-telescope.setup {
+require("telescope").setup {
   defaults = {
 
     prompt_prefix = " ",
@@ -21,6 +16,7 @@ telescope.setup {
         ["<C-k>"] = actions.move_selection_previous,
 
         ["<C-c>"] = actions.close,
+        ["<esc>"] = actions.close,
 
         ["<Down>"] = actions.move_selection_next,
         ["<Up>"] = actions.move_selection_previous,

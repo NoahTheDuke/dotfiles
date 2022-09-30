@@ -1,3 +1,8 @@
+local status_ok, lualine = pcall(require, "lualine")
+if not status_ok then
+  return
+end
+
 local function get_git_head()
   local head = vim.call("FugitiveHead")
   if head == "" or head == nil then
@@ -9,7 +14,7 @@ local function get_git_head()
   return " " .. head
 end
 
-require("lualine").setup({
+lualine.setup({
   options = {
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
@@ -24,9 +29,9 @@ require("lualine").setup({
         file_status = true,
         path = 1,
         symbols = {
-          modified = "  ", -- Text to show when the file is modified.
-          readonly = "[-]", -- Text to show when the file is non-modifiable or readonly.
-          unnamed = "[No Name]", -- Text to show for unnamed buffers.
+          modified = "  ",
+          readonly = "[-]",
+          unnamed = "[No Name]",
         },
       },
       {
@@ -36,8 +41,8 @@ require("lualine").setup({
     },
     lualine_x = {
       {
-        'encoding',
-        'fileformat',
+        "encoding",
+        "fileformat",
       },
     },
     lualine_y = {
@@ -51,5 +56,9 @@ require("lualine").setup({
       "location",
     },
   },
-  extensions = {'quickfix','fugitive','nvim-tree'}
+  extensions = {
+    "quickfix",
+    "fugitive",
+    "nvim-tree",
+  }
 })

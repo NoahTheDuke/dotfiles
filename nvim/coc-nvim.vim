@@ -1,6 +1,10 @@
 " settings
 let g:coc_default_semantic_highlight_groups = 1
 
+augroup CocConfigSyntax
+    au BufRead,BufNewFile coc-settings.json setfiletype jsonc
+augroup END
+
 " keybinds
 function! s:check_back_space() abort
     let col = col('.') - 1

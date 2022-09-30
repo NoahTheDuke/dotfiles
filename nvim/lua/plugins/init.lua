@@ -2,6 +2,8 @@
 vim.g.did_load_filetypes = 0
 vim.g.do_filetype_lua = 1
 
+local nvim = require("vendor.nvim")
+
 -- Automatically install packer
 local install_path = vim.fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 ---@diagnostic disable-next-line: missing-parameter
@@ -66,18 +68,6 @@ return packer.startup(function(use)
   use "https://github.com/ReekenX/vim-rename2" -- :Rename
 
   -- visual/display
-  -- use {
-  --   "https://github.com/vim-airline/vim-airline",
-  --   setup = function()
-  --     local utils = require "user.utils"
-  --     utils.g_set("airline#extensions#coc#enabled", 1)
-  --     utils.g_set("airline#extensions#tabline#enabled", 1)
-  --     utils.g_set("airline#extensions#tabline#formatter", "default")
-  --     utils.g_set("airline#extensions#whitespace#mixed_indent_algo", 1)
-  --     utils.g_set("airline_highlighting_cache", 1)
-  --   end
-  -- }
-  -- use "https://github.com/vim-airline/vim-airline-themes"
   use {
     "https://github.com/nvim-lualine/lualine.nvim",
     config = setup("plugins.lualine", "lualine"),
@@ -87,53 +77,25 @@ return packer.startup(function(use)
 
   use {
     "https://github.com/wfxr/minimap.vim",
-    config = function()
-      vim.g.minimap_highlight_range = 1
-      vim.g.minimap_width = 10
-      vim.g.minimap_git_colors = 1
-    end
+    config = setup("plugins/minimap")
   } -- :MinimapToggle
+
   use {
     "https://github.com/previm/previm",
     ft = "md",
-    config = function()
-      vim.g.previm_open_cmd = "open -a Firefox"
-    end
+    config = setup("plugins.previm")
   } -- :PreviewOpen
 
   use {
     "https://github.com/phaazon/mind.nvim",
     branch = "v2.2",
     requires = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("mind").setup({
-        keymaps = {
-          normal = {
-            mc = "add_inside_end_index",
-            mI = "add_inside_start",
-            mi = "add_inside_end",
-            ml = "copy_node_link",
-            mL = "copy_node_link_index",
-            md = "delete",
-            mO = "add_above",
-            mo = "add_below",
-            mq = "quit",
-            mr = "rename",
-            mR = "change_icon_menu",
-            mu = "make_url",
-            mx = "select",
-          },
-          selection = {
-            mI = "move_inside_start",
-            mi = "move_inside_end",
-            mO = "move_above",
-            mo = "move_below",
-            mq = "quit",
-            mx = "select",
-          }
-        }
-      })
-    end
+    config = setup("plugins.mind-nvim", "mind")
+  }
+
+  use {
+    "https://github.com/gelguy/wilder.nvim",
+    config = setup("plugins.wilder", "wilder")
   }
 
   -- git stuff
@@ -143,71 +105,40 @@ return packer.startup(function(use)
 
   -- movement/directory
   -- use "https://github.com/lambdalisue/fern.vim" -- :Fern . -drawer -toggle
-  use "https://github.com/kyazdani42/nvim-tree.lua"
+  use {
+    "https://github.com/kyazdani42/nvim-tree.lua",
+    config = setup("plugins.nvim-tree", "nvim-tree")
+  }
 
   use "https://github.com/tpope/vim-projectionist" -- :A, etc
 
   use "https://github.com/ryanoasis/vim-devicons"
   use {
     "https://github.com/nvim-telescope/telescope.nvim",
-    config = function()
-      local actions = require("telescope.actions")
-      require("telescope").setup({
-        defaults = {
-          mappings = {
-            i = {
-              ["<esc>"] = actions.close,
-              ["<C-u>"] = false,
-              ["<C-j>"] = actions.move_selection_next,
-              ["<C-k>"] = actions.move_selection_previous,
-            },
-          },
-        }
-      })
-    end,
+    config = setup("plugins.telescope", "telescope")
   }
 
   -- editing
   use {
     "https://github.com/AndrewRadev/splitjoin.vim",
-    config = function()
-      vim.g.splitjoin_trailing_comma = 1
-    end
+    config = setup("plugins.splitjoin")
   } -- gS, gJ
 
   use {
     "https://github.com/AndrewRadev/switch.vim",
-    config = function()
-      vim.cmd [[
-        augroup switches
-          autocmd FileType lisp let b:switch_custom_definitions =
-            \ [
-            \   {
-            \     '"\(\k\+\)"': '''\1',
-            \     '''\(\k\+\)': ':\1',
-            \     ':\(\k\+\)': '#:\1',
-            \     '#:\(\k\+\)':  '"\1"\2',
-            \   },
-            \ ]
-        augroup END
-      ]]
-    end
+    config = setup("plugins.switch")
   } -- gs: "abc" -> "abc -> :abc
 
   use {
     "https://github.com/kylechui/nvim-surround",
-    config = function()
-      require("nvim-surround").setup({})
-    end,
+    config = setup("plugins.nvim-surround", "nvim-surround")
   }
 
-  -- gcc
   use {
     "https://github.com/terrortylor/nvim-comment",
-    config = function()
-      require("nvim_comment").setup({ comment_empty = false })
-    end
-  }
+    config = setup("plugins.nvim-comment", "nvim_comment")
+  } -- gcc
+
   use "https://github.com/tpope/vim-repeat"
   use "https://github.com/tpope/vim-unimpaired" -- [b, ]b, etc
 
@@ -224,24 +155,17 @@ return packer.startup(function(use)
     end,
   }
   use "https://github.com/tpope/vim-sexp-mappings-for-regular-people"
+
   use {
     "https://github.com/Olical/conjure",
-    config = function()
-      vim.g["conjure#mapping#def_word"] = false
-      vim.g["conjure#mapping#doc_word"] = false
-      vim.g["conjure#client#clojure#nrepl#eval#raw_out"] = true
-      vim.g["conjure#log#wrap"] = true
-      vim.g["conjure#extract#tree_sitter#enabled"] = true
-    end
+    config = setup("plugins.conjure"),
   }
   use "https://github.com/walterl/conjure-macroexpand"
 
   -- universal editor settings
   use {
     "https://github.com/editorconfig/editorconfig-vim",
-    config = function()
-      vim.g.EditorConfig_exclude_patterns = { "fugitive://.*" }
-    end
+    config = setup("plugins.editorconfig"),
   }
   use {
     "https://github.com/neoclide/coc.nvim",
@@ -253,47 +177,13 @@ return packer.startup(function(use)
 
   use {
     "https://github.com/airblade/vim-rooter",
-    config = function ()
-      vim.g.rooter_manual_only = 1
-      vim.g.rooter_silent_chdir = 1
-      vim.g.rooter_patterns = {
-        ".git",
-        "Cargo.toml",
-        "deps.edn",
-        "package.json",
-        "project.clj",
-      }
-    end,
+    config = setup("plugins/vim-rooter"),
   }
 
   use {
     "https://github.com/nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
-    config = function()
-      require("nvim-treesitter.configs").setup {
-        ensure_installed = {
-          "clojure",
-          "javascript",
-          "lua",
-          "query",
-          "rust",
-          "typescript",
-          "vue",
-        },
-        highlight = {
-          enable = true,
-          disable = { "clojure" },
-        },
-        incremental_selection = { enable = true },
-        textobjects = { enable = true },
-        playground = { enable = true },
-        -- query_linter = {
-        --   enable = true,
-        --   use_virtual_text = true,
-        --   lint_events = { "BufWrite", "CursorHold" },
-        -- },
-      }
-    end
+    config = setup("plugins/nvim-treesitter", "nvim-treesitter")
   }
   use "https://github.com/nvim-treesitter/playground"
 
@@ -302,26 +192,7 @@ return packer.startup(function(use)
     run = function()
       vim.fn["firenvim#install"](0)
     end,
-    config = function()
-      vim.g.firenvim_config = {
-        globalSettings = {
-          alt = "all",
-        },
-        localSettings = {
-          [ [[.*]] ] = {
-            cmdline = "firenvim",
-            priority = 0,
-            selector = 'textarea:not([readonly]):not([class="handsontableInput"]), div[role="textbox"]',
-            takeover = "always",
-          },
-          [ [[.*discord\.com.*]] ] = { priority = 9, takeover = "never" },
-          [ [[.*docs\.google\.com.*]] ] = { priority = 9, takeover = "never" },
-          [ [[.*notion\.so.*]] ] = { priority = 9, takeover = "never" },
-          [ [[.*twitter\.com.*]] ] = { priority = 9, takeover = "never" },
-          [ [[.*twitch\.tv.*]] ] = { priority = 9, takeover = "never" },
-        },
-      }
-    end,
+    config = setup("plugins/firenvim"),
   }
 
   -- language plugins
@@ -336,31 +207,12 @@ return packer.startup(function(use)
   -- not set to ft so the files load in the correct order
   use {
     "https://github.com/clojure-vim/clojure.vim",
-    config = function()
-      vim.g.clojure_syntax_keywords = {
-        clojureMacro = {
-          "wait-for",
-          "continue-ability",
-          "do-game",
-          "deftest-pending",
-          "changes-val-macro",
-          "when-let*",
-          "before-each",
-        }
-      }
-      vim.cmd [[
-        augroup clojure
-          autocmd FileType clojure setlocal lispwords+=before-each,do-game
-        augroup END
-      ]]
-    end,
+    config = setup("plugins/clojure"),
   }
   use {
     "https://github.com/bfontaine/zprint.vim",
     ft = "clojure",
-    setup = function()
-      vim.g["zprint#make_autocmd"] = 0
-    end
+    setup = setup("plugins/zprint"),
   }
 
   -- common lisp
@@ -388,9 +240,7 @@ return packer.startup(function(use)
   use {
     "https://github.com/elzr/vim-json",
     ft = "json",
-    config = function()
-      vim.g.vim_json_syntax_conceal = 0
-    end
+    config = setup("plugins/vim-json"),
   }
 
   -- jsonc
