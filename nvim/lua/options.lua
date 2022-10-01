@@ -1,4 +1,4 @@
-vim.opt.autochdir = true
+vim.opt.autochdir = false
 vim.opt.backup = false
 vim.opt.clipboard = "unnamedplus"
 vim.opt.cmdheight = 2

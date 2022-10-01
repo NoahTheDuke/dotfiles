@@ -1,8 +1,3 @@
-local status_ok, lualine = pcall(require, "lualine")
-if not status_ok then
-  return
-end
-
 local function get_git_head()
   local head = vim.call("FugitiveHead")
   if head == "" or head == nil then
@@ -14,7 +9,7 @@ local function get_git_head()
   return " " .. head
 end
 
-lualine.setup({
+require("lualine").setup({
   options = {
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
@@ -52,8 +47,7 @@ lualine.setup({
       },
     },
     lualine_z = {
-      "progress",
-      "location",
+      { "%3p%%/%4L %4l:%3v" },
     },
   },
   extensions = {

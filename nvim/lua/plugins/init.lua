@@ -2,8 +2,6 @@
 vim.g.did_load_filetypes = 0
 vim.g.do_filetype_lua = 1
 
-local nvim = require("vendor.nvim")
-
 -- Automatically install packer
 local install_path = vim.fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 ---@diagnostic disable-next-line: missing-parameter
