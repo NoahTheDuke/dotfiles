@@ -7,7 +7,6 @@
 --   let g:coc_node_args = ['-r', expand('~/.config/yarn/global/node_modules/source-map-support/register')]
 -- ]]
 
--- plugins come first so all user settings override
 require "options"
 require "keymaps"
 require "colorscheme"

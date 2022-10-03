@@ -1,7 +1,7 @@
 vim.opt.autochdir = false
 vim.opt.backup = false
 vim.opt.clipboard = "unnamedplus"
-vim.opt.cmdheight = 2
+vim.opt.cmdheight = 1
 vim.opt.colorcolumn = "88"
 vim.opt.completeopt = { "menuone", "noselect" }
 vim.opt.conceallevel = 0
@@ -11,7 +11,7 @@ vim.opt.formatoptions = {
   ["1"] = true, -- Don't break a line after a one-letter word.  It's broken before it instead (if possible).
   ["c"] = true, -- Auto-wrap comments using 'textwidth', inserting the current comment leader automatically.
   ["j"] = true, -- Where it makes sense, remove a comment leader when joining lines.
-  ["o"] = true,
+  ["o"] = true, -- Automatically insert comment character when pressing "o" or "O" in normal mode
   ["n"] = true, -- When formatting text, recognize numbered lists.
   ["q"] = true, -- Allow formatting of comments with "gq".
   ["r"] = true, -- Automatically insert the current comment leader after hitting <Enter> in Insert mode.
@@ -72,3 +72,6 @@ vim.opt.whichwrap = {
 }
 vim.opt.wildignore = { "*\\tmp\\*", "*\\target\\*", "*\\out\\*" }
 vim.opt.wildignorecase = true
+
+vim.g.loaded = 1
+vim.g.loaded_netrwPlugin = 1

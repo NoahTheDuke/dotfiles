@@ -57,7 +57,7 @@ nvim.set_keymap("v", "<C-a>", ":s#\\%V/-\\=\\d\\+#\\=submatch(0)+1#g", opts)
 nvim.set_keymap("v", "<C-x>", ":s#\\%V/-\\=\\d\\+#\\=submatch(0)-1#g", opts)
 
 nvim.set_keymap("n", "<F5>", ":UndotreeToggle<CR>", opts)
-nvim.set_keymap("n", "<F6>", ":Fern . -drawer -toggle<CR>", opts)
+nvim.set_keymap("n", "<F6>", ":NvimTreeToggle %:h<CR>", opts)
 nvim.set_keymap("n", "<F7>", ":MinimapToggle<CR>", opts)
 
 nvim.set_keymap("n", "<F10>",
