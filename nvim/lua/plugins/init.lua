@@ -169,7 +169,7 @@ return packer.startup(function(use)
     "https://github.com/neoclide/coc.nvim",
     branch = "release",
     config = function()
-      vim.cmd("source " .. "$HOME/dotfiles/nvim/coc-nvim.vim")
+      vim.cmd("source $HOME/dotfiles/nvim/coc-nvim.vim")
     end
   }
 
@@ -207,6 +207,7 @@ return packer.startup(function(use)
     "https://github.com/clojure-vim/clojure.vim",
     config = setup("plugins/clojure"),
   }
+
   use {
     "https://github.com/bfontaine/zprint.vim",
     ft = "clojure",

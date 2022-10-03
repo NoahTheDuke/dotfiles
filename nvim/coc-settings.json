@@ -76,7 +76,8 @@
     // "tsserver.log": "verbose",
     "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
     "volar.takeOverMode.enabled": true,
-    "git.enableGutters": true
+    "git.enableGutters": true,
+    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.1/clangd_15.0.1/bin/clangd"
     // "volar-document-features.trace.server": "verbose",
     // "volar-language-features.trace.server": "verbose",
     // "volar-language-features-2.trace.server": "verbose"

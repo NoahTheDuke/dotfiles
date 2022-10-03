@@ -5,14 +5,6 @@ local vim = vim
 local api = vim.api
 local inspect = vim.inspect
 
-local function extend(t, o)
-  local mt = getmetatable(t)
-  for k, v in pairs(o) do
-    rawset(mt, k, v)
-  end
-  return t
-end
-
 -- Equivalent to `echo vim.inspect(...)`
 local function nvim_print(...)
   if select("#", ...) == 1 then
