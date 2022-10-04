@@ -1,11 +1,17 @@
+local nvim = require "vendor.nvim"
 local actions = require "telescope.actions"
 
-require("telescope").setup {
+require("telescope").setup({
   defaults = {
 
     prompt_prefix = " ",
     selection_caret = " ",
-    path_display = { "shorten" },
+    path_display = {
+      shorten = {
+        len = 3,
+        exclude = { -1, -2 },
+      },
+    },
 
     mappings = {
       i = {
@@ -73,9 +79,35 @@ require("telescope").setup {
       },
     },
   },
+
   pickers = {
     find_files = {
-      find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
+      find_command = { "fd", "--type", "f" },
     },
   },
-}
+})
+
+
+nvim.set_keymap("n", "<leader>ff", ':lua require("telescope.builtin").find_files()<cr>', {
+  noremap = true,
+  silent = true,
+  desc = "Telescope find files",
+})
+
+vim.api.nvim_set_keymap("n", "<leader>fg", ':lua require("telescope.builtin").live_grep()<cr>', {
+  noremap = true,
+  silent = true,
+  desc = "Telescope grep",
+})
+
+nvim.set_keymap("n", "<leader>fb", ":lua require('telescope.builtin').buffers()<CR>", {
+  noremap = true,
+  silent = true,
+  desc = "Telescope buffers",
+})
+
+nvim.set_keymap("n", "<leader>fh", ":lua require('telescope.builtin').help_tags()<CR>", {
+  noremap = true,
+  silent = true,
+  desc = "Telescope help tags",
+})

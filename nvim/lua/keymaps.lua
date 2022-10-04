@@ -63,12 +63,3 @@ nvim.set_keymap("n", "<F7>", ":MinimapToggle<CR>", opts)
 nvim.set_keymap("n", "<F10>",
   [[:echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>]]
   , opts)
-
-vim.cmd [[
-  nnoremap <silent> <expr> <leader>ff ':lua require("telescope.builtin").find_files({cwd = "' . FindRootDirectory() . '"})<cr>'
-]]
-vim.cmd [[
-  nnoremap <silent> <expr> <leader>fg ':lua require("telescope.builtin").live_grep({cwd = "' . FindRootDirectory() . '"})<cr>'
-]]
-nvim.set_keymap("n", "<leader>fb", ":lua require('telescope.builtin').buffers()<CR>", opts)
-nvim.set_keymap("n", "<leader>fh", ":lua require('telescope.builtin').help_tags()<CR>", opts)

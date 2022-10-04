@@ -67,6 +67,18 @@ return packer.startup(function(use)
     config = setup("plugins.lualine", "lualine"),
   }
 
+  use {
+    "Dax89/ide.nvim",
+    requires = {
+      {"nvim-lua/plenary.nvim"},
+      {"rcarriga/nvim-notify"},   -- Notifications Popup
+      {"stevearc/dressing.nvim"}, -- Improved UI
+      {"mfussenegger/nvim-dap"} , -- DAP Support
+      {"rcarriga/nvim-dap-ui"},   -- DAP-UI Support
+    },
+    config = setup("plugins.ide-nvim", "ide")
+  }
+
   use { "https://github.com/mbbill/undotree" } -- :UndotreeToggle
 
   use {
