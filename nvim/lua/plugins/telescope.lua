@@ -1,7 +1,8 @@
-local nvim = require "vendor.nvim"
+local telescope = require "telescope"
 local actions = require "telescope.actions"
 
-require("telescope").setup({
+telescope.load_extension('coc')
+telescope.setup({
   defaults = {
 
     prompt_prefix = " ",
@@ -85,10 +86,17 @@ require("telescope").setup({
       find_command = { "fd", "--type", "f" },
     },
   },
+
+  extensions = {
+    coc = {
+      theme = 'ivy',
+      prefer_locations = true,
+    }
+  }
 })
 
 
-nvim.set_keymap("n", "<leader>ff", ':lua require("telescope.builtin").find_files()<cr>', {
+vim.api.nvim_set_keymap("n", "<leader>ff", ':lua require("telescope.builtin").find_files()<cr>', {
   noremap = true,
   silent = true,
   desc = "Telescope find files",
@@ -100,13 +108,13 @@ vim.api.nvim_set_keymap("n", "<leader>fg", ':lua require("telescope.builtin").li
   desc = "Telescope grep",
 })
 
-nvim.set_keymap("n", "<leader>fb", ":lua require('telescope.builtin').buffers()<CR>", {
+vim.api.nvim_set_keymap("n", "<leader>fb", ":lua require('telescope.builtin').buffers()<CR>", {
   noremap = true,
   silent = true,
   desc = "Telescope buffers",
 })
 
-nvim.set_keymap("n", "<leader>fh", ":lua require('telescope.builtin').help_tags()<CR>", {
+vim.api.nvim_set_keymap("n", "<leader>fh", ":lua require('telescope.builtin').help_tags()<CR>", {
   noremap = true,
   silent = true,
   desc = "Telescope help tags",

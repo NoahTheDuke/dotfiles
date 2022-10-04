@@ -60,12 +60,26 @@ return packer.startup(function(use)
   -- core functionality
   use "https://github.com/qpkorr/vim-bufkill" -- :BD, :BW
   use "https://github.com/ReekenX/vim-rename2" -- :Rename
+  use {
+    "https://github.com/folke/which-key.nvim",
+    config = setup("plugins.which-key", "which-key")
+  } -- :WhichKey
 
   -- visual/display
   use {
     "https://github.com/nvim-lualine/lualine.nvim",
     config = setup("plugins.lualine", "lualine"),
   }
+
+  use {
+    "https://github.com/rcarriga/nvim-notify",
+    config = setup("plugins.notify", "notify"),
+  }   -- Notifications Popup
+
+  use {
+    "https://github.com/stevearc/dressing.nvim",
+    config = setup("plugins.dressing", "dressing")
+  } -- Improved UI
 
   -- use {
   --   "Dax89/ide.nvim",
@@ -121,6 +135,9 @@ return packer.startup(function(use)
   use "https://github.com/ryanoasis/vim-devicons"
   use {
     "https://github.com/nvim-telescope/telescope.nvim",
+    requires = {
+      "https://github.com/fannheyward/telescope-coc.nvim",
+    },
     config = setup("plugins.telescope", "telescope")
   }
 
@@ -176,9 +193,7 @@ return packer.startup(function(use)
   use {
     "https://github.com/neoclide/coc.nvim",
     branch = "release",
-    config = function()
-      vim.cmd("source $HOME/dotfiles/nvim/coc-nvim.vim")
-    end
+    config = setup("plugins.coc-nvim")
   }
 
   use {

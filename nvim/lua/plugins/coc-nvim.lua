@@ -1,3 +1,4 @@
+vim.cmd([[
 " settings
 let g:coc_default_semantic_highlight_groups = 1
 
@@ -71,35 +72,53 @@ xmap <silent> <C-s> <Plug>(coc-range-select)
 command! -nargs=0 Format :call CocActionAsync('format')
 command! -nargs=0 OR :call CocActionAsync('runCommand', 'editor.action.organizeImport')
 
-" Mappings for CoCList
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
-nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
-nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
-
 " open url in floating window
 command! -nargs=0 Open :call CocActionAsync('openLink')
+]])
 
-nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-function! s:show_documentation()
-  if CocAction('hasProvider', 'hover')
-    call CocActionAsync('doHover')
-  else
-    call feedkeys('K', 'in')
-  endif
-endfunction
+-- Mappings for CoCList
+local coc_list = {
+  { lhs = "<space>a", rhs = ":<C-u>CocList diagnostics<cr>" },
+  { lhs = "<space>e", rhs = ":<C-u>CocList extensions<cr>" },
+  { lhs = "<space>c", rhs = ":<C-u>CocList commands<cr>" },
+  { lhs = "<space>o", rhs = ":<C-u>CocList outline<cr>" },
+  { lhs = "<space>s", rhs = ":<C-u>CocList -I symbols<cr>" },
+  { lhs = "<space>j", rhs = ":<C-u>CocNext<CR>" },
+  { lhs = "<space>k", rhs = ":<C-u>CocPrev<CR>" },
+  { lhs = "<space>p", rhs = ":<C-u>CocListResume<CR>" },
+}
+for _, v in ipairs(coc_list) do
+  vim.api.nvim_set_keymap("n", v.lhs, v.rhs, {
+    nowait = true,
+    noremap = true,
+    silent = true,
+  })
+end
 
-nnoremap <silent> gd :call <SID>go_to_definition()<CR>
 
-function! s:go_to_definition()
-    if (coc#rpc#ready())
-        call CocActionAsync('jumpDefinition')
-    else
-        execute ':normal! gd'
-    endif
-endfunction
+function Coc_go_to_definition()
+  if vim.call("coc#rpc#ready") and vim.fn.CocAction("hasProvider", "definition") then
+    vim.fn.CocActionAsync("jumpDefinition")
+  end
+end
+
+vim.api.nvim_set_keymap("n", "gd", ":lua Coc_go_to_definition()<CR>", {
+  noremap = true,
+  silent = true,
+})
+
+function Coc_show_documentation()
+  local filetype = vim.bo.filetype
+
+  if filetype == "vim"  or filetype == "help" then
+    vim.api.nvim_command("h " .. filetype)
+  elseif vim.fn.CocAction('hasProvider', 'hover') then
+    vim.fn.CocActionAsync("doHover")
+  end
+end
+
+vim.api.nvim_set_keymap('n', 'K', ':lua Coc_show_documentation()<CR>', {
+  noremap = true,
+  silent = true,
+})
