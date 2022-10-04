@@ -5,7 +5,7 @@
 --   auto_create = true,
 --   debug = false,
 --   build_dir = "build",
---   project_file = "project.nvide",
+--   project_file = "project-nvide.json",
 --   mappings = { },
 
 --   quickfix = {
@@ -18,9 +18,9 @@
 --       config = { },
 
 --       highlights = {
---         DapBreakpoint = {ctermbg = 0, fg = "#993939"},
---         DapLogPoint = {ctermbg = 0, fg = "#61afef"},
---         DapStopped = {ctermbg = 0, fg ="#98c379"},
+--         DapBreakpoint = { ctermbg = 0, fg = "#993939" },
+--         DapLogPoint = { ctermbg = 0, fg = "#61afef" },
+--         DapStopped = { ctermbg = 0, fg ="#98c379" },
 --       },
 
 --       signs = {

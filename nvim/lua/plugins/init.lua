@@ -67,17 +67,17 @@ return packer.startup(function(use)
     config = setup("plugins.lualine", "lualine"),
   }
 
-  use {
-    "Dax89/ide.nvim",
-    requires = {
-      {"nvim-lua/plenary.nvim"},
-      {"rcarriga/nvim-notify"},   -- Notifications Popup
-      {"stevearc/dressing.nvim"}, -- Improved UI
-      {"mfussenegger/nvim-dap"} , -- DAP Support
-      {"rcarriga/nvim-dap-ui"},   -- DAP-UI Support
-    },
-    config = setup("plugins.ide-nvim", "ide")
-  }
+  -- use {
+  --   "Dax89/ide.nvim",
+  --   requires = {
+  --     {"nvim-lua/plenary.nvim"},
+  --     {"rcarriga/nvim-notify"},   -- Notifications Popup
+  --     {"stevearc/dressing.nvim"}, -- Improved UI
+  --     {"mfussenegger/nvim-dap"} , -- DAP Support
+  --     {"rcarriga/nvim-dap-ui"},   -- DAP-UI Support
+  --   },
+  --   config = setup("plugins.ide-nvim", "ide")
+  -- }
 
   use { "https://github.com/mbbill/undotree" } -- :UndotreeToggle
 
@@ -182,24 +182,29 @@ return packer.startup(function(use)
   }
 
   use {
-    "https://github.com/airblade/vim-rooter",
-    config = setup("plugins/vim-rooter"),
-  }
-
-  use {
     "https://github.com/nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
     config = setup("plugins/nvim-treesitter", "nvim-treesitter")
   }
-  use "https://github.com/nvim-treesitter/playground"
 
   use {
-    "https://github.com/glacambre/firenvim",
-    run = function()
-      vim.fn["firenvim#install"](0)
-    end,
-    config = setup("plugins/firenvim"),
+    "https://github.com/nvim-treesitter/playground",
+    requires = { "nvim-treesitter/nvim-treesitter" },
   }
+
+  use {
+    "https://github.com/nvim-treesitter/nvim-treesitter-context",
+    requires = { "nvim-treesitter/nvim-treesitter" },
+    confg = setup("plugins.treesitter-context", "treesitter-context"),
+  }
+
+  -- use {
+  --   "https://github.com/glacambre/firenvim",
+  --   run = function()
+  --     vim.fn["firenvim#install"](0)
+  --   end,
+  --   config = setup("plugins/firenvim"),
+  -- }
 
   -- language plugins
 
@@ -305,6 +310,7 @@ return packer.startup(function(use)
 
   -- colors
   use "https://github.com/Mofiqul/dracula.nvim"
+  use "rebelot/kanagawa.nvim"
 
   -- Must be final call
   if PACKER_BOOTSTRAP then
