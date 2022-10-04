@@ -9,7 +9,11 @@ if vim.g.GuiLoaded == 1 then
   nvim.ex.GuiAdaptiveColor(1)
   nvim.ex.GuiAdaptiveFont(1)
   nvim.ex.GuiAdaptiveStyle("Fusion")
-  nvim.ex.GuiFont_("FiraCode Nerd Font:h16:w57")
+  if vim.fn.has("mac") then
+    nvim.ex.GuiFont_("FiraCode Nerd Font:h14")
+  else
+    nvim.ex.GuiFont_("FiraCode Nerd Font:h16")
+  end
   nvim.ex.GuiPopupmenu(0)
   nvim.ex.GuiRenderLigatures(1)
   nvim.ex.GuiScrollBar(1)
@@ -33,8 +37,4 @@ if vim.g.GuiLoaded == 1 then
     [[ call GuiNewWindow("<args>") ]],
     { nargs = 1 }
   )
-end
-
-if nvim.g.gui_vimr then
-  nvim.ex.VimRSetFontAndSize("Fira Code Retina Nerd Font Complete 14")
 end
