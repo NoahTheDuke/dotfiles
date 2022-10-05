@@ -1,92 +1,105 @@
-vim.cmd([[
-" settings
-let g:coc_default_semantic_highlight_groups = 1
+-- settings
+vim.g.coc_default_semantic_highlight_groups = 1
 
-augroup CocConfigSyntax
-    au BufRead,BufNewFile coc-settings.json setfiletype jsonc
-augroup END
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+  group = vim.api.nvim_create_augroup("CocConfigSyntax", {}),
+  pattern = { "coc-settings.json" },
+  command = "setfiletype jsonc",
+})
 
-" keybinds
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
+-- Auto-select the first completion item and notify coc.nvim to format on enter
+vim.keymap.set("i", "<cr>", function()
+  if vim.fn["coc#pum#visible"]() then
+    return vim.fn["coc#_select_confirm"]()
+  else
+    return vim.api.nvim_feedkeys("<C-g>u<CR><c-r>=coc#on_enter()<CR>", "n", true)
+  end
+end, {
+  noremap = true,
+  silent = true,
+})
 
-  " Insert <tab> when previous text is space, refresh completion if not.
-inoremap <silent><expr> <TAB>
-    \ coc#pum#visible() ? coc#pum#next(1):
-    \ <SID>check_back_space() ? "\<Tab>" :
-    \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+-- Use `[g` and `]g` to navigate diagnostics
+-- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+vim.keymap.set("n", "<silent>", "[g <Plug>(coc-diagnostic-prev)")
+vim.keymap.set("n", "<silent>", "]g <Plug>(coc-diagnostic-next)")
 
-" Auto-select the first completion item and notify coc.nvim to format on enter
-inoremap <silent><expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+-- GoTo code navigation.
+vim.keymap.set("n", "<silent>", "<leader>gy <Plug>(coc-type-definition)")
+vim.keymap.set("n", "<silent>", "<leader>gi <Plug>(coc-implementation)")
+vim.keymap.set("n", "<silent>", "<leader>gr <Plug>(coc-references)")
 
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+vim.api.nvim_create_autocmd("CursorHold", {
+  group = vim.api.nvim_create_augroup("CocHighlight", {}),
+  pattern = {"*"},
+  callback = function()
+    vim.fn.CocActionAsync("highlight")
+  end,
+  desc = "Highlight the symbol and its references when holding the cursor",
+})
 
-" GoTo code navigation.
-nmap <silent> <leader>gy <Plug>(coc-type-definition)
-nmap <silent> <leader>gi <Plug>(coc-implementation)
-nmap <silent> <leader>gr <Plug>(coc-references)
 
-" Highlight the symbol and its references when holding the cursor.
-" augroup highlight
-"     autocmd CursorHold * silent call CocActionAsync('highlight')
-" augroup END
+vim.keymap.set("n", "<leader>rn", "<Plug>(coc-rename)")
+vim.keymap.set("n", "<leader>rf", "<Plug>(coc-refactor)")
+vim.keymap.set("v", "<leader>f", "<Plug>(coc-format-selected)")
+vim.keymap.set("v", "<leader>a", "<Plug>(coc-codeaction-selected)")
+vim.keymap.set("n", "<leader>ac", "<Plug>(coc-codeaction-cursor)")
+vim.keymap.set("n", "<leader>af", "<Plug>(coc-codeaction)")
+vim.keymap.set("n", "<leader>qf", "<Plug>(coc-fix-current)")
+vim.keymap.set("n", "<leader>cla", "<Plug>(coc-codelens-action)")
 
-nmap <leader>rn <Plug>(coc-rename)
-nmap <leader>rf <Plug>(coc-refactor)
-vmap <leader>f  <Plug>(coc-format-selected)
-vmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>ac  <Plug>(coc-codeaction-cursor)
-nmap <leader>af  <Plug>(coc-codeaction)
-nmap <leader>qf  <Plug>(coc-fix-current)
-nmap <leader>cla <Plug>(coc-codelens-action)
+-- Map function and class text objects
+vim.keymap.set({ "x", "o" }, "if", "<Plug>(coc-funcobj-i)")
+vim.keymap.set({ "x", "o" }, "af", "<Plug>(coc-funcobj-a)")
+vim.keymap.set({ "x", "o" }, "ic", "<Plug>(coc-classobj-i)")
+vim.keymap.set({ "x", "o" }, "ac", "<Plug>(coc-classobj-a)")
 
-" Map function and class text objects
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
-xmap ic <Plug>(coc-classobj-i)
-omap ic <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
+-- Remap <C-f> and <C-b> for scroll float windows/popups.
+local function float_scroll(mode, key, dir, alt)
+  vim.keymap.set(mode, key, function()
+    if vim.fn["coc#float#has_float()"]() then
+      return vim.fn["coc#float#scroll(" .. dir .. ")"]()
+    else
+      return vim.api.nvim_feedkeys(alt, mode, true)
+    end
+  end, {
+    nowait = true,
+    noremap = true,
+    silent = true,
+  })
+end
 
-" Remap <C-f> and <C-b> for scroll float windows/popups.
-nnoremap <silent><nowait><expr> <C-f> coc#float#has_float() ? coc#float#scroll(1) : "\<C-f>"
-nnoremap <silent><nowait><expr> <C-b> coc#float#has_float() ? coc#float#scroll(0) : "\<C-b>"
-inoremap <silent><nowait><expr> <C-f> coc#float#has_float() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-inoremap <silent><nowait><expr> <C-b> coc#float#has_float() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-vnoremap <silent><nowait><expr> <C-f> coc#float#has_float() ? coc#float#scroll(1) : "\<C-f>"
-vnoremap <silent><nowait><expr> <C-b> coc#float#has_float() ? coc#float#scroll(0) : "\<C-b>"
+float_scroll({ "n", "v" }, "<C-f>", 1, "<C-f>")
+float_scroll({ "n", "v" }, "<C-b>", 0, "<C-b>")
+float_scroll("i", "<C-f>", 1, "<C-f>")
+float_scroll("i", "<C-b>", 0, "<C-b>")
 
-" Use CTRL-S for selections ranges.
-" Requires 'textDocument/selectionRange' support of language server.
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
+local opts = { noremap = true, silent = true }
 
-command! -nargs=0 Format :call CocActionAsync('format')
-command! -nargs=0 OR :call CocActionAsync('runCommand', 'editor.action.organizeImport')
+-- Use CTRL-S for selections ranges.
+-- Requires 'textDocument/selectionRange' support of language server.
+vim.keymap.set({ "n", "x" }, "<C-s>", "<Plug>(coc-range-select)", opts)
 
-" open url in floating window
-command! -nargs=0 Open :call CocActionAsync('openLink')
-]])
+local function coc_command(name, ...)
+  vim.api.nvim_create_user_command(name, function()
+    vim.fn.CocActionAsync(unpack(arg))
+  end, { nargs = 0 })
+end
 
+coc_command("Format", "format")
+coc_command("OR", "runCommand", "editor.action.organizeImport")
+coc_command("Open", "openLink")
 
 -- Mappings for CoCList
 local coc_list = {
-  { lhs = "<space>a", rhs = ":<C-u>CocList diagnostics<cr>" },
-  { lhs = "<space>e", rhs = ":<C-u>CocList extensions<cr>" },
-  { lhs = "<space>c", rhs = ":<C-u>CocList commands<cr>" },
-  { lhs = "<space>o", rhs = ":<C-u>CocList outline<cr>" },
-  { lhs = "<space>s", rhs = ":<C-u>CocList -I symbols<cr>" },
-  { lhs = "<space>j", rhs = ":<C-u>CocNext<CR>" },
-  { lhs = "<space>k", rhs = ":<C-u>CocPrev<CR>" },
-  { lhs = "<space>p", rhs = ":<C-u>CocListResume<CR>" },
+  { lhs = "<space>a", rhs = "<cmd>CocList diagnostics<cr>" },
+  { lhs = "<space>e", rhs = "<cmd>CocList extensions<cr>" },
+  { lhs = "<space>c", rhs = "<cmd>CocList commands<cr>" },
+  { lhs = "<space>o", rhs = "<cmd>CocList outline<cr>" },
+  { lhs = "<space>s", rhs = "<cmd>CocList -I symbols<cr>" },
+  { lhs = "<space>j", rhs = "<cmd>CocNext<CR>" },
+  { lhs = "<space>k", rhs = "<cmd>CocPrev<CR>" },
+  { lhs = "<space>p", rhs = "<cmd>CocListResume<CR>" },
 }
 for _, v in ipairs(coc_list) do
   vim.api.nvim_set_keymap("n", v.lhs, v.rhs, {
@@ -97,28 +110,22 @@ for _, v in ipairs(coc_list) do
 end
 
 
-function Coc_go_to_definition()
+local function go_to_definition()
   if vim.call("coc#rpc#ready") and vim.fn.CocAction("hasProvider", "definition") then
     vim.fn.CocActionAsync("jumpDefinition")
   end
 end
 
-vim.api.nvim_set_keymap("n", "gd", ":lua Coc_go_to_definition()<CR>", {
-  noremap = true,
-  silent = true,
-})
+vim.keymap.set("n", "gd", go_to_definition, opts)
 
 function Coc_show_documentation()
   local filetype = vim.bo.filetype
 
-  if filetype == "vim"  or filetype == "help" then
+  if filetype == "vim" or filetype == "help" then
     vim.api.nvim_command("h " .. filetype)
-  elseif vim.fn.CocAction('hasProvider', 'hover') then
+  elseif vim.call("coc#rpc#ready") and vim.fn.CocAction('hasProvider', 'hover') then
     vim.fn.CocActionAsync("doHover")
   end
 end
 
-vim.api.nvim_set_keymap('n', 'K', ':lua Coc_show_documentation()<CR>', {
-  noremap = true,
-  silent = true,
-})
+vim.keymap.set('n', 'K', Coc_show_documentation, opts)
