@@ -56,6 +56,7 @@
     "javascript.suggestionActions.enabled": false,
     "sumneko-lua.enableNvimLuaDev": true,
     "sumneko-lua.checkUpdate": true,
+    "Lua.runtime.version": "LuaJIT",
     "Lua.telemetry.enable": false,
     "Lua.hint.enable": false,
     "python.linting.pylintEnabled": true,
@@ -75,6 +76,7 @@
     "rust-analyzer.updates.channel": "stable",
     // "tsserver.log": "verbose",
     "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+    "volar.enable": true,
     "volar.takeOverMode.enabled": true,
     "git.enableGutters": true,
     "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.1/clangd_15.0.1/bin/clangd"

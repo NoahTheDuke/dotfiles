@@ -33,6 +33,7 @@ require("lualine").setup({
         "diagnostics",
         sources = { "coc" },
       },
+      "%{coc#status()}"
     },
     lualine_x = {
       {

@@ -1,5 +1,6 @@
 local telescope = require "telescope"
 local actions = require "telescope.actions"
+local keyset = vim.keymap.set
 
 telescope.load_extension('coc')
 telescope.setup({
@@ -89,33 +90,47 @@ telescope.setup({
 
   extensions = {
     coc = {
-      theme = 'ivy',
       prefer_locations = true,
     }
   }
 })
 
 
-vim.api.nvim_set_keymap("n", "<leader>ff", ':lua require("telescope.builtin").find_files()<cr>', {
+keyset("n", "<leader>ff", ':lua require("telescope.builtin").find_files()<cr>', {
   noremap = true,
   silent = true,
   desc = "Telescope find files",
 })
 
-vim.api.nvim_set_keymap("n", "<leader>fg", ':lua require("telescope.builtin").live_grep()<cr>', {
+keyset("n", "<leader>fg", ':lua require("telescope.builtin").live_grep()<cr>', {
   noremap = true,
   silent = true,
   desc = "Telescope grep",
 })
 
-vim.api.nvim_set_keymap("n", "<leader>fb", ":lua require('telescope.builtin').buffers()<CR>", {
+keyset("n", "<leader>fb", ":lua require('telescope.builtin').buffers()<cr>", {
   noremap = true,
   silent = true,
   desc = "Telescope buffers",
 })
 
-vim.api.nvim_set_keymap("n", "<leader>fh", ":lua require('telescope.builtin').help_tags()<CR>", {
+keyset("n", "<leader>fh", ":lua require('telescope.builtin').help_tags()<cr>", {
   noremap = true,
   silent = true,
   desc = "Telescope help tags",
 })
+
+-- Mappings for CoCList
+local coc_list = {
+  { lhs = "<leader>td", rhs = ":Telescope coc diagnostics<cr>" },
+  { lhs = "<leader>tc", rhs = ":Telescope coc commands<cr>" },
+  { lhs = "<leader>ts", rhs = ":Telescope coc document_symbols<cr>" },
+}
+for _, v in ipairs(coc_list) do
+  keyset("n", v.lhs, v.rhs, {
+    nowait = true,
+    noremap = true,
+    silent = true,
+  })
+end
+

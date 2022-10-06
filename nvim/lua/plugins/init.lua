@@ -313,7 +313,7 @@ return packer.startup(function(use)
 
   -- colors
   use "https://github.com/Mofiqul/dracula.nvim"
-  use "rebelot/kanagawa.nvim"
+  use "https://github.com/rebelot/kanagawa.nvim"
 
   -- Must be final call
   if PACKER_BOOTSTRAP then
