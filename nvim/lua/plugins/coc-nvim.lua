@@ -38,7 +38,7 @@ keyset("n", "<leader>af", "<Plug>(coc-codeaction)")
 keyset("n", "<leader>qf", "<Plug>(coc-fix-current)")
 keyset("n", "<leader>cla", "<Plug>(coc-codelens-action)")
 
-keyset("n", "<leader>gd", "<Plug>(coc-definition)", opts)
+keyset("n", "gd", "<Plug>(coc-definition)", opts)
 keyset("n", "<leader>gi", "<Plug>(coc-implementation)", opts)
 keyset("n", "<leader>gr", "<Plug>(coc-references)", opts)
 keyset("n", "<leader>gy", "<Plug>(coc-type-definition)", opts)

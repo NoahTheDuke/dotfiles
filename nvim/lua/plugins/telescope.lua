@@ -120,10 +120,18 @@ keyset("n", "<leader>fh", ":lua require('telescope.builtin').help_tags()<cr>", {
   desc = "Telescope help tags",
 })
 
--- Mappings for CoCList
+keyset("n", "<leader>fcs", ":lua require('telescope.builtin').colorscheme()<cr>", {
+  noremap = true,
+  silent = true,
+  desc = "Choose colorscheme",
+})
+
 local coc_list = {
-  { lhs = "<leader>td", rhs = ":Telescope coc diagnostics<cr>" },
+  { lhs = "<leader>ta", rhs = ":Telescope coc code_actions<cr>" },
   { lhs = "<leader>tc", rhs = ":Telescope coc commands<cr>" },
+  { lhs = "<leader>te", rhs = ":Telescope coc diagnostics<cr>" },
+  { lhs = "<leader>ti", rhs = ":Telescope coc implementations<cr>" },
+  { lhs = "<leader>tr", rhs = ":Telescope coc references<cr>" },
   { lhs = "<leader>ts", rhs = ":Telescope coc document_symbols<cr>" },
 }
 for _, v in ipairs(coc_list) do

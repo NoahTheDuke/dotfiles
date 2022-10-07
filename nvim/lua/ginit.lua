@@ -9,7 +9,7 @@ if vim.g.GuiLoaded == 1 then
   nvim.ex.GuiAdaptiveColor(1)
   nvim.ex.GuiAdaptiveFont(1)
   nvim.ex.GuiAdaptiveStyle("Fusion")
-  if vim.fn.has("mac") then
+  if vim.fn.has("mac") > 0 then
     nvim.ex.GuiFont_("FiraCode Nerd Font:h14")
   else
     nvim.ex.GuiFont_("FiraCode Nerd Font:h16")

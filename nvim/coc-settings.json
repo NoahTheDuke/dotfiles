@@ -59,6 +59,7 @@
     "Lua.runtime.version": "LuaJIT",
     "Lua.telemetry.enable": false,
     "Lua.hint.enable": false,
+    "Lua.diagnostics.globals": [ "packer_plugins" ],
     "python.linting.pylintEnabled": true,
     "rust-analyzer.cargo.features": "all",
     "rust-analyzer.cargo.autoreload": true,

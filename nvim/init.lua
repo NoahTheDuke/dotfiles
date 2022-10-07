@@ -9,6 +9,8 @@
 
 require "options"
 require "keymaps"
-require "colorscheme"
 require "autocmds"
 require "plugins"
+
+-- gotta wait for the plugins to load
+require "colorscheme"

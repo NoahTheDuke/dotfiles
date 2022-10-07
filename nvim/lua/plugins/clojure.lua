@@ -9,6 +9,7 @@ vim.g.clojure_syntax_keywords = {
     "before-each",
   }
 }
+
 vim.cmd [[
   augroup clojure
     autocmd FileType clojure setlocal lispwords+=before-each,do-game

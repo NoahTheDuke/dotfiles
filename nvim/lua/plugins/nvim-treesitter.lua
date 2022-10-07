@@ -20,4 +20,4 @@ ts_config.setup {
   incremental_selection = { enable = true },
   textobjects = { enable = true },
   playground = { enable = true },
-  }
+}
