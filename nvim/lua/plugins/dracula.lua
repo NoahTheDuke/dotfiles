@@ -3,6 +3,7 @@ local colors = dracula.colors()
 
 dracula.setup({
   overrides = {
+    Normal = { fg = colors.fg, bg = colors.bg },
     Comment = { fg = colors.comment },
 
     Constant = { fg = colors.purple },
@@ -35,6 +36,7 @@ dracula.setup({
     Typedef = { fg = colors.cyan },
 
     Special = { fg = colors.pink },
+    SpecialKey = { fg = colors.red },
     SpecialChar = { fg = colors.orange },
     Tag = { fg = colors.fg },
     Delimiter = { fg = colors.fg },
@@ -44,16 +46,18 @@ dracula.setup({
     Ignore = { fg = colors.comment },
 
     -- Coc Semantic Highlighting
-    CocSemEvent = { link = "Identifier" },
-    CocSemMacro = { link = "Macro" },
+    CocSemEvent = { fg = colors.fg, bg = colors.bg },
+    CocSemMacro = { fg = colors.orange },
     CocSemVariable = { link = "Identifier" },
+    CocHighlightText = { bg = colors.bg, undercurl = true, sp = colors.yellow },
 
     -- TreeSitter Highlighting
-    TSCharacterSpecial = { link = "SpecialChar" },
-    TSFuncMacro = { link = "Macro" },
-    TSPunctSpecial = { link = "SpecialChar" },
-    TSStringRegex = { link = "Constant" },
-    TSConstantBuiltin = { link = "Identifier" },
-    TSVariableBuiltin = { link = "Identifier" },
+    TSCharacterSpecial = { fg = colors.orange },
+    TSConstantBuiltin = { fg = colors.purple },
+    TSFuncMacro = { fg = colors.orange },
+    TSOperator = { fg = colors.orange },
+    TSPunctSpecial = { fg = colors.orange },
+    TSStringRegex = { fg = colors.purple },
+    TSVariableBuiltin = { fg = colors.cyan },
   },
 })

@@ -19,14 +19,14 @@ vim.api.nvim_set_keymap("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "
 keyset("n", "[g", "<Plug>(coc-diagnostic-prev)")
 keyset("n", "]g", "<Plug>(coc-diagnostic-next)")
 
-vim.api.nvim_create_autocmd("CursorHold", {
-  group = vim.api.nvim_create_augroup("CocHighlight", {}),
-  pattern = { "*" },
-  callback = function()
-    vim.fn.CocActionAsync("highlight")
-  end,
-  desc = "Highlight the symbol and its references when holding the cursor",
-})
+-- vim.api.nvim_create_autocmd("CursorHold", {
+--   group = vim.api.nvim_create_augroup("CocHighlight", {}),
+--   pattern = { "*" },
+--   callback = function()
+--     vim.fn.CocActionAsync("highlight")
+--   end,
+--   desc = "Highlight the symbol and its references when holding the cursor",
+-- })
 
 
 keyset("n", "<leader>rn", "<Plug>(coc-rename)")
