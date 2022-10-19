@@ -52,12 +52,12 @@ dracula.setup({
     CocHighlightText = { bg = colors.bg, undercurl = true, sp = colors.yellow },
 
     -- TreeSitter Highlighting
-    TSCharacterSpecial = { fg = colors.orange },
-    TSConstantBuiltin = { fg = colors.purple },
-    TSFuncMacro = { fg = colors.orange },
-    TSOperator = { fg = colors.orange },
-    TSPunctSpecial = { fg = colors.orange },
-    TSStringRegex = { fg = colors.purple },
-    TSVariableBuiltin = { fg = colors.cyan },
+    ['@character.special'] = { fg = colors.orange },
+    ['@constant.builtin'] = { fg = colors.purple },
+    ['@function.macro'] = { fg = colors.orange },
+    ['@operator'] = { fg = colors.orange },
+    ['@punctuation.special'] = { fg = colors.orange },
+    ['@string.regex'] = { fg = colors.purple },
+    ['@variable.builtin'] = { fg = colors.cyan },
   },
 })
