@@ -54,7 +54,7 @@
     "git.enableGutters": true,
     "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
     "Lua.diagnostics.globals": [ "packer_plugins" ],
-    "Lua.hint.enable": true,
+    "Lua.hint.enable": false,
     "Lua.runtime.version": "LuaJIT",
     "Lua.telemetry.enable": false,
     "python.linting.pylintEnabled": true,

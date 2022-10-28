@@ -162,10 +162,15 @@ return packer.startup(function(use)
   }
   use "https://github.com/tpope/vim-sexp-mappings-for-regular-people"
 
+  use "https://github.com/Olical/conjure"
   use {
-    "https://github.com/Olical/conjure",
+    "https://github.com/walterl/conjure-macroexpand",
+    requires = { "Olical/conjure" },
   }
-  use "https://github.com/walterl/conjure-macroexpand"
+  use {
+    "https://github.com/walterl/conjure-locstack",
+    requires = { "Olical/conjure" },
+  }
 
   -- universal editor settings
   use {

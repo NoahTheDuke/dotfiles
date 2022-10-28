@@ -8,7 +8,7 @@ vim.g.coc_default_semantic_highlight_groups = 1
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   group = vim.api.nvim_create_augroup("CocConfigSyntax", {}),
   pattern = { "coc-settings.json" },
-  command = "setfiletype jsonc",
+  command = "set filetype=jsonc",
 })
 
 -- Auto-select the first completion item and notify coc.nvim to format on enter
