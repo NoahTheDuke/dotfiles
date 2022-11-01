@@ -38,3 +38,9 @@ if vim.g.GuiLoaded == 1 then
     { nargs = 1 }
   )
 end
+
+if vim.g.neovide == true then
+  vim.opt.showtabline = 2
+  vim.opt.guifont = "FiraCode Nerd Font:h14"
+  vim.g.neovide_cursor_animation_length = 0.04
+end
