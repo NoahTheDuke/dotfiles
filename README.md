@@ -6,6 +6,8 @@ A repository for all of my dotfiles!
 Powershell
 ==========
 
+(Probably outdated? I haven't used a windows machine in 5 years :eyes:)
+
 Move the DraculaPowerShell folder to the Powershell Modules folder, then run:
 
     Import-Module DraculaPowerShell
@@ -13,8 +15,7 @@ Move the DraculaPowerShell folder to the Powershell Modules folder, then run:
 
 This will create a powershell file with the changes applied. Use that as the link for all powershell uses.
 
-Vim
+Neovim
 =====
 
-`vim/autoload/` needs to be moved to `~/.vim` or `~/vimfiles` (Unix or Windows, respectively). After it loads once,
-type `:PlugInstall`.
+Symlink `nvim/` to `~/.config/nvim` or `~/AppData/Local/nvim` as appropriate and then you're good to go.

@@ -65,7 +65,6 @@
     "rust-analyzer.checkOnSave.extraArgs": ["--all"],
     "rust-analyzer.completion.autoimport.enable": true,
     "rust-analyzer.inlayHints.chainingHints.enable": true,
-    "rust-analyzer.inlayHints.enable": true,
     "rust-analyzer.inlayHints.typeHints.enable": true,
     "rust-analyzer.lens.references.enumVariant.enable": true,
     "rust-analyzer.lens.references.method.enable": true,

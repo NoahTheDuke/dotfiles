@@ -17,17 +17,19 @@ end
 -- Use a protected call so we don"t error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
-  vim.notify_once("Packer loading failed", vim.log.levels.ERROR)
-  return
+  error("packer not available")
 end
+
+local util = require('packer.util')
 
 -- Have packer use a popup window
 packer.init {
   display = {
     open_fn = function()
-      return require("packer.util").float { border = "rounded" }
+      return util.float { border = "rounded" }
     end,
   },
+  compile_path = util.join_paths(vim.fn.stdpath('config'), 'plugin', '___packer_compiled.lua'),
 }
 
 return packer.startup(function(use)
@@ -48,42 +50,25 @@ return packer.startup(function(use)
   use "https://github.com/ReekenX/vim-rename2"
 
   -- :WhichKey
-  use {
-    "https://github.com/folke/which-key.nvim",
-  }
+  use "https://github.com/folke/which-key.nvim"
 
   -- visual/display
-  use {
-    "https://github.com/nvim-lualine/lualine.nvim",
-  }
+  use "https://github.com/nvim-lualine/lualine.nvim"
 
   -- Notifications Popup
-  use {
-    "https://github.com/rcarriga/nvim-notify",
-  }
+  use "https://github.com/rcarriga/nvim-notify"
 
   -- :UndotreeToggle
   use "https://github.com/mbbill/undotree"
 
   -- :MinimapToggle
-  use {
-    "https://github.com/wfxr/minimap.vim",
-  }
+  use "https://github.com/wfxr/minimap.vim"
 
   -- :PreviewOpen
-  use {
-    "https://github.com/previm/previm",
-  }
+  use "https://github.com/previm/previm"
 
-  use {
-    "https://github.com/phaazon/mind.nvim",
-    branch = "v2.2",
-    requires = { "nvim-lua/plenary.nvim" },
-  }
-
-  use {
-    "https://github.com/gelguy/wilder.nvim",
-  }
+  -- Prettify wild menu
+  use "https://github.com/gelguy/wilder.nvim"
 
   -- git stuff
   -- :Git [blah blah]
@@ -95,22 +80,18 @@ return packer.startup(function(use)
   -- :GitBrowse
   use "https://github.com/tpope/vim-rhubarb"
 
-  -- movement/directory
-  -- use "https://github.com/lambdalisue/fern.vim" -- :Fern . -drawer -toggle
-  use {
-    "https://github.com/kyazdani42/nvim-tree.lua",
-  }
+  -- :NvimTreeToggle
+  use "https://github.com/kyazdani42/nvim-tree.lua"
 
-  -- Session management
+  -- :SessionManager
   use {
     "https://github.com/Shatur/neovim-session-manager",
     requires = { "nvim-lua/plenary.nvim" },
   }
-  -- Splash screen
 
-  use {
-    "https://github.com/goolord/alpha-nvim",
-  }
+  -- Splash screen
+  use "https://github.com/goolord/alpha-nvim"
+
   -- :A, etc
   use "https://github.com/tpope/vim-projectionist"
 
@@ -126,25 +107,19 @@ return packer.startup(function(use)
 
   -- editing
   -- gS, gJ
-  use {
-    "https://github.com/AndrewRadev/splitjoin.vim",
-  }
+  use "https://github.com/AndrewRadev/splitjoin.vim"
 
   -- gs: "abc" -> "abc -> :abc
-  use {
-    "https://github.com/AndrewRadev/switch.vim",
-  }
+  use "https://github.com/AndrewRadev/switch.vim"
 
-  use {
-    "https://github.com/kylechui/nvim-surround",
-  }
+  -- ysaw, ds[
+  use "https://github.com/kylechui/nvim-surround"
 
   -- gcc
-  use {
-    "https://github.com/terrortylor/nvim-comment",
-  }
+  use "https://github.com/terrortylor/nvim-comment"
 
   use "https://github.com/tpope/vim-repeat"
+
   -- [b, ]b, etc
   use "https://github.com/tpope/vim-unimpaired"
 
@@ -153,13 +128,8 @@ return packer.startup(function(use)
   use "https://github.com/wellle/targets.vim"
 
   -- sexpr editing
-  use {
-    "https://github.com/guns/vim-sexp",
-    setup = function()
-      -- The autocmd doesn't work if I run this in config so I gotta hardcode the whole list
-      vim.g.sexp_filetypes = "clojure,scheme,lisp,timl,fennel"
-    end,
-  }
+  use "https://github.com/guns/vim-sexp"
+
   use "https://github.com/tpope/vim-sexp-mappings-for-regular-people"
 
   use "https://github.com/Olical/conjure"
@@ -173,9 +143,10 @@ return packer.startup(function(use)
   }
 
   -- universal editor settings
-  use {
-    "https://github.com/editorconfig/editorconfig-vim",
-  }
+  use "https://github.com/editorconfig/editorconfig-vim"
+
+  use "https://github.com/LintaoAmons/scratch.nvim.git"
+
   use {
     "https://github.com/neoclide/coc.nvim",
     branch = "release",
