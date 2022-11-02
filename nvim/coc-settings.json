@@ -38,6 +38,7 @@
     },
 
     // coc extensions
+    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.1/clangd_15.0.1/bin/clangd",
     "clojure.enable": true,
     "clojure.initialization-options.copy-kond-configs?": true,
     "clojure.initialization-options.log-path": "/tmp/clojure-lsp.out",
@@ -49,8 +50,8 @@
         "clojuredocs": true,
         "arity-on-same-line?": false
     },
-    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.1/clangd_15.0.1/bin/clangd",
     "clojure.startup-message": true,
+    "clojure.trace.server": "verbose",
     "git.enableGutters": true,
     "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
     "Lua.diagnostics.globals": [ "packer_plugins" ],
