@@ -4,6 +4,7 @@ local colors = dracula.colors()
 dracula.setup({
   overrides = {
     Normal = { fg = colors.fg, bg = colors.bg },
+    Terminal = { fg = colors.fg, bg = colors.bg },
     Comment = { fg = colors.comment },
 
     Constant = { fg = colors.purple },

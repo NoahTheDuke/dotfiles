@@ -9,13 +9,13 @@
 	praise = blame
 	today = log --since=00:00:00 --all --no-merges --oneline
 	blamo = log -p -M --follow --stat --
-	lint-ruby = "!git diff origin/master --name-only | xargs ls -1 2>/dev/null | rg '\\.rb$' | rg -v 'schema.rb' | xargs rubocop -a"
 	pap = pull --all --prune
+	br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
 [core]
 	hooksPath = ~/dotfiles/git/hooks
 	editor = gvim -f -i NONE
-; [commit]
-; 	template = ~/dotfiles/git/.gitmessage
+[commit]
+	template = ~/dotfiles/git/.gitmessage
 ; [credential]
 ; 	helper = wincred
 [diff]

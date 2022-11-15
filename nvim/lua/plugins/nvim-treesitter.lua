@@ -15,7 +15,7 @@ ts_config.setup {
   },
   highlight = {
     enable = true,
-    disable = { "clojure" },
+    disable = { "clojure", "just" },
   },
   incremental_selection = { enable = true },
   textobjects = { enable = true },

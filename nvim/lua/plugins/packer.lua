@@ -234,7 +234,6 @@ return packer.startup(function(use)
 
   -- python
   use { "https://github.com/psf/black", ft = "python" }
-  use { "https://github.com/raimon49/requirements.txt.vim", ft = "requirements" }
 
   -- racket
   use { "https://github.com/wlangstroth/vim-racket", ft = "racket" }
