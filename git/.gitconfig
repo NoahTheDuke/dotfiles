@@ -2,14 +2,17 @@
 ; [include]
 ; 	path = ~/dotfiles/git/.gitconfig
 [alias]
-	graph = log --graph --all --decorate --stat --date=iso
+	; one commit per line, pretty colors, graph style
 	lg = log --graph --pretty=format:'%C(auto)%h%Creset -> %d %s %Cgreen(%cr) %C(bold magenta)<%an>%Creset'
-	lol = log --graph --decorate --pretty=oneline --abbrev-commit
-	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-	praise = blame
-	today = log --since=00:00:00 --all --no-merges --oneline
-	blamo = log -p -M --follow --stat --
+	; update all refs, prune deleted remote branches
 	pap = pull --all --prune
+	; we're not here to blame anyone
+	praise = blame
+	; what have I done today?
+	today = log --since=00:00:00 --all --no-merges --oneline --not --remotes
+	; see all changes to a given file in reverse chronological order
+	blamo = log -p -M --follow --stat --
+	; sort branches by recently touched, show commit subject and committer
 	br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
 [core]
 	hooksPath = ~/dotfiles/git/hooks

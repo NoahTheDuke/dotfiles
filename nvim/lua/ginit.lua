@@ -9,11 +9,7 @@ if vim.g.GuiLoaded == 1 then
   nvim.ex.GuiAdaptiveColor(1)
   nvim.ex.GuiAdaptiveFont(1)
   nvim.ex.GuiAdaptiveStyle("Fusion")
-  if vim.fn.has("mac") > 0 then
-    nvim.ex.GuiFont_("FiraCode Nerd Font:h14")
-  else
-    nvim.ex.GuiFont_("FiraCode Nerd Font:h16")
-  end
+  nvim.ex.GuiFont_("FiraCode Nerd Font:h16")
   nvim.ex.GuiPopupmenu(0)
   nvim.ex.GuiRenderLigatures(1)
   nvim.ex.GuiScrollBar(1)
@@ -41,6 +37,6 @@ end
 
 if vim.g.neovide == true then
   vim.opt.showtabline = 2
-  vim.opt.guifont = "FiraCode Nerd Font:h16"
+  vim.opt.guifont = "FiraCode Nerd Font:h14"
   vim.g.neovide_cursor_animation_length = 0.04
 end

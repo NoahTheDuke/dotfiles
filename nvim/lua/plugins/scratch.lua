@@ -2,7 +2,7 @@ local scratch = require("scratch")
 local nvim = require("vendor.nvim")
 
 scratch.setup {
-  filetypes = { "clj", "json", "lua", "js" },
+  filetypes = { "clj", "md", "lua" },
 }
 
 nvim.create_user_command("Scratch", function()

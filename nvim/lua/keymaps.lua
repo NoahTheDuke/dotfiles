@@ -60,6 +60,14 @@ nvim.set_keymap("n", "<F5>", ":UndotreeToggle<CR>", opts)
 nvim.set_keymap("n", "<F6>", ":NvimTreeToggle %:h<CR>", opts)
 nvim.set_keymap("n", "<F7>", ":MinimapToggle<CR>", opts)
 
-nvim.set_keymap("n", "<F10>",
-  [[:echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>]]
-  , opts)
+nvim.set_keymap("n",
+  "<F10>",
+  [[:echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>]],
+  opts
+)
+
+nvim.create_user_command(
+  "Notes",
+  [[ call GuiNewWindow("<args>") ]],
+  { nargs = 1 }
+)

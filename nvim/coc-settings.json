@@ -75,6 +75,5 @@
     "sumneko-lua.checkUpdate": true,
     "sumneko-lua.enableNvimLuaDev": true,
     "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
-    "volar.enable": true,
-    "volar.takeOverMode.enabled": true
+    "volar.enable": true
 }
