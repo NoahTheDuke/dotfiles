@@ -4,7 +4,7 @@ set.autochdir = false
 set.backup = false
 set.clipboard:prepend("unnamedplus")
 set.cmdheight = 1
-set.colorcolumn = "88"
+set.colorcolumn = "+1"
 set.completeopt = { "menuone", "noselect" }
 set.conceallevel = 0
 set.expandtab = true

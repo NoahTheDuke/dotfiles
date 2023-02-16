@@ -10,5 +10,5 @@ vim.g["conjure#mapping#doc_word"] = false
 
 vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = ""
 vim.g["conjure#client#clojure#nrepl#test#runner"] = "clojure"
-vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = "{:kaocha/color? false :kaocha/reporter [kaocha.report/result] :capture-output? false}"
-vim.g["conjure#client#clojure#nrepl#test#runner"] = "kaocha"
+-- vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = "{:kaocha/color? false :kaocha/reporter [kaocha.report/result] :capture-output? false}"
+-- vim.g["conjure#client#clojure#nrepl#test#runner"] = "kaocha"

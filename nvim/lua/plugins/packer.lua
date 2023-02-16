@@ -55,9 +55,6 @@ return packer.startup(function(use)
   -- visual/display
   use "https://github.com/nvim-lualine/lualine.nvim"
 
-  -- Notifications Popup
-  use "https://github.com/rcarriga/nvim-notify"
-
   -- :UndotreeToggle
   use "https://github.com/mbbill/undotree"
 
@@ -143,7 +140,7 @@ return packer.startup(function(use)
   }
 
   -- universal editor settings
-  use "https://github.com/editorconfig/editorconfig-vim"
+  use "https://github.com/gpanders/editorconfig.nvim"
 
   use "https://github.com/LintaoAmons/scratch.nvim.git"
 
@@ -165,13 +162,6 @@ return packer.startup(function(use)
   use {
     "https://github.com/nvim-treesitter/nvim-treesitter-context",
     requires = { "nvim-treesitter/nvim-treesitter" },
-  }
-
-  use {
-    "https://github.com/glacambre/firenvim",
-    run = function()
-      vim.fn["firenvim#install"](0)
-    end,
   }
 
   -- language plugins

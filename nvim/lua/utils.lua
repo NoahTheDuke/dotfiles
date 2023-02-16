@@ -28,5 +28,22 @@ function M.plugin_setup(mod, remote)
   end
 end
 
+function M.indexOf(array, value)
+    for i, v in ipairs(array) do
+        if v == value then
+            return i
+        end
+    end
+    return nil
+end
+
+function M.invertTable(t)
+  local out = {}
+  for k, v in pairs(t) do
+    out[v] = k
+  end
+  return out
+end
+
 
 return M
