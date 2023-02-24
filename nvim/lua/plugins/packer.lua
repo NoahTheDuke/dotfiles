@@ -254,7 +254,7 @@ return packer.startup(function(use)
   use { "https://github.com/HerringtonDarkholme/yats.vim", ft = "typescript" }
 
   -- vue
-  use { "https://github.com/leafOfTree/vim-vue-plugin", ft = "vue" }
+  use { "https://github.com/posva/vim-vue", ft = "vue" }
 
   -- xml
   use { "https://github.com/amadeus/vim-xml", ft = "xml" }
