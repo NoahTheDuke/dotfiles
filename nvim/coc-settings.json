@@ -40,7 +40,6 @@
     // coc extensions
     "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.1/clangd_15.0.1/bin/clangd",
     "clojure.enable": true,
-    "clojure.executable": "/home/noah/personal/clojure-lsp/clojure-lsp",
     "clojure.initialization-options.copy-kondo-configs?": true,
     "clojure.initialization-options.log-path": "/tmp/clojure-lsp.out",
     "clojure.initialization-options.semantic-tokens?": true,

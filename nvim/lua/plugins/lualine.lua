@@ -51,6 +51,14 @@ require("lualine").setup({
       { "%3p%%/%4L %4l:%3v" },
     },
   },
+  tabline = {
+    lualine_a = {'buffers'},
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {'tabs'}
+  },
   extensions = {
     "quickfix",
     "fugitive",
