@@ -8,6 +8,8 @@ ts_config.setup {
     "clojure",
     "javascript",
     "lua",
+    "markdown",
+    "markdown_inline",
     "query",
     "rust",
     "typescript",
@@ -15,7 +17,8 @@ ts_config.setup {
   },
   highlight = {
     enable = true,
-    disable = { "clojure", "just" },
+    additional_vim_regex_highlighting = { "clojure" },
+    -- disable = { "clojure", "just" },
   },
   incremental_selection = { enable = true },
   textobjects = { enable = true },

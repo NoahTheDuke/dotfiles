@@ -1,1 +1,1 @@
-vim.g.previm_open_cmd = "open -a Firefox"
+vim.g.previm_open_cmd = "firefox"
