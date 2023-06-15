@@ -30,6 +30,7 @@ packer.init {
     end,
   },
   compile_path = util.join_paths(vim.fn.stdpath('config'), 'plugin', '___packer_compiled.lua'),
+  max_jobs = 5,
 }
 
 return packer.startup(function(use)
