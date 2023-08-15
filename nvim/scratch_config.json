@@ -1,0 +1,11 @@
+{
+    "filetypes": [
+        "txt",
+        "clj",
+        "md",
+        "js"
+    ],
+    "scratch_file_dir": "/home/noah/.cache/nvim/scratch.nvim",
+    "filetype_details": {
+    }
+}
