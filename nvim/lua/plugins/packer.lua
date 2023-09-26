@@ -113,6 +113,9 @@ return packer.startup(function(use)
   -- ysaw, ds[
   use "https://github.com/kylechui/nvim-surround"
 
+  -- automatically create closing "" and () etc
+  use "https://github.com/windwp/nvim-autopairs.git"
+
   -- gcc
   use "https://github.com/terrortylor/nvim-comment"
 
@@ -126,9 +129,7 @@ return packer.startup(function(use)
   use "https://github.com/wellle/targets.vim"
 
   -- sexpr editing
-  use "https://github.com/guns/vim-sexp"
-
-  use "https://github.com/tpope/vim-sexp-mappings-for-regular-people"
+  use "https://github.com/julienvincent/nvim-paredit"
 
   use "https://github.com/Olical/conjure"
   use {
@@ -160,12 +161,26 @@ return packer.startup(function(use)
     requires = { "nvim-treesitter/nvim-treesitter" },
   }
 
-  use {
-    "https://github.com/nvim-treesitter/nvim-treesitter-context",
-    requires = { "nvim-treesitter/nvim-treesitter" },
-  }
+  -- use {
+  --   "https://github.com/nvim-treesitter/nvim-treesitter-context",
+  --   requires = { "nvim-treesitter/nvim-treesitter" },
+  -- }
 
+  -- use {
+  --   'harrisoncramer/gitlab.nvim',
+  --   requires = {
+  --     "MunifTanjim/nui.nvim",
+  --     "nvim-lua/plenary.nvim"
+  --   },
+  --   run = function() require("gitlab").build() end,
+  --   config = function()
+  --     require("gitlab").setup()
+  --   end,
+  -- }
+
+  --------------------------------------------------------------------
   -- language plugins
+  --------------------------------------------------------------------
 
   -- asciidoc
   use { "https://github.com/asciidoc/vim-asciidoc", ft = "asciidoc" }
@@ -216,9 +231,6 @@ return packer.startup(function(use)
 
   -- justfiles
   use { "https://github.com/NoahTheDuke/vim-just", ft = "just" }
-
-  -- lua
-  use { "https://github.com/euclidianAce/BetterLua.vim", ft = "lua" }
 
   -- markdown
   use { "https://github.com/plasticboy/vim-markdown", ft = "markdown" }
