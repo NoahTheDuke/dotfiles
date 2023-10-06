@@ -1,9 +1,11 @@
-require("nvim-autopairs").setup({
+local autopairs = require("nvim-autopairs")
+autopairs.setup({
   map_cr = false,
   check_ts = true,
+  enable_check_bracket_line = false,
   ts_config = {
-    clojure = { 'string' },
     lua = { 'string' },
     javascript = { 'string', 'template_string' },
   }
 })
+autopairs.get_rules("'")[1].not_filetypes = { "scheme", "lisp", "clojure" }
