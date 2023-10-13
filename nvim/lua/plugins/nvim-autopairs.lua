@@ -3,6 +3,7 @@ autopairs.setup({
   map_cr = false,
   check_ts = true,
   enable_check_bracket_line = false,
+  break_undo = false,
   ts_config = {
     lua = { 'string' },
     javascript = { 'string', 'template_string' },
