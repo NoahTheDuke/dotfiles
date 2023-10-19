@@ -5,6 +5,7 @@ vim.g["conjure#log#hud#ignore_low_priority"] = true
 vim.g["conjure#log#wrap"] = true
 vim.g["conjure#mapping#def_word"] = false
 vim.g["conjure#mapping#doc_word"] = false
+vim.g["conjure#client#clojure#nrepl#connection#auto_repl#enabled"] = false
 
 -- runner stuff
 

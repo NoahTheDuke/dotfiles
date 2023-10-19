@@ -71,3 +71,9 @@ nvim.create_user_command(
   [[ call GuiNewWindow("<args>") ]],
   { nargs = 1 }
 )
+
+nvim.create_user_command(
+  "Splint",
+  [[ :exe 'cexpr system("splint '.expand('%').' -o clj-kondo")' ]],
+  { nargs = 0 }
+)
