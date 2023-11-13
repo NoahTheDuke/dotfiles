@@ -10,6 +10,7 @@ ts_config.setup {
     "lua",
     "markdown",
     "markdown_inline",
+    "ocaml",
     "query",
     "rust",
     "typescript",
@@ -17,7 +18,7 @@ ts_config.setup {
   },
   highlight = {
     enable = true,
-    additional_vim_regex_highlighting = { "clojure" },
+    -- additional_vim_regex_highlighting = { "clojure" },
     -- disable = { "clojure", "just" },
   },
   incremental_selection = { enable = true },

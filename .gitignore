@@ -1,3 +1,4 @@
 .DS_Store
 .cache
 nvim/plugin/___packer_compiled.lua
+.vim/

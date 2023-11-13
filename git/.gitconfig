@@ -14,16 +14,23 @@
 	blamo = log -p -M --follow --stat --
 	; sort branches by recently touched, show commit subject and committer
 	br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
+	difft = difftool
 [core]
 	hooksPath = ~/dotfiles/git/hooks
 	editor = gvim -f -i NONE
 [commit]
 	template = ~/dotfiles/git/.gitmessage
-; [credential]
-; 	helper = wincred
 [diff]
 	indentHeuristic = on
 	colorMoved = on
+	tool = difftastic
+[pager]
+	difftool = true
+[difftool]
+	prompt = false
+[difftool "difftastic"]
+	cmd = difft "$LOCAL" "$REMOTE"
 ; [user]
 ; 	name = Noah Bogart
 ; 	email = noah.bogart@hey.com

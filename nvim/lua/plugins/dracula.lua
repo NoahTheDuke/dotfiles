@@ -55,6 +55,7 @@ dracula.setup({
     -- TreeSitter Highlighting
     ['@character.special'] = { fg = colors.orange },
     ['@constant.builtin'] = { fg = colors.purple },
+    ['@function.call'] = { fg = colors.green },
     ['@function.macro'] = { fg = colors.orange },
     ['@operator'] = { fg = colors.orange },
     ['@punctuation.special'] = { fg = colors.orange },

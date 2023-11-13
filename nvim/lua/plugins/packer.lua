@@ -161,24 +161,6 @@ return packer.startup(function(use)
     requires = { "nvim-treesitter/nvim-treesitter" },
   }
 
-  -- use {
-  --   "https://github.com/nvim-treesitter/nvim-treesitter-context",
-  --   requires = { "nvim-treesitter/nvim-treesitter" },
-  -- }
-
-  -- use {
-  --   'harrisoncramer/gitlab.nvim',
-  --   requires = {
-  --     "MunifTanjim/nui.nvim",
-  --     "nvim-lua/plenary.nvim"
-  --   },
-  --   run = function() require("gitlab").build() end,
-  --   config = function()
-  --     require("gitlab").setup()
-  --   end,
-  -- }
-
-  --------------------------------------------------------------------
   -- language plugins
   --------------------------------------------------------------------
 
@@ -234,6 +216,9 @@ return packer.startup(function(use)
 
   -- markdown
   use { "https://github.com/plasticboy/vim-markdown", ft = "markdown" }
+
+  -- ocaml
+  use { "https://github.com/ocaml/vim-ocaml", ft = "ocaml" }
 
   -- python
   use { "https://github.com/psf/black", ft = "python" }
