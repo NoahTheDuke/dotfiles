@@ -6,11 +6,13 @@ local ts = require("nvim-treesitter.ts_utils")
 
 local function enclosing_wrapper_maker(brackets, placement)
   return function()
-    if langs.clojure.node_is_form(ts.get_node_at_cursor()) then
+    -- If the node is a "form", then treat it like an element: (|1 2 3) -> (| (1 2 3))
+    if clj.node_is_form(ts.get_node_at_cursor()) then
       paredit.cursor.place_cursor(
         paredit.wrap.wrap_element_under_cursor(unpack(brackets)),
         { placement = placement, mode = "insert" }
       )
+    -- Otherwise, wrap the surrounding form: (1 2| 3) -> (| (1 2 3))
     else
       paredit.cursor.place_cursor(
         paredit.wrap.wrap_enclosing_form_under_cursor(unpack(brackets)),
