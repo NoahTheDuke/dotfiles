@@ -74,6 +74,6 @@ nvim.create_user_command(
 
 nvim.create_user_command(
   "Splint",
-  [[ :exe 'cexpr system("splint '.expand('%').' -o clj-kondo")' ]],
+  [[ :exe 'cexpr system("splint '.expand('%').' -o clj-kondo --no-summary")' ]],
   { nargs = 0 }
 )

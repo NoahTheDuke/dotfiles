@@ -1,0 +1,77 @@
+directory: ~/Music
+library: ~/.local/share/beets/musiclibrary.db
+
+import:
+  move: yes
+
+match:
+  preferred:
+    media:
+      - 'Digital Media|File'
+      - 'CD'
+    original_year: yes
+
+plugins:
+  - convert
+  - fetchart
+  - importreplace
+  - lastgenre
+  - zero
+
+convert:
+  auto: true
+  format: ogg
+  no_convert: format:mp3
+
+importreplace:
+  replacements:
+    - item_fields: title artist artist_sort artist_credit
+      album_fields: album artist artist_sort artist_credit
+      replace:
+        '[\u2018-\u201B]': ''''
+        '[\u201C-\u201F]': '"'
+        '[\u2010-\u2015]': '-'
+
+lastgenre:
+  prefer_specific: yes
+
+zero:
+  keep_fields:
+    - title
+    - artist
+    - album
+    - albumartist
+    - compilation
+    - date
+    - day
+    - disc
+    - disctitle
+    - disctotal
+    - genre
+    - grouping
+    - label
+    - month
+    - originaldate
+    - publisher
+    - releasecountry
+    - releasestatus
+    - releasetype
+    - totaldiscs
+    - track
+    - tracktotal
+    - year
+    - unsyncedlyrics
+    - musicbrainz_albumartistid
+    - musicbrainz_albumid
+    - musicbrainz_artistid
+    - musicbrainz_releasegroupid
+    - musicbrainz_releasetrackid
+    - musicbrainz_trackid
+    - musicbrainz_workid
+    - mb_albumartistid
+    - mb_albumid
+    - mb_artistid
+    - mb_releasegroupid
+    - mb_releasetrackid
+    - mb_trackid
+    - mb_workid
