@@ -5,7 +5,7 @@ vim.cmd [[
     autocmd BufNewFile,BufReadPost *.md set filetype=markdown
     autocmd BufNewFile,BufReadPost *.asd set filetype=lisp
     autocmd BufNewFile,BufReadPost *.asm set filetype=z80
-    autocmd TermOpen * setlocal nospell
+    autocmd TermOpen * setlocal nospell nonumber norelativenumber
     autocmd TermOpen,BufEnter term://* startinsert
   augroup END
 ]]
