@@ -25,7 +25,7 @@ runners["test-runners"].lazytest = {
   ["name-suffix"] = ")",
 }
 
-vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = ""
-vim.g["conjure#client#clojure#nrepl#test#runner"] = "clojure"
--- vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = "{:kaocha/color? false :capture-output? false}"
--- vim.g["conjure#client#clojure#nrepl#test#runner"] = "kaocha"
+-- vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = ""
+-- vim.g["conjure#client#clojure#nrepl#test#runner"] = "clojure"
+vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = "{:kaocha/color? false :capture-output? false}"
+vim.g["conjure#client#clojure#nrepl#test#runner"] = "kaocha"

@@ -98,5 +98,7 @@
     "inlayHint.display": false,
     "sumneko-lua.checkUpdate": true,
     "sumneko-lua.enableNvimLuaDev": true,
+    "volar.takeOverMode.enabled": false,
+    "tsserver.enable": true,
     "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true
 }

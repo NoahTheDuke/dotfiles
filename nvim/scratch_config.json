@@ -3,7 +3,8 @@
         "txt",
         "clj",
         "md",
-        "js"
+        "js",
+        "json"
     ],
     "scratch_file_dir": "/home/noah/.cache/nvim/scratch.nvim",
     "filetype_details": {
