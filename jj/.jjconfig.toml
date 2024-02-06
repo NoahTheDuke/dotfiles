@@ -1,0 +1,9 @@
+ui.editor = "nvim"
+ui.diff-editor = "vimdirdiff"
+ui.diff.format = "git"
+
+[merge-tools.difft]
+diff-args = ["--color=always", "$left", "$right"]
+
+[revset-aliases]
+"immutable_heads()" = "main@origin | (main@origin.. & ~mine())"
