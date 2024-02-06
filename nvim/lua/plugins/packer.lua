@@ -103,6 +103,9 @@ return packer.startup(function(use)
     },
   }
 
+  -- :DirDiff
+  use "https://github.com/will133/vim-dirdiff.git"
+
   -- editing
   -- gS, gJ
   use "https://github.com/AndrewRadev/splitjoin.vim"

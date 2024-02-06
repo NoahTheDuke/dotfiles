@@ -72,8 +72,12 @@
         "clojuredocs": true,
         "arity-on-same-line?": false
     },
+    "clojure.initialization-options.java": {
+        "download-jdk-source?": true
+    },
     "clojure.startup-message": true,
     "clojure.trace.server": "verbose",
+    "eslint.autoFixOnSave": true,
     "git.enableGutters": true,
     "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
     "javascript.validate.enable": false,
