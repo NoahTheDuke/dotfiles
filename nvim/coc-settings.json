@@ -4,7 +4,9 @@
     "coc.preferences.enableMessageDialog": false,
     "coc.preferences.excludeImageLinksInMarkdownDocument": true,
     "coc.preferences.useQuickfixForLocations": false,
-    "workspace.openResourceCommand": "edit",
+    "[javascript][typescript]": {
+        "coc.preferences.formatOnSave": true
+    },
     "codeLens.enable": true,
     "codeLens.position": "eol",
     "codeLens.separator": "->",
@@ -18,6 +20,7 @@
     "suggest.minTriggerInputLength": 2,
     "suggest.noselect": true,
     "suggest.triggerCompletionWait": 50,
+    "workspace.openResourceCommand": "edit",
     "workspace.ignoredFolders": [
         "$HOME",
         "$HOME/.cargo/**",
@@ -85,6 +88,8 @@
     "Lua.hint.enable": false,
     "Lua.runtime.version": "LuaJIT",
     "Lua.workspace.checkThirdParty": false,
+    "prettier.enable": true,
+    "prettier.requireConfig": true,
     "python.linting.pylintEnabled": true,
     "rust-analyzer.cargo.autoreload": true,
     "rust-analyzer.cargo.features": "all",
