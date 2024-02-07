@@ -1,5 +1,6 @@
 return {
   "https://github.com/Olical/conjure",
+  name = "conjure",
   config = function()
     vim.g["conjure#client#clojure#nrepl#eval#raw_out"] = true
     vim.g["conjure#client#clojure#nrepl#test#current_form_names"] = {

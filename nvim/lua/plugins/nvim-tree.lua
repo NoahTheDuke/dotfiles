@@ -1,6 +1,7 @@
 -- :NvimTreeToggle
 return {
   "https://github.com/kyazdani42/nvim-tree.lua",
+  name = "nvim-tree.lua",
   config = function()
     require("nvim-tree").setup({
       renderer = {

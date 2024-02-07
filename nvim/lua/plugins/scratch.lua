@@ -1,5 +1,6 @@
 return {
-  "https://github.com/LintaoAmons/scratch.nvim.git",
+  "https://github.com/LintaoAmons/scratch.nvim",
+  name = "scratch.nvim",
   config = function()
     local nvim = require("vendor.nvim")
     nvim.create_user_command("Scratch", "<cmd>Scratch<cr>", { nargs = 0 })

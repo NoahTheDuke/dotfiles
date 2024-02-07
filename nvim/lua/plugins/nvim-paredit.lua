@@ -1,6 +1,7 @@
 -- sexpr editing
 return {
   "https://github.com/julienvincent/nvim-paredit",
+  name = "nvim-paredit",
   config = function()
     local paredit = require("nvim-paredit")
     local common = require("nvim-paredit.utils.common")

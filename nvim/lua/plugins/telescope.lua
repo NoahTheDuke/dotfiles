@@ -1,5 +1,6 @@
 return {
   "https://github.com/nvim-telescope/telescope.nvim",
+  name = "telescope.nvim",
   dependencies = { "https://github.com/fannheyward/telescope-coc.nvim" },
   config = function()
     local telescope = require "telescope"

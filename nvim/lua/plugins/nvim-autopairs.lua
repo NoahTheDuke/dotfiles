@@ -1,6 +1,7 @@
 -- automatically create closing "" and () etc
 return {
-  "https://github.com/windwp/nvim-autopairs.git",
+  "https://github.com/windwp/nvim-autopairs",
+  name = "nvim-autopairs",
   config = function()
     local autopairs = require("nvim-autopairs")
     autopairs.setup({

@@ -1,5 +1,6 @@
 return {
   "https://github.com/clojure-vim/clojure.vim",
+  name = "clojure.vim",
   config = function()
     vim.g.clojure_syntax_keywords = {
       clojureMacro = {

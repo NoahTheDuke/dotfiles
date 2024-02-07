@@ -1,6 +1,7 @@
 -- gs: "abc" -> "abc -> :abc
 return {
   "https://github.com/AndrewRadev/switch.vim",
+  name = "switch.vim",
   config = function()
     vim.cmd [[
       augroup switches

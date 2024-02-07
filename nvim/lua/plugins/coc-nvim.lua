@@ -4,6 +4,7 @@ local keyset = vim.keymap.set
 
 return {
   "https://github.com/neoclide/coc.nvim",
+  name = "coc.nvim",
   branch = "release",
   config = function()
     -- settings

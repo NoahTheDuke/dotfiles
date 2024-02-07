@@ -42,6 +42,7 @@ end
 -- Splash screen
 return {
   "https://github.com/goolord/alpha-nvim",
+  name = "alpha",
   config = function(_plugin, _opts, run)
     if run then
       setup()

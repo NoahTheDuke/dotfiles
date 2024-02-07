@@ -1,5 +1,6 @@
 return {
   "https://github.com/Mofiqul/dracula.nvim",
+  name = "dracula.nvim",
   config = function()
     local dracula = require("dracula")
     local colors = dracula.colors()
@@ -66,5 +67,6 @@ return {
         ['@variable.builtin'] = { fg = colors.cyan },
       },
     })
+    vim.cmd.colorscheme("dracula")
   end,
 }
