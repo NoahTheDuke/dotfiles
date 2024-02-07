@@ -1,6 +1,7 @@
 ui.editor = "nvim"
 ui.diff-editor = "vimdirdiff"
 ui.diff.format = "git"
+ui.default-command = "log"
 
 [merge-tools.difft]
 diff-args = ["--color=always", "$left", "$right"]
