@@ -23,6 +23,7 @@
   "material.nvim": { "branch": "main", "commit": "22a92aae1bba52cb8d34771e41e132ed0634bef5" },
   "minimap.vim": { "branch": "master", "commit": "701f4cf4b60a3e1685d2da484282f3a3d8bf9db6" },
   "neovim-session-manager": { "branch": "master", "commit": "07bb62583769abd9d32f88f428ea58248730ac7a" },
+  "nfnl": { "branch": "main", "commit": "7ef3da23c5b7f9e08ca7e1f9807c1a5a93e2f33f" },
   "nightfox.nvim": { "branch": "main", "commit": "a408e6bb101066952b81de9c11be367114bd561f" },
   "nvim-autopairs": { "branch": "master", "commit": "096d0baecc34f6c5d8a6dd25851e9d5ad338209b" },
   "nvim-comment": { "branch": "main", "commit": "e9ac16ab056695cad6461173693069ec070d2b23" },
