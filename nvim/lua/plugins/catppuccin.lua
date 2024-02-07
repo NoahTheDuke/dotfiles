@@ -1,4 +1,10 @@
--- latte, frappe, macchiato, mocha
-vim.g.catppuccin_flavour = "frappe"
-
-require("catppuccin").setup()
+return {
+  "https://github.com/catppuccin/nvim",
+  name = "catppuccin",
+  config = function()
+    require("catppuccin").setup({
+      -- latte, frappe, macchiato, mocha
+      flavour = "frappe"
+    })
+  end,
+}

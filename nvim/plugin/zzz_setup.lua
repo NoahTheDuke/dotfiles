@@ -1,3 +1,1 @@
-local utils = require("utils")
-
-utils.plugin_setup("plugins.alpha", "alpha")
+require("plugins.alpha").config(nil, nil, true)

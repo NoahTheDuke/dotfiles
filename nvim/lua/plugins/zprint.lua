@@ -1,9 +1,16 @@
 local nvim = require "vendor.nvim"
 
-vim.g["zprint#make_autocmd"] = 0
+-- clojure
+return {
+  "https://github.com/bfontaine/zprint.vim",
+  ft = "clojure",
+  config = function()
+    vim.g["zprint#make_autocmd"] = 0
 
-nvim.create_user_command(
-  "ZPrint",
-  [[ call zprint#apply() ]],
-  { }
-)
+    nvim.create_user_command(
+      "ZPrint",
+      [[ call zprint#apply() ]],
+      { }
+    )
+  end,
+}

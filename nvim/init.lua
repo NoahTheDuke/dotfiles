@@ -10,7 +10,7 @@
 require "options"
 require "keymaps"
 require "autocmds"
-require "plugins"
+require "lazy_setup"
 
 -- gotta wait for the plugins to load
 require "colorscheme"

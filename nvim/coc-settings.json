@@ -84,7 +84,6 @@
     "git.enableGutters": true,
     "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
     "javascript.validate.enable": false,
-    "Lua.diagnostics.globals": [ "packer_plugins" ],
     "Lua.hint.enable": false,
     "Lua.runtime.version": "LuaJIT",
     "Lua.workspace.checkThirdParty": false,
