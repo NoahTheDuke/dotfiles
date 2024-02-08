@@ -1,9 +1,7 @@
 -- [nfnl] Compiled from fnl/plugins/nvim-treesitter.fnl by https://github.com/Olical/nfnl, do not edit.
 local utils = require("utils")
 local function _1_()
-  local _local_2_ = pcall(require, "nvim-treesitter.configs")
-  local status_ok = _local_2_[1]
-  local ts_config = _local_2_[2]
+  local status_ok, ts_config = pcall(require, "nvim-treesitter.configs")
   if not status_ok then
     return nil
   else

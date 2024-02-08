@@ -1,0 +1,8 @@
+#!/bin/bash
+# On Mac OS, you may need to replace `/bin/bash` with `/bin/zsh`.
+
+# Shell-escape each path:
+DIR1=$(printf '%q' "$1"); shift
+DIR2=$(printf '%q' "$1"); shift
+# The colorscheme is only important on Vim versions older than 9.0
+nvim "$@" -c "DirDiff $DIR1 $DIR2"

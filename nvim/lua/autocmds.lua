@@ -1,18 +1,3 @@
-vim.cmd [[
-  augroup filetypes
-    autocmd Filetype gitcommit setlocal spell textwidth=80
-    autocmd BufNewFile,BufReadPost *.axvw set filetype=xml
-    autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-    autocmd BufNewFile,BufReadPost *.asd set filetype=lisp
-    autocmd BufNewFile,BufReadPost *.asm set filetype=z80
-    autocmd TermOpen * setlocal nospell nonumber norelativenumber
-    autocmd TermOpen,BufEnter term://* startinsert
-  augroup END
-]]
-
-vim.cmd [[
-  augroup autosave
-    autocmd FocusLost * :wa
-    autocmd FocusGained,BufEnter * :checktime
-  augroup END
-]]
+-- [nfnl] Compiled from fnl/autocmds.fnl by https://github.com/Olical/nfnl, do not edit.
+vim.cmd("\n  augroup filetypes\n    autocmd Filetype gitcommit setlocal spell textwidth=80\n    autocmd BufNewFile,BufReadPost *.axvw set filetype=xml\n    autocmd BufNewFile,BufReadPost *.md set filetype=markdown\n    autocmd BufNewFile,BufReadPost *.asd set filetype=lisp\n    autocmd BufNewFile,BufReadPost *.asm set filetype=z80\n    autocmd TermOpen * setlocal nospell nonumber norelativenumber\n    autocmd TermOpen,BufEnter term://* startinsert\n  augroup END\n  ")
+return vim.cmd("\n  augroup autosave\n    autocmd FocusLost * :wa\n    autocmd FocusGained,BufEnter * :checktime\n  augroup END\n  ")
