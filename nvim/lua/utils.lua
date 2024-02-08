@@ -25,10 +25,12 @@ function M.invertTable(t)
   return out
 end
 
-function M.dep(name, ...)
-  local args = {...}
-  table.insert(args, 1, name)
-  return args
+function M.dep(name, args)
+  if args ~= nil then
+    table.insert(args, 1, name)
+    return args
+  end
+  return { name }
 end
 
 return M

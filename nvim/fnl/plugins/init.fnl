@@ -114,11 +114,6 @@
    {:name "fennel.vim"
     :ft "fennel"})
 
- (utils.dep
-   "https://github.com/Olical/nfnl"
-   {:name "nfnl"
-    :ft "fennel"})
-
  ;; git
  (utils.dep
    "https://github.com/tpope/vim-git"
