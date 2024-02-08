@@ -1,7 +1,7 @@
-return {
-  "https://github.com/gpanders/editorconfig.nvim",
-  name = "editorconfig.nvim",
-  config = function ()
-    vim.g.EditorConfig_exclude_patterns = { "fugitive://.*" }
-  end,
-}
+-- [nfnl] Compiled from fnl/plugins/editorconfig.fnl by https://github.com/Olical/nfnl, do not edit.
+local utils = require("utils")
+local function _1_()
+  vim.g.EditorConfig_exclude_patterns = {"fugitive://.*"}
+  return nil
+end
+return {utils.dep("https://github.com/gpanders/editorconfig.nvim", {name = "editorconfig.nvim", config = _1_})}

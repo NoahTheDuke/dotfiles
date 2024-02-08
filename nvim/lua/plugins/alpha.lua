@@ -1,51 +1,44 @@
+-- [nfnl] Compiled from fnl/plugins/alpha.fnl by https://github.com/Olical/nfnl, do not edit.
 local function setup()
   local alpha = require("alpha")
   local dashboard = require("alpha.themes.dashboard")
   local headers = require("utils.headers")
-  local lazy_plugins = vim.tbl_map(function(plugin)
+  local lazy_plugins
+  local function _1_(plugin)
     return plugin.name
-  end, require("lazy").plugins())
-
+  end
+  local function _2_()
+    local lazy = require("lazy")
+    return lazy.plugins()
+  end
+  lazy_plugins = vim.tbl_map(_1_, _2_())
   math.randomseed(os.time())
   dashboard.section.header.val = headers.random()
-
-  dashboard.section.buttons.val = {
-    dashboard.button("f", "  Find File", ":Telescope find_files<CR>"),
-    dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-    dashboard.button("s", "  Load Session", ":SessionManager load_session<CR>"),
-    dashboard.button("r", "  Recent Files", ":Telescope oldfiles<CR>"),
-    dashboard.button("t", "  Find Text", ":Telescope live_grep<CR>"),
-    dashboard.button("c", "  Configuration", ":e $MYVIMRC<CR>:cd %:h/../<CR>"),
-    dashboard.button("q", "  Quit Neovim", ":qa!<CR>"),
-  }
-
+  dashboard.section.buttons.val = {dashboard.button("f", "\239\144\162  Find File", ":Telescope find_files<CR>"), dashboard.button("e", "\239\133\155  New file", ":ene <BAR> startinsert <CR>"), dashboard.button("s", "\239\157\138  Load Session", ":SessionManager load_session<CR>"), dashboard.button("r", "\239\152\136  Recent Files", ":Telescope oldfiles<CR>"), dashboard.button("t", "\239\158\131  Find Text", ":Telescope live_grep<CR>"), dashboard.button("c", "\238\152\149  Configuration", ":e $MYVIMRC<CR>:cd %:h/../<CR>"), dashboard.button("q", "\239\153\153  Quit Neovim", ":qa!<CR>")}
   local function footer()
-    local version = " " .. vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch
-    if lazy_plugins == nil then
+    local vim_version = vim.version()
+    local version = ("\239\148\167 " .. vim_version.major .. "." .. vim_version.minor .. "." .. vim_version.patch)
+    if (lazy_plugins == nil) then
       return version
     else
-      local total_plugins = "   " .. #vim.tbl_keys(lazy_plugins) .. " Plugins"
-      return version .. total_plugins
+      local cnt = #lazy_plugins
+      local total_plugins = ("  \239\150\149 " .. cnt .. " Plugins")
+      return (version .. total_plugins)
     end
   end
-
   dashboard.section.footer.val = footer()
-
   dashboard.section.footer.opts.hl = "AlphaFooter"
   dashboard.section.header.opts.hl = "AlphaHeader"
   dashboard.section.buttons.opts.hl = "AlphaButton"
-
   dashboard.opts.opts.noautocmd = true
-  alpha.setup(dashboard.opts)
+  return alpha.setup(dashboard.opts)
 end
-
--- Splash screen
-return {
-  "https://github.com/goolord/alpha-nvim",
-  name = "alpha",
-  config = function(_plugin, _opts, run)
-    if run then
-      setup()
-    end
-  end,
-}
+local utils = require("utils")
+local function _4_(_plugin, _opts, run)
+  if run then
+    return setup()
+  else
+    return nil
+  end
+end
+return utils.dep("https://github.com/goolord/alpha-nvim", {name = "alpha", config = _4_})

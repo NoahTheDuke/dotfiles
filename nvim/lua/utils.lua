@@ -1,36 +1,21 @@
-local nvim = require "vendor.nvim"
-
-local M = {}
-
-function M.g_set(k, v)
-  if nvim.fn.exists(k) == 0 then
+-- [nfnl] Compiled from fnl/utils.fnl by https://github.com/Olical/nfnl, do not edit.
+local function g_set(k, v)
+  if (0 == vim.api.nvim_call_function("exists", k)) then
     vim.g[k] = v
-  end
-end
-
-function M.indexOf(array, value)
-    for i, v in ipairs(array) do
-        if v == value then
-            return i
-        end
-    end
     return nil
-end
-
-function M.invertTable(t)
-  local out = {}
-  for k, v in pairs(t) do
-    out[v] = k
+  else
+    return nil
   end
-  return out
 end
-
-function M.dep(name, args)
-  if args ~= nil then
+local function nvim_ex(...)
+  return vim.api.nvim_command(table.concat(vim.tbl_flatten({...}), " "))
+end
+local function dep(name, args)
+  if (args ~= nil) then
     table.insert(args, 1, name)
     return args
+  else
+    return {name}
   end
-  return { name }
 end
-
-return M
+return {g_set = g_set, dep = dep, nvim_ex = nvim_ex}

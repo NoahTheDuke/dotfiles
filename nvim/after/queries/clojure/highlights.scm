@@ -1,7 +1,5 @@
 ; extends
 
-(kwd_lit) @keyword
-
 (var_quoting_lit) @punctuation.special
 (derefing_lit) @punctuation.special
 

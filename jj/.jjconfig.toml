@@ -9,3 +9,5 @@ diff-args = ["--color=always", "$left", "$right"]
 [user]
 name = "Noah Bogart"
 email = "noah.bogart@hey.com"
+
+revset-aliases."immutable_heads()" = "main@origin | (main@origin.. & ~mine())"

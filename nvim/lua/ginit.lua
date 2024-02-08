@@ -1,41 +1,28 @@
-local nvim = require("vendor.nvim")
-
+-- [nfnl] Compiled from fnl/ginit.fnl by https://github.com/Olical/nfnl, do not edit.
+local utils = require("utils")
 vim.opt.mouse = "a"
-
--- neovim-qt settings
-if vim.g.GuiLoaded == 1 then
+if (1 == vim.g.GuiLoaded) then
   vim.opt.showtabline = 2
-
-  nvim.ex.GuiAdaptiveColor(1)
-  nvim.ex.GuiAdaptiveFont(1)
-  nvim.ex.GuiAdaptiveStyle("Fusion")
-  nvim.ex.GuiFont_("FiraCode Nerd Font:h16")
-  nvim.ex.GuiPopupmenu(0)
-  nvim.ex.GuiRenderLigatures(1)
-  nvim.ex.GuiScrollBar(1)
-  nvim.ex.GuiTabline(1)
-
-  vim.keymap.set("n", "<RightMouse>", ":call GuiShowContextMenu()<CR>", {
-    silent = true,
-  })
-  vim.keymap.set("i", "<RightMouse>", "<Esc>:call GuiShowContextMenu()<CR>", {
-    silent = true,
-  })
-  vim.keymap.set("x", "<RightMouse>", ":call GuiShowContextMenu()<CR>gv", {
-    silent = true,
-  })
-  vim.keymap.set("s", "<RightMouse>", "<C-G>:call GuiShowContextMenu()<CR>gv", {
-    silent = true,
-  })
-
-  nvim.create_user_command(
-    "GuiNewWindow",
-    [[ call GuiNewWindow("<args>") ]],
-    { nargs = 1 }
-  )
+  utils.nvim_ex("GuiAdaptiveColor", 1)
+  utils.nvim_ex("GuiAdaptiveColor", 2)
+  utils.nvim_ex("GuiAdaptiveFont", 2)
+  utils.nvim_ex("GuiAdaptiveStyle", 2)
+  utils.nvim_ex("GuiFont!", 2)
+  utils.nvim_ex("GuiPopupmenu", 2)
+  utils.nvim_ex("GuiRenderLigatures", 2)
+  utils.nvim_ex("GuiScrollBar", 2)
+  utils.nvim_ex("GuiTabline", 2)
+  vim.keymap.set("n", "<RightMouse>", ":call GuiShowContextMenu()<CR>", {silent = true})
+  vim.keymap.set("i", "<RightMouse>", "<Esc>:call GuiShowContextMenu()<CR>", {silent = true})
+  vim.keymap.set("x", "<RightMouse>", ":call GuiShowContextMenu()<CR>gv", {silent = true})
+  vim.keymap.set("s", "<RightMouse>", "<C-G>:call GuiShowContextMenu()<CR>gv", {silent = true})
+  vim.api.nvim_create_user_command("GuiNewWindow", "call GuiNewWindow(\"<args>\")", {nargs = 1})
+else
 end
-
-if vim.g.neovide == true then
-  vim.opt.guifont = "Fira Code Retina:h16,FiraCode Nerd Font:h16"
+if (vim.g.neovide == true) then
+  vim.opt.guifont = "Fira Code Retina:h16FiraCode Nerd Font:h16"
   vim.g.neovide_cursor_animation_length = 0.04
+  return nil
+else
+  return nil
 end
