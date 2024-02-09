@@ -2,8 +2,7 @@
 
 [(utils.dep
    "https://github.com/clojure-vim/clojure.vim"
-   {:name "clojure.vim"
-    :config
+   {:config
     (fn []
       (set vim.g.clojure_syntax_keywords
            {:clojureMacro ["wait-for"

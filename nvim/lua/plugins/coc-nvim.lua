@@ -42,25 +42,26 @@ local function _1_()
   coc_command("OR", "runCommand", "editor.action.organizeImport")
   coc_command("Open", "openLink")
   _G.Coc_show_documentation = function()
-    local filetype = vim.bo.filetyp
+    local filetype = vim.bo.filetype
     if ((filetype == "vim") or (filetype == "help")) then
-      return vim.api.nvim_command(("h " .. filetype))
+      vim.api.nvim_command(("h " .. filetype))
     elseif (vim.cmd("coc#rpc#ready") and vim.fn.CocAction("hasProvider", "hover")) then
-      return vim.fn.CocActionAsync("doHover")
+      vim.fn.CocActionAsync("doHover")
     else
-      return nil
     end
+    return nil
   end
   _G.show_docs = function()
     local cw = vim.fn.expand("<cword>")
-    if (0 <= vim.fn.index({vim = "help"}, vim.bo.filetype)) then
-      return vim.api.nvim_command(("h " .. cw))
+    if (0 <= vim.fn.index({"vim", "help"}, vim.bo.filetype)) then
+      vim.api.nvim_command(("h " .. cw))
     elseif vim.api.nvim_eval("coc#rpc#ready()") then
-      return vim.fn.CocActionAsync("doHover")
+      vim.fn.CocActionAsync("doHover")
     else
-      return vim.api.nvim_command(("!" .. vim.o.keywordprg .. " " .. cw))
+      vim.api.nvim_command(("!" .. vim.o.keywordprg .. " " .. cw))
     end
+    return nil
   end
   return keyset("n", "K", _G.show_docs, opts)
 end
-return {utils.dep("https://github.com/neoclide/coc.nvim", {name = "coc.nvim", branch = "release", config = _1_})}
+return {utils.dep("https://github.com/neoclide/coc.nvim", {branch = "release", config = _1_})}

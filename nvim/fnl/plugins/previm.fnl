@@ -3,7 +3,6 @@
 ;; :PreviewOpen
 [(utils.dep
    "https://github.com/previm/previm"
-   {:name "previm"
-    :config
+   {:config
     (fn []
       (set vim.g.previm_open_cmd "firefox"))})]

@@ -4,4 +4,4 @@ local function _1_()
   vim.g.previm_open_cmd = "firefox"
   return nil
 end
-return {utils.dep("https://github.com/previm/previm", {name = "previm", config = _1_})}
+return {utils.dep("https://github.com/previm/previm", {config = _1_})}

@@ -41,4 +41,4 @@ local function _4_(_plugin, _opts, run)
     return nil
   end
 end
-return utils.dep("https://github.com/goolord/alpha-nvim", {name = "alpha", config = _4_})
+return utils.dep("https://github.com/goolord/alpha-nvim", {config = _4_})

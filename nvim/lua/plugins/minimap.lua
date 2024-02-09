@@ -6,4 +6,4 @@ local function _1_()
   vim.g.minimap_git_colors = 1
   return nil
 end
-return {utils.dep("https://github.com/wfxr/minimap.vim", {name = "minimap.vim", config = _1_})}
+return {utils.dep("https://github.com/wfxr/minimap.vim", {config = _1_})}

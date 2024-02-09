@@ -3,8 +3,7 @@
 ;; ysaw, ds[]
 (utils.dep
   "https://github.com/kylechui/nvim-surround"
-  {:name "nvim-surround"
-   :config
+  {:config
    (fn []
      (let [nvim-surround (require "nvim-surround")]
        (nvim-surround.setup {})))})

@@ -4,7 +4,7 @@
     "coc.preferences.enableMessageDialog": false,
     "coc.preferences.excludeImageLinksInMarkdownDocument": true,
     "coc.preferences.useQuickfixForLocations": false,
-    "[javascript][typescript]": {
+    "[json][javascript][typescript]": {
         "coc.preferences.formatOnSave": true
     },
     "codeLens.enable": true,

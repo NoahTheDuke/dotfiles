@@ -6,8 +6,7 @@
 
 [(utils.dep
    "https://github.com/neoclide/coc.nvim"
-   {:name "coc.nvim"
-    :branch "release"
+   {:branch "release"
     :config
     (fn []
       ;; settings
@@ -69,25 +68,27 @@
       (coc_command "Open" "openLink")
 
       (fn _G.Coc_show_documentation []
-        (local filetype vim.bo.filetyp)
+        (local filetype vim.bo.filetype)
         (if
           (or (= filetype "vim")
               (= filetype "help"))
           (vim.api.nvim_command (.. "h " filetype))
           (and (vim.cmd "coc#rpc#ready")
                (vim.fn.CocAction "hasProvider" "hover"))
-          (vim.fn.CocActionAsync "doHover")))
+          (vim.fn.CocActionAsync "doHover"))
+        nil)
 
       (fn _G.show_docs []
         (local cw (vim.fn.expand "<cword>"))
         (if
           ;; vim help
-          (<= 0 (vim.fn.index {"vim" "help"} vim.bo.filetype))
+          (<= 0 (vim.fn.index ["vim" "help"] vim.bo.filetype))
           (vim.api.nvim_command (.. "h " cw))
           ;; hover
           (vim.api.nvim_eval "coc#rpc#ready()")
           (vim.fn.CocActionAsync "doHover")
           ;; default
-          (vim.api.nvim_command (.. "!" vim.o.keywordprg " " cw))))
+          (vim.api.nvim_command (.. "!" vim.o.keywordprg " " cw)))
+        nil)
 
       (keyset "n" "K" _G.show_docs opts))})]

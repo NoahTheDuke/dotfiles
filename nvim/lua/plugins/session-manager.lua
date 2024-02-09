@@ -5,4 +5,4 @@ local function _1_()
   local config = require("session_manager.config")
   return session_manager.setup({autoload_mode = config.AutoloadMode.Disabled})
 end
-return utils.dep("https://github.com/Shatur/neovim-session-manager", {name = "neovim-session-manager", dependencies = {"nvim-lua/plenary.nvim"}, config = _1_})
+return utils.dep("https://github.com/Shatur/neovim-session-manager", {dependencies = {"nvim-lua/plenary.nvim"}, config = _1_})

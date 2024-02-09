@@ -2,8 +2,7 @@
 
 (utils.dep
   "https://github.com/Olical/nfnl"
-  {:name "nfnl"
-   :config
+  {:config
    (fn []
      (let [nfnl (require "nfnl")]
          (nfnl.setup {})))})

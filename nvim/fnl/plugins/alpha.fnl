@@ -42,8 +42,7 @@
 ;; Splash screen
 (utils.dep
   "https://github.com/goolord/alpha-nvim"
-  {:name "alpha"
-   :config
+  {:config
    (fn [_plugin _opts run]
      (if run
        (setup)))})

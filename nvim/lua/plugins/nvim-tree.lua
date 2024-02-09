@@ -4,4 +4,4 @@ local function _1_()
   local nvim_tree = require("nvim-tree")
   return nvim_tree.setup({renderer = {add_trailing = true, special_files = {"Cargo.toml", "justfile", "Makefile", "project.clj", "package.json", "README.md", "Readme.md", "readme.md"}}})
 end
-return {utils.dep("https://github.com/kyazdani42/nvim-tree.lua", {name = "nvim-tree.lua", config = _1_})}
+return {utils.dep("https://github.com/kyazdani42/nvim-tree.lua", {config = _1_})}

@@ -2,8 +2,7 @@
 
 [(utils.dep
    "https://github.com/LintaoAmons/scratch.nvim"
-   {:name "scratch.nvim"
-    :config
+   {:config
     (fn []
       (vim.api.nvim_create_user_command "Scratch" "<cmd>Scratch<cr>" { :nargs 0 })
       (vim.api.nvim_create_user_command "ScratchWithName" "<cmd>ScratchWithName<cr>" { :nargs 0 })

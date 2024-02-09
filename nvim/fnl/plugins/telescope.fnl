@@ -2,8 +2,7 @@
 
 (utils.dep
   "https://github.com/nvim-telescope/telescope.nvim"
-  {:name "telescope.nvim"
-   :dependencies [ "https://github.com/fannheyward/telescope-coc.nvim" ]
+  {:dependencies [ "https://github.com/fannheyward/telescope-coc.nvim" ]
    :config
    (fn []
      (local telescope (require "telescope"))

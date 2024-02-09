@@ -2,8 +2,7 @@
 
 [(utils.dep
    "https://github.com/Olical/conjure"
-   {:name "conjure"
-    :config
+   {:config
     (fn []
       (set vim.g.conjure#client#clojure#nrepl#eval#raw_out true)
       (set vim.g.conjure#client#clojure#nrepl#test#current_form_names

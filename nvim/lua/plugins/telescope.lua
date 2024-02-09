@@ -17,4 +17,4 @@ local function _1_()
   end
   return nil
 end
-return utils.dep("https://github.com/nvim-telescope/telescope.nvim", {name = "telescope.nvim", dependencies = {"https://github.com/fannheyward/telescope-coc.nvim"}, config = _1_})
+return utils.dep("https://github.com/nvim-telescope/telescope.nvim", {dependencies = {"https://github.com/fannheyward/telescope-coc.nvim"}, config = _1_})

@@ -2,8 +2,7 @@
 
 [(utils.dep
    "https://github.com/Mofiqul/dracula.nvim"
-   {:name "dracula.nvim"
-    :priority 1000
+   {:priority 1000
     :config
     (fn []
       (let [dracula (require "dracula")

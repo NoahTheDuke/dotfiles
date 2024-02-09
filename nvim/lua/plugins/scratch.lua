@@ -5,4 +5,4 @@ local function _1_()
   vim.api.nvim_create_user_command("ScratchWithName", "<cmd>ScratchWithName<cr>", {nargs = 0})
   return vim.api.nvim_create_user_command("ScratchOpen", "<cmd>ScratchOpen<cr>", {nargs = 0})
 end
-return {utils.dep("https://github.com/LintaoAmons/scratch.nvim", {name = "scratch.nvim", config = _1_})}
+return {utils.dep("https://github.com/LintaoAmons/scratch.nvim", {config = _1_})}

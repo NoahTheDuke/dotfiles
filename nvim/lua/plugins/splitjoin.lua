@@ -4,4 +4,4 @@ local function _1_()
   vim.g.splitjoin_trailing_comma = 1
   return nil
 end
-return utils.dep("https://github.com/AndrewRadev/splitjoin.vim", {name = "splitjoin.vim", config = _1_})
+return utils.dep("https://github.com/AndrewRadev/splitjoin.vim", {config = _1_})

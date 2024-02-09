@@ -15,4 +15,4 @@ local function _1_()
   vim.g["conjure#client#clojure#nrepl#test#runner"] = "clojure"
   return nil
 end
-return {utils.dep("https://github.com/Olical/conjure", {name = "conjure", config = _1_})}
+return {utils.dep("https://github.com/Olical/conjure", {config = _1_})}

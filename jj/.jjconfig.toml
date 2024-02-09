@@ -1,7 +1,8 @@
-ui.editor = "nvim"
-ui.diff-editor = "vimdirdiff"
-ui.diff.format = "git"
-ui.default-command = "log"
+[ui]
+editor = "nvim"
+diff-editor = "vimdirdiff"
+diff.format = "git"
+default-command = "log"
 
 [merge-tools.difft]
 diff-args = ["--color=always", "$left", "$right"]
@@ -10,4 +11,11 @@ diff-args = ["--color=always", "$left", "$right"]
 name = "Noah Bogart"
 email = "noah.bogart@hey.com"
 
-revset-aliases."immutable_heads()" = "main@origin | (main@origin.. & ~mine())"
+[revset-aliases]
+"open()" = "mine() ~ ::trunk()"
+
+# [revsets]
+# log = "::@"
+
+[git]
+push-branch-prefix = "nb/push-"

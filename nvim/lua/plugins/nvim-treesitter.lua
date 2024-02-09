@@ -8,4 +8,4 @@ local function _1_()
     return ts_config.setup({ensure_installed = {"clojure", "fennel", "javascript", "lua", "markdown", "markdown_inline", "ocaml", "query", "rust", "typescript", "vimdoc", "vue"}, highlight = {enable = true}, incremental_selection = {enable = true}, textobjects = {enable = true}, playground = {enable = true}})
   end
 end
-return utils.dep("https://github.com/nvim-treesitter/nvim-treesitter", {name = "nvim-treesitter", config = _1_})
+return utils.dep("https://github.com/nvim-treesitter/nvim-treesitter", {config = _1_})

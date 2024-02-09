@@ -79,13 +79,11 @@
 
  (utils.dep
    "https://github.com/walterl/conjure-macroexpand"
-   {:name "conjure-macroexpand"
-    :dependencies [ "Olical/conjure" ]})
+   {:dependencies [ "Olical/conjure" ]})
 
  (utils.dep
    "https://github.com/walterl/conjure-locstack"
-   {:name "conjure-locstack"
-    :dependencies [ "Olical/conjure" ]})
+   {:dependencies [ "Olical/conjure" ]})
 
  ;; language plugins
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -93,26 +91,22 @@
  ;; asciidoc
  (utils.dep
    "https://github.com/asciidoc/vim-asciidoc"
-   {:name "vim-asciidoc"
-    :ft "asciidoc"})
+   {:ft "asciidoc"})
 
  ;; asm
  (utils.dep
    "https://github.com/samsaga2/vim-z80"
-   {:name "vim-z80"
-    :ft "asm"})
+   {:ft "asm"})
 
 ;; docker-compose
  (utils.dep
    "https://github.com/ekalinin/Dockerfile.vim"
-   {:name "dockerfile.vim"
-    :ft "dockerfile"})
+   {:ft "dockerfile"})
 
  ;; fennel
  (utils.dep
    "https://github.com/jaawerth/fennel.vim"
-   {:name "fennel.vim"
-    :ft "fennel"})
+   {:ft "fennel"})
 
  ;; git
  (utils.dep
@@ -122,56 +116,47 @@
  ;; html5
  (utils.dep
    "https://github.com/othree/html5.vim"
-   {:name "html5.vim"
-    :ft "html"})
+   {:ft "html"})
 
  ;; javascript
  (utils.dep
    "https://github.com/pangloss/vim-javascript"
-   {:name "vim-javascript"
-    :ft "javascript"})
+   {:ft "javascript"})
 
  ;; json5
  (utils.dep
    "https://github.com/GutenYe/json5.vim"
-   {:name "json5.vim"
-    :ft "json5"})
+   {:ft "json5"})
 
  ;; jsonc
  (utils.dep
    "https://github.com/neoclide/jsonc.vim"
-   {:name "jsonc.vim"
-    :ft "jsonc"})
+   {:ft "jsonc"})
 
  ;; justfiles
  (utils.dep
    "https://github.com/NoahTheDuke/vim-just"
-   {:name "vim-just"
-    :ft "just"})
+   {:ft "just"})
 
  ;; markdown
  (utils.dep
    "https://github.com/plasticboy/vim-markdown"
-   {:name "vim-markdown"
-    :ft "markdown"})
+   {:ft "markdown"})
 
  ;; ocaml
  (utils.dep
    "https://github.com/ocaml/vim-ocaml"
-   {:name "vim-ocaml"
-    :ft "ocaml"})
+   {:ft "ocaml"})
 
  ;; python
  (utils.dep
    "https://github.com/psf/black"
-   {:name "black"
-    :ft "python"})
+   {:ft "python"})
 
  ;; racket
  (utils.dep
    "https://github.com/wlangstroth/vim-racket"
-   {:name "vim-racket"
-    :ft "racket"})
+   {:ft "racket"})
 
  ;; rst
  (utils.dep
@@ -181,19 +166,16 @@
  ;; ruby/rails
  (utils.dep
    "https://github.com/vim-ruby/vim-ruby"
-   {:name "vim-ruby"
-    :ft "ruby"})
+   {:ft "ruby"})
 
  (utils.dep
    "https://github.com/tpope/vim-rails"
-   {:name "vim-rails"
-    :ft "ruby"})
+   {:ft "ruby"})
 
  ;; rust
  (utils.dep
    "https://github.com/rust-lang/rust.vim"
-   {:name "rust.vim"
-    :ft "rust"})
+   {:ft "rust"})
 
  ;; sh/bash/etc
  (utils.dep
@@ -203,38 +185,32 @@
  ;; stylus
  (utils.dep
    "https://github.com/wavded/vim-stylus"
-   {:name "vim-stylus"
-    :ft "stylus"})
+   {:ft "stylus"})
 
  ;; toml
  (utils.dep
    "https://github.com/cespare/vim-toml"
-   {:name "vim-toml"
-    :ft "toml"})
+   {:ft "toml"})
 
  ;; twig
  (utils.dep
    "https://github.com/lumiliet/vim-twig"
-   {:name "vim-twig"
-    :ft "twig"})
+   {:ft "twig"})
 
  ;; typescript
  (utils.dep
    "https://github.com/HerringtonDarkholme/yats.vim"
-   {:name "yats.vim"
-    :ft "typescript"})
+   {:ft "typescript"})
 
  ;; xml
  (utils.dep
    "https://github.com/amadeus/vim-xml"
-   {:name "vim-xml"
-    :ft "xml"})
+   {:ft "xml"})
 
  ;; zig
  (utils.dep
    "https://github.com/ziglang/zig.vim"
-   {:name "zig.vim"
-    :ft "zig"})
+   {:ft "zig"})
 
  ;; colors
  (utils.dep

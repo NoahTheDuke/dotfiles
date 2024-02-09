@@ -3,8 +3,7 @@
 ;; :WhichKey
 (utils.dep
   "https://github.com/folke/which-key.nvim"
-  {:name "which-key.nvim"
-   :config
+  {:config
    (fn []
      (let [which (require "which-key")]
        (which.setup)))})

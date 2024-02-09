@@ -3,8 +3,7 @@
 ;; :SessionManager
 (utils.dep
   "https://github.com/Shatur/neovim-session-manager"
-  {:name "neovim-session-manager"
-   :dependencies ["nvim-lua/plenary.nvim"]
+  {:dependencies ["nvim-lua/plenary.nvim"]
    :config
    (fn []
      (let [session-manager (require "session_manager")

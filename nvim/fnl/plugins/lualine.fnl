@@ -2,8 +2,7 @@
 
 [(utils.dep
    "https://github.com/nvim-lualine/lualine.nvim"
-   {:name "lualine.nvim"
-    :config
+   {:config
     (fn []
       (let [lualine (require "lualine")]
         (lualine.setup

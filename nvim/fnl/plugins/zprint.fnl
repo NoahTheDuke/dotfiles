@@ -3,8 +3,7 @@
 ; -- clojure
 (utils.dep
   "https://github.com/bfontaine/zprint.vim"
-  {:name "zprint.vim"
-   :ft "clojure"
+  {:ft "clojure"
    :config
    (fn []
      (set vim.g.zprint#make_autocmd 0)

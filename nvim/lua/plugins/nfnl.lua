@@ -4,4 +4,4 @@ local function _1_()
   local nfnl = require("nfnl")
   return nfnl.setup({})
 end
-return utils.dep("https://github.com/Olical/nfnl", {name = "nfnl", config = _1_})
+return utils.dep("https://github.com/Olical/nfnl", {config = _1_})

@@ -3,7 +3,6 @@
 ;; gS gJ
 (utils.dep
   "https://github.com/AndrewRadev/splitjoin.vim"
-  {:name "splitjoin.vim"
-   :config
+  {:config
    (fn []
      (set vim.g.splitjoin_trailing_comma 1))})

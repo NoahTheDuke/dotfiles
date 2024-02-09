@@ -9,4 +9,4 @@ local function _1_()
   vim.cmd.colorscheme("dracula")
   return nil
 end
-return {utils.dep("https://github.com/Mofiqul/dracula.nvim", {name = "dracula.nvim", priority = 1000, config = _1_})}
+return {utils.dep("https://github.com/Mofiqul/dracula.nvim", {priority = 1000, config = _1_})}

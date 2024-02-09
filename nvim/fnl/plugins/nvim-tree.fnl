@@ -3,8 +3,7 @@
 ;; :NvimTreeToggle
 [(utils.dep
    "https://github.com/kyazdani42/nvim-tree.lua"
-   {:name "nvim-tree.lua"
-    :config
+   {:config
     (fn []
       (local nvim-tree (require "nvim-tree"))
       (nvim-tree.setup

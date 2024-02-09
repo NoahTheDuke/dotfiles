@@ -3,4 +3,4 @@ local utils = require("utils")
 local function _1_(plugin)
   return (vim.opt.rtp):append((plugin.dir .. "/vim"))
 end
-return {utils.dep("https://github.com/vlime/vlime", {name = "vlime", ft = "lisp", config = _1_})}
+return {utils.dep("https://github.com/vlime/vlime", {ft = "lisp", config = _1_})}

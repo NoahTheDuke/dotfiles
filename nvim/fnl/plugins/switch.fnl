@@ -3,8 +3,7 @@
 ;; gs: "abc" -> "abc -> :abc
 [(utils.dep
    "https://github.com/AndrewRadev/switch.vim"
-   {:name "switch.vim"
-    :config
+   {:config
     (fn []
       (vim.cmd
         "

@@ -4,4 +4,4 @@ local function _1_()
   local nvim_comment = require("nvim_comment")
   return nvim_comment.setup({comment_empty = false})
 end
-return utils.dep("https://github.com/terrortylor/nvim-comment", {name = "nvim-comment", config = _1_})
+return utils.dep("https://github.com/terrortylor/nvim-comment", {config = _1_})

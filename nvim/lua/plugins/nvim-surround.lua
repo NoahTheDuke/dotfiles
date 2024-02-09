@@ -4,4 +4,4 @@ local function _1_()
   local nvim_surround = require("nvim-surround")
   return nvim_surround.setup({})
 end
-return utils.dep("https://github.com/kylechui/nvim-surround", {name = "nvim-surround", config = _1_})
+return utils.dep("https://github.com/kylechui/nvim-surround", {config = _1_})

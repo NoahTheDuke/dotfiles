@@ -4,8 +4,7 @@
 ;; automatically create closing "" and () etc
 (utils.dep
   "https://github.com/windwp/nvim-autopairs"
-  {:name "nvim-autopairs"
-   :config
+  {:config
    (fn []
      (local autopairs (require "nvim-autopairs"))
      (autopairs.setup {:map_cr false
