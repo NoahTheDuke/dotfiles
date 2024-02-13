@@ -1,2 +1,4 @@
 * text eol=lf
 *.ttf binary
+
+nvim/lua/**/*.lua linguist-generated
