@@ -2,7 +2,8 @@
 editor = "nvim"
 diff-editor = "vimdirdiff"
 diff.format = "git"
-default-command = "log"
+default-command = "-h"
+default-revset = "::@"
 
 [merge-tools.difft]
 diff-args = ["--color=always", "$left", "$right"]
@@ -13,6 +14,7 @@ email = "noah.bogart@hey.com"
 
 [revset-aliases]
 "open()" = "mine() ~ ::trunk()"
+"immutable_heads()" = "none()"
 
 # [revsets]
 # log = "::@"
