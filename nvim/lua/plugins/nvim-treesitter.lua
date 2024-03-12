@@ -5,7 +5,7 @@ local function _1_()
   if not status_ok then
     return nil
   else
-    return ts_config.setup({ensure_installed = {"clojure", "fennel", "javascript", "lua", "markdown", "markdown_inline", "ocaml", "query", "rust", "typescript", "vimdoc", "vue"}, highlight = {enable = true}, incremental_selection = {enable = true}, textobjects = {enable = true}, playground = {enable = true}})
+    return ts_config.setup({ensure_installed = {"clojure", "djot", "fennel", "javascript", "lua", "markdown", "markdown_inline", "ocaml", "query", "rust", "typescript", "vimdoc", "vue"}, highlight = {enable = true}, incremental_selection = {enable = true}, textobjects = {enable = true}, playground = {enable = true}})
   end
 end
 return utils.dep("https://github.com/nvim-treesitter/nvim-treesitter", {config = _1_})

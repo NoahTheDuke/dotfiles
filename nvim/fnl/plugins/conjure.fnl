@@ -29,10 +29,10 @@
         :default-call-suffix ""
         :name-prefix "(resolve '"
         :name-suffix ")"})
-  ; (set vim.g.conjure#client#clojure#nrepl#test#call_suffix "")
-  ; (set vim.g.conjure#client#clojure#nrepl#test#runner "clojure")
-  (set vim.g.conjure#client#clojure#nrepl#test#call_suffix "{:kaocha/color? false :capture-output? false}")
-  (set vim.g.conjure#client#clojure#nrepl#test#runner "kaocha")
+  (set vim.g.conjure#client#clojure#nrepl#test#call_suffix "")
+  (set vim.g.conjure#client#clojure#nrepl#test#runner "clojure")
+  ; (set vim.g.conjure#client#clojure#nrepl#test#call_suffix "{:kaocha/color? false :capture-output? false}")
+  ; (set vim.g.conjure#client#clojure#nrepl#test#runner "kaocha")
   )
 
 (comment

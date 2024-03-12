@@ -98,7 +98,7 @@
    "https://github.com/samsaga2/vim-z80"
    {:ft "asm"})
 
-;; docker-compose
+ ;; docker-compose
  (utils.dep
    "https://github.com/ekalinin/Dockerfile.vim"
    {:ft "dockerfile"})

@@ -67,6 +67,7 @@
     // coc extensions
     "clojure.enable": true,
     "clojure.executable": "clojure-lsp-dev",
+    "clojure.lsp-check-on-start": false,
     "clojure.initialization-options.copy-kondo-configs?": true,
     "clojure.initialization-options.log-path": "/tmp/clojure-lsp.out",
     "clojure.initialization-options.semantic-tokens?": true,
@@ -111,5 +112,11 @@
     "stylua.styluaPath": "/Users/noah/.cargo/bin/stylua",
     "volar.takeOverMode.enabled": false,
     "tsserver.enable": true,
-    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+    "java.imports.gradle.wrapper.checksums": [
+      {
+        "sha256": "cb0da6751c2b753a16ac168bb354870ebb1e162e9083f116729cec9c781156b8",
+        "allowed": true
+      }
+    ]
 }

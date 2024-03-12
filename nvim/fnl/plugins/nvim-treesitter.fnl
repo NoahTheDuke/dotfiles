@@ -8,6 +8,7 @@
      (if (not status_ok) nil
        (ts_config.setup
          {:ensure_installed ["clojure"
+                             "djot"
                              "fennel"
                              "javascript"
                              "lua"

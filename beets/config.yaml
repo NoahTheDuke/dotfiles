@@ -18,13 +18,6 @@ plugins:
   - lastgenre
   - zero
 
-convert:
-  auto: true
-  format: aac
-  no_convert:
-    - format:mp3
-    - format:aac
-
 importreplace:
   replacements:
     - item_fields: title artist artist_sort artist_credit
