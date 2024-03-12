@@ -1,10 +1,9 @@
-#!/usr/bin/env osh
-shopt --set oil:basic
+#!/usr/bin/env bash
 
 if [ "$(echo $(uname -s) | cut -c 1-6)" == "Darwin" ] || [ "$(echo $(uname -s) | cut -c 1-5)" == "Linux" ]; then
-    local hook_status=0
+    hook_status=0
     for f in $HOME/dotfiles/git/hooks/pre-commits/*.bash; do
-        local result=$(osh $f)
+        result=$(bash "$f")
         if [ -n "$result" ]; then
             echo $result
             hook_status=1

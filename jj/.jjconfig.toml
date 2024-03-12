@@ -13,11 +13,7 @@ name = "Noah Bogart"
 email = "noah.bogart@hey.com"
 
 [revset-aliases]
-"open()" = "mine() ~ ::trunk()"
-"immutable_heads()" = "none()"
-
-# [revsets]
-# log = "::@"
+"open()" = "(mine() ~ ::trunk()) ~ heads(empty())"
 
 [git]
 push-branch-prefix = "nb/push-"

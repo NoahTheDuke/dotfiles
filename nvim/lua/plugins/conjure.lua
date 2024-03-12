@@ -12,8 +12,8 @@ local function conjure()
   vim.g["conjure#client#clojure#nrepl#connection#auto_repl#enabled"] = false
   local runners = require("conjure.client.clojure.nrepl.action")
   runners["test-runners"].lazytest = {namespace = "lazytest.runner.repl", ["all-fn"] = "run-all-tests", ["ns-fn"] = "run-tests", ["single-fn"] = "run-test-var", ["default-call-suffix"] = "", ["name-prefix"] = "(resolve '", ["name-suffix"] = ")"}
-  vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = ""
-  vim.g["conjure#client#clojure#nrepl#test#runner"] = "clojure"
+  vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = "{:kaocha/color? false :capture-output? false}"
+  vim.g["conjure#client#clojure#nrepl#test#runner"] = "kaocha"
   return nil
 end
 --[[ (conjure) ]]
