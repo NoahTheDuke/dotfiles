@@ -89,5 +89,7 @@
 
   (keyset "n" "K" _G.show_docs opts))
 
-[{"dir" "/Users/noah/personal/coc.nvim"
-  :config config}]
+[(utils.dep
+   "https://github.com/neoclide/coc.nvim"
+   {:branch "release"
+    :config config})]
