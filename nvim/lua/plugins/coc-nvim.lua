@@ -3,7 +3,7 @@ local utils = require("utils")
 local opts = {noremap = true, silent = true}
 local scroll_opts = {silent = true, nowait = true, expr = true}
 local keyset = vim.keymap.set
-local function _1_()
+local function config()
   vim.g.coc_default_semantic_highlight_groups = 1
   vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {group = vim.api.nvim_create_augroup("CocConfigSyntax", {}), pattern = {"coc-settings.json"}, command = "set filetype=jsonc"})
   vim.api.nvim_set_keymap("i", "<cr>", "coc#pum#visible() ? coc#pum#confirm() : \"<CR>\"", scroll_opts)
@@ -33,10 +33,10 @@ local function _1_()
   local function coc_command(name, ...)
     local vargs = {...}
     vargs["n"] = select("#", ...)
-    local function _2_()
+    local function _1_()
       return vim.fn.CocActionAsync(unpack(vargs))
     end
-    return vim.api.nvim_create_user_command(name, _2_, {nargs = 0})
+    return vim.api.nvim_create_user_command(name, _1_, {nargs = 0})
   end
   coc_command("Format", "format")
   coc_command("OR", "runCommand", "editor.action.organizeImport")
@@ -64,4 +64,4 @@ local function _1_()
   end
   return keyset("n", "K", _G.show_docs, opts)
 end
-return {utils.dep("https://github.com/neoclide/coc.nvim", {branch = "release", config = _1_})}
+return {{dir = "/Users/noah/personal/coc.nvim", config = config}}

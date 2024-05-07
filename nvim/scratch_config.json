@@ -6,7 +6,6 @@
         "js",
         "json"
     ],
-    "scratch_file_dir": "/home/noah/.cache/nvim/scratch.nvim",
-    "filetype_details": {
-    }
+    "scratch_file_dir": "/Users/noah/.cache/nvim/scratch.nvim",
+    "filetype_details": {}
 }

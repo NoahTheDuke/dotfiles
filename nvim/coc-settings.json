@@ -4,12 +4,13 @@
     "coc.preferences.enableMessageDialog": false,
     "coc.preferences.excludeImageLinksInMarkdownDocument": true,
     "coc.preferences.useQuickfixForLocations": false,
-    "[json][javascript][typescript]": {
+    "[json][typescript]": {
         "coc.preferences.formatOnSave": true
     },
     "codeLens.enable": true,
     "codeLens.position": "eol",
     "codeLens.separator": "->",
+    "suggest.enableFloat": true,
     "diagnostic.displayByAle": false,
     "diagnostic.floatConfig": { "winblend": 0 },
     "hover.floatConfig": { "winblend": 0 },
@@ -84,7 +85,6 @@
     "clojure.startup-message": true,
     "clojure.trace.server": "verbose",
     "eslint.autoFixOnSave": true,
-    "git.enableGutters": true,
     "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
     "javascript.validate.enable": false,
     "Lua.hint.enable": false,
