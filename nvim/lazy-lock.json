@@ -27,7 +27,7 @@
   "nvim-paredit-fennel": { "branch": "master", "commit": "33380e743109c89fae6823cea4b9f81e635dbeff" },
   "nvim-surround": { "branch": "main", "commit": "6d0dc3dbb557bcc6a024969da461df4ba803fc48" },
   "nvim-tree.lua": { "branch": "master", "commit": "64f61e4c913047a045ff90bd188dd3b54ee443cf" },
-  "nvim-treesitter": { "branch": "master", "commit": "268611e3ece8463bfb5b09044dcd1b76a28ffbb6" },
+  "nvim-treesitter": { "branch": "master", "commit": "da0efd7398713a3177da5ce8690f0e5c5415763d" },
   "plenary.nvim": { "branch": "master", "commit": "08e301982b9a057110ede7a735dd1b5285eb341f" },
   "previm": { "branch": "master", "commit": "c737ab8629abdf3242cd1fb69168a917528f345f" },
   "rust.vim": { "branch": "master", "commit": "889b9a7515db477f4cb6808bef1769e53493c578" },
