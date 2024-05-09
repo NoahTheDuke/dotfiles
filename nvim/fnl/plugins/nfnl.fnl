@@ -5,4 +5,4 @@
   {:config
    (fn []
      (let [nfnl (require "nfnl")]
-         (nfnl.setup {})))})
+       (nfnl.setup {})))})
