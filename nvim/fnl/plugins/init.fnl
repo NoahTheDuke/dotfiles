@@ -3,7 +3,7 @@
 [
  ;; lua support
  (utils.dep
-   "https://github.com/nvim-lua/plenary.nvim"
+   "https://github.com/nvim-lua/plenary.nvim.git"
    {:name "plenary.nvim"})
 
  ;; bug fixes

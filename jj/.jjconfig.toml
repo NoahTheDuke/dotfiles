@@ -17,3 +17,6 @@ email = "noah.bogart@hey.com"
 
 [git]
 push-branch-prefix = "nb/push-"
+
+[experimental-advance-branches]
+enabled-branches = ["main", "master"]

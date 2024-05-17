@@ -81,5 +81,5 @@
   (conjure))
 
 [(utils.dep
-   "https://github.com/Olical/conjure"
+   "https://github.com/Olical/conjure.git"
    {:config conjure})]

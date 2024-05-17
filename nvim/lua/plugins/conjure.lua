@@ -62,4 +62,4 @@ local function conjure()
   return nil
 end
 --[[ (conjure) ]]
-return {utils.dep("https://github.com/Olical/conjure", {config = conjure})}
+return {utils.dep("https://github.com/Olical/conjure.git", {config = conjure})}
