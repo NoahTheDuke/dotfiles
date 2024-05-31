@@ -3,7 +3,9 @@ editor = "nvim"
 diff-editor = "vimdirdiff"
 diff.format = "git"
 default-command = "-h"
-default-revset = "::@"
+
+[revsets]
+log = "::@"
 
 [merge-tools.difft]
 diff-args = ["--color=always", "$left", "$right"]
@@ -19,4 +21,4 @@ email = "noah.bogart@hey.com"
 push-branch-prefix = "nb/push-"
 
 [experimental-advance-branches]
-enabled-branches = ["main", "master"]
+enabled-branches = ["main", "master", "glob:nb/*"]
