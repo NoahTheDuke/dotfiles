@@ -13,6 +13,7 @@ match:
 
 plugins:
   - convert
+  - embedart
   - fetchart
   - importreplace
   - lastgenre
