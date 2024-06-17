@@ -30,11 +30,12 @@
         (let [{: content : range} form
               var-name (-> (parse.strip-meta content)
                            (str.split "%s+")
-                           (core.second))]
+                           (core.second))
+              current-ns (extract.context)]
           (when var-name
-            (log.append [(core.str "; Unmapping '" var-name)] {:break? true})
+            (log.append [(core.str "; Unmapping " var-name)] {:break? true})
             (server.eval
-              {:code (core.str "(ns-unmap *ns* '" var-name ")")}
+              {:code (core.str "(ns-unmap (the-ns '" current-ns ") '" var-name ")")}
               #(ui.display-result
                  $1
                  {:simple-out? true
@@ -73,8 +74,8 @@
         :name-suffix ")"})
   (set vim.g.conjure#client#clojure#nrepl#test#call_suffix "")
   (set vim.g.conjure#client#clojure#nrepl#test#runner "clojure")
-  ; (set vim.g.conjure#client#clojure#nrepl#test#call_suffix "{:kaocha/color? false :capture-output? false}")
-  ; (set vim.g.conjure#client#clojure#nrepl#test#runner "kaocha")
+  (set vim.g.conjure#client#clojure#nrepl#test#call_suffix "{:kaocha/color? false :capture-output? false}")
+  (set vim.g.conjure#client#clojure#nrepl#test#runner "kaocha")
   )
 
 (comment

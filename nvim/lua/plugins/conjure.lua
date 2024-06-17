@@ -32,12 +32,13 @@ local function conjure()
       local content = _let_4_["content"]
       local range = _let_4_["range"]
       local var_name = core.second(str.split(parse["strip-meta"](content), "%s+"))
+      local current_ns = extract.context()
       if var_name then
-        log.append({core.str("; Unmapping '", var_name)}, {["break?"] = true})
+        log.append({core.str("; Unmapping ", var_name)}, {["break?"] = true})
         local function _5_(_241)
           return ui["display-result"](_241, {["simple-out?"] = true, ["raw-out?"] = true, ["ignore-nil?"] = false})
         end
-        server.eval({code = core.str("(ns-unmap *ns* '", var_name, ")")}, _5_)
+        server.eval({code = core.str("(ns-unmap (the-ns '", current_ns, ") '", var_name, ")")}, _5_)
       else
       end
       return form
@@ -59,6 +60,8 @@ local function conjure()
   runners["test-runners"].lazytest = {namespace = "lazytest.runner.repl", ["all-fn"] = "run-all-tests", ["ns-fn"] = "run-tests", ["single-fn"] = "run-test-var", ["default-call-suffix"] = "", ["name-prefix"] = "(resolve '", ["name-suffix"] = ")"}
   vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = ""
   vim.g["conjure#client#clojure#nrepl#test#runner"] = "clojure"
+  vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = "{:kaocha/color? false :capture-output? false}"
+  vim.g["conjure#client#clojure#nrepl#test#runner"] = "kaocha"
   return nil
 end
 --[[ (conjure) ]]
