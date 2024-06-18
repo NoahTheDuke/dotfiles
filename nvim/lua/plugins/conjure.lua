@@ -15,7 +15,7 @@ local function conjure()
       local _let_1_ = form
       local content = _let_1_["content"]
       local range = _let_1_["range"]
-      eval["eval-str"](core.merge({code = str.join({"(time (dotimes [_ 100] ", content, "))"}), range = range, origin = "current-form"}, extra_opts))
+      eval["eval-str"](core.merge({code = str.join({"(time (dotimes [_ 1000] ", content, "))"}), range = range, origin = "current-form"}, extra_opts))
       return form
     else
       return nil
@@ -57,11 +57,11 @@ local function conjure()
   vim.g["conjure#client#clojure#nrepl#test#current_form_names"] = {"deftest", "defexpect", "describe"}
   vim.g["conjure#client#clojure#nrepl#connection#auto_repl#enabled"] = false
   local runners = require("conjure.client.clojure.nrepl.action")
-  runners["test-runners"].lazytest = {namespace = "lazytest.runner.repl", ["all-fn"] = "run-all-tests", ["ns-fn"] = "run-tests", ["single-fn"] = "run-test-var", ["default-call-suffix"] = "", ["name-prefix"] = "(resolve '", ["name-suffix"] = ")"}
+  runners["test-runners"].lazytest = {namespace = "lazytest.repl", ["all-fn"] = "run-all-tests", ["ns-fn"] = "run-tests", ["single-fn"] = "run-test-var", ["default-call-suffix"] = "{:reporter [lazytest.reporters/results]}", ["name-prefix"] = "(resolve '", ["name-suffix"] = ")"}
   vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = ""
   vim.g["conjure#client#clojure#nrepl#test#runner"] = "clojure"
-  vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = "{:kaocha/color? false :capture-output? false}"
-  vim.g["conjure#client#clojure#nrepl#test#runner"] = "kaocha"
+  vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = ""
+  vim.g["conjure#client#clojure#nrepl#test#runner"] = "lazytest"
   return nil
 end
 --[[ (conjure) ]]

@@ -16,7 +16,7 @@
         (let [{: content : range} form]
           (eval.eval-str
             (core.merge
-              {:code (str.join ["(time (dotimes [_ 100] " content "))"])
+              {:code (str.join ["(time (dotimes [_ 1000] " content "))"])
                :range range
                :origin :current-form}
               extra-opts))
@@ -65,17 +65,21 @@
   (local runners (require "conjure.client.clojure.nrepl.action"))
 
   (set runners.test-runners.lazytest
-       {:namespace "lazytest.runner.repl"
+       {:namespace "lazytest.repl"
         :all-fn "run-all-tests"
         :ns-fn "run-tests"
         :single-fn "run-test-var"
-        :default-call-suffix ""
+        :default-call-suffix "{:reporter [lazytest.reporters/results]}"
         :name-prefix "(resolve '"
         :name-suffix ")"})
+
   (set vim.g.conjure#client#clojure#nrepl#test#call_suffix "")
   (set vim.g.conjure#client#clojure#nrepl#test#runner "clojure")
-  (set vim.g.conjure#client#clojure#nrepl#test#call_suffix "{:kaocha/color? false :capture-output? false}")
-  (set vim.g.conjure#client#clojure#nrepl#test#runner "kaocha")
+  ; (set vim.g.conjure#client#clojure#nrepl#test#call_suffix "{:kaocha/color? false :capture-output? false}")
+  ; (set vim.g.conjure#client#clojure#nrepl#test#runner "kaocha")
+
+  (set vim.g.conjure#client#clojure#nrepl#test#call_suffix "")
+  (set vim.g.conjure#client#clojure#nrepl#test#runner "lazytest")
   )
 
 (comment
