@@ -69,7 +69,7 @@
         :all-fn "run-all-tests"
         :ns-fn "run-tests"
         :single-fn "run-test-var"
-        :default-call-suffix "{:reporter [lazytest.reporters/results]}"
+        :default-call-suffix "{:reporter [lazytest.reporters/nested]}"
         :name-prefix "(resolve '"
         :name-suffix ")"})
 

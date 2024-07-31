@@ -3,6 +3,14 @@ local utils = require("utils")
 local opts = {noremap = true, silent = true}
 local scroll_opts = {silent = true, nowait = true, expr = true}
 local keyset = vim.keymap.set
+local function coc_command(name, ...)
+  local vargs = {...}
+  vargs["n"] = select("#", ...)
+  local function _1_()
+    return vim.fn.CocActionAsync(unpack(vargs))
+  end
+  return vim.api.nvim_create_user_command(name, _1_, {nargs = 0})
+end
 local function config()
   vim.g.coc_default_semantic_highlight_groups = 1
   vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {group = vim.api.nvim_create_augroup("CocConfigSyntax", {}), pattern = {"coc-settings.json"}, command = "set filetype=jsonc"})
@@ -30,14 +38,6 @@ local function config()
   keyset("i", "<C-f>", "coc#float#has_scroll() ? \"<c-r>=coc#float#scroll(1)<cr>\" : \"<Right>\"", scroll_opts)
   keyset("i", "<C-b>", "coc#float#has_scroll() ? \"<c-r>=coc#float#scroll(0)<cr>\" : \"<Left>\"", scroll_opts)
   keyset({n = "x"}, "<C-s>", "<Plug>(coc-range-select)", opts)
-  local function coc_command(name, ...)
-    local vargs = {...}
-    vargs["n"] = select("#", ...)
-    local function _1_()
-      return vim.fn.CocActionAsync(unpack(vargs))
-    end
-    return vim.api.nvim_create_user_command(name, _1_, {nargs = 0})
-  end
   coc_command("Format", "format")
   coc_command("OR", "runCommand", "editor.action.organizeImport")
   coc_command("Open", "openLink")

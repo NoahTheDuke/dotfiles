@@ -45,7 +45,14 @@
         "ocaml-lsp": {
             "command": "opam",
             "args": ["config", "exec", "--", "ocamllsp"],
-            "filetypes": ["ocaml", "reason"]
+            "filetypes": ["ocaml", "reason"],
+            "settings": {
+                "codelens":  { "enable": true },
+                "duneDiagnostics": { "enable": true },
+                "extendedHover":  { "enable": true },
+                "inlayHints": { "enable": true },
+                "syntaxDocumentation":  { "enable": true }
+            }
         },
         "fennel": {
             "command": "fennel-ls",
@@ -68,7 +75,7 @@
 
     // coc extensions
     "clojure.enable": true,
-    "clojure.executable": "clojure-lsp-dev",
+    "clojure.executable": "clojure-lsp",
     "clojure.lsp-check-on-start": false,
     "clojure.initialization-options.copy-kondo-configs?": true,
     "clojure.initialization-options.log-path": "/tmp/clojure-lsp.out",

@@ -17,7 +17,6 @@ plugins:
   - fetchart
   - importreplace
   - lastgenre
-  - zero
 
 importreplace:
   replacements:

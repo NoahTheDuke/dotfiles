@@ -51,8 +51,9 @@
 
   (paredit.setup
     {:use_default_keys true
-     :filetypes [ :clojure :scheme :lisp :fennel ]
+     :filetypes [ :clojure :scheme :lisp :fennel :basilisp ]
      :cursor_behaviour :follow
+     :extensions { :basilisp clj }
      :keys {
             ;; Wrap enclosing form in given type enter insert mode at start or end
             "<localleader>i"

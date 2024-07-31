@@ -4,6 +4,14 @@
 (local scroll_opts {:silent true :nowait true :expr true})
 (local keyset vim.keymap.set)
 
+(fn coc_command [name ...]
+  (local vargs [...])
+  (tset vargs :n (select :# ...))
+  (vim.api.nvim_create_user_command
+    name
+    (fn [] (vim.fn.CocActionAsync (unpack vargs)))
+    { :nargs 0 }))
+
 (fn config []
   ;; settings
   (set vim.g.coc_default_semantic_highlight_groups 1)
@@ -50,14 +58,6 @@
   (keyset "i" "<C-b>" "coc#float#has_scroll() ? \"<c-r>=coc#float#scroll(0)<cr>\" : \"<Left>\"" scroll_opts)
 
   (keyset { "n" "x" } "<C-s>" "<Plug>(coc-range-select)" opts)
-
-  (fn coc_command [name ...]
-    (local vargs [...])
-    (tset vargs :n (select :# ...))
-    (vim.api.nvim_create_user_command
-      name
-      (fn [] (vim.fn.CocActionAsync (unpack vargs)))
-      { :nargs 0 }))
 
   (coc_command "Format" "format")
   (coc_command "OR" "runCommand" "editor.action.organizeImport")

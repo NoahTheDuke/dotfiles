@@ -2,4 +2,7 @@
 
 [(utils.dep
    "https://github.com/LintaoAmons/scratch.nvim"
-   {})]
+   {:config (fn []
+              (local scratch (require "scratch"))
+              (scratch.setup
+                {:filetypes [ :clj :lua :js :sh :ts ]}))})]
