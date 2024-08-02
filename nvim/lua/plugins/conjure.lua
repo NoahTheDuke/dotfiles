@@ -12,33 +12,31 @@ local function conjure()
   local function time_current_form(extra_opts)
     local form = extract.form({})
     if form then
-      local _let_1_ = form
-      local content = _let_1_["content"]
-      local range = _let_1_["range"]
+      local content = form["content"]
+      local range = form["range"]
       eval["eval-str"](core.merge({code = str.join({"(time (dotimes [_ 1000] ", content, "))"}), range = range, origin = "current-form"}, extra_opts))
       return form
     else
       return nil
     end
   end
-  local function _3_()
+  local function _2_()
     return time_current_form({})
   end
-  vim.keymap.set("n", "<leader>et", _3_)
+  vim.keymap.set("n", "<leader>et", _2_)
   local function ns_unmap(extra_opts)
     local form = extract.form({["root?"] = true})
     if form then
-      local _let_4_ = form
-      local content = _let_4_["content"]
-      local range = _let_4_["range"]
+      local content = form["content"]
+      local range = form["range"]
       local var_name = core.second(str.split(parse["strip-meta"](content), "%s+"))
       local current_ns = extract.context()
       if var_name then
         log.append({core.str("; Unmapping ", var_name)}, {["break?"] = true})
-        local function _5_(_241)
+        local function _3_(_241)
           return ui["display-result"](_241, {["simple-out?"] = true, ["raw-out?"] = true, ["ignore-nil?"] = false})
         end
-        server.eval({code = core.str("(ns-unmap (the-ns '", current_ns, ") '", var_name, ")")}, _5_)
+        server.eval({code = core.str("(ns-unmap (the-ns '", current_ns, ") '", var_name, ")")}, _3_)
       else
       end
       return form
@@ -60,8 +58,6 @@ local function conjure()
   runners["test-runners"].lazytest = {namespace = "lazytest.repl", ["all-fn"] = "run-all-tests", ["ns-fn"] = "run-tests", ["single-fn"] = "run-test-var", ["default-call-suffix"] = "{:reporter [lazytest.reporters/nested]}", ["name-prefix"] = "(resolve '", ["name-suffix"] = ")"}
   vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = ""
   vim.g["conjure#client#clojure#nrepl#test#runner"] = "clojure"
-  vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = ""
-  vim.g["conjure#client#clojure#nrepl#test#runner"] = "lazytest"
   return nil
 end
 --[[ (conjure) ]]
