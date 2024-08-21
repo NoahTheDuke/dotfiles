@@ -52,7 +52,7 @@ local function conjure()
   vim.g["conjure#mapping#doc_word"] = false
   vim.g["conjure#client#clojure#nrepl#eval#raw_out"] = true
   vim.g["conjure#client#clojure#nrepl#test#raw_out"] = false
-  vim.g["conjure#client#clojure#nrepl#test#current_form_names"] = {"deftest", "defexpect", "describe"}
+  vim.g["conjure#client#clojure#nrepl#test#current_form_names"] = {"deftest", "defexpect", "defdescribe", "defn"}
   vim.g["conjure#client#clojure#nrepl#connection#auto_repl#enabled"] = false
   local runners = require("conjure.client.clojure.nrepl.action")
   runners["test-runners"].lazytest = {namespace = "lazytest.repl", ["all-fn"] = "run-all-tests", ["ns-fn"] = "run-tests", ["single-fn"] = "run-test-var", ["default-call-suffix"] = "{:reporter [lazytest.reporters/nested]}", ["name-prefix"] = "(resolve '", ["name-suffix"] = ")"}

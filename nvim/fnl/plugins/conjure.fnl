@@ -57,7 +57,8 @@
   (set vim.g.conjure#client#clojure#nrepl#test#current_form_names
        ["deftest"
         "defexpect"
-        "describe"])
+        "defdescribe"
+        "defn"])
   (set vim.g.conjure#client#clojure#nrepl#connection#auto_repl#enabled false)
 
   ;; runner stuff

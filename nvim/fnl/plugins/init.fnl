@@ -26,7 +26,8 @@
  ;; :UndotreeToggle
  (utils.dep
    "https://github.com/mbbill/undotree"
-   {:name "undotree"})
+   {:name "undotree"
+    :branch "search"})
 
  ;; git stuff
  ;; :Git [blah blah]
