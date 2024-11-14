@@ -55,7 +55,6 @@
 (vim.api.nvim_set_keymap "v" "<C-x>" ":s#\\%V/-\\=\\d\\+#\\=submatch(0)-1#g" opts)
 
 (vim.api.nvim_set_keymap "n" "<F5>" ":UndotreeToggle<CR>" opts)
-(vim.api.nvim_set_keymap "n" "<F6>" ":NvimTreeToggle %:h<CR>" opts)
 (vim.api.nvim_set_keymap "n" "<F7>" ":MinimapToggle<CR>" opts)
 
 
@@ -69,12 +68,7 @@
     "synIDattr(synIDtrans(synID(line(\".\"), col(\".\"), 1)), \"name\")")
   opts)
 
-(vim.api.nvim_create_user_command 
-  "Notes"
-  "call GuiNewWindow(\"<args>\")"
-  {:nargs 1})
-
-(vim.api.nvim_create_user_command 
+(vim.api.nvim_create_user_command
   "Splint"
   ":exe 'cexpr system(\"splint '.expand('%').' -o clj-kondo --no-summary\")'"
   {:nargs 0})

@@ -136,5 +136,6 @@
         "sha256": "cb0da6751c2b753a16ac168bb354870ebb1e162e9083f116729cec9c781156b8",
         "allowed": true
       }
-    ]
+    ],
+    "java.import.gradle.java.home": "/opt/homebrew/Cellar/openjdk@11/11.0.25/libexec/openjdk.jdk/Contents/Home"
 }

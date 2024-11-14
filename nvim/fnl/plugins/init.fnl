@@ -1,6 +1,7 @@
 (local utils (require :utils))
 
 [
+
  ;; lua support
  (utils.dep
    "https://github.com/nvim-lua/plenary.nvim.git"
@@ -35,11 +36,6 @@
    "https://github.com/tpope/vim-fugitive"
    {:name "vim-fugitive"})
 
- ;; Sets up gitlab settings
- (utils.dep
-   "https://github.com/shumphrey/fugitive-gitlab.vim"
-   {:name "fugitive-gitlab.vim"})
-
  ;; :GitBrowse
  (utils.dep
    "https://github.com/tpope/vim-rhubarb"
@@ -49,16 +45,6 @@
  (utils.dep
    "https://github.com/tpope/vim-projectionist"
    {:name "vim-projectionist"})
-
- ;; fancy icons
- (utils.dep
-   "https://github.com/ryanoasis/vim-devicons"
-   {:name "vim-devicons"})
-
- ;; :DirDiff
- (utils.dep
-   "https://github.com/will133/vim-dirdiff"
-   {:name "vim-dirdiff"})
 
  (utils.dep
    "https://github.com/tpope/vim-repeat"
@@ -213,12 +199,4 @@
    "https://github.com/ziglang/zig.vim"
    {:ft "zig"})
 
- ;; colors
- (utils.dep
-   "https://github.com/EdenEast/nightfox.nvim"
-   {:name "nightfox.nvim"})
-
- (utils.dep
-   "https://github.com/rebelot/kanagawa.nvim"
-   {:name "kanagawa.nvim"})
 ]

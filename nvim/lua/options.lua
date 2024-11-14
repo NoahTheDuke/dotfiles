@@ -1,7 +1,7 @@
 -- [nfnl] Compiled from fnl/options.fnl by https://github.com/Olical/nfnl, do not edit.
 vim.opt.autochdir = false
 vim.opt.backup = false
-do end (vim.opt.clipboard):prepend("unnamedplus")
+vim.opt.clipboard:prepend("unnamedplus")
 vim.opt.cmdheight = 1
 vim.opt.colorcolumn = "+1"
 vim.opt.completeopt = {"menuone", "noselect"}

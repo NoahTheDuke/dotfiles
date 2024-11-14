@@ -2,60 +2,57 @@
 (local utils (require "utils"))
 
 (fn config []
+  (local ts-context (require "nvim-paredit.treesitter.context"))
+  (local ts-forms (require "nvim-paredit.treesitter.forms"))
+  (local ts-utils (require "nvim-paredit.treesitter.utils"))
+  (local whitespace (require "nvim-paredit.api.whitespace"))
   (local paredit (require "nvim-paredit"))
-  (local common (require "nvim-paredit.utils.common"))
-  (local langs (require "nvim-paredit.lang"))
-  (local clj (require "nvim-paredit.lang.clojure"))
-  (local ts (require "nvim-treesitter.ts_utils"))
+
+  (fn insert-in-list [placement]
+    (fn []
+      (local context (ts-context.create_context))
+      (if (not context) (lua "return"))
+
+      (local current-element (ts-forms.get_node_root context.node context))
+      (if (not current-element) (lua "return"))
+
+      (local use-direct-parent (or (whitespace.is_whitespace_under_cursor)
+                                   (ts-utils.node_is_comment current-element context)))
+      (var form (ts-forms.find_nearest_form current-element
+                                            {:captures context.captures
+                                             :use-source false}))
+      (when (not form) (lua "return"))
+
+      (if (and (not use-direct-parent) (~= (form:type) "source"))
+        (do (set form (ts-utils.find_local_root current-element))
+          (if (not (and form (ts-forms.node_is_form form context)))
+            (lua "return"))))
+
+      (paredit.cursor.place_cursor form {:placement placement
+                                         :mode :insert})))
 
   (fn enclosing-wrapper-maker [brackets placement]
     (fn []
-      ;; If the node is a "form", then treat it like an element: (|1 2 3) -> (| (1 2 3))
-      (if (clj.node_is_form (ts.get_node_at_cursor))
-        (paredit.cursor.place_cursor
-          (paredit.wrap.wrap_element_under_cursor (unpack brackets))
-          {:placement placement
-           :mode :insert})
-        ;; Otherwise, wrap the surrounding form: (1 2| 3) -> (| (1 2 3))
-        (paredit.cursor.place_cursor
-          (paredit.wrap.wrap_enclosing_form_under_cursor (unpack brackets))
-          {:placement placement
-           :mode :insert}))))
+      (paredit.cursor.place_cursor
+        (paredit.wrap.wrap_enclosing_form_under_cursor (unpack brackets))
+        {:placement placement
+         :mode :insert})))
 
   (fn wrapper-maker [brackets placement]
     (fn []
       (paredit.cursor.place_cursor
         (paredit.wrap.wrap_element_under_cursor (unpack brackets))
         {:placement placement
-         :mode :insert})))
-
-  (fn move-in-list [placement mode]
-    (local lang (langs.get_language_api))
-    (local current-element (paredit.wrap.find_element_under_cursor lang))
-
-    (when current-element
-      (local use-direct-parent (or (common.is_whitespace_under_cursor lang)
-                                   (lang.node_is_comment (ts.get_node_at_cursor))))
-      (var form (paredit.wrap.find_form current-element lang))
-      (when (and (not use-direct-parent) (~= (form:type) :source))
-        (set form (paredit.wrap.find_parend_form current-element lang)))
-
-      (paredit.cursor.place_cursor
-        form
-        {: placement
-         : mode})))
-
-  (fn insert-in-list-head [] (move-in-list :inner_start :insert))
-  (fn insert-in-list-tail [] (move-in-list :inner_end :insert))
-
+         :mode "insert"})))
 
   (paredit.setup
     {:use_default_keys true
      :filetypes [ :clojure :scheme :lisp :fennel :basilisp ]
      :cursor_behaviour :follow
-     :extensions { :basilisp clj }
+     ; :extensions { :basilisp clj }
      :keys {
             ;; Wrap enclosing form in given type enter insert mode at start or end
+
             "<localleader>i"
             [(enclosing-wrapper-maker ["( " ")"] "inner_start")
              "Wrap form round insert head"]
@@ -80,22 +77,39 @@
             [(enclosing-wrapper-maker ["{" "}"] "inner_end")
              "Wrap form curly insert tail"]
 
-            ;; Wrap current form in given type enter insert mode at start or end
             "<localleader>w"
             [(wrapper-maker ["(" ")"] "inner_start")
-             "Wrap element insert head"]
+             "Wrap element with (), insert head"]
 
             "<localleader>W"
             [(wrapper-maker ["(" ")"] "inner_end")
-             "Wrap element insert tail"]
+             "Wrap element with (), insert tail"]
+
+            "<localleader>e[" ;]
+            [(wrapper-maker ["[" "]"] "inner_start")
+             "Wrap element with [], insert head"]
+
+            "<localleader>e]"
+            [(wrapper-maker ["[" "]"] "inner_end")
+             "Wrap element with [], insert tail"]
+
+            "<localleader>e{" ;}
+            [(wrapper-maker ["{" "}"] "inner_start")
+             "Wrap element with {}, insert head"]
+
+            "<localleader>e}"
+            [(wrapper-maker ["{" "}"] "inner_end")
+             "Wrap element with {}, insert tail"]
 
             "<localleader>h"
-            [insert-in-list-head
+            [(insert-in-list "inner_start")
              "Enter insert mode at head of current form"]
 
             "<localleader>l"
-            [insert-in-list-tail
-             "Enter insert mode at tail of current form"] }}))
+            [(insert-in-list "inner_end")
+             "Enter insert mode at tail of current form"]
+            }
+    }))
 
 (comment
   (config))

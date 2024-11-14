@@ -2,6 +2,6 @@
 local utils = require("utils")
 local function _1_()
   local scratch = require("scratch")
-  return scratch.setup({filetypes = {"clj", "lua", "js", "sh", "ts"}})
+  return scratch.setup({filetypes = {"clj", "lua", "js", "md", "sh", "ts", "txt"}})
 end
 return {utils.dep("https://github.com/LintaoAmons/scratch.nvim", {config = _1_})}

@@ -1,3 +1,5 @@
+(local utils (require "utils"))
+
 (fn setup []
   (local alpha (require "alpha"))
   (local dashboard (require "alpha.themes.dashboard"))
@@ -11,10 +13,10 @@
   (set dashboard.section.header.val (headers.random))
 
   (set dashboard.section.buttons.val
-       [(dashboard.button "f" "  Find File" ":Telescope find_files<CR>")
-        (dashboard.button "e" "  New file" ":ene <BAR> startinsert <CR>")
-        (dashboard.button "s" "  Load Session" ":SessionManager load_session<CR>")
+       [(dashboard.button "s" "  Load Session" ":SessionManager<CR>")
         (dashboard.button "r" "  Recent Files" ":Telescope oldfiles<CR>")
+        (dashboard.button "n" "  New file" ":ene <BAR> startinsert <CR>")
+        (dashboard.button "f" "  Find File" ":Telescope find_files<CR>")
         (dashboard.button "t" "  Find Text" ":Telescope live_grep<CR>")
         (dashboard.button "c" "  Configuration" ":e $MYVIMRC<CR>:cd %:h/../<CR>")
         (dashboard.button "q" "  Quit Neovim" ":qa!<CR>")])
@@ -36,8 +38,6 @@
 
   (set dashboard.opts.opts.noautocmd true)
   (alpha.setup dashboard.opts))
-
-(local utils (require "utils"))
 
 ;; Splash screen
 (utils.dep

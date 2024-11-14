@@ -5,4 +5,4 @@
    {:config (fn []
               (local scratch (require "scratch"))
               (scratch.setup
-                {:filetypes [ :clj :lua :js :sh :ts ]}))})]
+                {:filetypes [ :clj :lua :js :md :sh :ts :txt ]}))})]
