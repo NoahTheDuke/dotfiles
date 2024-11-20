@@ -38,15 +38,30 @@ local function config()
   end
   local function enclosing_wrapper_maker(brackets, placement)
     local function _7_()
-      return paredit.cursor.place_cursor(paredit.wrap.wrap_enclosing_form_under_cursor(unpack(brackets)), {placement = placement, mode = "insert"})
+      local context = ts_context.create_context()
+      if not context then
+        return
+      else
+      end
+      local current_element = ts_forms.get_node_root(context.node, context)
+      if not current_element then
+        return
+      else
+      end
+      if ts_forms.node_is_form(current_element, context) then
+        local buf = vim.api.nvim_get_current_buf()
+        return paredit.cursor.place_cursor(paredit.wrap.wrap_element(buf, current_element, unpack(brackets)), {placement = placement, mode = "insert"})
+      else
+        return paredit.cursor.place_cursor(paredit.wrap.wrap_enclosing_form_under_cursor(unpack(brackets)), {placement = placement, mode = "insert"})
+      end
     end
     return _7_
   end
   local function wrapper_maker(brackets, placement)
-    local function _8_()
+    local function _11_()
       return paredit.cursor.place_cursor(paredit.wrap.wrap_element_under_cursor(unpack(brackets)), {placement = placement, mode = "insert"})
     end
-    return _8_
+    return _11_
   end
   return paredit.setup({use_default_keys = true, filetypes = {"clojure", "scheme", "lisp", "fennel", "basilisp"}, cursor_behaviour = "follow", keys = {["<localleader>i"] = {enclosing_wrapper_maker({"( ", ")"}, "inner_start"), "Wrap form round insert head"}, ["<localleader>I"] = {enclosing_wrapper_maker({"(", " )"}, "inner_end"), "Wrap form round insert tail"}, ["<localleader>["] = {enclosing_wrapper_maker({"[", "]"}, "inner_start"), "Wrap form square insert head"}, ["<localleader>]"] = {enclosing_wrapper_maker({"[", "]"}, "inner_end"), "Wrap form square insert tail"}, ["<localleader>{"] = {enclosing_wrapper_maker({"{", "}"}, "inner_start"), "Wrap form curly insert head"}, ["<localleader>}"] = {enclosing_wrapper_maker({"{", "}"}, "inner_end"), "Wrap form curly insert tail"}, ["<localleader>w"] = {wrapper_maker({"(", ")"}, "inner_start"), "Wrap element with (), insert head"}, ["<localleader>W"] = {wrapper_maker({"(", ")"}, "inner_end"), "Wrap element with (), insert tail"}, ["<localleader>e["] = {wrapper_maker({"[", "]"}, "inner_start"), "Wrap element with [], insert head"}, ["<localleader>e]"] = {wrapper_maker({"[", "]"}, "inner_end"), "Wrap element with [], insert tail"}, ["<localleader>e{"] = {wrapper_maker({"{", "}"}, "inner_start"), "Wrap element with {}, insert head"}, ["<localleader>e}"] = {wrapper_maker({"{", "}"}, "inner_end"), "Wrap element with {}, insert tail"}, ["<localleader>h"] = {insert_in_list("inner_start"), "Enter insert mode at head of current form"}, ["<localleader>l"] = {insert_in_list("inner_end"), "Enter insert mode at tail of current form"}}})
 end

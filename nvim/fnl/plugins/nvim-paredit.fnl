@@ -33,10 +33,22 @@
 
   (fn enclosing-wrapper-maker [brackets placement]
     (fn []
-      (paredit.cursor.place_cursor
-        (paredit.wrap.wrap_enclosing_form_under_cursor (unpack brackets))
-        {:placement placement
-         :mode :insert})))
+      (local context (ts-context.create_context))
+      (if (not context) (lua "return"))
+
+      (local current-element (ts-forms.get_node_root context.node context))
+      (if (not current-element) (lua "return"))
+
+      (if (ts-forms.node_is_form current-element context)
+        (let [buf (vim.api.nvim_get_current_buf)]
+          (paredit.cursor.place_cursor
+            (paredit.wrap.wrap_element buf current-element (unpack brackets))
+            {:placement placement
+             :mode "insert"}))
+        (paredit.cursor.place_cursor
+          (paredit.wrap.wrap_enclosing_form_under_cursor (unpack brackets))
+          {:placement placement
+           :mode :insert}))))
 
   (fn wrapper-maker [brackets placement]
     (fn []
