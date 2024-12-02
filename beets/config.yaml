@@ -1,6 +1,14 @@
 directory: ~/Music
 library: ~/.local/share/beets/musiclibrary.db
 
+per_disc_numbering: yes
+
+item_fields:
+    multidisc: 1 if disctotal > 1 else 0
+
+paths:
+  default: $albumartist/$album%aunique{}/%if{$multidisc,$disc-}$track $title
+
 import:
   move: yes
 
@@ -16,6 +24,7 @@ plugins:
   - embedart
   - fetchart
   - importreplace
+  - inline
   - lastgenre
 
 convert:

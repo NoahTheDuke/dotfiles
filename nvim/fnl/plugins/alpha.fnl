@@ -13,7 +13,7 @@
   (set dashboard.section.header.val (headers.random))
 
   (set dashboard.section.buttons.val
-       [(dashboard.button "s" "  Load Session" ":SessionManager<CR>")
+       [(dashboard.button "s" "  Load Session" ":SessionManager load_current_dir_session<CR>")
         (dashboard.button "r" "  Recent Files" ":Telescope oldfiles<CR>")
         (dashboard.button "n" "  New file" ":ene <BAR> startinsert <CR>")
         (dashboard.button "f" "  Find File" ":Telescope find_files<CR>")
