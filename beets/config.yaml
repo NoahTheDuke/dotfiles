@@ -10,6 +10,7 @@ paths:
   default: $albumartist/$album%aunique{}/%if{$multidisc,$disc-}$track $title
 
 import:
+  languages: en
   move: yes
 
 match:
