@@ -18,19 +18,28 @@
 	difft = difftool
 [core]
 	hooksPath = ~/dotfiles/git/hooks
-	editor = gvim -f -i NONE
+	editor = nvim
 [commit]
 	template = ~/dotfiles/git/.gitmessage
 [diff]
 	indentHeuristic = on
 	colorMoved = on
 	tool = difftastic
+	wsErrorHighlight = context
 [pager]
 	difftool = true
 [difftool]
 	prompt = false
 [difftool "difftastic"]
 	cmd = difft "$LOCAL" "$REMOTE"
+[pull]
+	rebase = false
+[apply]
+	whitespace = fix
+[push]
+	autoSetupRemote = true
+[init]
+	defaultBranch = main
 ; [user]
 ; 	name = Noah Bogart
 ; 	email = noah.bogart@hey.com

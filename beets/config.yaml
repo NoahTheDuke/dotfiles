@@ -22,11 +22,13 @@ match:
 
 plugins:
   - convert
+  - edit
   - embedart
   - fetchart
   - importreplace
   - inline
   - lastgenre
+  - zero
 
 convert:
   auto: true
@@ -52,42 +54,5 @@ lastgenre:
   prefer_specific: yes
 
 zero:
-  keep_fields:
-    - title
-    - artist
-    - album
-    - albumartist
-    - compilation
-    - date
-    - day
-    - disc
-    - disctitle
-    - disctotal
-    - genre
-    - grouping
-    - label
-    - month
-    - originaldate
-    - publisher
-    - releasecountry
-    - releasestatus
-    - releasetype
-    - totaldiscs
-    - track
-    - tracktotal
-    - year
-    - unsyncedlyrics
-    - musicbrainz_albumartistid
-    - musicbrainz_albumid
-    - musicbrainz_artistid
-    - musicbrainz_releasegroupid
-    - musicbrainz_releasetrackid
-    - musicbrainz_trackid
-    - musicbrainz_workid
-    - mb_albumartistid
-    - mb_albumid
-    - mb_artistid
-    - mb_releasegroupid
-    - mb_releasetrackid
-    - mb_trackid
-    - mb_workid
+  fields: artist_sort artists_sort albumartist_sort albumartists_sort
+  update_database: true
