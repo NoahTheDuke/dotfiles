@@ -67,15 +67,6 @@
         },
         "fennel": {
             "command": "fennel-ls",
-            "settings": {
-                "fennel-ls": {
-                    "checks": {
-                        "unused-definition": false,
-                        "unknown-module-field": true
-                    },
-                    "extra-globals": "vim"
-                }
-            },
             "filetypes": ["fennel"]
         },
         "digestif": {
