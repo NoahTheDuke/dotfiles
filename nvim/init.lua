@@ -7,6 +7,8 @@ require "keymaps"
 require "autocmds"
 require "lazy-setup"
 
+vim.hl = vim.highlight
+
 
 vim.cmd [[
 set runtimepath^=$HOME/personal/coc-clojure

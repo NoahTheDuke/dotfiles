@@ -22,6 +22,7 @@
     "suggest.minTriggerInputLength": 2,
     "suggest.noselect": true,
     "suggest.triggerCompletionWait": 50,
+    "workspace.rootPatterns": ["project.clj", ".git", ".projections.json"],
     "workspace.openResourceCommand": "edit",
     "workspace.ignoredFolders": [
         "$HOME",
@@ -66,15 +67,6 @@
         },
         "fennel": {
             "command": "fennel-ls",
-            "settings": {
-                "fennel-ls": {
-                    "checks": {
-                        "unused-definition": false,
-                        "unknown-module-field": true
-                    },
-                    "extra-globals": "vim"
-                }
-            },
             "filetypes": ["fennel"]
         },
         "digestif": {
