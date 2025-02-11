@@ -4,13 +4,13 @@
     "coc.preferences.enableMessageDialog": false,
     "coc.preferences.excludeImageLinksInMarkdownDocument": true,
     "coc.preferences.useQuickfixForLocations": false,
-    "[json][typescript]": {
+    "[json][typescript][ocaml]": {
         "coc.preferences.formatOnSave": true
     },
     "codeLens.enable": true,
     "codeLens.position": "eol",
     "codeLens.separator": "->",
-    "suggest.enableFloat": true,
+    "suggest.enableFloat": false,
     "diagnostic.displayByAle": false,
     "diagnostic.floatConfig": { "winblend": 0 },
     "hover.floatConfig": { "winblend": 0 },
@@ -55,7 +55,7 @@
         },
         "ocaml-lsp": {
             "command": "opam",
-            "args": ["config", "exec", "--", "ocamllsp"],
+            "args": ["exec", "--", "ocamllsp"],
             "filetypes": ["ocaml", "reason"],
             "settings": {
                 "codelens":  { "enable": true },

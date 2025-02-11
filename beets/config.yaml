@@ -33,11 +33,7 @@ plugins:
 convert:
   auto: true
   never_convert_lossy_files: true
-  no_convert:
-    - format:mp3
-    - format:aac
-  command: ffmpeg -i $source -c:a libfdk_aac -b:a 320k $dest
-  command: ffmpeg -i $source -vn -ar 44100 -ac 2 -b:a 320k $dest
+  # command: ffmpeg -i $source -vn -ar 44100 -ac 2 -b:a 320k $dest
   extension: mp3
 
 importreplace:

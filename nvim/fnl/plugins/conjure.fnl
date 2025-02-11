@@ -88,4 +88,12 @@
 
 [(utils.dep
    "https://github.com/Olical/conjure.git"
-   {:config conjure})]
+   {:config conjure})
+
+ (utils.dep
+   "https://github.com/walterl/conjure-macroexpand"
+   {:dependencies [ "Olical/conjure" ]})
+
+ (utils.dep
+   "https://github.com/walterl/conjure-locstack"
+   {:dependencies [ "Olical/conjure" ]})]
