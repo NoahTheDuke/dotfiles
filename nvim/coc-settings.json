@@ -4,7 +4,7 @@
     "coc.preferences.enableMessageDialog": false,
     "coc.preferences.excludeImageLinksInMarkdownDocument": true,
     "coc.preferences.useQuickfixForLocations": false,
-    "[json][typescript][ocaml]": {
+    "[json]": {
         "coc.preferences.formatOnSave": true
     },
     "codeLens.enable": true,
@@ -22,7 +22,7 @@
     "suggest.minTriggerInputLength": 2,
     "suggest.noselect": true,
     "suggest.triggerCompletionWait": 50,
-    "workspace.rootPatterns": ["project.clj", ".git", ".projections.json"],
+    "workspace.rootPatterns": [".git", ".projections.json"],
     "workspace.openResourceCommand": "edit",
     "workspace.ignoredFolders": [
         "$HOME",
@@ -68,6 +68,16 @@
         "fennel": {
             "command": "fennel-ls",
             "filetypes": ["fennel"]
+        },
+        "terraform": {
+            "command": "terraform-ls",
+            "args": ["serve"],
+            "filetypes": [
+                "terraform",
+                "tf"
+            ],
+            "initializationOptions": {},
+            "settings": {}
         },
         "digestif": {
             "command": "digestif",
