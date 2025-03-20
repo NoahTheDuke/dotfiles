@@ -8,7 +8,7 @@ require "autocmds"
 require "lazy-setup"
 
 vim.hl = vim.highlight
-
+vim.cmd [[let g:python3_host_prog = $HOME . "/.local/venv/nvim/bin/python"]]
 
 vim.cmd [[
 set runtimepath^=$HOME/personal/coc-clojure

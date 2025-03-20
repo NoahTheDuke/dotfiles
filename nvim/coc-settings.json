@@ -4,7 +4,7 @@
     "coc.preferences.enableMessageDialog": false,
     "coc.preferences.excludeImageLinksInMarkdownDocument": true,
     "coc.preferences.useQuickfixForLocations": false,
-    "[json][typescript][ocaml]": {
+    "[json]": {
         "coc.preferences.formatOnSave": true
     },
     "codeLens.enable": true,
@@ -22,7 +22,7 @@
     "suggest.minTriggerInputLength": 2,
     "suggest.noselect": true,
     "suggest.triggerCompletionWait": 50,
-    "workspace.rootPatterns": ["project.clj", ".git", ".projections.json"],
+    "workspace.rootPatterns": [".git", ".projections.json"],
     "workspace.openResourceCommand": "edit",
     "workspace.ignoredFolders": [
         "$HOME",
@@ -68,6 +68,16 @@
         "fennel": {
             "command": "fennel-ls",
             "filetypes": ["fennel"]
+        },
+        "terraform": {
+            "command": "terraform-ls",
+            "args": ["serve"],
+            "filetypes": [
+                "terraform",
+                "tf"
+            ],
+            "initializationOptions": {},
+            "settings": {}
         },
         "digestif": {
             "command": "digestif",
@@ -123,6 +133,7 @@
     "volar.takeOverMode.enabled": true,
     "tsserver.enable": true,
     "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+    "typescript.format.enable": false,
     "java.imports.gradle.wrapper.checksums": [
       {
         "sha256": "cb0da6751c2b753a16ac168bb354870ebb1e162e9083f116729cec9c781156b8",
