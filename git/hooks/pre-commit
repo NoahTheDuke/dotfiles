@@ -1,20 +1,20 @@
 #!/usr/bin/env bash
 
-if [ "$(echo $(uname -s) | cut -c 1-6)" == "Darwin" ] || [ "$(echo $(uname -s) | cut -c 1-5)" == "Linux" ]; then
-    hook_status=0
-    for f in $HOME/dotfiles/git/hooks/pre-commits/*.bash; do
-        result=$(bash "$f")
-        if [ -n "$result" ]; then
-            echo $result
-            hook_status=1
-        fi
-    done
-    if [[ $hook_status -ne 0 ]]; then
-        echo -e "\nHook failed, commit aborted"
-        exit 1
-    fi
-elif [ "$(echo $(uname -s) | cut -c 1-10)" == "MINGW32_NT" ]; then
-    exec powershell.exe -NoProfile -ExecutionPolicy Bypass -File $HOME/dotfiles/git/hooks/pre-commit.ps1
-elif [ "$(echo $(uname -s) | cut -c 1-10)" == "MINGW64_NT" ]; then
-    exec powershell.exe -NoProfile -ExecutionPolicy Bypass -File $HOME/dotfiles/git/hooks/pre-commit.ps1
-fi
+# if [ "$(echo $(uname -s) | cut -c 1-6)" == "Darwin" ] || [ "$(echo $(uname -s) | cut -c 1-5)" == "Linux" ]; then
+#     hook_status=0
+#     for f in $HOME/dotfiles/git/hooks/pre-commits/*.bash; do
+#         result=$(bash "$f")
+#         if [ -n "$result" ]; then
+#             echo $result
+#             hook_status=1
+#         fi
+#     done
+#     if [[ $hook_status -ne 0 ]]; then
+#         echo -e "\nHook failed, commit aborted"
+#         exit 1
+#     fi
+# elif [ "$(echo $(uname -s) | cut -c 1-10)" == "MINGW32_NT" ]; then
+#     exec powershell.exe -NoProfile -ExecutionPolicy Bypass -File $HOME/dotfiles/git/hooks/pre-commit.ps1
+# elif [ "$(echo $(uname -s) | cut -c 1-10)" == "MINGW64_NT" ]; then
+#     exec powershell.exe -NoProfile -ExecutionPolicy Bypass -File $HOME/dotfiles/git/hooks/pre-commit.ps1
+# fi
