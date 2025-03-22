@@ -88,7 +88,8 @@
 
 [(utils.dep
    "https://github.com/Olical/conjure.git"
-   {:config conjure})
+   {:branch "main"
+    :config conjure})
 
  (utils.dep
    "https://github.com/walterl/conjure-macroexpand"

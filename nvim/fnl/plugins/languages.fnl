@@ -22,6 +22,10 @@
    "https://github.com/jaawerth/fennel.vim"
    {:ft "fennel"})
 
+ (utils.dep
+   "https://github.com/projectfluent/fluent.vim.git"
+   {:ft "fluent"})
+
  ;; git
  (utils.dep
    "https://github.com/tpope/vim-git"

@@ -61,4 +61,4 @@ local function conjure()
   return nil
 end
 --[[ (conjure) ]]
-return {utils.dep("https://github.com/Olical/conjure.git", {config = conjure}), utils.dep("https://github.com/walterl/conjure-macroexpand", {dependencies = {"Olical/conjure"}}), utils.dep("https://github.com/walterl/conjure-locstack", {dependencies = {"Olical/conjure"}})}
+return {utils.dep("https://github.com/Olical/conjure.git", {branch = "main", config = conjure}), utils.dep("https://github.com/walterl/conjure-macroexpand", {dependencies = {"Olical/conjure"}}), utils.dep("https://github.com/walterl/conjure-locstack", {dependencies = {"Olical/conjure"}})}
