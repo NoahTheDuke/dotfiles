@@ -27,7 +27,7 @@
 
   ;; Use `[g` and `]g` to navigate diagnostics
   ;; Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-  (keyset"n" "[g" "<Plug>(coc-diagnostic-prev)") ;]
+  (keyset "n" "[g" "<Plug>(coc-diagnostic-prev)") ;]
   (keyset "n" "]g" "<Plug>(coc-diagnostic-next)")
 
   (keyset "n" "<leader>rn" "<Plug>(coc-rename)")
