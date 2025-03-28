@@ -19,6 +19,7 @@
 [core]
 	hooksPath = ~/dotfiles/git/hooks
 	editor = nvim
+    excludesFile = ~/.gitignore
 [commit]
 	template = ~/dotfiles/git/.gitmessage
 [diff]
