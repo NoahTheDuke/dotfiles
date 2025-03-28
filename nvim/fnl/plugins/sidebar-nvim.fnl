@@ -2,8 +2,7 @@
 
 (fn config []
   (local sidebar (require "sidebar-nvim"))
-  (sidebar.setup {:open true
-                  :sections ["datetime" "buffers" "files" "git"]
+  (sidebar.setup {:sections ["datetime" "buffers" "files" "git"]
                   :files {:icon ""
                           :show_hidden false
                           :ignored_paths ["%.git$"]}}))

@@ -2,7 +2,7 @@
 
 (fn config []
   (set vim.g.clojure_fuzzy_indent_patterns
-       ["^with" "^def" "^let" "^expect" "from-each" "given" "describe" "it" "changed"
+       ["^with" "^def" "^let" "^\\(.*/\\)\\?expect" "from-each" "given" "describe" "it" "changed"
         "do-game"])
   (set vim.g.clojure_indent_style :standard)
   ; (set vim.g.clojure_indent_rules.before-each 1)
