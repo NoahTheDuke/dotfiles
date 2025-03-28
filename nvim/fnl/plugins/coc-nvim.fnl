@@ -6,7 +6,7 @@
 
 (fn coc_command [name ...]
   (local vargs [...])
-  (tset vargs :n (select :# ...))
+  (set vargs.n (select "#" ...))
   (vim.api.nvim_create_user_command
     name
     (fn [] (vim.fn.CocActionAsync (unpack vargs)))

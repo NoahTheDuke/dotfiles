@@ -5,7 +5,7 @@ local scroll_opts = {silent = true, nowait = true, expr = true}
 local keyset = vim.keymap.set
 local function coc_command(name, ...)
   local vargs = {...}
-  vargs["n"] = select("#", ...)
+  vargs.n = select("#", ...)
   local function _1_()
     return vim.fn.CocActionAsync(unpack(vargs))
   end
