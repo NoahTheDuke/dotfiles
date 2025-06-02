@@ -7,6 +7,9 @@
    "https://github.com/asciidoc/vim-asciidoc"
    {:ft "asciidoc"})
 
+ (utils.dep
+   "https://github.com/cathaysia/tree-sitter-asciidoc")
+
  ;; asm
  (utils.dep
    "https://github.com/samsaga2/vim-z80"

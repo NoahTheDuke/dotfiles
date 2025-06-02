@@ -27,6 +27,7 @@ plugins:
   - fetchart
   - importreplace
   - inline
+  - jellyupdate
   - lastgenre
   - zero
 
@@ -45,6 +46,11 @@ importreplace:
         '[\u201C-\u201F]': '"'
         '[\u2010-\u2015]': '-'
         '[\u2026]': '...'
+
+jellyupdate:
+  secure: false
+  apikey: d3df706030474e308225f8449d98f4a7
+  url: http://localhost:8096
 
 lastgenre:
   prefer_specific: yes

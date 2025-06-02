@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/plugins/editorconfig.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] nvim/fnl/plugins/editorconfig.fnl
 local utils = require("utils")
 local function _1_()
   vim.g.EditorConfig_exclude_patterns = {"fugitive://.*"}

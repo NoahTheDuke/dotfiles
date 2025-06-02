@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/plugins/previm.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] nvim/fnl/plugins/previm.fnl
 local utils = require("utils")
 local function _1_()
   vim.g.previm_open_cmd = "open"

@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/plugins/alpha.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] nvim/fnl/plugins/alpha.fnl
 local utils = require("utils")
 local function setup()
   local alpha = require("alpha")

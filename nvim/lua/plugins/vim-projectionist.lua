@@ -1,3 +1,3 @@
--- [nfnl] Compiled from fnl/plugins/vim-projectionist.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] nvim/fnl/plugins/vim-projectionist.fnl
 local utils = require("utils")
 return {utils.dep("https://github.com/tpope/vim-projectionist", {name = "vim-projectionist"})}

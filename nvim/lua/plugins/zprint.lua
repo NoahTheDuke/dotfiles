@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/plugins/zprint.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] nvim/fnl/plugins/zprint.fnl
 local utils = require("utils")
 local function _1_()
   vim.g["zprint#make_autocmd"] = 0

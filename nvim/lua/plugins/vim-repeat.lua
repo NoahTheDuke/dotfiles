@@ -1,3 +1,3 @@
--- [nfnl] Compiled from fnl/plugins/vim-repeat.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] nvim/fnl/plugins/vim-repeat.fnl
 local utils = require("utils")
 return {utils.dep("https://github.com/tpope/vim-repeat", {name = "vim-repeat"})}

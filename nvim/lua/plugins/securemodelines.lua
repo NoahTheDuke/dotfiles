@@ -1,3 +1,3 @@
--- [nfnl] Compiled from fnl/plugins/securemodelines.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] nvim/fnl/plugins/securemodelines.fnl
 local utils = require("utils")
 return {utils.dep("https://github.com/ypcrts/securemodelines", {name = "securemodelines"})}

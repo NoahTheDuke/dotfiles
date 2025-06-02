@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/utils.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] nvim/fnl/utils.fnl
 local function g_set(k, v)
   if (0 == vim.api.nvim_call_function("exists", k)) then
     vim.g[k] = v

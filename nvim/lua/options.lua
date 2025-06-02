@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/options.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] nvim/fnl/options.fnl
 vim.opt.autochdir = false
 vim.opt.backup = false
 vim.opt.clipboard:prepend("unnamedplus")

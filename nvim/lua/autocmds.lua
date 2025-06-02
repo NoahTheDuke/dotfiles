@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/autocmds.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] nvim/fnl/autocmds.fnl
 vim.cmd("\n  augroup filetypes\n    autocmd Filetype gitcommit setlocal spell textwidth=80\n    autocmd BufNewFile,BufReadPost *.axvw set filetype=xml\n    autocmd BufNewFile,BufReadPost *.md set filetype=markdown\n    autocmd BufNewFile,BufReadPost *.asd set filetype=lisp\n    autocmd BufNewFile,BufReadPost *.asm set filetype=z80\n    autocmd TermOpen * setlocal nospell nonumber norelativenumber\n    autocmd TermOpen,BufEnter term://* startinsert\n  augroup END\n  ")
 vim.cmd("\n  augroup autosave\n    autocmd FocusLost * :wa\n    autocmd FocusGained,BufEnter * :checktime\n  augroup END\n  ")
 local function _1_()

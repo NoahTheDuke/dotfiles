@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/plugins/vim-signify.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] nvim/fnl/plugins/vim-signify.fnl
 local utils = require("utils")
 local function config()
   vim.g.signify_skip = {vcs = {allow = {"git"}}}

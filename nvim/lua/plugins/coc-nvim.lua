@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/plugins/coc-nvim.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] nvim/fnl/plugins/coc-nvim.fnl
 local utils = require("utils")
 local opts = {noremap = true, silent = true}
 local scroll_opts = {silent = true, nowait = true, expr = true}
@@ -40,7 +40,6 @@ local function config()
   keyset({n = "x"}, "<C-s>", "<Plug>(coc-range-select)", opts)
   coc_command("Format", "format")
   coc_command("OR", "runCommand", "editor.action.organizeImport")
-  coc_command("Open", "openLink")
   _G.Coc_show_documentation = function()
     local filetype = vim.bo.filetype
     if ((filetype == "vim") or (filetype == "help")) then

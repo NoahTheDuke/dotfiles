@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/plugins/sidebar-nvim.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] nvim/fnl/plugins/sidebar-nvim.fnl
 local utils = require("utils")
 local function config()
   local sidebar = require("sidebar-nvim")

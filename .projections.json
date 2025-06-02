@@ -1,0 +1,10 @@
+{
+    "nvim/fnl/*.fnl": {
+        "type": "source",
+        "alternate": "nvim/lua/{}.lua"
+    },
+    "nvim/fnl/*.lua": {
+        "type": "lua",
+        "alternate": "nvim/fnl/{}.fnl"
+    }
+}

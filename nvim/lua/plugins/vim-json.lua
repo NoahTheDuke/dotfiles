@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/plugins/vim-json.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] nvim/fnl/plugins/vim-json.fnl
 local utils = require("utils")
 local function _1_()
   vim.g.vim_json_syntax_conceal = 0

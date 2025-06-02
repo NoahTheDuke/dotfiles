@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/plugins/minimap.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] nvim/fnl/plugins/minimap.fnl
 local utils = require("utils")
 local function _1_()
   vim.g.minimap_highlight_range = 1

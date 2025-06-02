@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/ginit.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] nvim/fnl/ginit.fnl
 local utils = require("utils")
 vim.opt.mouse = "a"
 if (1 == vim.g.GuiLoaded) then

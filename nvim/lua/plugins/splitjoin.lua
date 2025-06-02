@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/plugins/splitjoin.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] nvim/fnl/plugins/splitjoin.fnl
 local utils = require("utils")
 local function _1_()
   vim.g.splitjoin_trailing_comma = 1

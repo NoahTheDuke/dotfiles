@@ -1,3 +1,3 @@
--- [nfnl] Compiled from fnl/plugins/undotree.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] nvim/fnl/plugins/undotree.fnl
 local utils = require("utils")
 return {utils.dep("https://github.com/mbbill/undotree", {name = "undotree", branch = "search"})}

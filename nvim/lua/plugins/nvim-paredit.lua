@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/plugins/nvim-paredit.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] nvim/fnl/plugins/nvim-paredit.fnl
 local utils = require("utils")
 local function config()
   local ts_context = require("nvim-paredit.treesitter.context")

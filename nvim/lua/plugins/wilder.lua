@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/plugins/wilder.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] nvim/fnl/plugins/wilder.fnl
 local utils = require("utils")
 local function _1_()
   local wilder = require("wilder")

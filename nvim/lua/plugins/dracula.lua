@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/plugins/dracula.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] nvim/fnl/plugins/dracula.fnl
 local utils = require("utils")
 local function config()
   do

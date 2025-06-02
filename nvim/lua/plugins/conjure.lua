@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/plugins/conjure.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] nvim/fnl/plugins/conjure.fnl
 local utils = require("utils")
 local function conjure()
   local core = require("nfnl.core")

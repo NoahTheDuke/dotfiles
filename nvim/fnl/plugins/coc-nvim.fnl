@@ -61,7 +61,6 @@
 
   (coc_command "Format" "format")
   (coc_command "OR" "runCommand" "editor.action.organizeImport")
-  (coc_command "Open" "openLink")
 
   (fn _G.Coc_show_documentation []
     (local filetype vim.bo.filetype)

@@ -29,7 +29,7 @@ vim.hl = vim.highlight
 vim.cmd [[let g:python3_host_prog = $HOME . "/.local/venv/nvim/bin/python"]]
 
 vim.cmd [[
-set runtimepath^=$HOME/personal/coc-clojure
+set runtimepath^=$HOME/programming/coc-clojure
 let $NVIM_COC_LOG_LEVEL='debug'
 let $NVIM_COC_LOG_FILE = '/tmp/coc-nvim.log'
 ]]
