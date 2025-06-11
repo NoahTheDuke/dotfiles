@@ -3,7 +3,7 @@
         "type": "source",
         "alternate": "nvim/lua/{}.lua"
     },
-    "nvim/fnl/*.lua": {
+    "nvim/lua/*.lua": {
         "type": "lua",
         "alternate": "nvim/fnl/{}.fnl"
     }
