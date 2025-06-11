@@ -20,8 +20,9 @@ if (1 == vim.g.GuiLoaded) then
 else
 end
 if (vim.g.neovide == true) then
-  vim.opt.guifont = "Fira Code Retina:h16FiraCode Nerd Font:h16"
-  vim.g.neovide_cursor_animation_length = 0.04
+  vim.opt.guifont = "Fira Code Retina:h16"
+  vim.g.neovide_scroll_animation_length = 0
+  vim.g.neovide_cursor_animation_length = 0
   return nil
 else
   return nil

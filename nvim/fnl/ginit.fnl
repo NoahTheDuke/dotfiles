@@ -27,5 +27,6 @@
     {:nargs 1}))
 
 (when (= vim.g.neovide true)
-  (set vim.opt.guifont "Fira Code Retina:h16FiraCode Nerd Font:h16")
-  (set vim.g.neovide_cursor_animation_length 0.04))
+  (set vim.opt.guifont "Fira Code Retina:h16")
+  (set vim.g.neovide_scroll_animation_length 0)
+  (set vim.g.neovide_cursor_animation_length 0))
