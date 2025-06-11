@@ -1,5 +1,5 @@
 (local utils (require :utils))
 
 (utils.dep
-  "https://github.com/seanyeh/talon.vim"
+  "https://github.com/NoahTheDuke/talon.vim"
   {})

@@ -28,5 +28,10 @@
 
 (when (= vim.g.neovide true)
   (set vim.opt.guifont "Fira Code Retina:h16")
-  (set vim.g.neovide_scroll_animation_length 0)
-  (set vim.g.neovide_cursor_animation_length 0))
+  (set vim.g.neovide_position_animation_length 0)
+  (set vim.g.neovide_cursor_animation_length 0.00)
+  (set vim.g.neovide_cursor_trail_size 0)
+  (set vim.g.neovide_cursor_animate_in_insert_mode false)
+  (set vim.g.neovide_cursor_animate_command_line false)
+  (set vim.g.neovide_scroll_animation_far_lines 0)
+  (set vim.g.neovide_scroll_animation_length 0.00))

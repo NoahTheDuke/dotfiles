@@ -1,8 +1,8 @@
 (local utils (require "utils"))
 
 (fn config []
-  (local (status_ok ts_config) (pcall require "nvim-treesitter.configs"))
-  (when status_ok
+  (local (status-ok ts_config) (pcall require "nvim-treesitter.configs"))
+  (when status-ok
     (ts_config.setup
       {:ensure_installed ["angular"
                           "clojure"
