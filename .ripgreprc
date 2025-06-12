@@ -1,1 +1,6 @@
+# Case sensitive only when given a capital letter
 --smart-case
+
+# Don't let ripgrep vomit really long lines to my terminal, and show a preview.
+--max-columns=150
+--max-columns-preview

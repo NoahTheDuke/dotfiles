@@ -1,10 +1,6 @@
 (local utils (require "utils"))
 
-(utils.dep
-  "https://github.com/nvim-telescope/telescope.nvim"
-  {:dependencies [ "https://github.com/fannheyward/telescope-coc.nvim" ]
-   :config
-   (fn []
+(fn config []
      (local telescope (require "telescope"))
      (local actions (require "telescope.actions"))
      (local keyset vim.keymap.set)
@@ -108,6 +104,12 @@
              {:noremap true
               :silent true
               :desc "Choose colorscheme"})
+
+     (keyset "n" "<leader>:" ":lua require('telescope.builtin').commands()<cr>"
+             {:noremap true
+              :silent true
+              :desc "Telescope : commands"})
+
      (local coc_list
        [{:lhs "<leader>ta" :rhs ":Telescope coc code_actions<cr>"}
         {:lhs "<leader>tc" :rhs ":Telescope coc commands<cr>"}
@@ -120,4 +122,12 @@
        (keyset "n" v.lhs v.rhs
                {:nowait true
                 :noremap true
-                :silent true})))})
+                :silent true})))
+
+(comment
+  (config))
+
+(utils.dep
+  "https://github.com/nvim-telescope/telescope.nvim"
+  {:dependencies [ "https://github.com/fannheyward/telescope-coc.nvim" ]
+   :config config})
