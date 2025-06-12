@@ -1,6 +1,6 @@
 -- [nfnl] nvim/fnl/plugins/telescope.fnl
 local utils = require("utils")
-local function _1_()
+local function config()
   local telescope = require("telescope")
   local actions = require("telescope.actions")
   local keyset = vim.keymap.set
@@ -11,10 +11,12 @@ local function _1_()
   keyset("n", "<leader>fb", ":lua require('telescope.builtin').buffers()<cr>", {noremap = true, silent = true, desc = "Telescope buffers"})
   keyset("n", "<leader>fh", ":lua require('telescope.builtin').help_tags()<cr>", {noremap = true, silent = true, desc = "Telescope help tags"})
   keyset("n", "<leader>fcs", ":lua require('telescope.builtin').colorscheme()<cr>", {noremap = true, silent = true, desc = "Choose colorscheme"})
+  keyset("n", "<leader>:", ":lua require('telescope.builtin').commands()<cr>", {noremap = true, silent = true, desc = "Telescope : commands"})
   local coc_list = {{lhs = "<leader>ta", rhs = ":Telescope coc code_actions<cr>"}, {lhs = "<leader>tc", rhs = ":Telescope coc commands<cr>"}, {lhs = "<leader>te", rhs = ":Telescope coc diagnostics<cr>"}, {lhs = "<leader>ti", rhs = ":Telescope coc implementations<cr>"}, {lhs = "<leader>tr", rhs = ":Telescope coc references<cr>"}, {lhs = "<leader>ts", rhs = ":Telescope coc document_symbols<cr>"}}
   for _, v in ipairs(coc_list) do
     keyset("n", v.lhs, v.rhs, {nowait = true, noremap = true, silent = true})
   end
   return nil
 end
-return utils.dep("https://github.com/nvim-telescope/telescope.nvim", {dependencies = {"https://github.com/fannheyward/telescope-coc.nvim"}, config = _1_})
+--[[ (config) ]]
+return utils.dep("https://github.com/nvim-telescope/telescope.nvim", {dependencies = {"https://github.com/fannheyward/telescope-coc.nvim"}, config = config})
