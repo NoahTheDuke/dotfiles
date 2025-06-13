@@ -3,7 +3,8 @@
 (fn config []
   (local (status-ok talon) (pcall require "talon"))
   (when status-ok
-    (talon.setup)))
+    (talon.setup)
+    (set vim.opt.cmdheight 1)))
 
 (comment
   (config))

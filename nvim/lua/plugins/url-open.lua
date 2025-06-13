@@ -3,7 +3,7 @@ local utils = require("utils")
 local function config()
   local status_ok, url_open = pcall(require, "url-open")
   if status_ok then
-    return url_open.setup({highlight_url = {}, open_only_when_cursor_on_url = false})
+    return url_open.setup({highlight_url = {all_urls = {enabled = false}, cursor_move = {enabled = false}}, open_only_when_cursor_on_url = false})
   else
     return nil
   end

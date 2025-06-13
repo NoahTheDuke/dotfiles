@@ -3,7 +3,9 @@ local utils = require("utils")
 local function config()
   local status_ok, talon = pcall(require, "talon")
   if status_ok then
-    return talon.setup()
+    talon.setup()
+    vim.opt.cmdheight = 1
+    return nil
   else
     return nil
   end

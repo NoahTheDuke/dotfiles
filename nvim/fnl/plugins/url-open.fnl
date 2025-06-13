@@ -6,7 +6,8 @@
   (when status-ok
     (url-open.setup
       {:open_only_when_cursor_on_url false
-       :highlight_url {}})))
+       :highlight_url {:all_urls {:enabled false}
+                       :cursor_move {:enabled false}}})))
 
 (comment
   (config))
