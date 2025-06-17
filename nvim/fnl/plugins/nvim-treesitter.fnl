@@ -38,6 +38,13 @@
                          :branch "master"
                          :generate_requires_npm false
                          :requires_generate_from_grammar false}})
+    (set parser-config.talon
+         {:install_info {:url "https://github.com/wenkokke/tree-sitter-talon.git"
+                         :files ["src/parser.c"
+                                 "src/scanner.c"]
+                         :branch "dev"
+                         :generate_requires_npm false
+                         :requires_generate_from_grammar false}})
     (vim.treesitter.language.register "clojure" "basilisp")
     ))
 
