@@ -71,8 +71,8 @@
         :ns-fn "run-tests"
         :single-fn "run-test-var"
         :default-call-suffix "{:reporter [lazytest.reporters/nested]}"
-        :name-prefix "(resolve '"
-        :name-suffix ")"})
+        :name-prefix "#'"
+        :name-suffix ""})
 
   (set vim.g.conjure#client#clojure#nrepl#test#call_suffix "")
   (set vim.g.conjure#client#clojure#nrepl#test#runner "clojure")

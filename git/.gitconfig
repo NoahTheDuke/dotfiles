@@ -16,6 +16,8 @@
 	br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
 	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
 	difft = difftool
+	staged = diff --staged
+	unstage = restore --staged
 [core]
 	hooksPath = ~/dotfiles/git/hooks
 	editor = nvim
