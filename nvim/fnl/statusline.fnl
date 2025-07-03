@@ -20,13 +20,13 @@ set statusline+=%=
 set statusline+=\\ 
 set statusline+=%2*
 set statusline+=\\ 
-set statusline+=%{&fenc==\\\"\\\"?&enc:&fenc}
+set statusline+=%{&fenc}
 set statusline+=\\ 
 set statusline+=%y
 set statusline+=\\ 
 set statusline+=%1*
 set statusline+=\\ 
-set statusline+=l%l:c%2v,\\ %2p%%\\ of\\ %2L\\ Lines
+set statusline+=l%l:c%2v,\\ %2p%%\\ %2LL
 set statusline+=\\ 
 ")
 
