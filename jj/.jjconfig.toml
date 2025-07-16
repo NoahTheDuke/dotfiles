@@ -1,7 +1,7 @@
 [ui]
 editor = "nvim"
-diff-editor = "vimdirdiff"
-diff.format = "git"
+# diff-editor = "vimdirdiff"
+# diff-formatter = ":git"
 default-command = "-h"
 
 [revsets]

@@ -17,6 +17,7 @@
       "r" true ;; Automatically insert the current comment leader after hitting <Enter> in Insert mode.
       "t" true ;; Auto-wrap text using 'textwidth'
       })
+(set vim.opt.ignorecase true)
 (set vim.opt.list true)
 (set vim.opt.listchars
      {"eol" "¬"
