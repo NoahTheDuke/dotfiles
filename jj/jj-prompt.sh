@@ -1,4 +1,8 @@
 # taken from https://github.com/jj-vcs/jj/wiki/Shell-Prompt
+#
+# put this in ~/.bashrc
+# source ~/dotfiles/jj/jj-prompt.sh
+# PS1='\[\e[32m\]\u@\h \[\e[33m\]\w \[\e[0m\]\[\e[1;34m\]\[\e[0m\]\n$(jjgit_prompt)'
 
 jjgit_prompt() {
     # echo "jj" or "git" if either is found in $PWD or its parent directories
