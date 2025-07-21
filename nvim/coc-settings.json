@@ -22,7 +22,7 @@
     "suggest.minTriggerInputLength": 2,
     "suggest.noselect": true,
     "suggest.triggerCompletionWait": 10,
-    "workspace.rootPatterns": [".git", ".projections.json"],
+    "workspace.rootPatterns": [".git", ".projections.json", "project.clj", "deps.edn"],
     "workspace.openResourceCommand": "edit",
     "workspace.ignoredFolders": [
         "$HOME",
@@ -129,6 +129,9 @@
     "stylua.styluaPath": "/Users/noah/.cargo/bin/stylua",
     "volar.takeOverMode.enabled": true,
     "tsserver.enable": true,
+    "tsserver.disableAutomaticTypeAcquisition": false,
+    "tsserver.implicitProjectConfig.module": "CommonJS",
+    "tsserver.implicitProjectConfig.target": "ES2022",
     "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
     "typescript.format.enable": false,
     "java.imports.gradle.wrapper.checksums": [
@@ -137,5 +140,6 @@
         "allowed": true
       }
     ],
-    "java.import.gradle.java.home": "/opt/homebrew/Cellar/openjdk@11/11.0.25/libexec/openjdk.jdk/Contents/Home"
+    "java.import.gradle.java.home": "/opt/homebrew/Cellar/openjdk@11/11.0.25/libexec/openjdk.jdk/Contents/Home",
+    "eslint.migration.2_x": "off"
 }
