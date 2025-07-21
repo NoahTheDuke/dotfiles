@@ -4,9 +4,6 @@ editor = "nvim"
 # diff-formatter = ":git"
 default-command = "-h"
 
-[revsets]
-log = "::@"
-
 [merge-tools.difft]
 diff-args = ["--color=always", "$left", "$right"]
 
@@ -18,5 +15,7 @@ email = "noah.bogart@hey.com"
 "open()" = "(mine() ~ ::trunk()) ~ heads(empty())"
 
 [git]
-push-branch-prefix = "nb/push-"
 write-change-id-header = true
+
+[templates]
+git_push_bookmark = '"nb/push-" ++ change_id.short()'
