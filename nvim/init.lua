@@ -26,7 +26,7 @@ require "lazy-setup"
 require "statusline"
 
 vim.hl = vim.highlight
-vim.cmd [[let g:python3_host_prog = $HOME . "/.local/venv/nvim/bin/python"]]
+-- vim.cmd [[let g:python3_host_prog = $HOME . "/.local/venv/nvim/bin/python"]]
 
 vim.cmd [[
 set runtimepath^=$HOME/programming/coc-clojure

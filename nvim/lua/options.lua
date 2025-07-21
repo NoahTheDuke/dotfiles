@@ -9,6 +9,7 @@ vim.opt.conceallevel = 0
 vim.opt.expandtab = true
 vim.opt.foldenable = false
 vim.opt.formatoptions = {["1"] = true, c = true, j = true, o = true, n = true, q = true, r = true, t = true}
+vim.opt.ignorecase = true
 vim.opt.list = true
 vim.opt.listchars = {eol = "\194\172", nbsp = "+", tab = "> ", trail = "~"}
 vim.opt.modelines = 0
