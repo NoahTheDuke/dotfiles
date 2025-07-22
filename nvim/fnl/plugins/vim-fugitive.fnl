@@ -7,7 +7,7 @@
       (table.insert t s))
     t))
 
-(fn vim.g.tangled_handler
+(fn _G.tangled_handler
   [opts]
   (let [{: path
          : line1
@@ -27,14 +27,20 @@
 
 (vim.cmd "
 function! TangledHandler(opts, ...)
-  return g:tangled_handler(a:opts)
+  return v:lua.tangled_handler(a:opts)
 endfunction
 ")
 
 (fn tangled-config []
-  (when (not vim.g.fugitive_browse_handlers)
-    (vim.cmd "let g:fugitive_browse_handlers = []"))
-  (vim.cmd "call insert(g:fugitive_browse_handlers, function('TangledHandler'))"))
+  (vim.cmd
+    "
+    if !exists('g:fugitive_browse_handlers')
+      let g:fugitive_browse_handlers = []
+    endif
+    if index(g:fugitive_browse_handlers, function('TangledHandler')) < 0
+      call insert(g:fugitive_browse_handlers, function('TangledHandler'))
+    endif
+    "))
 
 ;; git stuff
 ;; :Git [blah blah]

@@ -8,7 +8,7 @@ local function str_split(str, sep)
   end
   return t
 end
-vim.g.tangled_handler = function(opts)
+_G.tangled_handler = function(opts)
   local path = opts["path"]
   local line1 = opts["line1"]
   local line2 = opts["line2"]
@@ -30,15 +30,11 @@ vim.g.tangled_handler = function(opts)
     return nil
   end
 end
-vim.cmd("\nfunction! TangledHandler(opts, ...)\n  return g:tangled_handler(a:opts)\nendfunction\n")
+vim.cmd("\nfunction! TangledHandler(opts, ...)\n  return v:lua.tangled_handler(a:opts)\nendfunction\n")
 local function tangled_config()
-  if not vim.g.fugitive_browse_handlers then
-    vim.cmd("let g:fugitive_browse_handlers = []")
-  else
-  end
-  return vim.cmd("call insert(g:fugitive_browse_handlers, function('TangledHandler'))")
+  return vim.cmd("\n    if !exists('g:fugitive_browse_handlers')\n      let g:fugitive_browse_handlers = []\n    endif\n    if index(g:fugitive_browse_handlers, function('TangledHandler')) < 0\n      call insert(g:fugitive_browse_handlers, function('TangledHandler'))\n    endif\n    ")
 end
-local function _4_()
+local function _3_()
   return tangled_config()
 end
-return {utils.dep("https://github.com/tpope/vim-fugitive", {name = "vim-fugitive", config = _4_})}
+return {utils.dep("https://github.com/tpope/vim-fugitive", {name = "vim-fugitive", config = _3_})}
