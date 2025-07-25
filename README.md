@@ -26,3 +26,8 @@ Beets
 =====
 
 Symlink `beets/config.yaml` to `~/.config/beets/config.yaml`.
+
+JJ and Git
+==========
+
+Gotta symlink some stuff

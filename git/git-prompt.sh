@@ -435,7 +435,8 @@ __posh_git_echo () {
         if (( $indexUnmerged != 0 )); then
             gitstring+=" $IndexBackgroundColor$IndexForegroundColor!$indexUnmerged"
         fi
-        if (( $indexCount != 0 && ($workingCount != 0 || $ShowStatusWhenZero) )); then
+        local foo="$(( $workingCount != 0 || $ShowStatusWhenZero ))"
+        if (( $indexCount != 0 && $foo )); then
             gitstring+="$DelimBackgroundColor$DelimForegroundColor$DelimText"
         fi
         if (( $workingCount != 0 )) || $ShowStatusWhenZero; then
