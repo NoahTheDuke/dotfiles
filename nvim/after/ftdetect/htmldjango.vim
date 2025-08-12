@@ -1,1 +1,1 @@
-au BufNewFile,BufRead *.html setfiletype html
+au BufNewFile,BufRead *.html set filetype=html

@@ -48,10 +48,7 @@
                 "--lib",
                 "racket-langserver"
             ],
-            "filetypes": [
-                "scheme",
-                "racket"
-            ]
+            "filetypes": ["racket"]
         },
         "ocaml-lsp": {
             "command": "opam",
@@ -88,7 +85,7 @@
     // coc extensions
     "clojure.enable": true,
     "clojure.executable": "clojure-lsp",
-    "clojure.lsp-check-on-start": false,
+    "clojure.keymaps.enable": true,
     "clojure.initialization-options.copy-kondo-configs?": true,
     "clojure.initialization-options.log-path": "/tmp/clojure-lsp.out",
     "clojure.initialization-options.semantic-tokens?": true,

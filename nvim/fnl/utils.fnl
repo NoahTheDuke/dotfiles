@@ -1,6 +1,6 @@
 (fn g_set [k v]
   (if (= 0 (vim.api.nvim_call_function :exists k))
-      (tset vim.g k v)))
+    (tset vim.g k v)))
 
 (fn nvim_ex [...]
   (-> (vim.tbl_flatten [...])
@@ -9,9 +9,9 @@
 
 (fn dep [name args]
   (if (not= args nil)
-      (do (table.insert args 1 name)
-        args)
-      [name]))
+    (do (table.insert args 1 name)
+      args)
+    [name]))
 
 {: g_set
  : dep

@@ -1,11 +1,10 @@
 (local utils (require :utils))
+(import-macros {: when-require} :nvim/fnl/util-macros)
 
 (fn config []
-  (local (status-ok tc) (pcall require "textcase"))
-  (when status-ok
+  (when-require [tc :textcase]
     (tc.setup {})
-    (local (status-ok telescope) (pcall require "telescope"))
-    (when status-ok
+    (when-require [telescope :telescope]
       (telescope.load_extension "textcase"))))
 
 (comment

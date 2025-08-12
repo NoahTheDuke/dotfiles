@@ -7,9 +7,6 @@
    "https://github.com/asciidoc/vim-asciidoc"
    {:ft "asciidoc"})
 
- (utils.dep
-   "https://github.com/cathaysia/tree-sitter-asciidoc")
-
  ;; asm
  (utils.dep
    "https://github.com/samsaga2/vim-z80"
@@ -25,6 +22,7 @@
    "https://github.com/jaawerth/fennel.vim"
    {:ft "fennel"})
 
+ ;; fluent
  (utils.dep
    "https://github.com/projectfluent/fluent.vim.git"
    {:ft "fluent"})
@@ -82,7 +80,8 @@
  ;; rst
  (utils.dep
    "https://github.com/marshallward/vim-restructuredtext"
-   {:name "vim-restructuredtext"})
+   {:ft "rst"
+    :name "vim-restructuredtext"})
 
  ;; ruby/rails
  (utils.dep

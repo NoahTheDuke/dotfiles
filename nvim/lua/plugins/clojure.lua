@@ -1,7 +1,7 @@
 -- [nfnl] nvim/fnl/plugins/clojure.fnl
 local utils = require("utils")
 local function config()
-  vim.g.clojure_fuzzy_indent_patterns = {"^with", "^def", "^let", "^\\(.*/\\)\\?expect", "from-each", "given", "describe", "it", "changed", "do-game"}
+  vim.g.clojure_fuzzy_indent_patterns = {"^with", "^def", "^let", "^\\([^\\s]*/\\)\\?expect", "from-each", "given", "describe", "it", "changed", "do-game"}
   vim.g.clojure_indent_style = "standard"
   return nil
 end

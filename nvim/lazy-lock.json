@@ -37,7 +37,6 @@
   "telescope-coc.nvim": { "branch": "master", "commit": "42791345bc45c2b635a410dfa2e90acca26e6a02" },
   "telescope.nvim": { "branch": "master", "commit": "b4da76be54691e854d3e0e02c36b0245f945c2c7" },
   "text-case.nvim": { "branch": "main", "commit": "e898cfd46fa6cde0e83abb624a16e67d2ffc6457" },
-  "tree-sitter-asciidoc": { "branch": "master", "commit": "673baad6c970c51985b7aaae29f003e127dd6e43" },
   "undotree": { "branch": "search", "commit": "dc1fc3bb09ad9544c9ce23378f028c056caa2597" },
   "url-open": { "branch": "main", "commit": "9f8f4a56ac709f26aa17d8ef921b272bf2262a30" },
   "vim-asciidoc": { "branch": "master", "commit": "81530e5e9228cb0da1132fdcd51a89df3bf8e585" },
