@@ -1,7 +1,7 @@
 {
     // coc.nvim/global settings
     "coc.preferences.enableMarkdown": true,
-    "coc.preferences.enableMessageDialog": false,
+    "coc.preferences.messageDialogKind": "confirm",
     "coc.preferences.excludeImageLinksInMarkdownDocument": true,
     "coc.preferences.useQuickfixForLocations": false,
     "[json]": {
@@ -21,7 +21,7 @@
     "suggest.floatConfig": { "winblend": 0 },
     "suggest.minTriggerInputLength": 2,
     "suggest.noselect": true,
-    "suggest.triggerCompletionWait": 50,
+    "suggest.triggerCompletionWait": 10,
     "workspace.rootPatterns": [".git", ".projections.json"],
     "workspace.openResourceCommand": "edit",
     "workspace.ignoredFolders": [

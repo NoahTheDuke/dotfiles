@@ -62,11 +62,6 @@
    "https://github.com/plasticboy/vim-markdown"
    {:ft "markdown"})
 
- ;; ocaml
- (utils.dep
-   "https://github.com/ocaml/vim-ocaml"
-   {:ft "ocaml"})
-
  ;; python
  (utils.dep
    "https://github.com/psf/black"
