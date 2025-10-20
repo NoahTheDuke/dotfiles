@@ -1,9 +1,15 @@
-(if_expression
-  "if" @open.if
-  (then_clause
-    "then" @mid.if.1)
-  (else_clause
-    "else" @mid.if.2)?) @scope.if
+((if_expression
+   "if" @open.if
+   (then_clause
+     "then" @mid.if.2)) @scope.if
+ (#not-has-parent? @scope.if else_clause))
+
+(else_clause
+  "else" @mid.if.1
+  (if_expression
+    "if" @mid.if.2
+    (then_clause
+      "then" @mid.if.2))?)
 
 (parenthesized_expression
   "begin" @open.begin
@@ -20,23 +26,21 @@
   ("to")? @mid.loop.1
   ("downto")? @mid.loop.1
   (do_clause
-  "do" @mid.loop.2
+    "do" @mid.loop.2
     "done" @close.loop)) @scope.loop
 
 (while_expression
   "while" @open.loop
   (do_clause
-  "do" @mid.loop.2
+    "do" @mid.loop.1
     "done" @close.loop)) @scope.loop
 
 (match_expression
   "match" @open.case
   "with" @mid.case.1
-  (match_case
-    pattern: (_) @mid.case.2
-    body: (_))) @scope.case
+  "|" @mid.case.2
+  ) @scope.case
 
-(let_expression
-  (value_definition
-    "let" @open.let)
-  "in" @mid.let.1) @scope.let
+(try_expression
+  "try" @open.try
+  "with" @mid.try.1) @scope.try
