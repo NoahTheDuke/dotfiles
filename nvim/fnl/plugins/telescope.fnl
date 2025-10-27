@@ -86,7 +86,7 @@
               :silent true
               :desc "Telescope find files"})
 
-     (keyset "n" "<leader>fg" ":lua require('telescope.builtin').live_grep()<cr>"
+     (keyset "n" "<leader>ft" ":lua require('telescope.builtin').live_grep()<cr>"
              {:noremap true
               :silent true
               :desc "Telescope grep"})
