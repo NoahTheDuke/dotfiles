@@ -1,33 +1,56 @@
-(vim.cmd
-  "
-  augroup filetypes
-    autocmd Filetype gitcommit setlocal spell textwidth=80
-    autocmd BufNewFile,BufReadPost *.axvw set filetype=xml
-    autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-    autocmd BufNewFile,BufReadPost *.asd set filetype=lisp
-    autocmd BufNewFile,BufReadPost *.asm set filetype=z80
-    autocmd TermOpen * setlocal nospell nonumber norelativenumber
-    autocmd TermOpen,BufEnter term://* startinsert
-  augroup END
-  ")
+(fn set-ft [augroup pattern ft]
+  (vim.api.nvim_create_autocmd
+    ["BufNewFile" "BufReadPost"]
+    {:group augroup
+     :pattern pattern
+     :callback (fn [args] (vim.api.nvim_set_option_value "filetype" ft {:scope :local}))}))
 
-(vim.cmd
-  "
-  augroup autosave
-    autocmd FocusLost * :wa
-    autocmd FocusGained,BufEnter * :checktime
-  augroup END
-  ")
+(let [filetypes-augroup (vim.api.nvim_create_augroup "SetFileTypes" {:clear true})]
+  (vim.api.nvim_create_autocmd
+    ["Filetype"]
+    {:group filetypes-augroup
+     :pattern "gitcommit"
+     :callback (fn [args]
+                 (vim.api.nvim_set_option_value "spell" true {:scope :local})
+                 (vim.api.nvim_set_option_value "textwidth" 80 {:scope :local}))})
+  (vim.api.nvim_create_autocmd
+    ["TermOpen"]
+    {:group filetypes-augroup
+     :pattern "*"
+     :callback (fn [args]
+                 (vim.api.nvim_set_option_value "spell" false {:scope :local})
+                 (vim.api.nvim_set_option_value "number" false {:scope :local})
+                 (vim.api.nvim_set_option_value "relativenumber" false {:scope :local}))})
+  (vim.api.nvim_create_autocmd
+    ["TermOpen" "BufEnter"]
+    {:group filetypes-augroup
+     :pattern "term://*"
+     :command "startinsert"})
+  (set-ft filetypes-augroup "*.axvw" "xml")
+  (set-ft filetypes-augroup "*.md" "markdown")
+  (set-ft filetypes-augroup "*.asd" "lisp")
+  (set-ft filetypes-augroup "*.asm" "z80"))
+
+(let [autosave-augroup (vim.api.nvim_create_augroup "autosave" {:clear true})]
+  (vim.api.nvim_create_autocmd
+    ["FocusLost"]
+    {:group autosave-augroup
+     :pattern "*"
+     :command ":silent! wa"})
+  (vim.api.nvim_create_autocmd
+    ["FocusGained" "BufEnter"]
+    {:group autosave-augroup
+     :pattern "*"
+     :command ":checktime"}))
 
 (vim.api.nvim_create_autocmd
   ["BufRead" "BufNewFile"]
   {:group (vim.api.nvim_create_augroup "HighlightFullWidthSpace" {})
    :pattern "*"
    :callback
-   (fn []
+   (fn [args]
      (local weirdSpaces "weirdSpaces")
      (vim.fn.matchadd weirdSpaces "\\(\\%u000B\\|\\%u000C\\|\\%u0085\\|\\%u00A0\\|\\%u1680\\|\\%u2000\\|\\%u2001\\|\\%u2002\\|\\%u2003\\|\\%u2004\\|\\%u2005\\|\\%u2006\\|\\%u2007\\|\\%u2008\\|\\%u2009\\|\\%u200A\\|\\%u2028\\|\\%u2029\\|\\%u202F\\|\\%u205F\\|\\%u3000\\)")
-
      (vim.api.nvim_set_hl 0 weirdSpaces
                           {:bg "#a6a6a6"
                            :fg "white"}))})
