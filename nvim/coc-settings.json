@@ -139,6 +139,5 @@
         "allowed": true
       }
     ],
-    "java.import.gradle.java.home": "/opt/homebrew/Cellar/openjdk@11/11.0.25/libexec/openjdk.jdk/Contents/Home",
-    "eslint.migration.2_x": "off"
+    "java.import.gradle.java.home": "/opt/homebrew/Cellar/openjdk@11/11.0.25/libexec/openjdk.jdk/Contents/Home"
 }
