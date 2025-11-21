@@ -6,4 +6,5 @@
                       :notify false}
    :lockfile "~/dotfiles/nvim/lazy-lock.json"
    :concurrency 5
-   :ui {:border "rounded"}})
+   :ui {:border "rounded"}
+   :defaults {:version "*"}})

@@ -22,7 +22,7 @@
     "suggest.minTriggerInputLength": 2,
     "suggest.noselect": true,
     "suggest.triggerCompletionWait": 10,
-    "workspace.rootPatterns": [".git", ".projections.json", "project.clj", "deps.edn"],
+    "workspace.rootPatterns": [".git"],
     "workspace.openResourceCommand": "edit",
     "workspace.ignoredFolders": [
         "$HOME",
