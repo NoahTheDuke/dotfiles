@@ -57,11 +57,6 @@
    "https://github.com/NoahTheDuke/vim-just"
    {:ft "just"})
 
- ;; markdown
- (utils.dep
-   "https://github.com/plasticboy/vim-markdown"
-   {:ft "markdown"})
-
  ;; python
  (utils.dep
    "https://github.com/psf/black"
