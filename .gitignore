@@ -2,3 +2,4 @@
 .cache
 nvim/plugin/___packer_compiled.lua
 .vim/
+jj/conf.d/work.toml

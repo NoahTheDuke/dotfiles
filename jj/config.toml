@@ -16,10 +16,12 @@ email = "noah.bogart@hey.com"
 
 [git]
 write-change-id-header = true
-push-new-bookmarks = true
 
 [templates]
 git_push_bookmark = '"nb/push-" ++ change_id.short()'
 
 [revsets]
 log = 'present(@) | ancestors(immutable_heads().., 3) | present(trunk())'
+
+[remotes.origin]
+auto-track-bookmarks = "*"

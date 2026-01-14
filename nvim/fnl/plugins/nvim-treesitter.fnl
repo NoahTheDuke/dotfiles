@@ -39,7 +39,6 @@
    "javascript"
    "json"
    "json5"
-   "jsonc"
    "just"
    "lua"
    "markdown"
