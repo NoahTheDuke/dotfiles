@@ -15,11 +15,10 @@ jjgit_prompt() {
             D="${D%/*}"
         done
     }
-    local jjgit="`pwd_in_jjgit`"  # results in "jj", "git" or ""
+    local jjgit="$(pwd_in_jjgit)"  # results in "jj", "git" or ""
     if test "$jjgit" = jj ; then
         # --ignore-working-copy: avoid inspecting $PWD and concurrent snapshotting which could create divergent commits
-        jj --ignore-working-copy --no-pager log --no-graph --color=always -r @ \
-            -T ' "jj:[@ " ++ concat( separate(" ", format_short_change_id_with_hidden_and_divergent_info(self), format_short_commit_id(commit_id), bookmarks, if(conflict, label("conflict", "conflict")) ) ) ++ "]\n" ' 2>/dev/null
+        jj --ignore-working-copy --no-pager log --no-graph --color=always -r @ -T ' "jj:[@ " ++ concat( separate(" ", format_short_change_id_with_change_offset(self), format_short_commit_id(commit_id), bookmarks, if(conflict, label("conflict", "conflict")) ) ) ++ "]\n" '
     elif test "$jjgit" = git ; then
         # --no-pager: never use a pager for the prompt, regardless of user config
         local gitprompt=$(git --no-pager log -1 --color=always --pretty='%C(auto)%h ꜓%C(auto)%(decorate:prefix=,suffix=,tag=,pointer=→,separator=%x2C )' 2>/dev/null)

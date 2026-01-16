@@ -1,11 +1,11 @@
 -- [nfnl] nvim/fnl/plugins/text-case-nvim.fnl
 local utils = require("utils")
 local function config()
-  local status_ok_2_auto, tc = pcall(require, "textcase")
-  if status_ok_2_auto then
+  local _1_, tc = pcall(require, "textcase")
+  if _1_ then
     tc.setup({})
-    local status_ok_2_auto0, telescope = pcall(require, "telescope")
-    if status_ok_2_auto0 then
+    local _2_, telescope = pcall(require, "telescope")
+    if _2_ then
       return telescope.load_extension("textcase")
     else
       return nil

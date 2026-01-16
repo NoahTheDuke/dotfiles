@@ -1,8 +1,8 @@
-(local utils (require "utils"))
+(local utils (require :utils))
+(import-macros {: when-require} :nvim/fnl/util-macros)
 
 (fn config []
-  (local (status-ok autopairs) (pcall require "nvim-autopairs"))
-  (when status-ok
+  (when-require [autopairs "nvim-autopairs"]
     (autopairs.setup {:map_cr false
                       :check_ts true
                       :enable_check_bracket_line false

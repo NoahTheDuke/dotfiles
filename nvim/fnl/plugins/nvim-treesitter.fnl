@@ -1,5 +1,5 @@
-(local utils (require "utils"))
-(import-macros {: when-require} "nvim/fnl/util-macros")
+(local utils (require :utils))
+(import-macros {: when-require} :nvim/fnl/util-macros)
 
 (fn setup-custom-langs []
   (vim.api.nvim_create_autocmd
@@ -54,7 +54,8 @@
    "talon"
    "typescript"
    "vimdoc"
-   "vue"])
+   "vue"
+   "yaml"])
 
 (fn start-lang [language]
   (vim.api.nvim_create_autocmd

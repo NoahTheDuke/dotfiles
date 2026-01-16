@@ -1,4 +1,5 @@
-(local utils (require "utils"))
+(local utils (require :utils))
+(import-macros {: when-require} :nvim/fnl/util-macros)
 
 ;; :SessionManager
 (utils.dep
@@ -6,8 +7,8 @@
   {:dependencies ["nvim-lua/plenary.nvim"]
    :config
    (fn []
-     (let [session-manager (require "session_manager")
-           config (require "session_manager.config")]
+     (when-require [session-manager "session_manager"
+                    config "session_manager.config"]
        (session-manager.setup
          {:autoload_mode config.AutoloadMode.Disabled
           :autosave_only_in_session false})))})

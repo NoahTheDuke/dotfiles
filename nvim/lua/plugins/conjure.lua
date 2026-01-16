@@ -12,8 +12,8 @@ local function conjure()
   local function time_current_form(extra_opts)
     local form = extract.form({})
     if form then
-      local content = form["content"]
-      local range = form["range"]
+      local content = form.content
+      local range = form.range
       eval["eval-str"](core.merge({code = str.join({"(time (dotimes [_ 1000] ", content, "))"}), range = range, origin = "current-form"}, extra_opts))
       return form
     else
@@ -27,8 +27,8 @@ local function conjure()
   local function ns_unmap(extra_opts)
     local form = extract.form({["root?"] = true})
     if form then
-      local content = form["content"]
-      local range = form["range"]
+      local content = form.content
+      local range = form.range
       local var_name = core.second(str.split(parse["strip-meta"](content), "%s+"))
       local current_ns = extract.context()
       if var_name then

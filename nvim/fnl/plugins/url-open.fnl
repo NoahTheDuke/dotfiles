@@ -1,12 +1,5 @@
-(local utils (require "utils"))
-(import-macros {: when-require} "nvim/fnl/util-macros")
-
-(local (status-ok url-open) (pcall require "url-open"))
-(when status-ok
-  (url-open.setup
-    {:open_only_when_cursor_on_url false
-     :highlight_url {:all_urls {:enabled false}
-                     :cursor_move {:enabled false}}}))
+(local utils (require :utils))
+(import-macros {: when-require} :nvim/fnl/util-macros)
 
 (fn config
   []

@@ -97,6 +97,11 @@
    "https://github.com/wavded/vim-stylus"
    {:ft "stylus"})
 
+ ;; talon
+ (utils.dep
+   "https://github.com/NoahTheDuke/talon.vim"
+   {})
+
  ;; toml
  (utils.dep
    "https://github.com/cespare/vim-toml"

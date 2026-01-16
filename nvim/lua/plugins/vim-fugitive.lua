@@ -9,11 +9,11 @@ local function str_split(str, sep)
   return t
 end
 _G.tangled_handler = function(opts)
-  local path = opts["path"]
-  local line1 = opts["line1"]
-  local line2 = opts["line2"]
-  local remote = opts["remote"]
-  local commit = opts["commit"]
+  local path = opts.path
+  local line1 = opts.line1
+  local line2 = opts.line2
+  local remote = opts.remote
+  local commit = opts.commit
   local path0 = (path or "")
   local path1 = path0:gsub("^/", "")
   if (nil ~= remote:find("tangled.sh")) then

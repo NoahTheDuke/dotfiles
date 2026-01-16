@@ -1,9 +1,10 @@
-(local utils (require "utils"))
+(local utils (require :utils))
+(import-macros {: when-require} :nvim/fnl/util-macros)
 
 ;; :WhichKey
 (utils.dep
   "https://github.com/folke/which-key.nvim"
   {:config
    (fn []
-     (let [which (require "which-key")]
+     (when-require [which "which-key"]
        (which.setup)))})

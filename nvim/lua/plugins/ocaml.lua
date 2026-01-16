@@ -1,8 +1,8 @@
 -- [nfnl] nvim/fnl/plugins/ocaml.fnl
 local utils = require("utils")
 local function config()
-  local status_ok_2_auto, ocaml = pcall(require, "ocaml")
-  if status_ok_2_auto then
+  local _1_, ocaml = pcall(require, "ocaml")
+  if _1_ then
     return ocaml.setup({})
   else
     return nil

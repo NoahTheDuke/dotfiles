@@ -29,7 +29,7 @@
 (comment
   (config))
 
-;; gs: "abc" -> "abc -> :abc
+;; gs: "abc" -> 'abc -> :abc
 [(utils.dep
    "https://github.com/AndrewRadev/switch.vim"
    {:config config})]

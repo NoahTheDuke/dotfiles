@@ -1,4 +1,4 @@
-(local utils (require "utils"))
+(local utils (require :utils))
 
 (local opts {:noremap true :silent true})
 (local scroll_opts {:silent true :nowait true :expr true})
