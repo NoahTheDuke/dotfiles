@@ -2,5 +2,5 @@
 --smart-case
 
 # Don't let ripgrep vomit really long lines to my terminal, and show a preview.
---max-columns=160
+--max-columns=250
 --max-columns-preview
