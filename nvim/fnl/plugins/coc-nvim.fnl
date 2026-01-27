@@ -88,7 +88,9 @@
 
   (keyset "n" "K" _G.show_docs opts))
 
-[(utils.dep
-   "https://github.com/neoclide/coc.nvim"
-   {:branch "release"
-    :config config})]
+[
+ ; (utils.dep
+ ;   "https://github.com/neoclide/coc.nvim"
+ ;   {:branch "release"
+ ;    :config config})
+ ]

@@ -52,21 +52,26 @@
         ;; Coc Semantic Highlighting
         :CocSemEvent {:fg colors.fg :bg colors.bg}
         :CocSemMacro {:fg colors.orange}
-        :CocSemVariable {:link "Identifier"}
+        :CocSemVariable {:link :Identifier}
         :CocHighlightText {:bg colors.bg :undercurl true :sp colors.yellow}
 
         ;; TreeSitter Highlighting
-        "@character.special" {:fg colors.orange}
-        "@constant.builtin" {:fg colors.purple}
-        "@function.call" {:fg colors.green}
-        "@function.macro" {:fg colors.orange}
-        "@operator" {:fg colors.orange}
+        "@character" {:link :Character}
+        "@comment" {:link :Comment}
+        "@constant.builtin" {:link :Constant}
+        "@function.call" {:link :Function}
+        "@function.macro" {:link :Macro}
+        "@operator" {:link :Operator}
         "@punctuation.special" {:fg colors.orange}
-        "@string.regex" {:fg colors.purple}
+        "@string" {:link :String}
         "@string.regexp" {:fg colors.purple}
         "@string.special" {:fg colors.purple}
         "@string.special.symbol" {:fg colors.pink}
         "@variable.builtin" {:fg colors.cyan}
+
+        ;; lsp highlighting
+        "@lsp.type.macro" {:link :Macro}
+        :DiagnosticUnnecessary {:undercurl true}
 
         ;; statusline stuff
         ;; Mode

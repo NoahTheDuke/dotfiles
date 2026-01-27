@@ -63,4 +63,4 @@ local function config()
   end
   return keyset("n", "K", _G.show_docs, opts)
 end
-return {utils.dep("https://github.com/neoclide/coc.nvim", {branch = "release", config = config})}
+return {}

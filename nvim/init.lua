@@ -14,22 +14,10 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- vim.cmd [[
---   set runtimepath^=$HOME/personal/coc.nvim
---   let g:coc_node_args = ['-r', expand('~/.local/lib/node_modules/source-map-support/register')]
--- ]]
+vim.hl = vim.highlight
 
 require "options"
 require "keymaps"
 require "autocmds"
 require "lazy-setup"
 require "statusline"
-
-vim.hl = vim.highlight
--- vim.cmd [[let g:python3_host_prog = $HOME . "/.local/venv/nvim/bin/python"]]
-
-vim.cmd [[
-set runtimepath^=$HOME/programming/coc-clojure
-let $NVIM_COC_LOG_LEVEL = 'debug'
-let $NVIM_COC_LOG_FILE = '/tmp/coc-nvim.log'
-]]

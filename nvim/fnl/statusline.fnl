@@ -49,7 +49,7 @@ set statusline+=%m
 set statusline+=%r
 set statusline+=%3*
 set statusline+=\\ 
-set statusline+=%{coc#status()}
+\" set statusline+=%{coc#status()}
 set statusline+=%=
 set statusline+=\\ 
 set statusline+=%{v:lua._G.Statusline.Encoding()}

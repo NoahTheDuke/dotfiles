@@ -3,8 +3,16 @@
         "type": "source",
         "alternate": "nvim/lua/{}.lua"
     },
+    "nvim/*.fnl": {
+        "type": "source",
+        "alternate": "nvim/{}.lua"
+    },
     "nvim/lua/*.lua": {
         "type": "lua",
         "alternate": "nvim/fnl/{}.fnl"
+    },
+    "nvim/*.lua": {
+        "type": "lua",
+        "alternate": "nvim/{}.fnl"
     }
 }
