@@ -8,6 +8,7 @@
   "conjure-macroexpand": { "branch": "master", "commit": "021a67c4cd0830d032b5ed67afc5167cf9735b79" },
   "csvview.nvim": { "branch": "main", "commit": "a4c45eadb03a462a80dd1a545d0f9cb636b73664" },
   "dracula.nvim": { "branch": "main", "commit": "ae752c13e95fb7c5f58da4b5123cb804ea7568ee" },
+  "edn.lua": { "branch": "main", "commit": "dd6175bbfb357972ef0e9c5afb6871632f031d89" },
   "fennel.vim": { "branch": "main", "commit": "c6a9c035ca108cbb24273d96cd6277fb8fbc60b4" },
   "fluent.vim": { "branch": "master", "commit": "94c1ef622187032778f546d2f8ad821661475172" },
   "html5.vim": { "branch": "master", "commit": "60545015ff66cf38581cda89aea386cbbc0b9861" },

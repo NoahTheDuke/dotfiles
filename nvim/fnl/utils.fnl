@@ -13,6 +13,18 @@
       args)
     [name]))
 
+(fn map [f coll]
+  "icollect but a function"
+  (icollect [_ v (ipairs coll)]
+    (f v)))
+
+(fn filter [pred coll]
+  "icollect but a function"
+  (icollect [_ v (ipairs coll)]
+    (if (pred v) v nil)))
+
 {: g_set
  : dep
- : nvim_ex}
+ : nvim_ex
+ : map
+ : filter}
