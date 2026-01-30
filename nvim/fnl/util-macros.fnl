@@ -17,4 +17,11 @@
          (do ,...)
          (vim.notify (. ,errs 1) vim.log.levels.ERROR)))))
 
-{: when-require}
+(fn callback [args ...]
+  `(fn ,args
+     (do ,...)
+     nil))
+
+
+{: when-require
+ : callback}

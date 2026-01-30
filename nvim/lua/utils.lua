@@ -8,7 +8,7 @@ local function g_set(k, v)
   end
 end
 local function nvim_ex(...)
-  return vim.api.nvim_command(table.concat(vim.tbl_flatten({...}), " "))
+  return vim.api.nvim_command(table.concat(vim.iter({...}):flatten():totable(), " "))
 end
 local function dep(name, args)
   if (args ~= nil) then
@@ -18,35 +18,19 @@ local function dep(name, args)
     return {name}
   end
 end
-local function map(f, coll)
-  local tbl_26_ = {}
-  local i_27_ = 0
-  for _, v in ipairs(coll) do
-    local val_28_ = f(v)
-    if (nil ~= val_28_) then
-      i_27_ = (i_27_ + 1)
-      tbl_26_[i_27_] = val_28_
-    else
+local function fennel_includeexpr(mdl)
+  local mdl0 = mdl:gsub("%.", "/")
+  local root = (vim.fs.root(vim.api.nvim_buf_get_name(0), "lua") or vim.fn.getcwd())
+  for _, fname in ipairs({mdl0, vim.fs.joinpath(root, "fnl", mdl0)}) do
+    for _0, suf in ipairs({".fnl", ".fnlm"}) do
+      local path = (fname .. suf)
+      if vim.uv.fs_stat(path) then
+        return path
+      else
+      end
     end
   end
-  return tbl_26_
+  local mod_info = vim.loader.find(mdl0)[1]
+  return ((mod_info and mod_info.modpath) or mdl0)
 end
-local function filter(pred, coll)
-  local tbl_26_ = {}
-  local i_27_ = 0
-  for _, v in ipairs(coll) do
-    local val_28_
-    if pred(v) then
-      val_28_ = v
-    else
-      val_28_ = nil
-    end
-    if (nil ~= val_28_) then
-      i_27_ = (i_27_ + 1)
-      tbl_26_[i_27_] = val_28_
-    else
-    end
-  end
-  return tbl_26_
-end
-return {g_set = g_set, dep = dep, nvim_ex = nvim_ex, map = map, filter = filter}
+return {g_set = g_set, dep = dep, nvim_ex = nvim_ex, fennel_includeexpr = fennel_includeexpr}

@@ -19,8 +19,9 @@
 
  ;; fennel
  (utils.dep
-   "https://github.com/jaawerth/fennel.vim"
-   {:ft "fennel"})
+   "https://github.com/micampe/fennel.vim"
+   {:branch "nvim-support"
+    :ft "fennel"})
 
  ;; fluent
  (utils.dep
