@@ -4,10 +4,10 @@
 
 (fn config []
   (when-require [telescope "telescope"
-                 actions "telescope.actions"]
+                 actions "telescope.actions"
+                 builtin "telescope.builtin"]
 
-
-    (telescope.load_extension "coc")
+    (telescope.load_extension "fzf")
     (telescope.setup
       {:defaults
        {:prompt_prefix " "
@@ -80,8 +80,7 @@
              "?" actions.which_key
              }}}
        :pickers {:find_files
-                 {:find_command ["fd" "--type" "f"]}}
-       :extensions {:coc {:prefer_locations true}}})
+                 {:find_command ["fd" "--type" "f"]}} })
 
     (keyset "n" "<leader>ff" ":lua require('telescope.builtin').find_files()<cr>"
             {:noremap true
@@ -112,24 +111,24 @@
              :silent true
              :desc "Telescope : commands"})
 
-    (local coc_list
-      [{:lhs "<leader>ta" :rhs ":Telescope coc code_actions<cr>"}
-       {:lhs "<leader>tc" :rhs ":Telescope coc commands<cr>"}
-       {:lhs "<leader>te" :rhs ":Telescope coc diagnostics<cr>"}
-       {:lhs "<leader>ti" :rhs ":Telescope coc implementations<cr>"}
-       {:lhs "<leader>tr" :rhs ":Telescope coc references<cr>"}
-       {:lhs "<leader>ts" :rhs ":Telescope coc document_symbols<cr>"}])
+    (local lsp-list
+      [{:lhs "<leader>te" :rhs builtin.diagnostics :desc "List diagnostics"}
+       {:lhs "<leader>ti" :rhs builtin.lsp_implementations :desc "Goto the implementation of the word under the cursor if there's only one, otherwise show all options"}
+       {:lhs "<leader>tr" :rhs builtin.lsp_references :desc "Lists LSP references for word under the cursor"}
+       {:lhs "<leader>ts" :rhs builtin.lsp_document_symbols :desc "Lists LSP document symbols in the current buffer"}])
 
-    (each [_ v (ipairs coc_list)]
+    (each [_ v (ipairs lsp-list)]
       (keyset "n" v.lhs v.rhs
               {:nowait true
                :noremap true
-               :silent true}))))
+               :silent true
+               :desc v.desc}))))
 
 (comment
   (config))
 
 (utils.dep
   "https://github.com/nvim-telescope/telescope.nvim"
-  {:dependencies [ "https://github.com/fannheyward/telescope-coc.nvim" ]
+  {:dependencies [{1 "https://github.com/nvim-telescope/telescope-fzf-native.nvim.git"
+                   :build "make"}]
    :config config})

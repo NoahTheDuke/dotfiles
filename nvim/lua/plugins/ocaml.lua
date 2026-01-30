@@ -1,11 +1,19 @@
 -- [nfnl] nvim/fnl/plugins/ocaml.fnl
 local utils = require("utils")
 local function config()
-  local _1_, ocaml = pcall(require, "ocaml")
-  if _1_ then
+  local errors_1_ = {}
+  local _2_, ocaml
+  local function _3_()
+    return require("ocaml")
+  end
+  local function _4_(err_1_auto)
+    return table.insert(errors_1_, debug.traceback(err_1_auto))
+  end
+  _2_, ocaml = xpcall(_3_, _4_)
+  if _2_ then
     return ocaml.setup({})
   else
-    return nil
+    return vim.notify(errors_1_[1], vim.log.levels.ERROR)
   end
 end
 --[[ (config) ]]

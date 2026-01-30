@@ -67,8 +67,16 @@ local function execute_choice_command(cmd, args)
   end
 end
 local function register_commands(commands)
-  local _11_, textcase = pcall(require, "textcase")
-  if _11_ then
+  local errors_11_ = {}
+  local _12_, textcase
+  local function _13_()
+    return require("textcase")
+  end
+  local function _14_(err_1_auto)
+    return table.insert(errors_11_, debug.traceback(err_1_auto))
+  end
+  _12_, textcase = xpcall(_13_, _14_)
+  if _12_ then
     for _, cmd in ipairs(commands) do
       local nargs
       if cmd.positional then
@@ -77,45 +85,45 @@ local function register_commands(commands)
         nargs = "?"
       end
       local cmd_type = cmd.type
-      local _13_
+      local _16_
       if (cmd_type == "positional") then
-        local function _15_()
+        local function _18_()
           return execute_positional_command(cmd)
         end
-        _13_ = _15_
+        _16_ = _18_
       elseif (cmd_type == "prompt") then
-        local function _17_(args)
+        local function _20_(args)
           return execute_prompt_command(cmd, args)
         end
-        _13_ = _17_
+        _16_ = _20_
       elseif (cmd_type == "choice") then
-        local function _19_(args)
+        local function _22_(args)
           return execute_choice_command(cmd, args)
         end
-        _13_ = _19_
+        _16_ = _22_
       else
-        _13_ = nil
+        _16_ = nil
       end
-      vim.api.nvim_create_user_command(textcase.api.to_pascal_case(("CljLsp" .. cmd.command)), _13_, {nargs = nargs})
+      vim.api.nvim_create_user_command(textcase.api.to_pascal_case(("CljLsp" .. cmd.command)), _16_, {nargs = nargs})
     end
-    local function _21_()
-      local _let_22_ = get_uri_and_pos()
-      local uri = _let_22_[1]
-      local row = _let_22_[2]
-      local col = _let_22_[3]
+    local function _24_()
+      local _let_25_ = get_uri_and_pos()
+      local uri = _let_25_[1]
+      local row = _let_25_[2]
+      local col = _let_25_[3]
       return vim.lsp.buf_notify(0, "clojure/cursorInfo/log", {textDocument = {uri = uri}, position = {line = row, character = col}})
     end
-    vim.api.nvim_create_user_command("CljLspCursorInfo", _21_, {nargs = 0})
-    local function _23_()
+    vim.api.nvim_create_user_command("CljLspCursorInfo", _24_, {nargs = 0})
+    local function _26_()
       return vim.lsp.buf_notify(0, "clojure/serverInfo/log")
     end
-    vim.api.nvim_create_user_command("CljLspServerInfo", _23_, {nargs = 0})
-    local function _24_()
+    vim.api.nvim_create_user_command("CljLspServerInfo", _26_, {nargs = 0})
+    local function _27_()
       return vim.lsp.buf_request_sync(0, "clojure/workspace/projectTree/nodes")
     end
-    return vim.api.nvim_create_user_command("CljLspProjectTree", _24_, {nargs = 0})
+    return vim.api.nvim_create_user_command("CljLspProjectTree", _27_, {nargs = 0})
   else
-    return nil
+    return vim.notify(errors_11_[1], vim.log.levels.ERROR)
   end
 end
 local clojure_lsp_config = {cmd = {"clojure-lsp"}, filetypes = {"clojure"}, root_markers = {"project.clj", "deps.edn", "build.boot", "shadow-cljs.edn", "bb.edn", ".git"}, init_options = {["log-path"] = "/tmp/clojure-lsp.out"}, trace = "verbose"}
@@ -133,15 +141,15 @@ end
 local lsp_configs = {"fennel_ls", "lua_ls", "ocamllsp", "racket_langserver", "rust_analyzer", "terraformls", "ts_ls"}
 local function config()
   for _, name in ipairs({"Format", "FOrmat"}) do
-    local function _27_()
+    local function _30_()
       return vim.lsp.buf.format()
     end
-    vim.api.nvim_create_user_command(name, _27_, {nargs = 0})
+    vim.api.nvim_create_user_command(name, _30_, {nargs = 0})
   end
-  local function _28_()
+  local function _31_()
     return vim.lsp.buf.code_action({context = {only = {"source.organizeImports"}}, apply = true})
   end
-  vim.api.nvim_create_user_command("OR", _28_, {nargs = 0})
+  vim.api.nvim_create_user_command("OR", _31_, {nargs = 0})
   clojure_lsp()
   for _, language in ipairs(lsp_configs) do
     vim.lsp.enable(language)

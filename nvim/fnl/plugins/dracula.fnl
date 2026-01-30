@@ -49,12 +49,6 @@
 
         :Ignore {:fg colors.comment}
 
-        ;; Coc Semantic Highlighting
-        :CocSemEvent {:fg colors.fg :bg colors.bg}
-        :CocSemMacro {:fg colors.orange}
-        :CocSemVariable {:link :Identifier}
-        :CocHighlightText {:bg colors.bg :undercurl true :sp colors.yellow}
-
         ;; TreeSitter Highlighting
         "@character" {:link :Character}
         "@comment" {:link :Comment}
