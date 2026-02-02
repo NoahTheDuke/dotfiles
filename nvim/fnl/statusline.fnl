@@ -57,8 +57,7 @@
 
 (vim.cmd "
 set laststatus=2
-set statusline=
-set statusline+=%1*
+set statusline=%1*
 set statusline+=\\ 
 set statusline+=%{v:lua._G.Statusline.Mode()}
 set statusline+=\\ 

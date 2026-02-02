@@ -1,7 +1,3 @@
-(fn g_set [k v]
-  (if (= 0 (vim.api.nvim_call_function :exists k))
-    (tset vim.g k v)))
-
 (fn nvim_ex [...]
   (-> (vim.iter [...])
       (: :flatten)
@@ -27,7 +23,14 @@
   (local mod-info (. (vim.loader.find mdl) 1))
   (or (and mod-info mod-info.modpath) mdl))
 
-{: g_set
- : dep
+(fn ks-opts [desc]
+  "sets silent and noremap, uses given description"
+  {:silent true
+   :noremap true
+   : desc})
+
+
+{: dep
  : nvim_ex
- : fennel_includeexpr}
+ : fennel_includeexpr
+ : ks-opts}

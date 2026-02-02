@@ -1,12 +1,4 @@
 -- [nfnl] nvim/fnl/utils.fnl
-local function g_set(k, v)
-  if (0 == vim.api.nvim_call_function("exists", k)) then
-    vim.g[k] = v
-    return nil
-  else
-    return nil
-  end
-end
 local function nvim_ex(...)
   return vim.api.nvim_command(table.concat(vim.iter({...}):flatten():totable(), " "))
 end
@@ -33,4 +25,7 @@ local function fennel_includeexpr(mdl)
   local mod_info = vim.loader.find(mdl0)[1]
   return ((mod_info and mod_info.modpath) or mdl0)
 end
-return {g_set = g_set, dep = dep, nvim_ex = nvim_ex, fennel_includeexpr = fennel_includeexpr}
+local function ks_opts(desc)
+  return {silent = true, noremap = true, desc = desc}
+end
+return {dep = dep, nvim_ex = nvim_ex, fennel_includeexpr = fennel_includeexpr, ["ks-opts"] = ks_opts}

@@ -1,5 +1,6 @@
 (local utils (require :utils))
 
+;; if you decide to customize one of these, remove from this list and add to nvim/lsp/*
 (local lsp-configs
   ["fennel_ls"
    "lua_ls"

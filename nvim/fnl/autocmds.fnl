@@ -59,9 +59,8 @@
                            :fg "white"}))})
 
 (vim.api.nvim_create_autocmd
-  ["CursorHold" "CursorHoldI"]
+  ["CursorHold"]
   {:pattern "*"
-   :callback (callback [args]
+   :callback (callback [_args]
                (vim.diagnostic.open_float {:header ""
-                                           :scope "cursor"}
-                                          {:focus false}))})
+                                           :scope "cursor"}))})

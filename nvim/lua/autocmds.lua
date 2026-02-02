@@ -47,10 +47,10 @@ local function _4_(args)
   return nil
 end
 vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {group = vim.api.nvim_create_augroup("HighlightFullWidthSpace", {}), pattern = "*", callback = _4_})
-local function _5_(args)
+local function _5_(_args)
   do
-    vim.diagnostic.open_float({header = "", scope = "cursor"}, {focus = false})
+    vim.diagnostic.open_float({header = "", scope = "cursor"})
   end
   return nil
 end
-return vim.api.nvim_create_autocmd({"CursorHold", "CursorHoldI"}, {pattern = "*", callback = _5_})
+return vim.api.nvim_create_autocmd({"CursorHold"}, {pattern = "*", callback = _5_})

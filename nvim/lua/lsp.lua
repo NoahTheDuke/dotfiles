@@ -1,6 +1,6 @@
 -- [nfnl] nvim/fnl/lsp.fnl
+local utils = require("utils")
 local edn = require("edn")
-local keyset = vim.keymap.set
 local clojure_lsp_commands = (vim.fn.stdpath("config") .. "/data/clojure-lsp-commands.edn")
 local function get_uri_and_pos()
   local _let_1_ = vim.api.nvim_win_get_cursor(0)
@@ -24,7 +24,7 @@ local function register_keymaps(commands)
           return nil
         end
       end
-      keyset("n", ("<leader>cl" .. v.shortcut), _2_, {silent = true, noremap = true, desc = ("clojure-lsp-" .. v.command)})
+      vim.keymap.set("n", ("<leader>cl" .. v.shortcut), _2_, {silent = true, noremap = true, desc = ("clojure-lsp-" .. v.command)})
     else
     end
   end
@@ -136,12 +136,25 @@ local function _30_()
   return vim.lsp.buf.code_action({context = {only = {"source.organizeImports"}}, apply = true})
 end
 vim.api.nvim_create_user_command("OR", _30_, {nargs = 0})
+vim.diagnostic.config({signs = {text = {[vim.diagnostic.severity.ERROR] = "\239\129\151", [vim.diagnostic.severity.WARN] = "\239\129\177", [vim.diagnostic.severity.INFO] = "\239\129\154", [vim.diagnostic.severity.HINT] = "\239\129\153"}}})
+local function _31_()
+  return vim.lsp.buf.hover({border = "rounded"})
+end
+vim.keymap.set("n", "K", _31_, utils["ks-opts"]("show docs"))
+local function _32_()
+  return vim.lsp.buf.signature_help({border = "rounded"})
+end
+vim.keymap.set("i", "<C-o>", _32_, utils["ks-opts"]("show signature help"))
 vim.lsp.config("clojure-lsp", {cmd = {"clojure-lsp"}, filetypes = {"clojure"}, root_markers = {"project.clj", "deps.edn", "build.boot", "shadow-cljs.edn", "bb.edn", ".git"}, init_options = {["log-path"] = "/tmp/clojure-lsp.out"}, trace = "verbose"})
 vim.lsp.enable("clojure-lsp")
 if vim.uv.fs_stat(clojure_lsp_commands) then
   local commands = edn.decode(vim.fn.readblob(clojure_lsp_commands))
   register_keymaps(commands)
   register_commands(commands)
+else
+end
+if vim.fn.has("nvim-0.12.0") then
+  vim.lsp.semantic_tokens.enable(false)
 else
 end
 return nil

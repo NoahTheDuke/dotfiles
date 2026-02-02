@@ -1,9 +1,9 @@
+(local utils (require :utils))
 (local edn (require :edn))
 (import-macros {: when-require} :nvim/fnl/util-macros)
 
-(local keyset vim.keymap.set)
-
-(local clojure-lsp-commands (.. (vim.fn.stdpath "config") "/data/clojure-lsp-commands.edn"))
+(local clojure-lsp-commands
+  (.. (vim.fn.stdpath "config") "/data/clojure-lsp-commands.edn"))
 
 (fn get-uri-and-pos []
   (let [[row col] (vim.api.nvim_win_get_cursor 0)
@@ -16,16 +16,16 @@
 (fn register-keymaps [commands]
   (each [_ v (ipairs commands)]
     (when (. v :shortcut)
-      (keyset "n" (.. "<leader>cl" (. v :shortcut))
-              (fn []
-                (let [client (get-client "clojure-lsp")]
-                  (when client
-                    (client:exec_cmd {:command (. v :command)
-                                      :arguments (get-uri-and-pos)})
-                    (vim.api.nvim__redraw {:buf 0 :flush true}))))
-              {:silent true
-               :noremap true
-               :desc (.. "clojure-lsp-" (. v :command))}))))
+      (vim.keymap.set "n" (.. "<leader>cl" (. v :shortcut))
+                      (fn []
+                        (let [client (get-client "clojure-lsp")]
+                          (when client
+                            (client:exec_cmd {:command (. v :command)
+                                              :arguments (get-uri-and-pos)})
+                            (vim.api.nvim__redraw {:buf 0 :flush true}))))
+                      {:silent true
+                       :noremap true
+                       :desc (.. "clojure-lsp-" (. v :command))}))))
 
 (fn execute-positional-command [cmd ...]
   (let [client (get-client "clojure-lsp")
@@ -92,6 +92,15 @@
                               :apply true}))
   {:nargs 0})
 
+(vim.diagnostic.config
+  {:signs {:text {vim.diagnostic.severity.ERROR ""
+                  vim.diagnostic.severity.WARN ""
+                  vim.diagnostic.severity.INFO ""
+                  vim.diagnostic.severity.HINT ""}}})
+
+(vim.keymap.set "n" "K" (fn [] (vim.lsp.buf.hover {:border "rounded"})) (utils.ks-opts "show docs"))
+(vim.keymap.set "i" "<C-o>" (fn [] (vim.lsp.buf.signature_help {:border "rounded"})) (utils.ks-opts "show signature help"))
+
 (vim.lsp.config :clojure-lsp {:cmd ["clojure-lsp"]
                               :filetypes ["clojure"]
                               :root_markers ["project.clj" "deps.edn" "build.boot" "shadow-cljs.edn" "bb.edn" ".git"]
@@ -104,5 +113,8 @@
   (local commands (edn.decode (vim.fn.readblob clojure-lsp-commands)))
   (register-keymaps commands)
   (register-commands commands))
+
+(if (vim.fn.has "nvim-0.12.0")
+  (vim.lsp.semantic_tokens.enable false))
 
 nil
