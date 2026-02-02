@@ -86,7 +86,7 @@ local function register_commands(commands)
       local cmd_type = cmd.type
       local _16_
       if (cmd_type == "positional") then
-        local function _18_()
+        local function _18_(_args)
           return execute_positional_command(cmd)
         end
         _16_ = _18_
@@ -103,7 +103,7 @@ local function register_commands(commands)
       else
         _16_ = nil
       end
-      vim.api.nvim_create_user_command(textcase.api.to_pascal_case(("CljLsp" .. cmd.command)), _16_, {nargs = nargs})
+      vim.api.nvim_create_user_command(("CljLsp" .. textcase.api.to_pascal_case(cmd.command)), _16_, {nargs = nargs})
     end
     local function _24_()
       local _let_25_ = get_uri_and_pos()

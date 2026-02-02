@@ -4,7 +4,7 @@ vim.opt.backup = false
 vim.opt.clipboard:prepend("unnamedplus")
 vim.opt.cmdheight = 1
 vim.opt.colorcolumn = "+1"
-vim.opt.completeopt = {"menuone", "noselect"}
+vim.opt.completeopt = {"menuone", "noselect", "popup"}
 vim.opt.conceallevel = 0
 vim.opt.expandtab = true
 vim.opt.foldenable = false

@@ -43,7 +43,7 @@
   (local {: prompt : choices} cmd)
   (if (= "" (. args :args))
     (vim.ui.select choices {: prompt} (fn [choice]
-                                        (if (~= choice nil)
+                                        (if (not= choice nil)
                                           (execute-positional-command cmd choice)
                                           (execute-positional-command cmd))))
     (execute-positional-command cmd (. args :args))))
@@ -54,9 +54,9 @@
       (local nargs (if (. cmd :positional) "0" "?"))
       (local cmd-type (. cmd :type))
       (vim.api.nvim_create_user_command
-        (textcase.api.to_pascal_case (.. "CljLsp" (. cmd :command)))
+        (.. "CljLsp" (textcase.api.to_pascal_case (. cmd :command)))
         (case cmd-type
-          "positional" (fn [] (execute-positional-command cmd))
+          "positional" (fn [_args] (execute-positional-command cmd))
           "prompt" (fn [args] (execute-prompt-command cmd args))
           "choice" (fn [args] (execute-choice-command cmd args)))
         {: nargs}))

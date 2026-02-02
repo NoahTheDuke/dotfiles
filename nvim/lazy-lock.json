@@ -2,6 +2,7 @@
   "Dockerfile.vim": { "branch": "master", "commit": "2a31e6bcea5977209c05c728c4253d82fd873c82" },
   "alpha-nvim": { "branch": "main", "commit": "3979b01cb05734331c7873049001d3f2bb8477f4" },
   "black": { "branch": "main", "commit": "6305bf1ae645ab7541be4f5028a86239316178eb" },
+  "blink.cmp": { "branch": "main", "commit": "b19413d214068f316c78978b08264ed1c41830ec" },
   "clojure.vim": { "branch": "indent-forms", "commit": "c4b8d48c5f7514a825073926474f31dc4a85ea30" },
   "conjure": { "branch": "main", "commit": "90e7dbda6b2ba4e00e2876e7a50311e2e0ba51d2" },
   "conjure-locstack": { "branch": "master", "commit": "f6b4ab7a2d307cdf4f561aa88f16f16cb7513961" },

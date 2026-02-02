@@ -23,7 +23,7 @@
                                                :use-source false}))
         (when (not form) (lua "return"))
 
-        (if (and (not use-direct-parent) (~= (form:type) "source"))
+        (if (and (not use-direct-parent) (not= (form:type) "source"))
           (do (set form (ts-utils.find_local_root current-element))
             (if (not (and form (ts-forms.node_is_form form context)))
               (lua "return"))))

@@ -3,7 +3,7 @@
 (vim.opt.clipboard:prepend "unnamedplus")
 (set vim.opt.cmdheight 1)
 (set vim.opt.colorcolumn "+1")
-(set vim.opt.completeopt ["menuone" "noselect"])
+(set vim.opt.completeopt ["menuone" "noselect" "popup"])
 (set vim.opt.conceallevel 0)
 (set vim.opt.expandtab true)
 (set vim.opt.foldenable false)
