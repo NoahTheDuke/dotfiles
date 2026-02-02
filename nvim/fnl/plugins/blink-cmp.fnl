@@ -4,6 +4,7 @@
 (fn config []
   (when-require [blink "blink.cmp"]
     (blink.setup {:keymap {:preset :default}
+                  :cmdline {:completion {:menu {:auto_show true}}}
                   :completion {:documentation {:auto_show true}}})))
 
 (comment

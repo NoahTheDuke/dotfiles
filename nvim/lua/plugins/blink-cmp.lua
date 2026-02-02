@@ -11,7 +11,7 @@ local function config()
   end
   _2_, blink = xpcall(_3_, _4_)
   if _2_ then
-    return blink.setup({keymap = {preset = "default"}, completion = {documentation = {auto_show = true}}})
+    return blink.setup({keymap = {preset = "default"}, cmdline = {completion = {menu = {auto_show = true}}}, completion = {documentation = {auto_show = true}}})
   else
     return vim.notify(errors_1_[1], vim.log.levels.ERROR)
   end
