@@ -114,7 +114,7 @@
   (register-keymaps commands)
   (register-commands commands))
 
-(if (vim.fn.has "nvim-0.12.0")
+(if (= 1 (vim.fn.has "nvim-0.12.0"))
   (vim.lsp.semantic_tokens.enable false))
 
 nil

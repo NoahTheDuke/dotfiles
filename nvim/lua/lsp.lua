@@ -153,7 +153,7 @@ if vim.uv.fs_stat(clojure_lsp_commands) then
   register_commands(commands)
 else
 end
-if vim.fn.has("nvim-0.12.0") then
+if (1 == vim.fn.has("nvim-0.12.0")) then
   vim.lsp.semantic_tokens.enable(false)
 else
 end
