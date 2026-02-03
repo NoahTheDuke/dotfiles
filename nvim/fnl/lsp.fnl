@@ -101,6 +101,21 @@
 (vim.keymap.set "n" "K" (fn [] (vim.lsp.buf.hover {:border "rounded"})) (utils.ks-opts "show docs"))
 (vim.keymap.set "i" "<C-o>" (fn [] (vim.lsp.buf.signature_help {:border "rounded"})) (utils.ks-opts "show signature help"))
 
+(fn show-docs []
+  (local cw (vim.fn.expand "<cword>"))
+  (if
+    ;; vim help
+    (<= 0 (vim.fn.index ["vim" "help"] vim.bo.filetype))
+    (vim.api.nvim_command (.. "h " cw))
+    ;; hover
+    (< 0 (length (vim.lsp.get_clients {:bufnr 0})))
+    (vim.lsp.buf.definition)
+    ;; default
+    (vim.api.nvim_command (.. "!" vim.o.keywordprg " " cw)))
+  nil)
+
+(vim.keymap.set "n" "gd" (fn [] (show-docs)) (utils.ks-opts "go to definition"))
+
 (vim.lsp.config :clojure-lsp {:cmd ["clojure-lsp"]
                               :filetypes ["clojure"]
                               :root_markers ["project.clj" "deps.edn" "build.boot" "shadow-cljs.edn" "bb.edn" ".git"]

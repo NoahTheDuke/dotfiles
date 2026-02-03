@@ -4,9 +4,8 @@
 (fn config []
   (when-require [blink "blink.cmp"]
     (blink.setup {:keymap {:preset :default}
-                  :cmdline {:completion {:menu {:auto_show (fn [_ctx] (= ":" (vim.fn.getcmdtype)))}}
-                            :keymap {"<CR>" ["accept_and_enter" "fallback"]}}
-                  :menu {:auto_show true}})))
+                  :cmdline {:enabled false}
+                  :completion {:menu {:auto_show true}}})))
 
 (comment
   (config))
