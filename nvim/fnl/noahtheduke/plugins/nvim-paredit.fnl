@@ -1,15 +1,15 @@
 ;; sexpr editing
 (local utils (require "noahtheduke.utils"))
-(import-macros {: when-require} "noahtheduke/util-macros")
+(import-macros {: when-require} "noahtheduke.util-macros")
 
-(fn config []
+(λ config []
   (when-require [paredit "nvim-paredit"
                  ts-context "nvim-paredit.treesitter.context"
                  ts-forms "nvim-paredit.treesitter.forms"
                  ts-utils "nvim-paredit.treesitter.utils"
                  whitespace "nvim-paredit.api.whitespace"]
-    (fn insert-in-list [placement]
-      (fn []
+    (λ insert-in-list [placement]
+      (λ []
         (let [context (ts-context.create_context)]
           (if (not context) (lua "return"))
 
@@ -31,8 +31,8 @@
               (paredit.cursor.place_cursor form {:placement placement
                                                  :mode :insert}))))))
 
-    (fn enclosing-wrapper-maker [brackets placement]
-      (fn []
+    (λ enclosing-wrapper-maker [brackets placement]
+      (λ []
         (let [context (ts-context.create_context)]
           (if (not context) (lua "return"))
 
@@ -50,8 +50,8 @@
                 {:placement placement
                  :mode :insert}))))))
 
-    (fn wrapper-maker [brackets placement]
-      (fn []
+    (λ wrapper-maker [brackets placement]
+      (λ []
         (paredit.cursor.place_cursor
           (paredit.wrap.wrap_element_under_cursor (unpack brackets))
           {:placement placement

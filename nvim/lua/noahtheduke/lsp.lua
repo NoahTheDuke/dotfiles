@@ -10,12 +10,20 @@ local function get_uri_and_pos()
   return {uri, (row - 1), col}
 end
 local function get_client(name)
+  if (nil == name) then
+    _G.error("Missing argument name on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/lsp.fnl:13", 2)
+  else
+  end
   return vim.lsp.get_clients({name = name})[1]
 end
 local function register_keymaps(commands)
+  if (nil == commands) then
+    _G.error("Missing argument commands on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/lsp.fnl:16", 2)
+  else
+  end
   for _, v in ipairs(commands) do
     if v.shortcut then
-      local function _2_()
+      local function _4_()
         local client = get_client("clojure-lsp")
         if client then
           client:exec_cmd({command = v.command, arguments = get_uri_and_pos()})
@@ -24,58 +32,90 @@ local function register_keymaps(commands)
           return nil
         end
       end
-      vim.keymap.set("n", ("<leader>cl" .. v.shortcut), _2_, {silent = true, noremap = true, desc = ("clojure-lsp-" .. v.command)})
+      vim.keymap.set("n", ("<leader>cl" .. v.shortcut), _4_, {silent = true, noremap = true, desc = ("clojure-lsp-" .. v.command)})
     else
     end
   end
   return nil
 end
 local function execute_positional_command(cmd, ...)
+  if (nil == cmd) then
+    _G.error("Missing argument cmd on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/lsp.fnl:30", 2)
+  else
+  end
   local client = get_client("clojure-lsp")
-  local _let_5_ = get_uri_and_pos()
-  local uri = _let_5_[1]
-  local row = _let_5_[2]
-  local col = _let_5_[3]
+  local _let_8_ = get_uri_and_pos()
+  local uri = _let_8_[1]
+  local row = _let_8_[2]
+  local col = _let_8_[3]
   return client:exec_cmd({command = cmd.command, arguments = {uri, row, col, ...}})
 end
 local function execute_prompt_command(cmd, args)
+  if (nil == args) then
+    _G.error("Missing argument args on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/lsp.fnl:36", 2)
+  else
+  end
+  if (nil == cmd) then
+    _G.error("Missing argument cmd on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/lsp.fnl:36", 2)
+  else
+  end
   local prompt = cmd.prompt
   if ("" == args.args) then
-    local function _6_(_241)
+    local function _11_(_241)
       return execute_positional_command(cmd, _241)
     end
-    return vim.ui.input({prompt = prompt}, _6_)
+    return vim.ui.input({prompt = prompt}, _11_)
   else
     return execute_positional_command(cmd, args.args)
   end
 end
 local function execute_choice_command(cmd, args)
+  if (nil == args) then
+    _G.error("Missing argument args on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/lsp.fnl:42", 2)
+  else
+  end
+  if (nil == cmd) then
+    _G.error("Missing argument cmd on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/lsp.fnl:42", 2)
+  else
+  end
   local prompt = cmd.prompt
   local choices = cmd.choices
   if ("" == args.args) then
-    local function _8_(choice)
+    local function _15_(choice)
+      if (nil == choice) then
+        _G.error("Missing argument choice on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/lsp.fnl:45", 2)
+      else
+      end
       if (choice ~= nil) then
         return execute_positional_command(cmd, choice)
       else
         return execute_positional_command(cmd)
       end
     end
-    return vim.ui.select(choices, {prompt = prompt}, _8_)
+    return vim.ui.select(choices, {prompt = prompt}, _15_)
   else
     return execute_positional_command(cmd, args.args)
   end
 end
 local function register_commands(commands)
-  local errors_11_ = {}
-  local _12_, textcase
-  local function _13_()
+  if (nil == commands) then
+    _G.error("Missing argument commands on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/lsp.fnl:51", 2)
+  else
+  end
+  local errors_20_ = {}
+  local _21_, textcase
+  local function _22_()
     return require("textcase")
   end
-  local function _14_(err_1_auto)
-    return table.insert(errors_11_, debug.traceback(err_1_auto))
+  local function _23_(err_2_auto)
+    if (nil == err_2_auto) then
+      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/lsp.fnl:52", 2)
+    else
+    end
+    return table.insert(errors_20_, debug.traceback(err_2_auto))
   end
-  _12_, textcase = xpcall(_13_, _14_)
-  if _12_ then
+  _21_, textcase = xpcall(_22_, _23_)
+  if _21_ then
     for _, cmd in ipairs(commands) do
       local nargs
       if cmd.positional then
@@ -84,67 +124,75 @@ local function register_commands(commands)
         nargs = "?"
       end
       local cmd_type = cmd.type
-      local _16_
+      local _26_
       if (cmd_type == "positional") then
-        local function _18_(_args)
+        local function _28_(_args)
           return execute_positional_command(cmd)
         end
-        _16_ = _18_
+        _26_ = _28_
       elseif (cmd_type == "prompt") then
-        local function _20_(args)
+        local function _30_(args)
+          if (nil == args) then
+            _G.error("Missing argument args on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/lsp.fnl:60", 2)
+          else
+          end
           return execute_prompt_command(cmd, args)
         end
-        _16_ = _20_
+        _26_ = _30_
       elseif (cmd_type == "choice") then
-        local function _22_(args)
+        local function _33_(args)
+          if (nil == args) then
+            _G.error("Missing argument args on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/lsp.fnl:61", 2)
+          else
+          end
           return execute_choice_command(cmd, args)
         end
-        _16_ = _22_
+        _26_ = _33_
       else
-        _16_ = nil
+        _26_ = nil
       end
-      vim.api.nvim_create_user_command(("CljLsp" .. textcase.api.to_pascal_case(cmd.command)), _16_, {nargs = nargs})
+      vim.api.nvim_create_user_command(("CljLsp" .. textcase.api.to_pascal_case(cmd.command)), _26_, {nargs = nargs})
     end
-    local function _24_()
-      local _let_25_ = get_uri_and_pos()
-      local uri = _let_25_[1]
-      local row = _let_25_[2]
-      local col = _let_25_[3]
+    local function _36_()
+      local _let_37_ = get_uri_and_pos()
+      local uri = _let_37_[1]
+      local row = _let_37_[2]
+      local col = _let_37_[3]
       return vim.lsp.buf_notify(0, "clojure/cursorInfo/log", {textDocument = {uri = uri}, position = {line = row, character = col}})
     end
-    vim.api.nvim_create_user_command("CljLspCursorInfo", _24_, {nargs = 0})
-    local function _26_()
+    vim.api.nvim_create_user_command("CljLspCursorInfo", _36_, {nargs = 0})
+    local function _38_()
       return vim.lsp.buf_notify(0, "clojure/serverInfo/log")
     end
-    vim.api.nvim_create_user_command("CljLspServerInfo", _26_, {nargs = 0})
-    local function _27_()
+    vim.api.nvim_create_user_command("CljLspServerInfo", _38_, {nargs = 0})
+    local function _39_()
       return vim.lsp.buf_request_sync(0, "clojure/workspace/projectTree/nodes")
     end
-    vim.api.nvim_create_user_command("CljLspProjectTree", _27_, {nargs = 0})
+    vim.api.nvim_create_user_command("CljLspProjectTree", _39_, {nargs = 0})
     return nil
   else
-    return vim.notify(errors_11_[1], vim.log.levels.ERROR)
+    return vim.notify(errors_20_[1], vim.log.levels.ERROR)
   end
 end
 for _, name in ipairs({"Format", "FOrmat"}) do
-  local function _29_()
+  local function _41_()
     return vim.lsp.buf.format()
   end
-  vim.api.nvim_create_user_command(name, _29_, {nargs = 0})
+  vim.api.nvim_create_user_command(name, _41_, {nargs = 0})
 end
-local function _30_()
+local function _42_()
   return vim.lsp.buf.code_action({context = {only = {"source.organizeImports"}}, apply = true})
 end
-vim.api.nvim_create_user_command("OR", _30_, {nargs = 0})
+vim.api.nvim_create_user_command("OR", _42_, {nargs = 0})
 vim.diagnostic.config({signs = {text = {[vim.diagnostic.severity.ERROR] = "\239\129\151", [vim.diagnostic.severity.WARN] = "\239\129\177", [vim.diagnostic.severity.INFO] = "\239\129\154", [vim.diagnostic.severity.HINT] = "\239\129\153"}}})
-local function _31_()
+local function _43_()
   return vim.lsp.buf.hover({border = "rounded"})
 end
-vim.keymap.set("n", "K", _31_, utils["ks-opts"]("show docs"))
-local function _32_()
+vim.keymap.set("n", "K", _43_, utils["ks-opts"]("show docs"))
+local function _44_()
   return vim.lsp.buf.signature_help({border = "rounded"})
 end
-vim.keymap.set("i", "<C-o>", _32_, utils["ks-opts"]("show signature help"))
+vim.keymap.set("i", "<C-o>", _44_, utils["ks-opts"]("show signature help"))
 local function show_docs()
   do
     local cw = vim.fn.expand("<cword>")
@@ -158,10 +206,7 @@ local function show_docs()
   end
   return nil
 end
-local function _34_()
-  return show_docs()
-end
-vim.keymap.set("n", "gd", _34_, utils["ks-opts"]("go to definition"))
+vim.keymap.set("n", "gd", show_docs, utils["ks-opts"]("go to definition"))
 vim.lsp.config("clojure-lsp", {cmd = {"clojure-lsp"}, filetypes = {"clojure"}, root_markers = {"project.clj", "deps.edn", "build.boot", "shadow-cljs.edn", "bb.edn", ".git"}, init_options = {["log-path"] = "/tmp/clojure-lsp.out"}, trace = "verbose"})
 vim.lsp.enable("clojure-lsp")
 if vim.uv.fs_stat(clojure_lsp_commands) then

@@ -1,7 +1,7 @@
 (local utils (require "noahtheduke.utils"))
-(import-macros {: when-require} "noahtheduke/util-macros")
+(import-macros {: when-require} "noahtheduke.util-macros")
 
-(fn config []
+(λ config []
   (when-require [blink "blink.cmp"]
     (blink.setup {:keymap {:preset :default}
                   :cmdline {:enabled false}

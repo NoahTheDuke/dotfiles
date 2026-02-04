@@ -1,5 +1,5 @@
 (local utils (require "noahtheduke.utils"))
-(import-macros {: when-require} "noahtheduke/util-macros")
+(import-macros {: when-require} "noahtheduke.util-macros")
 
 (utils.dep
   "https://github.com/nvim-neo-tree/neo-tree.nvim"

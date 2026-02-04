@@ -1,6 +1,6 @@
-(import-macros {: callback} "noahtheduke/util-macros")
+(import-macros {: callback} "noahtheduke.util-macros")
 
-(fn set-ft [augroup pattern ft]
+(λ set-ft [augroup pattern ft]
   (vim.api.nvim_create_autocmd
     ["BufNewFile" "BufReadPost"]
     {:group augroup
@@ -48,7 +48,7 @@
 
 (vim.api.nvim_create_autocmd
   ["BufRead" "BufNewFile"]
-  {:group (vim.api.nvim_create_augroup "HighlightFullWidthSpace" {})
+  {:group (vim.api.nvim_create_augroup "HighlightFullWidthSpace" {:clear true})
    :pattern "*"
    :callback
    (callback [_args]
@@ -60,7 +60,8 @@
 
 (vim.api.nvim_create_autocmd
   ["CursorHold"]
-  {:pattern "*"
+  {:group (vim.api.nvim_create_augroup "lspCursorHold" {:clear true})
+   :pattern "*"
    :callback (callback [_args]
                (vim.diagnostic.open_float {:header ""
                                            :scope "cursor"}))})

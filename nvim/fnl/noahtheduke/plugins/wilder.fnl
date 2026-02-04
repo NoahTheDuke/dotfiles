@@ -1,10 +1,10 @@
 (local utils (require "noahtheduke.utils"))
-(import-macros {: when-require} "noahtheduke/util-macros")
+(import-macros {: when-require} "noahtheduke.util-macros")
 
 ;; Prettify wild menu
 [(utils.dep
    "https://github.com/gelguy/wilder.nvim"
    {:config
-    (fn []
+    (λ []
       (when-require [wilder "wilder"]
         (wilder.setup {:modes [ ":" "/" "?" ]})))})]

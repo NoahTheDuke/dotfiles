@@ -1,12 +1,12 @@
 (local utils (require "noahtheduke.utils"))
-(import-macros {: when-require} "noahtheduke/util-macros")
+(import-macros {: when-require} "noahtheduke.util-macros")
 
 ;; :SessionManager
 (utils.dep
   "https://github.com/Shatur/neovim-session-manager"
   {:dependencies ["nvim-lua/plenary.nvim"]
    :config
-   (fn []
+   (λ []
      (when-require [session-manager "session_manager"
                     config "session_manager.config"]
        (session-manager.setup

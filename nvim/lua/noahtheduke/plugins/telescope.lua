@@ -7,26 +7,38 @@ local function config()
   local function _5_()
     return require("telescope")
   end
-  local function _6_(err_1_auto)
-    return table.insert(errors_1_, debug.traceback(err_1_auto))
+  local function _6_(err_2_auto)
+    if (nil == err_2_auto) then
+      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/telescope.fnl:6", 2)
+    else
+    end
+    return table.insert(errors_1_, debug.traceback(err_2_auto))
   end
   _2_, telescope = xpcall(_5_, _6_)
   local _3_, actions
-  local function _7_()
+  local function _8_()
     return require("telescope.actions")
   end
-  local function _8_(err_1_auto)
-    return table.insert(errors_1_, debug.traceback(err_1_auto))
+  local function _9_(err_2_auto)
+    if (nil == err_2_auto) then
+      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/telescope.fnl:6", 2)
+    else
+    end
+    return table.insert(errors_1_, debug.traceback(err_2_auto))
   end
-  _3_, actions = xpcall(_7_, _8_)
+  _3_, actions = xpcall(_8_, _9_)
   local _4_, builtin
-  local function _9_()
+  local function _11_()
     return require("telescope.builtin")
   end
-  local function _10_(err_1_auto)
-    return table.insert(errors_1_, debug.traceback(err_1_auto))
+  local function _12_(err_2_auto)
+    if (nil == err_2_auto) then
+      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/telescope.fnl:6", 2)
+    else
+    end
+    return table.insert(errors_1_, debug.traceback(err_2_auto))
   end
-  _4_, builtin = xpcall(_9_, _10_)
+  _4_, builtin = xpcall(_11_, _12_)
   if (_2_ and _3_ and _4_) then
     telescope.load_extension("fzf")
     telescope.setup({defaults = {prompt_prefix = "\239\145\171 ", selection_caret = "\239\129\164 ", path_display = {shorten = {len = 3, exclude = {-1, -2}}}, mappings = {i = {["<C-n>"] = actions.cycle_history_next, ["<C-p>"] = actions.cycle_history_prev, ["<C-j>"] = actions.move_selection_next, ["<C-k>"] = actions.move_selection_previous, ["<C-c>"] = actions.close, ["<esc>"] = actions.close, ["<Down>"] = actions.move_selection_next, ["<Up>"] = actions.move_selection_previous, ["<CR>"] = actions.select_default, ["<C-x>"] = actions.select_horizontal, ["<C-v>"] = actions.select_vertical, ["<C-t>"] = actions.select_tab, ["<C-u>"] = actions.preview_scrolling_up, ["<C-d>"] = actions.preview_scrolling_down, ["<PageUp>"] = actions.results_scrolling_up, ["<PageDown>"] = actions.results_scrolling_down, ["<Tab>"] = (actions.toggle_selection + actions.move_selection_worse), ["<S-Tab>"] = (actions.toggle_selection + actions.move_selection_better), ["<C-q>"] = (actions.send_to_qflist + actions.open_qflist), ["<M-q>"] = (actions.send_selected_to_qflist + actions.open_qflist), ["<C-l>"] = actions.complete_tag, ["<C-_>"] = actions.which_key}, n = {["<esc>"] = actions.close, ["<CR>"] = actions.select_default, ["<C-x>"] = actions.select_horizontal, ["<C-v>"] = actions.select_vertical, ["<C-t>"] = actions.select_tab, ["<Tab>"] = (actions.toggle_selection + actions.move_selection_worse), ["<S-Tab>"] = (actions.toggle_selection + actions.move_selection_better), ["<C-q>"] = (actions.send_to_qflist + actions.open_qflist), ["<M-q>"] = (actions.send_selected_to_qflist + actions.open_qflist), j = actions.move_selection_next, k = actions.move_selection_previous, H = actions.move_to_top, M = actions.move_to_middle, L = actions.move_to_bottom, ["<Down>"] = actions.move_selection_next, ["<Up>"] = actions.move_selection_previous, gg = actions.move_to_top, G = actions.move_to_bottom, ["<C-u>"] = actions.preview_scrolling_up, ["<C-d>"] = actions.preview_scrolling_down, ["<PageUp>"] = actions.results_scrolling_up, ["<PageDown>"] = actions.results_scrolling_down, ["?"] = actions.which_key}}}, pickers = {find_files = {find_command = {"fd", "--type", "f"}}}})

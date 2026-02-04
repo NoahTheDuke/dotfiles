@@ -1,12 +1,12 @@
 (local utils (require "noahtheduke.utils"))
-(import-macros {: when-require} "noahtheduke/util-macros")
+(import-macros {: when-require} "noahtheduke.util-macros")
 
-(fn setup []
+(λ setup []
   (when-require [alpha "alpha"
                  dashboard "alpha.themes.dashboard"
                  headers "utils.headers"]
     (let [lazy_plugins
-          (vim.tbl_map (fn [plugin] plugin.name)
+          (vim.tbl_map (λ [plugin] plugin.name)
                        (let [lazy (require "lazy")]
                          (lazy.plugins)))]
 
@@ -22,7 +22,7 @@
             (dashboard.button "c" "  Configuration" ":e $MYVIMRC<CR>:cd %:h/../<CR>")
             (dashboard.button "q" "  Quit Neovim" ":qa!<CR>")])
 
-      (fn footer []
+      (λ footer []
         (let [vim-version (vim.version)
               version (.. " " vim-version.major "." vim-version.minor "." vim-version.patch)]
           (if (= lazy_plugins nil)

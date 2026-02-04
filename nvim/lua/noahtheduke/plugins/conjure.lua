@@ -6,76 +6,116 @@ local function conjure()
   local function _11_()
     return require("nfnl.core")
   end
-  local function _12_(err_1_auto)
-    return table.insert(errors_1_, debug.traceback(err_1_auto))
+  local function _12_(err_2_auto)
+    if (nil == err_2_auto) then
+      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/conjure.fnl:5", 2)
+    else
+    end
+    return table.insert(errors_1_, debug.traceback(err_2_auto))
   end
   _2_, core = xpcall(_11_, _12_)
   local _3_, eval
-  local function _13_()
+  local function _14_()
     return require("conjure.eval")
   end
-  local function _14_(err_1_auto)
-    return table.insert(errors_1_, debug.traceback(err_1_auto))
+  local function _15_(err_2_auto)
+    if (nil == err_2_auto) then
+      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/conjure.fnl:5", 2)
+    else
+    end
+    return table.insert(errors_1_, debug.traceback(err_2_auto))
   end
-  _3_, eval = xpcall(_13_, _14_)
+  _3_, eval = xpcall(_14_, _15_)
   local _4_, extract
-  local function _15_()
+  local function _17_()
     return require("conjure.extract")
   end
-  local function _16_(err_1_auto)
-    return table.insert(errors_1_, debug.traceback(err_1_auto))
+  local function _18_(err_2_auto)
+    if (nil == err_2_auto) then
+      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/conjure.fnl:5", 2)
+    else
+    end
+    return table.insert(errors_1_, debug.traceback(err_2_auto))
   end
-  _4_, extract = xpcall(_15_, _16_)
+  _4_, extract = xpcall(_17_, _18_)
   local _5_, log
-  local function _17_()
+  local function _20_()
     return require("conjure.log")
   end
-  local function _18_(err_1_auto)
-    return table.insert(errors_1_, debug.traceback(err_1_auto))
+  local function _21_(err_2_auto)
+    if (nil == err_2_auto) then
+      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/conjure.fnl:5", 2)
+    else
+    end
+    return table.insert(errors_1_, debug.traceback(err_2_auto))
   end
-  _5_, log = xpcall(_17_, _18_)
+  _5_, log = xpcall(_20_, _21_)
   local _6_, parse
-  local function _19_()
+  local function _23_()
     return require("conjure.client.clojure.nrepl.parse")
   end
-  local function _20_(err_1_auto)
-    return table.insert(errors_1_, debug.traceback(err_1_auto))
+  local function _24_(err_2_auto)
+    if (nil == err_2_auto) then
+      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/conjure.fnl:5", 2)
+    else
+    end
+    return table.insert(errors_1_, debug.traceback(err_2_auto))
   end
-  _6_, parse = xpcall(_19_, _20_)
+  _6_, parse = xpcall(_23_, _24_)
   local _7_, runners
-  local function _21_()
+  local function _26_()
     return require("conjure.client.clojure.nrepl.action")
   end
-  local function _22_(err_1_auto)
-    return table.insert(errors_1_, debug.traceback(err_1_auto))
+  local function _27_(err_2_auto)
+    if (nil == err_2_auto) then
+      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/conjure.fnl:5", 2)
+    else
+    end
+    return table.insert(errors_1_, debug.traceback(err_2_auto))
   end
-  _7_, runners = xpcall(_21_, _22_)
+  _7_, runners = xpcall(_26_, _27_)
   local _8_, server
-  local function _23_()
+  local function _29_()
     return require("conjure.client.clojure.nrepl.server")
   end
-  local function _24_(err_1_auto)
-    return table.insert(errors_1_, debug.traceback(err_1_auto))
+  local function _30_(err_2_auto)
+    if (nil == err_2_auto) then
+      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/conjure.fnl:5", 2)
+    else
+    end
+    return table.insert(errors_1_, debug.traceback(err_2_auto))
   end
-  _8_, server = xpcall(_23_, _24_)
+  _8_, server = xpcall(_29_, _30_)
   local _9_, str
-  local function _25_()
+  local function _32_()
     return require("nfnl.string")
   end
-  local function _26_(err_1_auto)
-    return table.insert(errors_1_, debug.traceback(err_1_auto))
+  local function _33_(err_2_auto)
+    if (nil == err_2_auto) then
+      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/conjure.fnl:5", 2)
+    else
+    end
+    return table.insert(errors_1_, debug.traceback(err_2_auto))
   end
-  _9_, str = xpcall(_25_, _26_)
+  _9_, str = xpcall(_32_, _33_)
   local _10_, ui
-  local function _27_()
+  local function _35_()
     return require("conjure.client.clojure.nrepl.ui")
   end
-  local function _28_(err_1_auto)
-    return table.insert(errors_1_, debug.traceback(err_1_auto))
+  local function _36_(err_2_auto)
+    if (nil == err_2_auto) then
+      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/conjure.fnl:5", 2)
+    else
+    end
+    return table.insert(errors_1_, debug.traceback(err_2_auto))
   end
-  _10_, ui = xpcall(_27_, _28_)
+  _10_, ui = xpcall(_35_, _36_)
   if (_2_ and _3_ and _4_ and _5_ and _6_ and _7_ and _8_ and _9_ and _10_) then
     local function time_current_form(extra_opts)
+      if (nil == extra_opts) then
+        _G.error("Missing argument extra-opts on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/conjure.fnl:15", 2)
+      else
+      end
       local form = extract.form({})
       if form then
         local content = form.content
@@ -86,11 +126,15 @@ local function conjure()
         return nil
       end
     end
-    local function _30_()
+    local function _40_()
       return time_current_form({})
     end
-    vim.keymap.set("n", "<leader>et", _30_)
+    vim.keymap.set("n", "<leader>et", _40_)
     local function ns_unmap(extra_opts)
+      if (nil == extra_opts) then
+        _G.error("Missing argument extra-opts on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/conjure.fnl:29", 2)
+      else
+      end
       local form = extract.form({["root?"] = true})
       if form then
         local content = form.content
@@ -99,10 +143,10 @@ local function conjure()
         local current_ns = extract.context()
         if var_name then
           log.append({core.str("; Unmapping ", var_name)}, {["break?"] = true})
-          local function _31_(_241)
+          local function _42_(_241)
             return ui["display-result"](_241, {["simple-out?"] = true, ["raw-out?"] = true, ["ignore-nil?"] = false})
           end
-          server.eval({code = core.str("(ns-unmap (the-ns '", current_ns, ") '", var_name, ")")}, _31_)
+          server.eval({code = core.str("(ns-unmap (the-ns '", current_ns, ") '", var_name, ")")}, _42_)
         else
         end
         return form

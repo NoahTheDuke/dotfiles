@@ -6,45 +6,69 @@ local function config()
   local function _7_()
     return require("nvim-paredit")
   end
-  local function _8_(err_1_auto)
-    return table.insert(errors_1_, debug.traceback(err_1_auto))
+  local function _8_(err_2_auto)
+    if (nil == err_2_auto) then
+      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/nvim-paredit.fnl:6", 2)
+    else
+    end
+    return table.insert(errors_1_, debug.traceback(err_2_auto))
   end
   _2_, paredit = xpcall(_7_, _8_)
   local _3_, ts_context
-  local function _9_()
+  local function _10_()
     return require("nvim-paredit.treesitter.context")
   end
-  local function _10_(err_1_auto)
-    return table.insert(errors_1_, debug.traceback(err_1_auto))
+  local function _11_(err_2_auto)
+    if (nil == err_2_auto) then
+      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/nvim-paredit.fnl:6", 2)
+    else
+    end
+    return table.insert(errors_1_, debug.traceback(err_2_auto))
   end
-  _3_, ts_context = xpcall(_9_, _10_)
+  _3_, ts_context = xpcall(_10_, _11_)
   local _4_, ts_forms
-  local function _11_()
+  local function _13_()
     return require("nvim-paredit.treesitter.forms")
   end
-  local function _12_(err_1_auto)
-    return table.insert(errors_1_, debug.traceback(err_1_auto))
+  local function _14_(err_2_auto)
+    if (nil == err_2_auto) then
+      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/nvim-paredit.fnl:6", 2)
+    else
+    end
+    return table.insert(errors_1_, debug.traceback(err_2_auto))
   end
-  _4_, ts_forms = xpcall(_11_, _12_)
+  _4_, ts_forms = xpcall(_13_, _14_)
   local _5_, ts_utils
-  local function _13_()
+  local function _16_()
     return require("nvim-paredit.treesitter.utils")
   end
-  local function _14_(err_1_auto)
-    return table.insert(errors_1_, debug.traceback(err_1_auto))
+  local function _17_(err_2_auto)
+    if (nil == err_2_auto) then
+      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/nvim-paredit.fnl:6", 2)
+    else
+    end
+    return table.insert(errors_1_, debug.traceback(err_2_auto))
   end
-  _5_, ts_utils = xpcall(_13_, _14_)
+  _5_, ts_utils = xpcall(_16_, _17_)
   local _6_, whitespace
-  local function _15_()
+  local function _19_()
     return require("nvim-paredit.api.whitespace")
   end
-  local function _16_(err_1_auto)
-    return table.insert(errors_1_, debug.traceback(err_1_auto))
+  local function _20_(err_2_auto)
+    if (nil == err_2_auto) then
+      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/nvim-paredit.fnl:6", 2)
+    else
+    end
+    return table.insert(errors_1_, debug.traceback(err_2_auto))
   end
-  _6_, whitespace = xpcall(_15_, _16_)
+  _6_, whitespace = xpcall(_19_, _20_)
   if (_2_ and _3_ and _4_ and _5_ and _6_) then
     local function insert_in_list(placement)
-      local function _17_()
+      if (nil == placement) then
+        _G.error("Missing argument placement on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/nvim-paredit.fnl:11", 2)
+      else
+      end
+      local function _23_()
         local context = ts_context.create_context()
         if not context then
           return
@@ -71,10 +95,18 @@ local function config()
         end
         return paredit.cursor.place_cursor(form, {placement = placement, mode = "insert"})
       end
-      return _17_
+      return _23_
     end
     local function enclosing_wrapper_maker(brackets, placement)
-      local function _23_()
+      if (nil == placement) then
+        _G.error("Missing argument placement on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/nvim-paredit.fnl:34", 2)
+      else
+      end
+      if (nil == brackets) then
+        _G.error("Missing argument brackets on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/nvim-paredit.fnl:34", 2)
+      else
+      end
+      local function _31_()
         local context = ts_context.create_context()
         if not context then
           return
@@ -92,13 +124,21 @@ local function config()
           return paredit.cursor.place_cursor(paredit.wrap.wrap_enclosing_form_under_cursor(unpack(brackets)), {placement = placement, mode = "insert"})
         end
       end
-      return _23_
+      return _31_
     end
     local function wrapper_maker(brackets, placement)
-      local function _27_()
+      if (nil == placement) then
+        _G.error("Missing argument placement on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/nvim-paredit.fnl:53", 2)
+      else
+      end
+      if (nil == brackets) then
+        _G.error("Missing argument brackets on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/nvim-paredit.fnl:53", 2)
+      else
+      end
+      local function _37_()
         return paredit.cursor.place_cursor(paredit.wrap.wrap_element_under_cursor(unpack(brackets)), {placement = placement, mode = "insert"})
       end
-      return _27_
+      return _37_
     end
     return paredit.setup({use_default_keys = true, filetypes = {"clojure", "scheme", "lisp", "fennel", "basilisp"}, cursor_behaviour = "follow", keys = {["<localleader>i"] = {enclosing_wrapper_maker({"( ", ")"}, "inner_start"), "Wrap form round insert head"}, ["<localleader>I"] = {enclosing_wrapper_maker({"(", " )"}, "inner_end"), "Wrap form round insert tail"}, ["<localleader>["] = {enclosing_wrapper_maker({"[", "]"}, "inner_start"), "Wrap form square insert head"}, ["<localleader>]"] = {enclosing_wrapper_maker({"[", "]"}, "inner_end"), "Wrap form square insert tail"}, ["<localleader>{"] = {enclosing_wrapper_maker({"{", "}"}, "inner_start"), "Wrap form curly insert head"}, ["<localleader>}"] = {enclosing_wrapper_maker({"{", "}"}, "inner_end"), "Wrap form curly insert tail"}, ["<localleader>w"] = {wrapper_maker({"(", ")"}, "inner_start"), "Wrap element with (), insert head"}, ["<localleader>W"] = {wrapper_maker({"(", ")"}, "inner_end"), "Wrap element with (), insert tail"}, ["<localleader>e["] = {wrapper_maker({"[", "]"}, "inner_start"), "Wrap element with [], insert head"}, ["<localleader>e]"] = {wrapper_maker({"[", "]"}, "inner_end"), "Wrap element with [], insert tail"}, ["<localleader>e{"] = {wrapper_maker({"{", "}"}, "inner_start"), "Wrap element with {}, insert head"}, ["<localleader>e}"] = {wrapper_maker({"{", "}"}, "inner_end"), "Wrap element with {}, insert tail"}, ["<localleader>h"] = {insert_in_list("inner_start"), "Enter insert mode at head of current form"}, ["<localleader>l"] = {insert_in_list("inner_end"), "Enter insert mode at tail of current form"}}})
   else

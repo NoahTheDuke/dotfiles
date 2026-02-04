@@ -6,18 +6,26 @@ local function _1_()
   local function _5_()
     return require("session_manager")
   end
-  local function _6_(err_1_auto)
-    return table.insert(errors_2_, debug.traceback(err_1_auto))
+  local function _6_(err_2_auto)
+    if (nil == err_2_auto) then
+      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/session-manager.fnl:10", 2)
+    else
+    end
+    return table.insert(errors_2_, debug.traceback(err_2_auto))
   end
   _3_, session_manager = xpcall(_5_, _6_)
   local _4_, config
-  local function _7_()
+  local function _8_()
     return require("session_manager.config")
   end
-  local function _8_(err_1_auto)
-    return table.insert(errors_2_, debug.traceback(err_1_auto))
+  local function _9_(err_2_auto)
+    if (nil == err_2_auto) then
+      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/session-manager.fnl:10", 2)
+    else
+    end
+    return table.insert(errors_2_, debug.traceback(err_2_auto))
   end
-  _4_, config = xpcall(_7_, _8_)
+  _4_, config = xpcall(_8_, _9_)
   if (_3_ and _4_) then
     return session_manager.setup({autoload_mode = config.AutoloadMode.Disabled, autosave_only_in_session = false})
   else

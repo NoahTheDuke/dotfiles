@@ -1,17 +1,15 @@
 (local utils (require "noahtheduke.utils"))
 
-(fn str-split [str sep]
+(λ str-split [str sep]
   (let [sep (or sep "%s")
         t {}]
     (each [s _ (str:gmatch (.. "([^" sep "]+)"))]
       (table.insert t s))
     t))
 
-(fn _G.tangled_handler
+(λ _G.tangled_handler
   [opts]
   (let [{: path
-         : line1
-         : line2
          : remote
          : commit} opts
         path (or path "")
@@ -31,7 +29,7 @@ function! TangledHandler(opts, ...)
 endfunction
 ")
 
-(fn tangled-config []
+(λ config []
   (vim.cmd
     "
     if !exists('g:fugitive_browse_handlers')
@@ -47,4 +45,4 @@ endfunction
 [(utils.dep
    "https://github.com/tpope/vim-fugitive"
    {:name "vim-fugitive"
-    :config (fn [] (tangled-config))})]
+    :config config})]

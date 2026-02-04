@@ -1,4 +1,4 @@
-(import-macros {: callback} "noahtheduke/util-macros")
+(import-macros {: callback} "noahtheduke.util-macros")
 
 (set _G.Statusline {})
 
@@ -23,20 +23,20 @@
    "!" "SHELL"
    "t" "TERMINAL"})
 
-(fn mode []
+(λ mode []
   (let [mode (vim.api.nvim_call_function "mode" {})]
     (or (?. currentmode mode) "")))
 
-(fn encoding []
+(λ encoding []
   (let [fenc vim.bo.fileencoding]
     (if (= fenc "utf-8")
       ""
       fenc)))
 
-(fn filetype []
+(λ filetype []
   vim.bo.filetype)
 
-(fn lsp-diagnostics []
+(λ lsp-diagnostics []
   (let [count (vim.diagnostic.count 0)
         error-cnt (. count vim.diagnostic.severity.ERROR)
         warn-cnt (. count vim.diagnostic.severity.WARN)
@@ -50,7 +50,7 @@
       (table.insert status (.. "\u{1F4A1}" info-cnt)))
     (.. (table.concat status " ") "%=")))
 
-(fn _G.Statusline.Line []
+(λ _G.Statusline.Line []
   (let [parts [;; set purple background
                "%1*"
                ;; display custom mode names

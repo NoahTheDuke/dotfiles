@@ -1,6 +1,6 @@
 (local utils (require "noahtheduke.utils"))
 
-(fn config
+(λ config
   []
   (let [dracula (require "dracula")
         colors (dracula.colors)]

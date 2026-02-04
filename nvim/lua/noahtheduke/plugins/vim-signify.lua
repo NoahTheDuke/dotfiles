@@ -5,4 +5,4 @@ local function config()
   return nil
 end
 --[[ (config) ]]
-return {utils.dep("https://github.com/mhinz/vim-signify", {config = config})}
+return {utils.dep("https://github.com/mhinz/vim-signify", {config = config, branch = "master"})}

@@ -1,6 +1,6 @@
 (local utils (require "noahtheduke.utils"))
 
-(fn config []
+(λ config []
   (set vim.g.clojure_fuzzy_indent_patterns
        ["^with" "^def" "^let" "^\\([^\\s]*/\\)\\?expect" "from-each" "given" "describe" "it" "changed"
         "do-game"])

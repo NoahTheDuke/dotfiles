@@ -5,19 +5,19 @@
 (local clojure-lsp-commands
   (.. (vim.fn.stdpath "config") "/data/clojure-lsp-commands.edn"))
 
-(fn get-uri-and-pos []
+(λ get-uri-and-pos []
   (let [[row col] (vim.api.nvim_win_get_cursor 0)
         uri (vim.uri_from_bufnr 0)]
     [uri (- row 1) col]))
 
-(fn get-client [name]
+(λ get-client [name]
   (. (vim.lsp.get_clients {: name}) 1))
 
-(fn register-keymaps [commands]
+(λ register-keymaps [commands]
   (each [_ v (ipairs commands)]
     (when (. v :shortcut)
       (vim.keymap.set "n" (.. "<leader>cl" (. v :shortcut))
-                      (fn []
+                      (λ []
                         (let [client (get-client "clojure-lsp")]
                           (when client
                             (client:exec_cmd {:command (. v :command)
@@ -27,28 +27,28 @@
                        :noremap true
                        :desc (.. "clojure-lsp-" (. v :command))}))))
 
-(fn execute-positional-command [cmd ...]
+(λ execute-positional-command [cmd ...]
   (let [client (get-client "clojure-lsp")
         [uri row col] (get-uri-and-pos)]
     (client:exec_cmd {:command (. cmd :command)
                       :arguments [uri row col ...]})))
 
-(fn execute-prompt-command [cmd args]
+(λ execute-prompt-command [cmd args]
   (let [prompt (. cmd :prompt)]
     (if (= "" (. args :args))
       (vim.ui.input {: prompt} #(execute-positional-command cmd $))
       (execute-positional-command cmd (. args :args)))))
 
-(fn execute-choice-command [cmd args]
+(λ execute-choice-command [cmd args]
   (let [{: prompt : choices} cmd]
     (if (= "" (. args :args))
-      (vim.ui.select choices {: prompt} (fn [choice]
+      (vim.ui.select choices {: prompt} (λ [choice]
                                           (if (not= choice nil)
                                             (execute-positional-command cmd choice)
                                             (execute-positional-command cmd))))
       (execute-positional-command cmd (. args :args)))))
 
-(fn register-commands [commands]
+(λ register-commands [commands]
   (when-require [textcase "textcase"]
     (each [_ cmd (ipairs commands)]
       (let [nargs (if (. cmd :positional) "0" "?")
@@ -56,13 +56,13 @@
         (vim.api.nvim_create_user_command
           (.. "CljLsp" (textcase.api.to_pascal_case (. cmd :command)))
           (case cmd-type
-            "positional" (fn [_args] (execute-positional-command cmd))
-            "prompt" (fn [args] (execute-prompt-command cmd args))
-            "choice" (fn [args] (execute-choice-command cmd args)))
+            "positional" (λ [_args] (execute-positional-command cmd))
+            "prompt" (λ [args] (execute-prompt-command cmd args))
+            "choice" (λ [args] (execute-choice-command cmd args)))
           {: nargs})))
     (vim.api.nvim_create_user_command
       :CljLspCursorInfo
-      (fn []
+      (λ []
         (let [[uri row col] (get-uri-and-pos)]
           (vim.lsp.buf_notify 0 "clojure/cursorInfo/log"
                               {:textDocument {: uri}
@@ -71,23 +71,23 @@
       {:nargs 0})
     (vim.api.nvim_create_user_command
       :CljLspServerInfo
-      (fn [] (vim.lsp.buf_notify 0 "clojure/serverInfo/log"))
+      (λ [] (vim.lsp.buf_notify 0 "clojure/serverInfo/log"))
       {:nargs 0})
     (vim.api.nvim_create_user_command
       :CljLspProjectTree
-      (fn [] (vim.lsp.buf_request_sync 0 "clojure/workspace/projectTree/nodes"))
+      (λ [] (vim.lsp.buf_request_sync 0 "clojure/workspace/projectTree/nodes"))
       {:nargs 0})
     nil))
 
 (each [_ name (ipairs [:Format :FOrmat])]
   (vim.api.nvim_create_user_command
     name
-    (fn [] (vim.lsp.buf.format))
+    (λ [] (vim.lsp.buf.format))
     {:nargs 0}))
 
 (vim.api.nvim_create_user_command
   :OR
-  (fn []
+  (λ []
     (vim.lsp.buf.code_action {:context {:only ["source.organizeImports"]}
                               :apply true}))
   {:nargs 0})
@@ -98,10 +98,11 @@
                   vim.diagnostic.severity.INFO ""
                   vim.diagnostic.severity.HINT ""}}})
 
-(vim.keymap.set "n" "K" (fn [] (vim.lsp.buf.hover {:border "rounded"})) (utils.ks-opts "show docs"))
-(vim.keymap.set "i" "<C-o>" (fn [] (vim.lsp.buf.signature_help {:border "rounded"})) (utils.ks-opts "show signature help"))
+(vim.keymap.set "n" "K" (λ [] (vim.lsp.buf.hover {:border "rounded"})) (utils.ks-opts "show docs"))
+(vim.keymap.set "i" "<C-o>" (λ [] (vim.lsp.buf.signature_help {:border "rounded"})) (utils.ks-opts "show signature help"))
 
-(fn show-docs []
+(λ show-docs []
+  "show vim docs, or show lsp hover, or check keywordprg"
   (let [cw (vim.fn.expand "<cword>")]
     (if
       ;; vim help
@@ -114,7 +115,7 @@
       (vim.api.nvim_command (.. "!" vim.o.keywordprg " " cw))))
   nil)
 
-(vim.keymap.set "n" "gd" (fn [] (show-docs)) (utils.ks-opts "go to definition"))
+(vim.keymap.set "n" "gd" show-docs (utils.ks-opts "go to definition"))
 
 (vim.lsp.config :clojure-lsp {:cmd ["clojure-lsp"]
                               :filetypes ["clojure"]

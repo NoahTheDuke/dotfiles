@@ -3,4 +3,4 @@
              :tic80 true}
  :lua-version "lua5.1"
  :fennel-path "./fnl/?.fnl"
- :macro-path "./?.fnlm;./fnl/?.fnlm"}
+ :macro-path "./fnl/?.fnl;./fnl/?.fnlm"}

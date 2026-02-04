@@ -6,25 +6,33 @@ local function config()
   local function _3_()
     return require("textcase")
   end
-  local function _4_(err_1_auto)
-    return table.insert(errors_1_, debug.traceback(err_1_auto))
+  local function _4_(err_2_auto)
+    if (nil == err_2_auto) then
+      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/text-case-nvim.fnl:5", 2)
+    else
+    end
+    return table.insert(errors_1_, debug.traceback(err_2_auto))
   end
   _2_, tc = xpcall(_3_, _4_)
   if _2_ then
     tc.setup({})
-    local errors_5_ = {}
-    local _6_, telescope
-    local function _7_()
+    local errors_6_ = {}
+    local _7_, telescope
+    local function _8_()
       return require("telescope")
     end
-    local function _8_(err_1_auto)
-      return table.insert(errors_5_, debug.traceback(err_1_auto))
+    local function _9_(err_2_auto)
+      if (nil == err_2_auto) then
+        _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/text-case-nvim.fnl:7", 2)
+      else
+      end
+      return table.insert(errors_6_, debug.traceback(err_2_auto))
     end
-    _6_, telescope = xpcall(_7_, _8_)
-    if _6_ then
+    _7_, telescope = xpcall(_8_, _9_)
+    if _7_ then
       return telescope.load_extension("textcase")
     else
-      return vim.notify(errors_5_[1], vim.log.levels.ERROR)
+      return vim.notify(errors_6_[1], vim.log.levels.ERROR)
     end
   else
     return vim.notify(errors_1_[1], vim.log.levels.ERROR)

@@ -1,5 +1,8 @@
 .DS_Store
 .cache
-nvim/plugin/___packer_compiled.lua
 .vim/
-jj/conf.d/work.toml
+
+# ignore everything in jj/ by default, but allow the global config and prompt
+jj/
+!jj/config.toml
+!jj/jj-prompt.sh

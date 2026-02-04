@@ -1,12 +1,12 @@
 (local utils (require "noahtheduke.utils"))
-(import-macros {: when-require} "noahtheduke/util-macros")
+(import-macros {: when-require} "noahtheduke.util-macros")
 
-(fn setup-custom-langs []
+(λ setup-custom-langs []
   (vim.api.nvim_create_autocmd
     "User"
     {:pattern ["TSUpdate"]
      :callback
-     (fn []
+     (λ []
        (when-require [ts-parsers "nvim-treesitter.parsers"]
          (set ts-parsers.asciidoc
               {:install_info
@@ -57,13 +57,13 @@
    "vue"
    "yaml"])
 
-(fn start-lang [language]
+(λ start-lang [language]
   (vim.api.nvim_create_autocmd
     "FileType"
     {:pattern [language]
-     :callback (fn [] (vim.treesitter.start))}))
+     :callback (λ [] (vim.treesitter.start))}))
 
-(fn config []
+(λ config []
   (when-require [ts "nvim-treesitter"]
     (setup-custom-langs)
     (ts.install all-languages)
