@@ -1,4 +1,4 @@
--- [nfnl] nvim/init.fnl
+-- [nfnl] init.fnl
 local lazypath = (vim.fn.stdpath("data") .. "/lazy/lazy.nvim")
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -11,10 +11,10 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 else
 end
 vim.opt.rtp:prepend(lazypath)
-require("options")
-require("keymaps")
-require("autocmds")
-require("lazy-setup")
-require("lsp")
-require("statusline")
+require("noahtheduke.options")
+require("noahtheduke.keymaps")
+require("noahtheduke.autocmds")
+require("noahtheduke.lazy-setup")
+require("noahtheduke.lsp")
+require("noahtheduke.statusline")
 return nil

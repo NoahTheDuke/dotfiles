@@ -15,11 +15,11 @@
 
 (vim.opt.rtp:prepend lazypath)
 
-(require :options)
-(require :keymaps)
-(require :autocmds)
-(require :lazy-setup)
-(require :lsp)
-(require :statusline)
+(require "noahtheduke.options")
+(require "noahtheduke.keymaps")
+(require "noahtheduke.autocmds")
+(require "noahtheduke.lazy-setup")
+(require "noahtheduke.lsp")
+(require "noahtheduke.statusline")
 
 nil
