@@ -10,45 +10,45 @@
                  whitespace "nvim-paredit.api.whitespace"]
     (fn insert-in-list [placement]
       (fn []
-        (local context (ts-context.create_context))
-        (if (not context) (lua "return"))
+        (let [context (ts-context.create_context)]
+          (if (not context) (lua "return"))
 
-        (local current-element (ts-forms.get_node_root context.node context))
-        (if (not current-element) (lua "return"))
+          (let [current-element (ts-forms.get_node_root context.node context)]
+            (if (not current-element) (lua "return"))
 
-        (local use-direct-parent (or (whitespace.is_whitespace_under_cursor)
-                                     (ts-utils.node_is_comment current-element context)))
-        (var form (ts-forms.find_nearest_form current-element
-                                              {:captures context.captures
-                                               :use-source false}))
-        (when (not form) (lua "return"))
+            (let [use-direct-parent (or (whitespace.is_whitespace_under_cursor)
+                                        (ts-utils.node_is_comment current-element context))]
+              (var form (ts-forms.find_nearest_form current-element
+                                                    {:captures context.captures
+                                                     :use-source false}))
+              (when (not form) (lua "return"))
 
-        (if (and (not use-direct-parent) (not= (form:type) "source"))
-          (do (set form (ts-utils.find_local_root current-element))
-            (if (not (and form (ts-forms.node_is_form form context)))
-              (lua "return"))))
+              (when (and (not use-direct-parent) (not= (form:type) "source"))
+                (set form (ts-utils.find_local_root current-element))
+                (if (not (and form (ts-forms.node_is_form form context)))
+                  (lua "return")))
 
-        (paredit.cursor.place_cursor form {:placement placement
-                                           :mode :insert})))
+              (paredit.cursor.place_cursor form {:placement placement
+                                                 :mode :insert}))))))
 
     (fn enclosing-wrapper-maker [brackets placement]
       (fn []
-        (local context (ts-context.create_context))
-        (if (not context) (lua "return"))
+        (let [context (ts-context.create_context)]
+          (if (not context) (lua "return"))
 
-        (local current-element (ts-forms.get_node_root context.node context))
-        (if (not current-element) (lua "return"))
+          (let [current-element (ts-forms.get_node_root context.node context)]
+            (if (not current-element) (lua "return"))
 
-        (if (ts-forms.node_is_form current-element context)
-          (let [buf (vim.api.nvim_get_current_buf)]
-            (paredit.cursor.place_cursor
-              (paredit.wrap.wrap_element buf current-element (unpack brackets))
-              {:placement placement
-               :mode :insert}))
-          (paredit.cursor.place_cursor
-            (paredit.wrap.wrap_enclosing_form_under_cursor (unpack brackets))
-            {:placement placement
-             :mode :insert}))))
+            (if (ts-forms.node_is_form current-element context)
+              (let [buf (vim.api.nvim_get_current_buf)]
+                (paredit.cursor.place_cursor
+                  (paredit.wrap.wrap_element buf current-element (unpack brackets))
+                  {:placement placement
+                   :mode :insert}))
+              (paredit.cursor.place_cursor
+                (paredit.wrap.wrap_enclosing_form_under_cursor (unpack brackets))
+                {:placement placement
+                 :mode :insert}))))))
 
     (fn wrapper-maker [brackets placement]
       (fn []

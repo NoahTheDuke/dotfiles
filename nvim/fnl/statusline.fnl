@@ -1,6 +1,8 @@
+(import-macros {: callback} :nvim/fnl/util-macros)
+
 (set _G.Statusline {})
 
-(set _G.currentmode
+(local currentmode
   {"n" "NORMAL"
    "no" "NORMALOP"
    "v" "VISUAL"
@@ -21,67 +23,67 @@
    "!" "SHELL"
    "t" "TERMINAL"})
 
-(fn _G.Statusline.Mode []
-  (local mode (vim.api.nvim_call_function "mode" {}))
-  (or (?. _G.currentmode mode) ""))
+(fn mode []
+  (let [mode (vim.api.nvim_call_function "mode" {})]
+    (or (?. currentmode mode) "")))
 
-(fn _G.Statusline.Encoding []
-  (local fenc vim.bo.fileencoding)
-  (if (= fenc "utf-8")
-    ""
-    fenc))
+(fn encoding []
+  (let [fenc vim.bo.fileencoding]
+    (if (= fenc "utf-8")
+      ""
+      fenc)))
 
-(fn _G.Statusline.Filetype []
+(fn filetype []
   vim.bo.filetype)
 
-(fn _G.Statusline.Lsp []
-  (local count {vim.diagnostic.severity.ERROR 0
-                vim.diagnostic.severity.WARN 0
-                vim.diagnostic.severity.INFO 0
-                vim.diagnostic.severity.HINT 0})
-  (each [_ diagnostic (ipairs (vim.diagnostic.get 0))]
-    (local ns (. (vim.diagnostic.get_namespace diagnostic.namespace) :name))
-    (if (vim.startswith ns "vim.lsp")
-      (tset count diagnostic.severity (+ 1 (. count diagnostic.severity)))))
-  (local status [])
-  (local error-cnt (. count vim.diagnostic.severity.ERROR))
-  (local warn-cnt (. count vim.diagnostic.severity.WARN))
-  (local info-cnt (. count vim.diagnostic.severity.INFO))
-  (if (< 0 error-cnt)
-    (table.insert status (.. "\u{274c} " error-cnt)))
-  (if (< 0 warn-cnt)
-    (table.insert status (.. "\u{26a0}\u{fe0f} " warn-cnt)))
-  (if (< 0 info-cnt)
-    (table.insert status (.. "\u{1F4A1}" info-cnt)))
-  (table.concat status " "))
+(fn lsp-diagnostics []
+  (let [count (vim.diagnostic.count 0)
+        error-cnt (. count vim.diagnostic.severity.ERROR)
+        warn-cnt (. count vim.diagnostic.severity.WARN)
+        info-cnt (. count vim.diagnostic.severity.INFO)
+        status []]
+    (if (< 0 (or error-cnt 0))
+      (table.insert status (.. "\u{274c} " error-cnt)))
+    (if (< 0 (or warn-cnt 0))
+      (table.insert status (.. "\u{26a0}\u{fe0f} " warn-cnt)))
+    (if (< 0 (or info-cnt 0))
+      (table.insert status (.. "\u{1F4A1}" info-cnt)))
+    (table.concat status " ")))
 
-(vim.cmd "
-set laststatus=2
-set statusline=%1*
-set statusline+=\\ 
-set statusline+=%{v:lua._G.Statusline.Mode()}
-set statusline+=\\ 
-set statusline+=%2*
-set statusline+=\\ 
-set statusline+=%F
-set statusline+=\\ 
-set statusline+=%m
-set statusline+=%r
-set statusline+=%3*
-set statusline+=\\ 
-set statusline+=%{v:lua._G.Statusline.Lsp()}
-set statusline+=%=
-set statusline+=\\ 
-set statusline+=%{v:lua._G.Statusline.Encoding()}
-set statusline+=\\ 
-set statusline+=%2*
-set statusline+=\\ 
-set statusline+=%{v:lua._G.Statusline.Filetype()}
-set statusline+=\\ 
-set statusline+=%1*
-set statusline+=\\ 
-set statusline+=l%l:c%2v,\\ %2p%%\\ %2LL
-set statusline+=\\ 
-")
+(fn _G.Statusline.Line []
+  (let [parts [;; set purple background
+               "%1*"
+               ;; display custom mode names
+               (mode)
+               ;; set light grey background
+               "%2*"
+               ;; display full-path filename
+               "%F"
+               ;; concat to avoid extra spaces
+               (..
+                 ;; display modified or read only status
+                 "%m%r"
+                 ;; set dark grey background
+                 "%3*")
+               ;; display any diagnostics
+               (lsp-diagnostics)
+               ;; display encoding if not utf-8
+               (encoding)
+               ;; set light grey background
+               "%2*"
+               ;; display filetype
+               (filetype)
+               ;; set purple background
+               "%1*"
+               ;; line and column of cursor
+               "l%l:c%2v,"
+               ;; percentage through file
+               "%2p%%"
+               ;; total number of lines
+               "%2LL"
+               ""]]
+    (table.concat parts " ")))
+
+(set vim.o.statusline "%!v:lua._G.Statusline.Line()")
 
 nil

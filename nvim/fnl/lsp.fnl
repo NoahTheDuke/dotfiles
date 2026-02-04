@@ -34,32 +34,32 @@
                       :arguments [uri row col ...]})))
 
 (fn execute-prompt-command [cmd args]
-  (local prompt (. cmd :prompt))
-  (if (= "" (. args :args))
-    (vim.ui.input {: prompt} #(execute-positional-command cmd $))
-    (execute-positional-command cmd (. args :args))))
+  (let [prompt (. cmd :prompt)]
+    (if (= "" (. args :args))
+      (vim.ui.input {: prompt} #(execute-positional-command cmd $))
+      (execute-positional-command cmd (. args :args)))))
 
 (fn execute-choice-command [cmd args]
-  (local {: prompt : choices} cmd)
-  (if (= "" (. args :args))
-    (vim.ui.select choices {: prompt} (fn [choice]
-                                        (if (not= choice nil)
-                                          (execute-positional-command cmd choice)
-                                          (execute-positional-command cmd))))
-    (execute-positional-command cmd (. args :args))))
+  (let [{: prompt : choices} cmd]
+    (if (= "" (. args :args))
+      (vim.ui.select choices {: prompt} (fn [choice]
+                                          (if (not= choice nil)
+                                            (execute-positional-command cmd choice)
+                                            (execute-positional-command cmd))))
+      (execute-positional-command cmd (. args :args)))))
 
 (fn register-commands [commands]
   (when-require [textcase "textcase"]
     (each [_ cmd (ipairs commands)]
-      (local nargs (if (. cmd :positional) "0" "?"))
-      (local cmd-type (. cmd :type))
-      (vim.api.nvim_create_user_command
-        (.. "CljLsp" (textcase.api.to_pascal_case (. cmd :command)))
-        (case cmd-type
-          "positional" (fn [_args] (execute-positional-command cmd))
-          "prompt" (fn [args] (execute-prompt-command cmd args))
-          "choice" (fn [args] (execute-choice-command cmd args)))
-        {: nargs}))
+      (let [nargs (if (. cmd :positional) "0" "?")
+            cmd-type (. cmd :type)]
+        (vim.api.nvim_create_user_command
+          (.. "CljLsp" (textcase.api.to_pascal_case (. cmd :command)))
+          (case cmd-type
+            "positional" (fn [_args] (execute-positional-command cmd))
+            "prompt" (fn [args] (execute-prompt-command cmd args))
+            "choice" (fn [args] (execute-choice-command cmd args)))
+          {: nargs})))
     (vim.api.nvim_create_user_command
       :CljLspCursorInfo
       (fn []
@@ -102,16 +102,16 @@
 (vim.keymap.set "i" "<C-o>" (fn [] (vim.lsp.buf.signature_help {:border "rounded"})) (utils.ks-opts "show signature help"))
 
 (fn show-docs []
-  (local cw (vim.fn.expand "<cword>"))
-  (if
-    ;; vim help
-    (<= 0 (vim.fn.index ["vim" "help"] vim.bo.filetype))
-    (vim.api.nvim_command (.. "h " cw))
-    ;; hover
-    (< 0 (length (vim.lsp.get_clients {:bufnr 0})))
-    (vim.lsp.buf.definition)
-    ;; default
-    (vim.api.nvim_command (.. "!" vim.o.keywordprg " " cw)))
+  (let [cw (vim.fn.expand "<cword>")]
+    (if
+      ;; vim help
+      (<= 0 (vim.fn.index ["vim" "help"] vim.bo.filetype))
+      (vim.api.nvim_command (.. "h " cw))
+      ;; hover
+      (< 0 (length (vim.lsp.get_clients {:bufnr 0})))
+      (vim.lsp.buf.definition)
+      ;; default
+      (vim.api.nvim_command (.. "!" vim.o.keywordprg " " cw))))
   nil)
 
 (vim.keymap.set "n" "gd" (fn [] (show-docs)) (utils.ks-opts "go to definition"))
@@ -125,9 +125,9 @@
 (vim.lsp.enable :clojure-lsp)
 
 (when (vim.uv.fs_stat clojure-lsp-commands)
-  (local commands (edn.decode (vim.fn.readblob clojure-lsp-commands)))
-  (register-keymaps commands)
-  (register-commands commands))
+  (let [commands (edn.decode (vim.fn.readblob clojure-lsp-commands))]
+    (register-keymaps commands)
+    (register-commands commands)))
 
 (if (= 1 (vim.fn.has "nvim-0.12.0"))
   (vim.lsp.semantic_tokens.enable false))

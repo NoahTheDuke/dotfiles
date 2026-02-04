@@ -145,19 +145,21 @@ local function _32_()
   return vim.lsp.buf.signature_help({border = "rounded"})
 end
 vim.keymap.set("i", "<C-o>", _32_, utils["ks-opts"]("show signature help"))
-_G["show-docs"] = function()
-  local cw = vim.fn.expand("<cword>")
-  if (0 <= vim.fn.index({"vim", "help"}, vim.bo.filetype)) then
-    vim.api.nvim_command(("h " .. cw))
-  elseif (0 < #vim.lsp.get_clients({bufnr = 0})) then
-    vim.lsp.buf.definition()
-  else
-    vim.api.nvim_command(("!" .. vim.o.keywordprg .. " " .. cw))
+local function show_docs()
+  do
+    local cw = vim.fn.expand("<cword>")
+    if (0 <= vim.fn.index({"vim", "help"}, vim.bo.filetype)) then
+      vim.api.nvim_command(("h " .. cw))
+    elseif (0 < #vim.lsp.get_clients({bufnr = 0})) then
+      vim.lsp.buf.definition()
+    else
+      vim.api.nvim_command(("!" .. vim.o.keywordprg .. " " .. cw))
+    end
   end
   return nil
 end
 local function _34_()
-  return _G["show-docs"]()
+  return show_docs()
 end
 vim.keymap.set("n", "gd", _34_, utils["ks-opts"]("go to definition"))
 vim.lsp.config("clojure-lsp", {cmd = {"clojure-lsp"}, filetypes = {"clojure"}, root_markers = {"project.clj", "deps.edn", "build.boot", "shadow-cljs.edn", "bb.edn", ".git"}, init_options = {["log-path"] = "/tmp/clojure-lsp.out"}, trace = "verbose"})

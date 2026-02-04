@@ -111,18 +111,18 @@
              :silent true
              :desc "Telescope : commands"})
 
-    (local lsp-list
-      [{:lhs "<leader>te" :rhs builtin.diagnostics :desc "List diagnostics"}
-       {:lhs "<leader>ti" :rhs builtin.lsp_implementations :desc "Goto the implementation of the word under the cursor if there's only one, otherwise show all options"}
-       {:lhs "<leader>tr" :rhs builtin.lsp_references :desc "Lists LSP references for word under the cursor"}
-       {:lhs "<leader>ts" :rhs builtin.lsp_document_symbols :desc "Lists LSP document symbols in the current buffer"}])
+    (let [lsp-list
+          [{:lhs "<leader>te" :rhs builtin.diagnostics :desc "List diagnostics"}
+           {:lhs "<leader>ti" :rhs builtin.lsp_implementations :desc "Goto the implementation of the word under the cursor if there's only one, otherwise show all options"}
+           {:lhs "<leader>tr" :rhs builtin.lsp_references :desc "Lists LSP references for word under the cursor"}
+           {:lhs "<leader>ts" :rhs builtin.lsp_document_symbols :desc "Lists LSP document symbols in the current buffer"}]]
 
-    (each [_ v (ipairs lsp-list)]
-      (keyset "n" v.lhs v.rhs
-              {:nowait true
-               :noremap true
-               :silent true
-               :desc v.desc}))))
+      (each [_ v (ipairs lsp-list)]
+        (keyset "n" v.lhs v.rhs
+                {:nowait true
+                 :noremap true
+                 :silent true
+                 :desc v.desc})))))
 
 (comment
   (config))
