@@ -1,3 +1,7 @@
+[user]
+name = "Noah Bogart"
+email = "noah.bogart@hey.com"
+
 [ui]
 editor = "nvim"
 # diff-editor = "vimdirdiff"
@@ -7,21 +11,33 @@ default-command = "-h"
 [merge-tools.difft]
 diff-args = ["--color=always", "$left", "$right"]
 
-[user]
-name = "Noah Bogart"
-email = "noah.bogart@hey.com"
-
-[revset-aliases]
-"open()" = "(mine() ~ ::trunk()) ~ heads(empty())"
-
 [git]
 write-change-id-header = true
 
 [templates]
 git_push_bookmark = '"nb/push-" ++ change_id.short()'
 
+[remotes.origin]
+auto-track-bookmarks = "*"
+
 [revsets]
 log = 'present(@) | ancestors(immutable_heads().., 3) | present(trunk())'
 
-[remotes.origin]
-auto-track-bookmarks = "*"
+[aliases]
+tug = ["util", "exec", "--", "sh", "-c", """
+if [ "x$1" = "x" ]; then
+  jj bookmark move --from "closest_bookmark(@)" --to "closest_pushable(@)"
+else
+  jj bookmark move --to "closest_pushable(@)" "$@"
+fi
+""", ""]
+
+[revset-aliases]
+"open()" = "(mine() ~ ::trunk()) ~ heads(empty())"
+"closest_bookmark(to)" = '''
+  coalesce(
+    heads(first_ancestors(to) & bookmarks()),
+    heads(ancestors(to) & bookmarks())
+  )
+'''
+"closest_pushable(to)" = 'heads(::to & mutable() & ~description(exact:"") & (~empty() | merges()))'
