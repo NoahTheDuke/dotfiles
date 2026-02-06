@@ -61,7 +61,7 @@ end
 vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {group = vim.api.nvim_create_augroup("HighlightFullWidthSpace", {clear = true}), pattern = "*", callback = _7_})
 local function _8_(_args)
   do
-    vim.diagnostic.open_float({header = "", scope = "cursor"})
+    vim.diagnostic.open_float({header = "", scope = "cursor", focus = false})
   end
   return nil
 end

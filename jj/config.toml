@@ -31,6 +31,7 @@ else
   jj bookmark move --to "closest_pushable(@)" "$@"
 fi
 """, ""]
+mine = ["bookmark", "list", "-r", "mine()"]
 
 [revset-aliases]
 "open()" = "(mine() ~ ::trunk()) ~ heads(empty())"

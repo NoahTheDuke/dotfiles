@@ -64,4 +64,5 @@
    :pattern "*"
    :callback (callback [_args]
                (vim.diagnostic.open_float {:header ""
-                                           :scope "cursor"}))})
+                                           :scope "cursor"
+                                           :focus false}))})
