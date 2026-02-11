@@ -61,7 +61,7 @@
       {:use_default_keys true
        :filetypes [ :clojure :scheme :lisp :fennel :basilisp ]
        :cursor_behaviour :follow
-       ; :extensions { :basilisp clj }
+       :dragging {:auto_drag_pairs false}
        :keys {
               ;; Wrap enclosing form in given type enter insert mode at start or end
 
@@ -73,7 +73,7 @@
               [(enclosing-wrapper-maker ["(" " )"] "inner_end")
                "Wrap form round insert tail"]
 
-              "<localleader>[" ;]
+              "<localleader>["
               [(enclosing-wrapper-maker ["[" "]"] "inner_start")
                "Wrap form square insert head"]
 
@@ -81,47 +81,45 @@
               [(enclosing-wrapper-maker ["[" "]"] "inner_end")
                "Wrap form square insert tail"]
 
-              "<localleader>{" ;}
+              "<localleader>{"
               [(enclosing-wrapper-maker ["{" "}"] "inner_start")
                "Wrap form curly insert head"]
 
               "<localleader>}"
-       [(enclosing-wrapper-maker ["{" "}"] "inner_end")
-        "Wrap form curly insert tail"]
+              [(enclosing-wrapper-maker ["{" "}"] "inner_end")
+               "Wrap form curly insert tail"]
 
-       "<localleader>w"
-       [(wrapper-maker ["(" ")"] "inner_start")
-        "Wrap element with (), insert head"]
+              "<localleader>w"
+              [(wrapper-maker ["(" ")"] "inner_start")
+               "Wrap element with (), insert head"]
 
-       "<localleader>W"
-       [(wrapper-maker ["(" ")"] "inner_end")
-        "Wrap element with (), insert tail"]
+              "<localleader>W"
+              [(wrapper-maker ["(" ")"] "inner_end")
+               "Wrap element with (), insert tail"]
 
-       "<localleader>e[" ;]
-       [(wrapper-maker ["[" "]"] "inner_start")
-        "Wrap element with [], insert head"]
+              "<localleader>e["
+              [(wrapper-maker ["[" "]"] "inner_start")
+               "Wrap element with [], insert head"]
 
-       "<localleader>e]"
-       [(wrapper-maker ["[" "]"] "inner_end")
-        "Wrap element with [], insert tail"]
+              "<localleader>e]"
+              [(wrapper-maker ["[" "]"] "inner_end")
+               "Wrap element with [], insert tail"]
 
-       "<localleader>e{" ;}
-       [(wrapper-maker ["{" "}"] "inner_start")
-        "Wrap element with {}, insert head"]
+              "<localleader>e{"
+              [(wrapper-maker ["{" "}"] "inner_start")
+               "Wrap element with {}, insert head"]
 
-       "<localleader>e}"
-      [(wrapper-maker ["{" "}"] "inner_end")
-       "Wrap element with {}, insert tail"]
+              "<localleader>e}"
+              [(wrapper-maker ["{" "}"] "inner_end")
+               "Wrap element with {}, insert tail"]
 
-      "<localleader>h"
-      [(insert-in-list "inner_start")
-       "Enter insert mode at head of current form"]
+              "<localleader>h"
+              [(insert-in-list "inner_start")
+               "Enter insert mode at head of current form"]
 
-      "<localleader>l"
-      [(insert-in-list "inner_end")
-       "Enter insert mode at tail of current form"]
-      }
-      })))
+              "<localleader>l"
+              [(insert-in-list "inner_end")
+               "Enter insert mode at tail of current form"]}})))
 
 (comment
   (config))

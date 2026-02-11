@@ -76,9 +76,17 @@
 (comment
   (config))
 
-(utils.dep
-  "https://github.com/nvim-treesitter/nvim-treesitter"
-  {:config config
-   :branch "main"
-   :revision "HEAD"
-   :build ":TSUpdate"})
+(λ mod-config []
+  (when-require [mods "treesitter-modules"]
+    (mods.setup {:incremental_selection {:enable true}})))
+
+[(utils.dep
+   "https://github.com/nvim-treesitter/nvim-treesitter"
+   {:config config
+    :branch "main"
+    :revision "HEAD"
+    :build ":TSUpdate"})
+ (utils.dep
+   "https://github.com/MeanderingProgrammer/treesitter-modules.nvim"
+   {:dependencies ["nvim-treesitter/nvim-treesitter"]
+    :config mod-config})]
