@@ -4,7 +4,7 @@ local function config()
   local augroup = vim.api.nvim_create_augroup("switches", {clear = true})
   local function _1_()
     do
-      vim.b.switch_custom_definitions = {{["\"\\(\\k\\+\\)\""] = "'\\1", ["'\\(\\k\\+\\)"] = ":\\1", [":\\(\\k\\+\\)"] = "\"\\1\"\\2"}}
+      vim.b.switch_custom_definitions = {{["\"\\(\\k\\+\\)\""] = ":\\1", [":\\(\\k\\+\\)"] = "\"\\1\"\\2"}}
     end
     return nil
   end

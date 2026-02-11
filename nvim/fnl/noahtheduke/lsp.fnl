@@ -1,6 +1,6 @@
 (local utils (require "noahtheduke.utils"))
 (local edn (require "edn"))
-(import-macros {: when-require} "noahtheduke.util-macros")
+(import-macros {: callback : when-require} "noahtheduke.util-macros")
 
 (local clojure-lsp-commands
   (.. (vim.fn.stdpath "config") "/data/clojure-lsp-commands.edn"))
@@ -98,8 +98,10 @@
                   vim.diagnostic.severity.INFO ""
                   vim.diagnostic.severity.HINT ""}}})
 
-(vim.keymap.set "n" "K" (λ [] (vim.lsp.buf.hover {:border "rounded"})) (utils.ks-opts "show docs"))
-(vim.keymap.set "i" "<C-o>" (λ [] (vim.lsp.buf.signature_help {:border "rounded"})) (utils.ks-opts "show signature help"))
+(vim.keymap.set "n" "K" (λ [] (vim.lsp.buf.hover {:border "rounded"}))
+                (utils.ks-opts "show docs"))
+(vim.keymap.set "i" "<C-o>" (λ [] (vim.lsp.buf.signature_help {:border "rounded"}))
+                (utils.ks-opts "show signature help"))
 
 (λ show-docs []
   "show vim docs, or show lsp hover, or check keywordprg"
@@ -132,5 +134,19 @@
 
 (if (= 1 (vim.fn.has "nvim-0.12.0"))
   (vim.lsp.semantic_tokens.enable false))
+
+(vim.api.nvim_create_autocmd
+  ["CursorHold"]
+  {:group (vim.api.nvim_create_augroup "lspCursorHold" {:clear true})
+   :pattern "*"
+   :callback (callback [_args]
+               (vim.diagnostic.open_float {:header ""
+                                           :scope "cursor"
+                                           :focus false}))})
+
+(vim.api.nvim_create_autocmd
+  ["LspAttach"]
+  {:callback (callback [args]
+               (vim.lsp.document_color.enable false args.buf))})
 
 nil

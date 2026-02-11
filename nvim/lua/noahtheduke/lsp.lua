@@ -219,4 +219,22 @@ if (1 == vim.fn.has("nvim-0.12.0")) then
   vim.lsp.semantic_tokens.enable(false)
 else
 end
+local function _48_(_args)
+  do
+    vim.diagnostic.open_float({header = "", scope = "cursor", focus = false})
+  end
+  return nil
+end
+vim.api.nvim_create_autocmd({"CursorHold"}, {group = vim.api.nvim_create_augroup("lspCursorHold", {clear = true}), pattern = "*", callback = _48_})
+local function _49_(args)
+  if (nil == args) then
+    _G.error("Missing argument args on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/lsp.fnl:149", 2)
+  else
+  end
+  do
+    vim.lsp.document_color.enable(false, args.buf)
+  end
+  return nil
+end
+vim.api.nvim_create_autocmd({"LspAttach"}, {callback = _49_})
 return nil

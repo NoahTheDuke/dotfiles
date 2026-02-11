@@ -57,12 +57,3 @@
        (vim.api.nvim_set_hl 0 weirdSpaces
                             {:bg "#a6a6a6"
                              :fg "white"})))})
-
-(vim.api.nvim_create_autocmd
-  ["CursorHold"]
-  {:group (vim.api.nvim_create_augroup "lspCursorHold" {:clear true})
-   :pattern "*"
-   :callback (callback [_args]
-               (vim.diagnostic.open_float {:header ""
-                                           :scope "cursor"
-                                           :focus false}))})
