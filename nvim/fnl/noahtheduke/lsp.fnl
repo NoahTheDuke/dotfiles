@@ -13,52 +13,49 @@
 (λ get-client [name]
   (. (vim.lsp.get_clients {: name}) 1))
 
-(λ register-keymaps [commands]
-  (each [_ v (ipairs commands)]
-    (when (. v :shortcut)
-      (vim.keymap.set "n" (.. "<leader>cl" (. v :shortcut))
-                      (λ []
-                        (let [client (get-client "clojure-lsp")]
-                          (when client
-                            (client:exec_cmd {:command (. v :command)
-                                              :arguments (get-uri-and-pos)})
-                            (vim.api.nvim__redraw {:buf 0 :flush true}))))
-                      {:silent true
-                       :noremap true
-                       :desc (.. "clojure-lsp-" (. v :command))}))))
-
-(λ execute-positional-command [cmd ...]
+(fn execute-positional-command [cmd args]
   (let [client (get-client "clojure-lsp")
         [uri row col] (get-uri-and-pos)]
     (client:exec_cmd {:command (. cmd :command)
-                      :arguments [uri row col ...]})))
+                      :arguments [uri row col (if (= "string" (type args))
+                                                args
+                                                (unpack (or args [])))]})
+    (vim.api.nvim__redraw {:buf 0 :flush true})))
 
-(λ execute-prompt-command [cmd args]
+(fn execute-prompt-command [cmd args]
   (let [prompt (. cmd :prompt)]
-    (if (= "" (. args :args))
-      (vim.ui.input {: prompt} #(execute-positional-command cmd $))
-      (execute-positional-command cmd (. args :args)))))
+    (if (not args)
+      (vim.ui.input {:prompt (.. prompt " ")} #(execute-positional-command cmd $))
+      (execute-positional-command cmd (?. args :args)))))
 
-(λ execute-choice-command [cmd args]
+(fn execute-choice-command [cmd args]
   (let [{: prompt : choices} cmd]
-    (if (= "" (. args :args))
-      (vim.ui.select choices {: prompt} (λ [choice]
-                                          (if (not= choice nil)
-                                            (execute-positional-command cmd choice)
-                                            (execute-positional-command cmd))))
-      (execute-positional-command cmd (. args :args)))))
+    (if (not args)
+      (vim.ui.select choices {: prompt} #(execute-positional-command cmd $))
+      (execute-positional-command cmd (?. args :args)))))
+
+(λ get-command-fn [cmd]
+  (case (. cmd :type)
+    "positional" (fn [_args] (execute-positional-command cmd nil))
+    "prompt" (fn [args] (execute-prompt-command cmd args))
+    "choice" (fn [args] (execute-choice-command cmd args))))
+
+(λ register-keymaps [commands]
+  (each [_ cmd (ipairs commands)]
+    (when (. cmd :shortcut)
+      (vim.keymap.set "n" (.. "<leader>cl" (. cmd :shortcut))
+                      (get-command-fn cmd)
+                      {:silent true
+                       :noremap true
+                       :desc (.. "clojure-lsp-" (. cmd :command))}))))
 
 (λ register-commands [commands]
   (when-require [textcase "textcase"]
     (each [_ cmd (ipairs commands)]
-      (let [nargs (if (. cmd :positional) "0" "?")
-            cmd-type (. cmd :type)]
+      (let [nargs (if (. cmd :positional) "0" "?")]
         (vim.api.nvim_create_user_command
           (.. "CljLsp" (textcase.api.to_pascal_case (. cmd :command)))
-          (case cmd-type
-            "positional" (λ [_args] (execute-positional-command cmd))
-            "prompt" (λ [args] (execute-prompt-command cmd args))
-            "choice" (λ [args] (execute-choice-command cmd args)))
+          (get-command-fn cmd)
           {: nargs})))
     (vim.api.nvim_create_user_command
       :CljLspCursorInfo

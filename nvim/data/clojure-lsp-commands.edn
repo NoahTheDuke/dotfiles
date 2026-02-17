@@ -102,13 +102,13 @@
   :description "Move current let form up a level"
   :shortcut "el"}
 
- {:type :positional
+ {:type :prompt
   :command extract-function
   :description "Move current form into new top-level function"
   :prompt "Function name?"
   :shortcut "ef"}
 
- {:type :positional
+ {:type :prompt
   :command extract-to-def
   :description "Move current form into new top-level def"
   :prompt "Symbol name?"
