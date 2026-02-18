@@ -24,12 +24,12 @@
                 extra-opts))
             form))))
 
-    (vim.keymap.set :n :<leader>et #(time-current-form {}))
+    (vim.keymap.set :n "<leader>et" #(time-current-form {}))
 
-    (λ ns-unmap [extra-opts]
+    (λ ns-unmap [_extra-opts]
       (let [form (extract.form {:root? true})]
         (when form
-          (let [{: content : range} form
+          (let [{: content} form
                 var-name (-> (parse.strip-meta content)
                              (str.split "%s+")
                              (core.second))
@@ -89,11 +89,7 @@
 [(utils.dep
    "https://github.com/Olical/conjure.git"
    {:config conjure})
-
  (utils.dep
-   "https://github.com/walterl/conjure-macroexpand"
-   {:dependencies [ "Olical/conjure" ]})
-
+   "https://github.com/walterl/conjure-macroexpand")
  (utils.dep
-   "https://github.com/walterl/conjure-locstack"
-   {:dependencies [ "Olical/conjure" ]})]
+   "https://github.com/walterl/conjure-locstack")]

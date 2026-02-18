@@ -88,5 +88,4 @@
     :build ":TSUpdate"})
  (utils.dep
    "https://github.com/MeanderingProgrammer/treesitter-modules.nvim"
-   {:dependencies ["nvim-treesitter/nvim-treesitter"]
-    :config mod-config})]
+   {:config mod-config})]

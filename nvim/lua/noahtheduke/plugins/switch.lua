@@ -4,14 +4,14 @@ local function config()
   local augroup = vim.api.nvim_create_augroup("switches", {clear = true})
   local function _1_()
     do
-      vim.b.switch_custom_definitions = {{["\"\\(\\k\\+\\)\""] = ":\\1", [":\\(\\k\\+\\)"] = "\"\\1\"\\2"}}
+      vim.b.switch_custom_definitions = {{["\"\\(\\(\\k\\|\\.\\)\\+\\)\""] = ":\\1", [":\\(\\(\\k\\|\\.\\)\\+\\)"] = "\"\\1\""}}
     end
     return nil
   end
   vim.api.nvim_create_autocmd({"FileType"}, {group = augroup, pattern = "fennel", callback = _1_})
   local function _2_()
     do
-      vim.b.switch_custom_definitions = {{["\"\\(\\k\\+\\)\""] = "'\\1", ["#:\\(\\k\\+\\)"] = "\"\\1\"\\2", ["'\\(\\k\\+\\)"] = ":\\1", [":\\(\\k\\+\\)"] = "#:\\1"}}
+      vim.b.switch_custom_definitions = {{["\"\\(\\k\\+\\)\""] = "'\\1", ["#:\\(\\k\\+\\)"] = "\"\\1\"", ["'\\(\\k\\+\\)"] = ":\\1", [":\\(\\k\\+\\)"] = "#:\\1"}}
     end
     return nil
   end

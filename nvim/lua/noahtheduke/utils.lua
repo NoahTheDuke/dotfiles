@@ -4,19 +4,21 @@ local function nvim_ex(...)
 end
 local function dep(name, _3fargs)
   if (nil == name) then
-    _G.error("Missing argument name on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/utils.fnl:8", 2)
+    _G.error("Missing argument name on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/utils.fnl:22", 2)
   else
   end
+  local dep0
   if (_3fargs ~= nil) then
     table.insert(_3fargs, 1, name)
-    return _3fargs
+    dep0 = _3fargs
   else
-    return {name}
+    dep0 = {name}
   end
+  return dep0
 end
 local function fennel_includeexpr(mdl)
   if (nil == mdl) then
-    _G.error("Missing argument mdl on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/utils.fnl:14", 2)
+    _G.error("Missing argument mdl on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/utils.fnl:29", 2)
   else
   end
   do
@@ -38,7 +40,7 @@ end
 --[[ (fennel_includeexpr "noahtheduke.util-macros") ]]
 local function ks_opts(desc)
   if (nil == desc) then
-    _G.error("Missing argument desc on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/utils.fnl:29", 2)
+    _G.error("Missing argument desc on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/utils.fnl:44", 2)
   else
   end
   return {silent = true, noremap = true, desc = desc}

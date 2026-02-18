@@ -68,25 +68,24 @@
       {:nargs 0})
     (vim.api.nvim_create_user_command
       :CljLspServerInfo
-      (λ [] (vim.lsp.buf_notify 0 "clojure/serverInfo/log"))
+      #(vim.lsp.buf_notify 0 "clojure/serverInfo/log")
       {:nargs 0})
     (vim.api.nvim_create_user_command
       :CljLspProjectTree
-      (λ [] (vim.lsp.buf_request_sync 0 "clojure/workspace/projectTree/nodes"))
+      #(vim.lsp.buf_request_sync 0 "clojure/workspace/projectTree/nodes")
       {:nargs 0})
     nil))
 
 (each [_ name (ipairs [:Format :FOrmat])]
   (vim.api.nvim_create_user_command
     name
-    (λ [] (vim.lsp.buf.format))
+    vim.lsp.buf.format
     {:nargs 0}))
 
 (vim.api.nvim_create_user_command
   :OR
-  (λ []
-    (vim.lsp.buf.code_action {:context {:only ["source.organizeImports"]}
-                              :apply true}))
+  #(vim.lsp.buf.code_action {:context {:only ["source.organizeImports"]}
+                             :apply true})
   {:nargs 0})
 
 (vim.diagnostic.config

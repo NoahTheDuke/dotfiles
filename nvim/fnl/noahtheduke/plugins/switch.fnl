@@ -9,8 +9,8 @@
        :pattern "fennel"
        :callback (callback []
                    (set vim.b.switch_custom_definitions
-                        [{"\"\\(\\k\\+\\)\"" ":\\1"
-                          ":\\(\\k\\+\\)" "\"\\1\"\\2"}]))})
+                        [{"\"\\(\\(\\k\\|\\.\\)\\+\\)\"" ":\\1"
+                          ":\\(\\(\\k\\|\\.\\)\\+\\)" "\"\\1\""}]))})
 
     (vim.api.nvim_create_autocmd
       ["FileType"]
@@ -19,7 +19,7 @@
        :callback (callback []
                    (set vim.b.switch_custom_definitions
                         [{"\"\\(\\k\\+\\)\"" "'\\1"
-                          "#:\\(\\k\\+\\)" "\"\\1\"\\2"
+                          "#:\\(\\k\\+\\)" "\"\\1\""
                           "'\\(\\k\\+\\)" ":\\1"
                           ":\\(\\k\\+\\)" "#:\\1"}]))})))
 

@@ -127,8 +127,9 @@
 (comment
   (config))
 
-(utils.dep
+[(utils.dep
+   "https://github.com/nvim-telescope/telescope-fzf-native.nvim.git"
+   {:build "make"})
+ (utils.dep
   "https://github.com/nvim-telescope/telescope.nvim"
-  {:dependencies [{1 "https://github.com/nvim-telescope/telescope-fzf-native.nvim.git"
-                   :build "make"}]
-   :config config})
+  {:config config})]

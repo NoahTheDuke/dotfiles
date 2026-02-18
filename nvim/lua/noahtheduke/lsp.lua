@@ -159,24 +159,21 @@ local function register_commands(commands)
   end
 end
 for _, name in ipairs({"Format", "FOrmat"}) do
-  local function _35_()
-    return vim.lsp.buf.format()
-  end
-  vim.api.nvim_create_user_command(name, _35_, {nargs = 0})
+  vim.api.nvim_create_user_command(name, vim.lsp.buf.format, {nargs = 0})
 end
-local function _36_()
+local function _35_()
   return vim.lsp.buf.code_action({context = {only = {"source.organizeImports"}}, apply = true})
 end
-vim.api.nvim_create_user_command("OR", _36_, {nargs = 0})
+vim.api.nvim_create_user_command("OR", _35_, {nargs = 0})
 vim.diagnostic.config({signs = {text = {[vim.diagnostic.severity.ERROR] = "\239\129\151", [vim.diagnostic.severity.WARN] = "\239\129\177", [vim.diagnostic.severity.INFO] = "\239\129\154", [vim.diagnostic.severity.HINT] = "\239\129\153"}}})
-local function _37_()
+local function _36_()
   return vim.lsp.buf.hover({border = "rounded"})
 end
-vim.keymap.set("n", "K", _37_, utils["ks-opts"]("show docs"))
-local function _38_()
+vim.keymap.set("n", "K", _36_, utils["ks-opts"]("show docs"))
+local function _37_()
   return vim.lsp.buf.signature_help({border = "rounded"})
 end
-vim.keymap.set("i", "<C-o>", _38_, utils["ks-opts"]("show signature help"))
+vim.keymap.set("i", "<C-o>", _37_, utils["ks-opts"]("show signature help"))
 local function show_docs()
   do
     local cw = vim.fn.expand("<cword>")
@@ -203,16 +200,16 @@ if (1 == vim.fn.has("nvim-0.12.0")) then
   vim.lsp.semantic_tokens.enable(false)
 else
 end
-local function _42_(_args)
+local function _41_(_args)
   do
     vim.diagnostic.open_float({header = "", scope = "cursor", focus = false})
   end
   return nil
 end
-vim.api.nvim_create_autocmd({"CursorHold"}, {group = vim.api.nvim_create_augroup("lspCursorHold", {clear = true}), pattern = "*", callback = _42_})
-local function _43_(args)
+vim.api.nvim_create_autocmd({"CursorHold"}, {group = vim.api.nvim_create_augroup("lspCursorHold", {clear = true}), pattern = "*", callback = _41_})
+local function _42_(args)
   if (nil == args) then
-    _G.error("Missing argument args on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/lsp.fnl:146", 2)
+    _G.error("Missing argument args on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/lsp.fnl:145", 2)
   else
   end
   do
@@ -220,5 +217,5 @@ local function _43_(args)
   end
   return nil
 end
-vim.api.nvim_create_autocmd({"LspAttach"}, {callback = _43_})
+vim.api.nvim_create_autocmd({"LspAttach"}, {callback = _42_})
 return nil

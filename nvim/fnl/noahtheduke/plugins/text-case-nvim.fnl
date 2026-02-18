@@ -10,7 +10,8 @@
 (comment
   (config))
 
-(utils.dep
+[(utils.dep
+   "https://github.com/nvim-telescope/telescope.nvim")
+ (utils.dep
   "https://github.com/johmsalas/text-case.nvim"
-  {:dependencies ["https://github.com/nvim-telescope/telescope.nvim"]
-   :config config})
+  {:config config})]

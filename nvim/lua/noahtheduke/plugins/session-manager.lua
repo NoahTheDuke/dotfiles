@@ -8,7 +8,7 @@ local function _1_()
   end
   local function _6_(err_2_auto)
     if (nil == err_2_auto) then
-      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/session-manager.fnl:10", 2)
+      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/session-manager.fnl:11", 2)
     else
     end
     return table.insert(errors_2_, debug.traceback(err_2_auto))
@@ -20,7 +20,7 @@ local function _1_()
   end
   local function _9_(err_2_auto)
     if (nil == err_2_auto) then
-      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/session-manager.fnl:10", 2)
+      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/session-manager.fnl:11", 2)
     else
     end
     return table.insert(errors_2_, debug.traceback(err_2_auto))
@@ -32,4 +32,4 @@ local function _1_()
     return vim.notify(errors_2_[1], vim.log.levels.ERROR)
   end
 end
-return utils.dep("https://github.com/Shatur/neovim-session-manager", {dependencies = {"nvim-lua/plenary.nvim"}, config = _1_})
+return {utils.dep("https://github.com/nvim-lua/plenary.nvim"), utils.dep("https://github.com/Shatur/neovim-session-manager", {config = _1_})}

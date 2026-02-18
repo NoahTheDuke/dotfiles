@@ -130,23 +130,18 @@ local function conjure()
       return time_current_form({})
     end
     vim.keymap.set("n", "<leader>et", _40_)
-    local function ns_unmap(extra_opts)
-      if (nil == extra_opts) then
-        _G.error("Missing argument extra-opts on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/conjure.fnl:29", 2)
-      else
-      end
+    local function ns_unmap(_extra_opts)
       local form = extract.form({["root?"] = true})
       if form then
         local content = form.content
-        local range = form.range
         local var_name = core.second(str.split(parse["strip-meta"](content), "%s+"))
         local current_ns = extract.context()
         if var_name then
           log.append({core.str("; Unmapping ", var_name)}, {["break?"] = true})
-          local function _42_(_241)
+          local function _41_(_241)
             return ui["display-result"](_241, {["simple-out?"] = true, ["raw-out?"] = true, ["ignore-nil?"] = false})
           end
-          server.eval({code = core.str("(ns-unmap (the-ns '", current_ns, ") '", var_name, ")")}, _42_)
+          server.eval({code = core.str("(ns-unmap (the-ns '", current_ns, ") '", var_name, ")")}, _41_)
         else
         end
         return form
@@ -173,4 +168,4 @@ local function conjure()
   end
 end
 --[[ (conjure) ]]
-return {utils.dep("https://github.com/Olical/conjure.git", {config = conjure}), utils.dep("https://github.com/walterl/conjure-macroexpand", {dependencies = {"Olical/conjure"}}), utils.dep("https://github.com/walterl/conjure-locstack", {dependencies = {"Olical/conjure"}})}
+return {utils.dep("https://github.com/Olical/conjure.git", {config = conjure}), utils.dep("https://github.com/walterl/conjure-macroexpand"), utils.dep("https://github.com/walterl/conjure-locstack")}

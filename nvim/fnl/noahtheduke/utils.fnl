@@ -5,11 +5,26 @@
       (table.concat " ")
       (vim.api.nvim_command)))
 
+; { true,
+;   branch = true,
+;   build = true,
+;   cmd = true,
+;   commit = true,
+;   config = true,
+;   ft = true,
+;   lazy = true,
+;   name = true,
+;   opts = true,
+;   priority = true,
+;   revision = true
+; }
+
 (λ dep [name ?args]
-  (if (not= ?args nil)
-    (do (table.insert ?args 1 name)
-      ?args)
-    [name]))
+  (let [dep (if (not= ?args nil)
+              (do (table.insert ?args 1 name)
+                ?args)
+              [name])]
+    dep))
 
 (λ fennel_includeexpr [mdl]
   (let [mdl (mdl:gsub "%." "/")
@@ -31,7 +46,6 @@
   {:silent true
    :noremap true
    : desc})
-
 
 {: dep
  : nvim_ex
