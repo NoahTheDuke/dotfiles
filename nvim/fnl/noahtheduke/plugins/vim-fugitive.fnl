@@ -7,8 +7,7 @@
       (table.insert t s))
     t))
 
-(λ _G.tangled_handler
-  [opts]
+(λ _G.tangled_handler [opts]
   (let [{: path
          : remote
          : commit} opts

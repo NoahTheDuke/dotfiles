@@ -18,7 +18,7 @@ local function str_split(str, sep)
 end
 _G.tangled_handler = function(opts)
   if (nil == opts) then
-    _G.error("Missing argument opts on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/vim-fugitive.fnl:11", 2)
+    _G.error("Missing argument opts on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/vim-fugitive.fnl:10", 2)
   else
   end
   local path = opts.path

@@ -8,7 +8,7 @@ local function config()
   end
   local function _5_(err_2_auto)
     if (nil == err_2_auto) then
-      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/url-open.fnl:6", 2)
+      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/url-open.fnl:5", 2)
     else
     end
     return table.insert(errors_1_, debug.traceback(err_2_auto))
@@ -20,7 +20,7 @@ local function config()
   end
   local function _8_(err_2_auto)
     if (nil == err_2_auto) then
-      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/url-open.fnl:6", 2)
+      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/url-open.fnl:5", 2)
     else
     end
     return table.insert(errors_1_, debug.traceback(err_2_auto))

@@ -1,8 +1,7 @@
 (local utils (require "noahtheduke.utils"))
 (import-macros {: when-require} "noahtheduke.util-macros")
 
-(λ config
-  []
+(λ config []
   (when-require [url-open "url-open"
                  handlers "url-open.modules.handlers"]
     (let [opts {:open_only_when_cursor_on_url false
@@ -10,9 +9,7 @@
                                 :cursor_move {:enabled false}}}]
       (url-open.setup opts)
       (vim.api.nvim_create_user_command
-        :OpenUrlUnderCursor
-        (fn []
-          (handlers.open_url opts))
+        :OpenUrlUnderCursor #(handlers.open_url opts)
         {:nargs 0}))))
 
 (comment
