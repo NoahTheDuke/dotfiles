@@ -1,7 +1,7 @@
 ( local utils (require "noahtheduke.utils"))
 (import-macros {: when-require} "noahtheduke.util-macros")
 
-(λ conjure []
+(fn conjure []
   (when-require [core :nfnl.core
                  eval :conjure.eval
                  extract :conjure.extract
@@ -12,7 +12,7 @@
                  str :nfnl.string
                  ui :conjure.client.clojure.nrepl.ui]
 
-    (λ time-current-form [extra-opts]
+    (fn time-current-form [extra-opts]
       (let [form (extract.form {})]
         (when form
           (let [{: content : range} form]
@@ -26,7 +26,7 @@
 
     (vim.keymap.set :n "<leader>et" #(time-current-form {}))
 
-    (λ ns-unmap [_extra-opts]
+    (fn ns-unmap [_extra-opts]
       (let [form (extract.form {:root? true})]
         (when form
           (let [{: content} form

@@ -7,12 +7,8 @@ local function setup_custom_langs()
     local function _4_()
       return require("nvim-treesitter.parsers")
     end
-    local function _5_(err_2_auto)
-      if (nil == err_2_auto) then
-        _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/nvim-treesitter.fnl:10", 2)
-      else
-      end
-      return table.insert(errors_2_, debug.traceback(err_2_auto))
+    local function _5_(err_1_auto)
+      return table.insert(errors_2_, debug.traceback(err_1_auto))
     end
     _3_, ts_parsers = xpcall(_4_, _5_)
     if _3_ then
@@ -28,30 +24,22 @@ local function setup_custom_langs()
 end
 local all_languages = {"asciidoc", "asciidoc_inline", "angular", "clojure", "cooklang", "djot", "fennel", "java", "javascript", "json", "json5", "just", "lua", "markdown", "markdown_inline", "ocaml", "ocaml_interface", "ocamllex", "python", "query", "racket", "rust", "scheme", "talon", "typescript", "vimdoc", "vue", "yaml"}
 local function start_lang(language)
-  if (nil == language) then
-    _G.error("Missing argument language on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/nvim-treesitter.fnl:60", 2)
-  else
-  end
-  local function _9_()
+  local function _7_()
     return vim.treesitter.start()
   end
-  return vim.api.nvim_create_autocmd("FileType", {pattern = {language}, callback = _9_})
+  return vim.api.nvim_create_autocmd("FileType", {pattern = {language}, callback = _7_})
 end
 local function config()
-  local errors_10_ = {}
-  local _11_, ts
-  local function _12_()
+  local errors_8_ = {}
+  local _9_, ts
+  local function _10_()
     return require("nvim-treesitter")
   end
-  local function _13_(err_2_auto)
-    if (nil == err_2_auto) then
-      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/nvim-treesitter.fnl:67", 2)
-    else
-    end
-    return table.insert(errors_10_, debug.traceback(err_2_auto))
+  local function _11_(err_1_auto)
+    return table.insert(errors_8_, debug.traceback(err_1_auto))
   end
-  _11_, ts = xpcall(_12_, _13_)
-  if _11_ then
+  _9_, ts = xpcall(_10_, _11_)
+  if _9_ then
     setup_custom_langs()
     ts.install(all_languages)
     for _, language in ipairs(all_languages) do
@@ -61,28 +49,24 @@ local function config()
     vim.treesitter.language.register("scheme", {"dune"})
     return nil
   else
-    return vim.notify(errors_10_[1], vim.log.levels.ERROR)
+    return vim.notify(errors_8_[1], vim.log.levels.ERROR)
   end
 end
 --[[ (config) ]]
 local function mod_config()
-  local errors_16_ = {}
-  local _17_, mods
-  local function _18_()
+  local errors_13_ = {}
+  local _14_, mods
+  local function _15_()
     return require("treesitter-modules")
   end
-  local function _19_(err_2_auto)
-    if (nil == err_2_auto) then
-      _G.error("Missing argument err_2_auto on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/nvim-treesitter.fnl:80", 2)
-    else
-    end
-    return table.insert(errors_16_, debug.traceback(err_2_auto))
+  local function _16_(err_1_auto)
+    return table.insert(errors_13_, debug.traceback(err_1_auto))
   end
-  _17_, mods = xpcall(_18_, _19_)
-  if _17_ then
+  _14_, mods = xpcall(_15_, _16_)
+  if _14_ then
     return mods.setup({incremental_selection = {enable = true}})
   else
-    return vim.notify(errors_16_[1], vim.log.levels.ERROR)
+    return vim.notify(errors_13_[1], vim.log.levels.ERROR)
   end
 end
 return {utils.dep("https://github.com/nvim-treesitter/nvim-treesitter", {config = config, branch = "main", revision = "HEAD", build = ":TSUpdate"}), utils.dep("https://github.com/MeanderingProgrammer/treesitter-modules.nvim", {config = mod_config})}

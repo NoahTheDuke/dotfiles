@@ -5,6 +5,6 @@
 [(utils.dep
    "https://github.com/gelguy/wilder.nvim"
    {:config
-    (λ []
+    (fn []
       (when-require [wilder "wilder"]
         (wilder.setup {:modes [ ":" "/" "?" ]})))})]

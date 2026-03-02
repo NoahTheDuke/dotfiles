@@ -19,14 +19,14 @@
 ;   revision = true
 ; }
 
-(λ dep [name ?args]
+(fn dep [name ?args]
   (let [dep (if (not= ?args nil)
               (do (table.insert ?args 1 name)
                 ?args)
               [name])]
     dep))
 
-(λ fennel_includeexpr [mdl]
+(fn fennel_includeexpr [mdl]
   (let [mdl (mdl:gsub "%." "/")
         root (or (vim.fs.root (vim.api.nvim_buf_get_name 0) "lua")
                  (vim.fn.getcwd))]
@@ -41,7 +41,7 @@
 (comment
   (fennel_includeexpr "noahtheduke.util-macros"))
 
-(λ ks-opts [desc]
+(fn ks-opts [desc]
   "sets silent and noremap, uses given description"
   {:silent true
    :noremap true

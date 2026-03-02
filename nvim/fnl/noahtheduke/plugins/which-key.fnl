@@ -5,6 +5,6 @@
 (utils.dep
   "https://github.com/folke/which-key.nvim"
   {:config
-   (λ []
+   (fn []
      (when-require [which "which-key"]
        (which.setup)))})

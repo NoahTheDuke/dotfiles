@@ -5,12 +5,12 @@
 (local clojure-lsp-commands
   (.. (vim.fn.stdpath "config") "/data/clojure-lsp-commands.edn"))
 
-(λ get-uri-and-pos []
+(fn get-uri-and-pos []
   (let [[row col] (vim.api.nvim_win_get_cursor 0)
         uri (vim.uri_from_bufnr 0)]
     [uri (- row 1) col]))
 
-(λ get-client [name]
+(fn get-client [name]
   (. (vim.lsp.get_clients {: name}) 1))
 
 (fn execute-positional-command [cmd args]
@@ -34,13 +34,13 @@
       (vim.ui.select choices {: prompt} #(execute-positional-command cmd $))
       (execute-positional-command cmd (?. args :args)))))
 
-(λ get-command-fn [cmd]
+(fn get-command-fn [cmd]
   (case (. cmd :type)
     "positional" (fn [_args] (execute-positional-command cmd nil))
     "prompt" (fn [args] (execute-prompt-command cmd args))
     "choice" (fn [args] (execute-choice-command cmd args))))
 
-(λ register-keymaps [commands]
+(fn register-keymaps [commands]
   (each [_ cmd (ipairs commands)]
     (when (. cmd :shortcut)
       (vim.keymap.set "n" (.. "<leader>cl" (. cmd :shortcut))
@@ -49,7 +49,7 @@
                        :noremap true
                        :desc (.. "clojure-lsp-" (. cmd :command))}))))
 
-(λ register-commands [commands]
+(fn register-commands [commands]
   (when-require [textcase "textcase"]
     (each [_ cmd (ipairs commands)]
       (let [nargs (if (. cmd :positional) "0" "?")]
@@ -59,7 +59,7 @@
           {: nargs})))
     (vim.api.nvim_create_user_command
       :CljLspCursorInfo
-      (λ []
+      (fn []
         (let [[uri row col] (get-uri-and-pos)]
           (vim.lsp.buf_notify 0 "clojure/cursorInfo/log"
                               {:textDocument {: uri}
@@ -94,12 +94,12 @@
                   vim.diagnostic.severity.INFO ""
                   vim.diagnostic.severity.HINT ""}}})
 
-(vim.keymap.set "n" "K" (λ [] (vim.lsp.buf.hover {:border "rounded"}))
+(vim.keymap.set "n" "K" (fn [] (vim.lsp.buf.hover {:border "rounded"}))
                 (utils.ks-opts "show docs"))
-(vim.keymap.set "i" "<C-o>" (λ [] (vim.lsp.buf.signature_help {:border "rounded"}))
+(vim.keymap.set "i" "<C-o>" (fn [] (vim.lsp.buf.signature_help {:border "rounded"}))
                 (utils.ks-opts "show signature help"))
 
-(λ show-docs []
+(fn show-docs []
   "show vim docs, or show lsp hover, or check keywordprg"
   (let [cw (vim.fn.expand "<cword>")]
     (if

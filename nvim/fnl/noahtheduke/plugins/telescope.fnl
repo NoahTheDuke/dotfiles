@@ -2,7 +2,7 @@
 (import-macros {: when-require} "noahtheduke.util-macros")
 (local keyset vim.keymap.set)
 
-(λ config []
+(fn config []
   (when-require [telescope "telescope"
                  actions "telescope.actions"
                  builtin "telescope.builtin"]
@@ -15,6 +15,15 @@
         :path_display
         {:shorten {:len 3
                    :exclude [-1 -2]}}
+
+        :vimgrep_arguments ["rg"
+                            "--color=never"
+                            "--no-heading"
+                            "--with-filename"
+                            "--line-number"
+                            "--column"
+                            "--smart-case"
+                            "--multiline"]
 
         :mappings
         {:i {"<C-n>" actions.cycle_history_next

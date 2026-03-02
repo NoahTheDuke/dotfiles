@@ -5,6 +5,6 @@
 (utils.dep
   "https://github.com/kylechui/nvim-surround"
   {:config
-   (λ []
+   (fn []
      (when-require [nvim-surround "nvim-surround"]
        (nvim-surround.setup {})))})

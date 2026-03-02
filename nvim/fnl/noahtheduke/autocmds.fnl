@@ -1,6 +1,6 @@
 (import-macros {: callback} "noahtheduke.util-macros")
 
-(λ set-ft [augroup pattern ft]
+(fn set-ft [augroup pattern ft]
   (vim.api.nvim_create_autocmd
     ["BufNewFile" "BufReadPost"]
     {:group augroup

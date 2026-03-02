@@ -2,14 +2,6 @@
 local function rename(_1_)
   local name = _1_.args
   local bang = _1_.bang
-  if (nil == bang) then
-    _G.error("Missing argument bang on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/rename.fnl:3", 2)
-  else
-  end
-  if (nil == name) then
-    _G.error("Missing argument name on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/rename.fnl:3", 2)
-  else
-  end
   local cur_file = vim.fn.expand("%:p")
   local cur_file_stripped = vim.fn.substitute(cur_file, " ", "\\\\ ", "g")
   local cur_file_path = vim.fn.expand("%:p:h")
@@ -33,11 +25,7 @@ local function rename(_1_)
     return vim.notify(vim.v.errmsg, vim.log.levels.ERROR)
   end
 end
-local function _7_(opts)
-  if (nil == opts) then
-    _G.error("Missing argument opts on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/rename.fnl:22", 2)
-  else
-  end
+local function _5_(opts)
   return rename(opts)
 end
-return vim.api.nvim_create_user_command("Rename", _7_, {nargs = "*", complete = "file_in_path", bang = true})
+return vim.api.nvim_create_user_command("Rename", _5_, {nargs = "*", complete = "file_in_path", bang = true})

@@ -10,7 +10,7 @@
    "terraformls"
    "ts_ls"])
 
-(λ config []
+(fn config []
   (each [_ language (ipairs lsp-configs)]
     (vim.lsp.enable language)))
 

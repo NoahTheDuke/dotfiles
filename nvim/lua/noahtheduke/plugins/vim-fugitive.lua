@@ -1,14 +1,6 @@
 -- [nfnl] fnl/noahtheduke/plugins/vim-fugitive.fnl
 local utils = require("noahtheduke.utils")
 local function str_split(str, sep)
-  if (nil == sep) then
-    _G.error("Missing argument sep on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/vim-fugitive.fnl:3", 2)
-  else
-  end
-  if (nil == str) then
-    _G.error("Missing argument str on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/vim-fugitive.fnl:3", 2)
-  else
-  end
   local sep0 = (sep or "%s")
   local t = {}
   for s, _ in str:gmatch(("([^" .. sep0 .. "]+)")) do
@@ -17,10 +9,6 @@ local function str_split(str, sep)
   return t
 end
 _G.tangled_handler = function(opts)
-  if (nil == opts) then
-    _G.error("Missing argument opts on /Users/noah.bogart/dotfiles/nvim/fnl/noahtheduke/plugins/vim-fugitive.fnl:10", 2)
-  else
-  end
   local path = opts.path
   local remote = opts.remote
   local commit = opts.commit

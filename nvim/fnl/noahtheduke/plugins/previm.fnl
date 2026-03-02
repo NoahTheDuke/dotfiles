@@ -4,5 +4,5 @@
 [(utils.dep
    "https://github.com/previm/previm"
    {:config
-    (λ []
+    (fn []
       (set vim.g.previm_open_cmd "open"))})]

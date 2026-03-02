@@ -23,20 +23,20 @@
    "!" "SHELL"
    "t" "TERMINAL"})
 
-(λ mode []
+(fn mode []
   (let [mode (vim.api.nvim_call_function "mode" {})]
     (or (?. currentmode mode) "")))
 
-(λ encoding []
+(fn encoding []
   (let [fenc vim.bo.fileencoding]
     (if (= fenc "utf-8")
       ""
       fenc)))
 
-(λ filetype []
+(fn filetype []
   vim.bo.filetype)
 
-(λ lsp-diagnostics []
+(fn lsp-diagnostics []
   (let [count (vim.diagnostic.count 0)
         error-cnt (. count vim.diagnostic.severity.ERROR)
         warn-cnt (. count vim.diagnostic.severity.WARN)
@@ -50,7 +50,7 @@
       (table.insert status (.. "\u{1F4A1}" info-cnt)))
     (.. (table.concat status " ") "%=")))
 
-(λ _G.Statusline.Line []
+(fn _G.Statusline.Line []
   (let [parts [;; set purple background
                "%1*"
                ;; display custom mode names

@@ -1,13 +1,13 @@
 (local utils (require "noahtheduke.utils"))
 
-(λ str-split [str sep]
+(fn str-split [str sep]
   (let [sep (or sep "%s")
         t {}]
     (each [s _ (str:gmatch (.. "([^" sep "]+)"))]
       (table.insert t s))
     t))
 
-(λ _G.tangled_handler [opts]
+(fn _G.tangled_handler [opts]
   (let [{: path
          : remote
          : commit} opts
@@ -28,7 +28,7 @@ function! TangledHandler(opts, ...)
 endfunction
 ")
 
-(λ config []
+(fn config []
   (vim.cmd
     "
     if !exists('g:fugitive_browse_handlers')
