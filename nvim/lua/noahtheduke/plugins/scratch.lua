@@ -16,4 +16,4 @@ local function _1_()
     return vim.notify(errors_2_[1], vim.log.levels.ERROR)
   end
 end
-return {utils.dep("https://github.com/LintaoAmons/scratch.nvim", {cmd = {"Scratch", "ScratchOpen", "ScratchWithName"}, config = _1_})}
+return {utils.dep("https://github.com/ibhagwan/fzf-lua"), utils.dep("https://github.com/LintaoAmons/scratch.nvim", {config = _1_})}
