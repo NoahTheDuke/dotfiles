@@ -1,7 +1,7 @@
 (local utils (require "noahtheduke.utils"))
 (import-macros {: callback} "noahtheduke.util-macros")
 
-(fn config []
+(λ config []
   (let [augroup (vim.api.nvim_create_augroup "switches" {:clear true})]
     (vim.api.nvim_create_autocmd
       ["FileType"]

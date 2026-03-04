@@ -5,5 +5,5 @@
   "https://github.com/elzr/vim-json"
   {:ft "json"
    :config
-   (fn []
+   (λ []
      (set vim.g.vim_json_syntax_conceal 0))})

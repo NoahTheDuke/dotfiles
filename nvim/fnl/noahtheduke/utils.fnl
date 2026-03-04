@@ -1,4 +1,4 @@
-(fn nvim_ex [...]
+(λ nvim_ex [...]
   (-> (vim.iter [...])
       (: :flatten)
       (: :totable)
@@ -19,14 +19,14 @@
 ;   revision = true
 ; }
 
-(fn dep [name ?args]
+(λ dep [name ?args]
   (let [dep (if (not= ?args nil)
               (do (table.insert ?args 1 name)
                 ?args)
               [name])]
     dep))
 
-(fn fennel_includeexpr [mdl]
+(λ fennel_includeexpr [mdl]
   (let [mdl (mdl:gsub "%." "/")
         root (or (vim.fs.root (vim.api.nvim_buf_get_name 0) "lua")
                  (vim.fn.getcwd))]
@@ -41,7 +41,7 @@
 (comment
   (fennel_includeexpr "noahtheduke.util-macros"))
 
-(fn ks-opts [desc]
+(λ ks-opts [desc]
   "sets silent and noremap, uses given description"
   {:silent true
    :noremap true

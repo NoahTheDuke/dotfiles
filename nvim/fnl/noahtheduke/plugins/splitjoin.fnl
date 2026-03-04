@@ -4,5 +4,5 @@
 (utils.dep
   "https://github.com/AndrewRadev/splitjoin.vim"
   {:config
-   (fn []
+   (λ []
      (set vim.g.splitjoin_trailing_comma 1))})

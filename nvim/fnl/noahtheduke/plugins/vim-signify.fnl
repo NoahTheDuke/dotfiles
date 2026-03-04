@@ -1,6 +1,6 @@
 (local utils (require "noahtheduke.utils"))
 
-(fn config []
+(λ config []
   (set vim.g.signify_skip {:vcs {:allow ["git"]}}))
 
 (comment

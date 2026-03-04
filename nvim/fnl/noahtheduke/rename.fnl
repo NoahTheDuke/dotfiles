@@ -1,6 +1,6 @@
 ;; ported to lua from https://github.com/ReekenX/vim-rename2
 
-(fn rename [{:args name : bang}]
+(λ rename [{:args name : bang}]
   (let [cur-file (vim.fn.expand "%:p")
         cur-file-stripped (vim.fn.substitute cur-file " " "\\\\ " :g)
         cur-file-path (vim.fn.expand "%:p:h")
@@ -19,7 +19,7 @@
 
 (vim.api.nvim_create_user_command
   :Rename
-  (fn [opts] (rename opts))
+  (λ [opts] (rename opts))
   {:nargs :*
    :complete :file_in_path
    :bang true})

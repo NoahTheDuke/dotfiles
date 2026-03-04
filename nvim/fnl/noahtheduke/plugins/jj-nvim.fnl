@@ -1,7 +1,7 @@
 (local utils (require "noahtheduke.utils"))
 (import-macros {: when-require} "noahtheduke.util-macros")
 
-(fn config []
+(λ config []
   (when-require [jj "jj"]
     (jj.setup {})))
 

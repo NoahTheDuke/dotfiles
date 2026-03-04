@@ -1,7 +1,7 @@
 (local utils (require "noahtheduke.utils"))
 (import-macros {: when-require} "noahtheduke.util-macros")
 
-(fn config []
+(λ config []
   (when-require [autopairs "nvim-autopairs"]
     (autopairs.setup {:map_cr false
                       :check_ts true

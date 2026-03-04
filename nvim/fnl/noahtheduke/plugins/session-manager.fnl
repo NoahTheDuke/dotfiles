@@ -7,7 +7,7 @@
  (utils.dep
    "https://github.com/Shatur/neovim-session-manager"
    {:config
-    (fn []
+    (λ []
       (when-require [session-manager "session_manager"
                      config "session_manager.config"]
         (session-manager.setup

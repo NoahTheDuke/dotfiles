@@ -1,7 +1,7 @@
 (local utils (require "noahtheduke.utils"))
 (import-macros {: when-require} "noahtheduke.util-macros")
 
-(fn config []
+(λ config []
   (when-require [url-open "url-open"
                  handlers "url-open.modules.handlers"]
     (let [opts {:open_only_when_cursor_on_url false

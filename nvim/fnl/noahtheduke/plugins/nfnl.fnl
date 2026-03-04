@@ -1,7 +1,7 @@
 (local utils (require "noahtheduke.utils"))
 (import-macros {: when-require} "noahtheduke.util-macros")
 
-(fn config []
+(λ config []
   (when-require [nfnl "nfnl"]
     (nfnl.setup {})))
 
@@ -11,5 +11,5 @@
 (utils.dep
   "https://github.com/Olical/nfnl"
   {:ft "fennel"
-   :commit "fecf731e02bc51d88372c4f992fe1ef0c19c02ae"
+   :commit "f39a7ec6fe0ace2b2ea108ce04d954549e36c76d"
    :config config})

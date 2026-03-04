@@ -6,8 +6,12 @@ local function config()
   local function _3_()
     return require("nfnl")
   end
-  local function _4_(err_1_auto)
-    return table.insert(errors_1_, debug.traceback(err_1_auto))
+  local function _4_(err_2_auto)
+    if (nil == err_2_auto) then
+      _G.error("Missing argument err_2_auto on fnl/noahtheduke/plugins/nfnl.fnl:5", 2)
+    else
+    end
+    return table.insert(errors_1_, debug.traceback(err_2_auto))
   end
   _2_, nfnl = xpcall(_3_, _4_)
   if _2_ then
@@ -17,4 +21,4 @@ local function config()
   end
 end
 --[[ (config) ]]
-return utils.dep("https://github.com/Olical/nfnl", {ft = "fennel", commit = "fecf731e02bc51d88372c4f992fe1ef0c19c02ae", config = config})
+return utils.dep("https://github.com/Olical/nfnl", {ft = "fennel", commit = "f39a7ec6fe0ace2b2ea108ce04d954549e36c76d", config = config})

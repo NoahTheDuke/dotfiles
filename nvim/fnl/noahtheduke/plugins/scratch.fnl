@@ -5,7 +5,9 @@
    "https://github.com/ibhagwan/fzf-lua")
  (utils.dep
    "https://github.com/LintaoAmons/scratch.nvim"
-   {:config (fn []
+   {:config (λ []
               (when-require [scratch "scratch"]
                 (scratch.setup
-                  {:filetypes [ :clj :lua :js :md :sh :ts :txt ]})))})]
+                  {:use_telescope true
+                   :file_picker "telescope"
+                   :filetypes [:clj :lua :js :md :sh :ts :txt]})))})]

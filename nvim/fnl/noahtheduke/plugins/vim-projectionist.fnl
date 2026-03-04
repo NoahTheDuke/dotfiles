@@ -1,6 +1,6 @@
 (local utils (require "noahtheduke.utils"))
 
-(fn config []
+(λ config []
   (set vim.g.projectionist_heuristics
        {"deps.edn"
         {"src/*.clj" {:type "source"

@@ -2,7 +2,7 @@
 (import-macros {: when-require} "noahtheduke.util-macros")
 (local keyset vim.keymap.set)
 
-(fn config []
+(λ config []
   (when-require [telescope "telescope"
                  actions "telescope.actions"
                  builtin "telescope.builtin"]
