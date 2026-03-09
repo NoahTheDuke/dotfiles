@@ -3,10 +3,12 @@
 
 (λ config []
   (when-require [url-open "url-open"
-                 handlers "url-open.modules.handlers"]
-    (let [opts {:open_only_when_cursor_on_url false
-                :highlight_url {:all_urls {:enabled false}
-                                :cursor_move {:enabled false}}}]
+                 handlers "url-open.modules.handlers"
+                 options "url-open.modules.options"]
+    (let [opts (options.apply_user_options
+                 {:open_only_when_cursor_on_url true
+                  :highlight_url {:all_urls {:enabled false}
+                                  :cursor_move {:enabled false}}})]
       (url-open.setup opts)
       (vim.api.nvim_create_user_command
         :OpenUrlUnderCursor #(handlers.open_url opts)

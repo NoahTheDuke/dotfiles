@@ -62,6 +62,8 @@
           "defexpect"
           "defdescribe"
           "defn"])
+    (set vim.g.conjure#client#clojure#nrepl#tap#queue_size 1024)
+    (set vim.g.conjure#client#clojure#nrepl#refresh#backend :clj-reload)
 
     ;; runner stuff
 

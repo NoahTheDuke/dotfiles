@@ -7,6 +7,7 @@ editor = "nvim"
 # diff-editor = "vimdirdiff"
 # diff-formatter = ":git"
 default-command = "-h"
+diff-editor = ":builtin"
 
 [merge-tools.difft]
 diff-args = ["--color=always", "$left", "$right"]

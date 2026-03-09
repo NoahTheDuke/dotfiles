@@ -10,4 +10,4 @@
                 (scratch.setup
                   {:use_telescope true
                    :file_picker "telescope"
-                   :filetypes [:clj :lua :js :md :sh :ts :txt]})))})]
+                   :filetypes [ :clj :lua :js :md :sh :ts :txt ]})))})]
