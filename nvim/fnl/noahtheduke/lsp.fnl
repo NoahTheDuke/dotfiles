@@ -13,26 +13,26 @@
 (λ get-client [name]
   (. (vim.lsp.get_clients {: name}) 1))
 
-(λ execute-positional-command [cmd args]
+(λ execute-positional-command [cmd ?args]
   (let [client (get-client "clojure-lsp")
         [uri row col] (get-uri-and-pos)]
     (client:exec_cmd {:command (. cmd :command)
-                      :arguments [uri row col (if (= "string" (type args))
-                                                args
-                                                (unpack (or args [])))]})
+                      :arguments [uri row col (if (= "string" (type ?args))
+                                                ?args
+                                                (unpack (or ?args [])))]})
     (vim.api.nvim__redraw {:buf 0 :flush true})))
 
-(λ execute-prompt-command [cmd args]
+(λ execute-prompt-command [cmd ?args]
   (let [prompt (. cmd :prompt)]
-    (if (not args)
+    (if (not ?args)
       (vim.ui.input {:prompt (.. prompt " ")} #(execute-positional-command cmd $))
-      (execute-positional-command cmd (?. args :args)))))
+      (execute-positional-command cmd (?. ?args :args)))))
 
-(λ execute-choice-command [cmd args]
+(λ execute-choice-command [cmd ?args]
   (let [{: prompt : choices} cmd]
-    (if (not args)
+    (if (not ?args)
       (vim.ui.select choices {: prompt} #(execute-positional-command cmd $))
-      (execute-positional-command cmd (?. args :args)))))
+      (execute-positional-command cmd (?. ?args :args)))))
 
 (λ get-command-fn [cmd]
   (case (. cmd :type)
