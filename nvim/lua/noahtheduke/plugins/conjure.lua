@@ -162,6 +162,8 @@ local function conjure()
     runners["test-runners"].lazytest = {namespace = "lazytest.repl", ["all-fn"] = "run-all-tests", ["ns-fn"] = "run-tests", ["single-fn"] = "run-test-var", ["default-call-suffix"] = "{:reporter [lazytest.reporters/nested]}", ["name-prefix"] = "#'", ["name-suffix"] = ""}
     vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = ""
     vim.g["conjure#client#clojure#nrepl#test#runner"] = "clojure"
+    vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = "{:kaocha/color? false :capture-output? false :kaocha/reporter ['kaocha.report/result]}"
+    vim.g["conjure#client#clojure#nrepl#test#runner"] = "kaocha"
     return nil
   else
     return vim.notify(errors_1_[1], vim.log.levels.ERROR)
