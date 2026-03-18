@@ -1,4 +1,5 @@
 ; extends
 
-((string) @string.special.symbol
-  (#lua-match? @string.special.symbol "^:.*$"))
+(string open: ":") @string.special.symbol
+
+(string_binding open: ":") @string.special.symbol

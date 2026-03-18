@@ -36,9 +36,9 @@
 
 (λ get-command-fn [cmd]
   (case (. cmd :type)
-    "positional" (λ [_args] (execute-positional-command cmd nil))
-    "prompt" (λ [args] (execute-prompt-command cmd args))
-    "choice" (λ [args] (execute-choice-command cmd args))))
+    :positional (λ [_args] (execute-positional-command cmd nil))
+    :prompt (λ [args] (execute-prompt-command cmd args))
+    :choice (λ [args] (execute-choice-command cmd args))))
 
 (λ register-keymaps [commands]
   (each [_ cmd (ipairs commands)]
