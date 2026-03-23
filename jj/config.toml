@@ -23,6 +23,7 @@ auto-track-bookmarks = "*"
 
 [revsets]
 log = 'present(@) | ancestors(immutable_heads().., 3) | present(trunk())'
+bookmark-advance-to = "closest_pushable(@)"
 
 [aliases]
 tug = ["util", "exec", "--", "sh", "-c", """
