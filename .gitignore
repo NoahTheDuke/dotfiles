@@ -8,5 +8,7 @@ jj/
 !jj/jj-prompt.sh
 
 # likewise with zsh/ and .zshrc
-zsh/
+zsh/*
 !zsh/.zshrc
+zsh/conf.d/*
+!zsh/conf.d/.keep
