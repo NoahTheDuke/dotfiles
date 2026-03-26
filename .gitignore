@@ -6,3 +6,7 @@
 jj/
 !jj/config.toml
 !jj/jj-prompt.sh
+
+# likewise with zsh/ and .zshrc
+zsh/
+!zsh/.zshrc
