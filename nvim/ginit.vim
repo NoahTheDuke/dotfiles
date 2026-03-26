@@ -1,1 +1,1 @@
-lua require("ginit")
+lua require("noahtheduke/ginit")
