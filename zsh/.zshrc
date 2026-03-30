@@ -12,7 +12,7 @@ setopt prompt_subst
 source ~/dotfiles/jj/jj-prompt.sh
 
 NEWLINE=$'\n'
-PS1='$(print "%{$fg[green]%}%n@%m%{$reset_color%} %{$fg[yellow]%}%~%{$reset_color%}${NEWLINE}$(jjgit_prompt)${NEWLINE}$ ")'
+PS1='$(print "%{$fg[green]%}%n@%m%{$reset_color%} %{$fg[yellow]%}%~%{$reset_color%}${NEWLINE}$(jjgit_prompt)")'
 
 compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
 export HISTFILE="$XDG_STATE_HOME"/zsh/history

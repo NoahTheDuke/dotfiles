@@ -236,7 +236,7 @@ local function _48_(args)
   else
   end
   do
-    vim.lsp.document_color.enable(false, args.buf)
+    vim.lsp.document_color.enable(false, {bufnr = args.buf})
   end
   return nil
 end

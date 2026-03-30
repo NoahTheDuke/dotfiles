@@ -24,4 +24,5 @@ jjgit_prompt() {
         local gitprompt=$(git --no-pager log -1 --color=always --pretty='%C(auto)%h ꜓%C(auto)%(decorate:prefix=,suffix=,tag=,pointer=→,separator=%x2C )' 2>/dev/null)
         echo "git:[${gitprompt/HEAD/}]"
     fi
+    echo "$ "
 }

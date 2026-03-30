@@ -143,6 +143,6 @@
 (vim.api.nvim_create_autocmd
   ["LspAttach"]
   {:callback (callback [args]
-               (vim.lsp.document_color.enable false args.buf))})
+               (vim.lsp.document_color.enable false {:bufnr args.buf}))})
 
 nil
