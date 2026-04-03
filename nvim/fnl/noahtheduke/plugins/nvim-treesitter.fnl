@@ -55,6 +55,7 @@
    "typescript"
    "vimdoc"
    "vue"
+   "xml"
    "yaml"])
 
 (λ start-lang [language]
@@ -76,10 +77,6 @@
 (comment
   (config))
 
-(λ mod-config []
-  (when-require [mods "treesitter-modules"]
-    (mods.setup {:incremental_selection {:enable true}})))
-
 [(utils.dep
    "https://github.com/nvim-treesitter/nvim-treesitter"
    {:config config
@@ -87,5 +84,4 @@
     :revision "HEAD"
     :build ":TSUpdate"})
  (utils.dep
-   "https://github.com/MeanderingProgrammer/treesitter-modules.nvim"
-   {:config mod-config})]
+   "https://github.com/nvim-treesitter/nvim-treesitter-context")]

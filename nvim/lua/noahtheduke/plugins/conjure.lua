@@ -172,4 +172,4 @@ local function conjure()
   end
 end
 --[[ (conjure) ]]
-return {utils.dep("https://github.com/Olical/conjure.git", {config = conjure}), utils.dep("https://github.com/walterl/conjure-macroexpand"), utils.dep("https://github.com/walterl/conjure-locstack")}
+return {utils.dep("https://github.com/Olical/conjure.git", {config = conjure}), utils.dep("https://github.com/walterl/conjure-locstack")}
