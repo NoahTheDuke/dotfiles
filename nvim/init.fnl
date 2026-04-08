@@ -20,6 +20,8 @@
 (require "noahtheduke.autocmds")
 (require "noahtheduke.lazy-setup")
 (require "noahtheduke.lsp")
+(require "noahtheduke.vim-plugins")
+(require "noahtheduke.rename")
 (require "noahtheduke.statusline")
 
 nil

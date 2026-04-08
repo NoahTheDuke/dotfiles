@@ -1,80 +1,5 @@
 (local utils (require "noahtheduke.utils"))
-(local edn (require "edn"))
-(import-macros {: callback : when-require} "noahtheduke.util-macros")
-
-(local clojure-lsp-commands
-  (.. (vim.fn.stdpath "config") "/data/clojure-lsp-commands.edn"))
-
-(λ get-uri-and-pos []
-  (let [[row col] (vim.api.nvim_win_get_cursor 0)
-        uri (vim.uri_from_bufnr 0)]
-    [uri (- row 1) col]))
-
-(λ get-client [name]
-  (. (vim.lsp.get_clients {: name}) 1))
-
-(λ execute-positional-command [cmd ?args]
-  (let [client (get-client "clojure-lsp")
-        [uri row col] (get-uri-and-pos)]
-    (client:exec_cmd {:command (. cmd :command)
-                      :arguments [uri row col (if (= "string" (type ?args))
-                                                ?args
-                                                (unpack (or ?args [])))]})
-    (vim.api.nvim__redraw {:buf 0 :flush true})))
-
-(λ execute-prompt-command [cmd ?args]
-  (let [prompt (. cmd :prompt)]
-    (if (not ?args)
-      (vim.ui.input {:prompt (.. prompt " ")} #(execute-positional-command cmd $))
-      (execute-positional-command cmd (?. ?args :args)))))
-
-(λ execute-choice-command [cmd ?args]
-  (let [{: prompt : choices} cmd]
-    (if (not ?args)
-      (vim.ui.select choices {: prompt} #(execute-positional-command cmd $))
-      (execute-positional-command cmd (?. ?args :args)))))
-
-(λ get-command-fn [cmd]
-  (case (. cmd :type)
-    :positional (λ [_args] (execute-positional-command cmd nil))
-    :prompt (λ [args] (execute-prompt-command cmd args))
-    :choice (λ [args] (execute-choice-command cmd args))))
-
-(λ register-keymaps [commands]
-  (each [_ cmd (ipairs commands)]
-    (when (. cmd :shortcut)
-      (vim.keymap.set "n" (.. "<leader>cl" (. cmd :shortcut))
-                      (get-command-fn cmd)
-                      {:silent true
-                       :noremap true
-                       :desc (.. "clojure-lsp-" (. cmd :command))}))))
-
-(λ register-commands [commands]
-  (when-require [textcase "textcase"]
-    (each [_ cmd (ipairs commands)]
-      (let [nargs (if (. cmd :positional) "0" "?")]
-        (vim.api.nvim_create_user_command
-          (.. "CljLsp" (textcase.api.to_pascal_case (. cmd :command)))
-          (get-command-fn cmd)
-          {: nargs})))
-    (vim.api.nvim_create_user_command
-      :CljLspCursorInfo
-      (λ []
-        (let [[uri row col] (get-uri-and-pos)]
-          (vim.lsp.buf_notify 0 "clojure/cursorInfo/log"
-                              {:textDocument {: uri}
-                               :position {:line row
-                                          :character col}})))
-      {:nargs 0})
-    (vim.api.nvim_create_user_command
-      :CljLspServerInfo
-      #(vim.lsp.buf_notify 0 "clojure/serverInfo/log")
-      {:nargs 0})
-    (vim.api.nvim_create_user_command
-      :CljLspProjectTree
-      #(vim.lsp.buf_request_sync 0 "clojure/workspace/projectTree/nodes")
-      {:nargs 0})
-    nil))
+(import-macros {: callback} "noahtheduke.util-macros")
 
 (each [_ name (ipairs [:Format :FOrmat])]
   (vim.api.nvim_create_user_command
@@ -115,34 +40,31 @@
 
 (vim.keymap.set "n" "gd" show-docs (utils.ks-opts "go to definition"))
 
-(vim.lsp.config :clojure-lsp {:cmd ["clojure-lsp"]
-                              :filetypes ["clojure"]
-                              :root_markers ["project.clj" "deps.edn" "build.boot" "shadow-cljs.edn" "bb.edn" ".git"]
-                              :init_options {:log-path "/tmp/clojure-lsp.out"}
-                              :trace "verbose"})
-
-(vim.lsp.enable :clojure-lsp)
-
-(when (vim.uv.fs_stat clojure-lsp-commands)
-  (let [commands (edn.decode (vim.fn.readblob clojure-lsp-commands))]
-    (register-keymaps commands)
-    (register-commands commands)))
-
-(if (= 1 (vim.fn.has "nvim-0.12.0"))
-  (vim.lsp.semantic_tokens.enable false))
+(vim.api.nvim_create_autocmd
+  [:LspAttach]
+  {:group (vim.api.nvim_create_augroup :lsp-completion {:clear true})
+   :callback (callback [args]
+               (let [client-id args.data.client_id]
+                 (when (not client-id) (lua "return"))
+                 (let [client (vim.lsp.get_client_by_id client-id)]
+                   (when client
+                     (vim.lsp.semantic_tokens.enable false {:bufnr args.buf})
+                     (vim.lsp.document_color.enable false {:bufnr args.buf})
+                     (vim.lsp.inlay_hint.enable true {:bufnr args.buf})
+                     (vim.lsp.completion.enable true
+                                                client-id
+                                                args.buf
+                                                {:autotrigger true})))))})
 
 (vim.api.nvim_create_autocmd
-  ["CursorHold"]
-  {:group (vim.api.nvim_create_augroup "lspCursorHold" {:clear true})
+  [:CursorHold]
+  {:group (vim.api.nvim_create_augroup :lsp-cursor-hold {:clear true})
    :pattern "*"
    :callback (callback [_args]
                (vim.diagnostic.open_float {:header ""
                                            :scope "cursor"
-                                           :focus false}))})
+                                           :focus false}))})	
 
-(vim.api.nvim_create_autocmd
-  ["LspAttach"]
-  {:callback (callback [args]
-               (vim.lsp.document_color.enable false {:bufnr args.buf}))})
+(require "noahtheduke.lsp.clojure")
 
 nil

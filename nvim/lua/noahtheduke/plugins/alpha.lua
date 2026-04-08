@@ -18,7 +18,7 @@ local function setup()
   end
   local function _7_(err_2_auto)
     if (nil == err_2_auto) then
-      _G.error("Missing argument err_2_auto on fnl/noahtheduke/plugins/alpha.fnl:15", 2)
+      _G.error("Missing argument err_2_auto on fnl/noahtheduke/plugins/alpha.fnl:13", 2)
     else
     end
     return table.insert(errors_2_, debug.traceback(err_2_auto))
@@ -30,7 +30,7 @@ local function setup()
   end
   local function _10_(err_2_auto)
     if (nil == err_2_auto) then
-      _G.error("Missing argument err_2_auto on fnl/noahtheduke/plugins/alpha.fnl:15", 2)
+      _G.error("Missing argument err_2_auto on fnl/noahtheduke/plugins/alpha.fnl:13", 2)
     else
     end
     return table.insert(errors_2_, debug.traceback(err_2_auto))
@@ -42,7 +42,7 @@ local function setup()
   end
   local function _13_(err_2_auto)
     if (nil == err_2_auto) then
-      _G.error("Missing argument err_2_auto on fnl/noahtheduke/plugins/alpha.fnl:15", 2)
+      _G.error("Missing argument err_2_auto on fnl/noahtheduke/plugins/alpha.fnl:13", 2)
     else
     end
     return table.insert(errors_2_, debug.traceback(err_2_auto))
@@ -62,7 +62,7 @@ local function setup()
       local lazy_plugins
       local function _16_(plugin)
         if (nil == plugin) then
-          _G.error("Missing argument plugin on fnl/noahtheduke/plugins/alpha.fnl:36", 2)
+          _G.error("Missing argument plugin on fnl/noahtheduke/plugins/alpha.fnl:34", 2)
         else
         end
         return plugin.name
@@ -75,7 +75,7 @@ local function setup()
       footer.val = __3efooter(lazy_plugins)
     end
     footer.opts.hl = "AlphaFooter"
-    local config = {layout = {{type = "padding", val = 2}, header, {type = "padding", val = 2}, {type = "text", val = "poop", opts = {position = "center"}}, {type = "padding", val = 2}, buttons, footer}, opts = {margin = 5, noautocmd = true}}
+    local config = {layout = {{type = "padding", val = 2}, header, {type = "padding", val = 2}, buttons, footer}, opts = {margin = 5, noautocmd = true}}
     return alpha.setup(config)
   else
     return vim.notify(errors_2_[1], vim.log.levels.ERROR)

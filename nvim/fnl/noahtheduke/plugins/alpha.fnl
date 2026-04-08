@@ -9,8 +9,6 @@
       (let [cnt (length ?lazy-plugins)]
         (.. version "   " cnt " Plugins")))))
 
-	
-
 (λ setup []
   (when-require [alpha "alpha"
                  dashboard "alpha.themes.dashboard"
@@ -43,10 +41,10 @@
             {:layout [{:type :padding :val 2}
                       header
                       {:type :padding :val 2}
-                      {:type :text
-                       :val "poop"
-                       :opts {:position "center"}}
-                      {:type :padding :val 2}
+                      ; {:type :text
+                      ;  :val "poop"
+                      ;  :opts {:position "center"}}
+                      ; {:type :padding :val 2}
                       buttons
                       footer]
              :opts {:margin 5

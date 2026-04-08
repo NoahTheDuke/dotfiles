@@ -1,5 +1,6 @@
 -- [nfnl] fnl/noahtheduke/options.fnl
 vim.opt.autochdir = false
+vim.opt.autocomplete = true
 vim.opt.backup = false
 vim.opt.clipboard:prepend("unnamedplus")
 vim.opt.cmdheight = 1
@@ -8,6 +9,7 @@ vim.opt.completeopt = {"menuone", "noselect", "popup"}
 vim.opt.conceallevel = 0
 vim.opt.expandtab = true
 vim.opt.foldenable = false
+vim.opt.foldlevelstart = 99
 vim.opt.formatoptions = {["1"] = true, c = true, j = true, o = true, n = true, q = true, r = true, t = true}
 vim.opt.ignorecase = true
 vim.opt.list = true

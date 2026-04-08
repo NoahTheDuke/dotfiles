@@ -1,4 +1,5 @@
 (set vim.opt.autochdir false)
+(set vim.opt.autocomplete true)
 (set vim.opt.backup false)
 (vim.opt.clipboard:prepend "unnamedplus")
 (set vim.opt.cmdheight 1)
@@ -7,6 +8,7 @@
 (set vim.opt.conceallevel 0)
 (set vim.opt.expandtab true)
 (set vim.opt.foldenable false)
+(set vim.opt.foldlevelstart 99)
 (set vim.opt.formatoptions
      {"1" true ;; Don't break a line after a one-letter word.  It's broken before it instead (if possible).
       "c" true ;; Auto-wrap comments using 'textwidth' inserting the current comment leader automatically.
@@ -67,7 +69,7 @@
       "l" true ;;  "l"     Normal and Visual
       "<" true ;;  <Left>  Normal and Visual
       ">" true ;;  <Right> Normal and Visual
-      "[" true ;;  <Left>  Insert and Replace ;]
+      "[" true ;;  <Left>  Insert and Replace
       "]" true ;;  <Right> Insert and Replace
       })
 (set vim.opt.wildignore [ "*\\tmp\\*" "*\\target\\*" "*\\out\\*" ])
