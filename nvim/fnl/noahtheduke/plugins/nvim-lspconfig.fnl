@@ -3,6 +3,7 @@
 ;; if you decide to customize one of these, remove from this list and add to nvim/lsp/*
 (local lsp-configs
   ["fennel_ls"
+   "just"
    "lua_ls"
    "ocamllsp"
    "racket_langserver"
