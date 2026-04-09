@@ -1,6 +1,5 @@
 -- [nfnl] fnl/noahtheduke/options.fnl
 vim.opt.autochdir = false
-vim.opt.autocomplete = true
 vim.opt.backup = false
 vim.opt.clipboard:prepend("unnamedplus")
 vim.opt.cmdheight = 1

@@ -1,5 +1,4 @@
 ;; fennel-ls: macro-file
-;; [nfnl-macro]
 
 (λ when-require [args ...]
   (let [gensyms []

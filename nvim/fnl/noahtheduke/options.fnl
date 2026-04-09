@@ -1,5 +1,5 @@
 (set vim.opt.autochdir false)
-(set vim.opt.autocomplete true)
+; (set vim.opt.autocomplete true)
 (set vim.opt.backup false)
 (vim.opt.clipboard:prepend "unnamedplus")
 (set vim.opt.cmdheight 1)

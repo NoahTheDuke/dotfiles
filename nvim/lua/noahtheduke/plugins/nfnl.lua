@@ -1,24 +1,3 @@
 -- [nfnl] fnl/noahtheduke/plugins/nfnl.fnl
 local utils = require("noahtheduke.utils")
-local function config()
-  local errors_1_ = {}
-  local _2_, nfnl
-  local function _3_()
-    return require("nfnl")
-  end
-  local function _4_(err_2_auto)
-    if (nil == err_2_auto) then
-      _G.error("Missing argument err_2_auto on fnl/noahtheduke/plugins/nfnl.fnl:5", 2)
-    else
-    end
-    return table.insert(errors_1_, debug.traceback(err_2_auto))
-  end
-  _2_, nfnl = xpcall(_3_, _4_)
-  if _2_ then
-    return nfnl.setup({})
-  else
-    return vim.notify(errors_1_[1], vim.log.levels.ERROR)
-  end
-end
---[[ (config) ]]
-return utils.dep("https://github.com/Olical/nfnl", {ft = "fennel", commit = "f39a7ec6fe0ace2b2ea108ce04d954549e36c76d", config = config})
+return utils.dep("https://github.com/Olical/nfnl", {ft = "fennel"})
