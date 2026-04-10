@@ -1,5 +1,5 @@
-( local utils (require "noahtheduke.utils"))
-(import-macros {: when-require} "noahtheduke.util-macros")
+(local utils (require "noahtheduke.utils"))
+(import-macros {: when-require : when-let} "noahtheduke.util-macros")
 
 (λ conjure []
   (when-require [core :nfnl.core
@@ -13,37 +13,32 @@
                  ui :conjure.client.clojure.nrepl.ui]
 
     (λ time-current-form [extra-opts]
-      (let [form (extract.form {})]
-        (when form
-          (let [{: content : range} form]
-            (eval.eval-str
-              (core.merge
-                {:code (str.join ["(time (dotimes [_ 1000] " content "))"])
-                 :range range
-                 :origin :current-form}
-                extra-opts))
-            form))))
+      (when-let [{: content : range &as form} (extract.form {})]
+        (eval.eval-str
+          (core.merge
+            {:code (str.join ["(time (dotimes [_ 1000] " content "))"])
+             :range range
+             :origin :current-form}
+            extra-opts))
+        form))
 
     (vim.keymap.set :n "<leader>et" #(time-current-form {}))
 
     (λ ns-unmap [_extra-opts]
-      (let [form (extract.form {:root? true})]
-        (when form
-          (let [{: content} form
-                var-name (-> (parse.strip-meta content)
-                             (str.split "%s+")
-                             (core.second))
-                current-ns (extract.context)]
-            (when var-name
-              (log.append [(core.str "; Unmapping " var-name)] {:break? true})
-              (server.eval
-                {:code (core.str "(ns-unmap (the-ns '" current-ns ") '" var-name ")")}
-                #(ui.display-result
-                   $1
-                   {:simple-out? true
-                    :raw-out? true
-                    :ignore-nil? false})))
-            form))))
+      (when-let [{: content &as form} (extract.form {:root? true})]
+        (let [current-ns (extract.context)]
+          (when-let [var-name (-> (parse.strip-meta content)
+                                  (str.split "%s+")
+                                  (core.second))]
+            (log.append [(core.str "; Unmapping " var-name)] {:break? true})
+            (server.eval
+              {:code (core.str "(ns-unmap (the-ns '" current-ns ") '" var-name ")")}
+              #(ui.display-result
+                 $1
+                 {:simple-out? true
+                  :raw-out? true
+                  :ignore-nil? false})))
+          form)))
     (vim.api.nvim_create_user_command :Unmap ns-unmap {})
 
     ;; conjure settings
@@ -76,11 +71,10 @@
           :name-prefix "#'"
           :name-suffix ""})
 
-    (set vim.g.conjure#client#clojure#nrepl#test#call_suffix "")
-    (set vim.g.conjure#client#clojure#nrepl#test#runner "clojure")
-    (set vim.g.conjure#client#clojure#nrepl#test#call_suffix "{:kaocha/color? false :capture-output? false :kaocha/reporter ['kaocha.report/result]}")
-    (set vim.g.conjure#client#clojure#nrepl#test#runner "kaocha")
-
+    ; (set vim.g.conjure#client#clojure#nrepl#test#call_suffix "")
+    ; (set vim.g.conjure#client#clojure#nrepl#test#runner "clojure")
+    ; (set vim.g.conjure#client#clojure#nrepl#test#call_suffix "{:kaocha/color? false :capture-output? false :kaocha/reporter ['kaocha.report/result]}")
+    ; (set vim.g.conjure#client#clojure#nrepl#test#runner "kaocha")
     ; (set vim.g.conjure#client#clojure#nrepl#test#call_suffix "")
     ; (set vim.g.conjure#client#clojure#nrepl#test#runner "lazytest")
     ))

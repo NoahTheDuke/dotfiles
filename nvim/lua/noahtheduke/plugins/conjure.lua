@@ -116,10 +116,11 @@ local function conjure()
         _G.error("Missing argument extra-opts on fnl/noahtheduke/plugins/conjure.fnl:15", 2)
       else
       end
-      local form = extract.form({})
-      if form then
-        local content = form.content
-        local range = form.range
+      local bind_7_auto = extract.form({})
+      if (bind_7_auto ~= nil) then
+        local content = bind_7_auto.content
+        local range = bind_7_auto.range
+        local form = bind_7_auto
         eval["eval-str"](core.merge({code = str.join({"(time (dotimes [_ 1000] ", content, "))"}), range = range, origin = "current-form"}, extra_opts))
         return form
       else
@@ -131,18 +132,22 @@ local function conjure()
     end
     vim.keymap.set("n", "<leader>et", _40_)
     local function ns_unmap(_extra_opts)
-      local form = extract.form({["root?"] = true})
-      if form then
-        local content = form.content
-        local var_name = core.second(str.split(parse["strip-meta"](content), "%s+"))
+      local bind_7_auto = extract.form({["root?"] = true})
+      if (bind_7_auto ~= nil) then
+        local content = bind_7_auto.content
+        local form = bind_7_auto
         local current_ns = extract.context()
-        if var_name then
-          log.append({core.str("; Unmapping ", var_name)}, {["break?"] = true})
-          local function _41_(_241)
-            return ui["display-result"](_241, {["simple-out?"] = true, ["raw-out?"] = true, ["ignore-nil?"] = false})
+        do
+          local bind_7_auto0 = core.second(str.split(parse["strip-meta"](content), "%s+"))
+          if (bind_7_auto0 ~= nil) then
+            local var_name = bind_7_auto0
+            log.append({core.str("; Unmapping ", var_name)}, {["break?"] = true})
+            local function _41_(_241)
+              return ui["display-result"](_241, {["simple-out?"] = true, ["raw-out?"] = true, ["ignore-nil?"] = false})
+            end
+            server.eval({code = core.str("(ns-unmap (the-ns '", current_ns, ") '", var_name, ")")}, _41_)
+          else
           end
-          server.eval({code = core.str("(ns-unmap (the-ns '", current_ns, ") '", var_name, ")")}, _41_)
-        else
         end
         return form
       else
@@ -162,10 +167,6 @@ local function conjure()
     vim.g["conjure#client#clojure#nrepl#tap#queue_size"] = 1024
     vim.g["conjure#client#clojure#nrepl#refresh#backend"] = "clj-reload"
     runners["test-runners"].lazytest = {namespace = "lazytest.repl", ["all-fn"] = "run-all-tests", ["ns-fn"] = "run-tests", ["single-fn"] = "run-test-var", ["default-call-suffix"] = "{:reporter [lazytest.reporters/nested]}", ["name-prefix"] = "#'", ["name-suffix"] = ""}
-    vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = ""
-    vim.g["conjure#client#clojure#nrepl#test#runner"] = "clojure"
-    vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = "{:kaocha/color? false :capture-output? false :kaocha/reporter ['kaocha.report/result]}"
-    vim.g["conjure#client#clojure#nrepl#test#runner"] = "kaocha"
     return nil
   else
     return vim.notify(errors_1_[1], vim.log.levels.ERROR)

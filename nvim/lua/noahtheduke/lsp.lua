@@ -39,17 +39,16 @@ local function _6_(args)
   else
   end
   do
-    local client_id = args.data.client_id
-    if not client_id then
-      return
-    else
-    end
-    local client = vim.lsp.get_client_by_id(client_id)
-    if client then
-      vim.lsp.semantic_tokens.enable(false, {bufnr = args.buf})
-      vim.lsp.document_color.enable(false, {bufnr = args.buf})
-      vim.lsp.inlay_hint.enable(true, {bufnr = args.buf})
-      vim.lsp.completion.enable(true, client_id, args.buf, {autotrigger = true})
+    local bind_7_auto = args.data.client_id
+    if (bind_7_auto ~= nil) then
+      local client_id = bind_7_auto
+      if vim.lsp.get_client_by_id(client_id) then
+        vim.lsp.semantic_tokens.enable(false, {bufnr = args.buf})
+        vim.lsp.document_color.enable(false, {bufnr = args.buf})
+        vim.lsp.inlay_hint.enable(true, {bufnr = args.buf})
+        vim.lsp.completion.enable(true, client_id, args.buf, {autotrigger = true})
+      else
+      end
     else
     end
   end

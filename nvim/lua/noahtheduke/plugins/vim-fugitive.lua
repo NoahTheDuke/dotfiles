@@ -26,7 +26,7 @@ _G.tangled_handler = function(opts)
   local commit = opts.commit
   local path0 = (path or "")
   local path1 = path0:gsub("^/", "")
-  if (nil ~= remote:find("tangled.sh")) then
+  if remote:find("tangled.sh") then
     local parts = {unpack(str_split(remote, ":"), 2)}
     local project_path = ("@" .. table.concat(parts, "/") .. "/")
     local project_url = ("https://tangled.sh/" .. project_path)

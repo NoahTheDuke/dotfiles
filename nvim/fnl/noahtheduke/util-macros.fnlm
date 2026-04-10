@@ -21,6 +21,12 @@
      (do ,...)
      nil))
 
+(λ when-let [binds ...]
+  `(let [bind# ,(. binds 2)]
+     (when (not= bind# nil)
+       (let [,(. binds 1) bind#]
+         (do ,...)))))
 
 {: when-require
- : callback}
+ : callback
+ : when-let}

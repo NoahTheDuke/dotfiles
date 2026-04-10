@@ -69,70 +69,74 @@ local function config()
       else
       end
       local function _23_()
-        local context = ts_context.create_context()
-        if not context then
-          return
-        else
-        end
-        local current_element = ts_forms.get_node_root(context.node, context)
-        if not current_element then
-          return
-        else
-        end
-        local use_direct_parent = (whitespace.is_whitespace_under_cursor() or ts_utils.node_is_comment(current_element, context))
-        local form = ts_forms.find_nearest_form(current_element, {captures = context.captures, ["use-source"] = false})
-        if not form then
-          return
-        else
-        end
-        if (not use_direct_parent and (form:type() ~= "source")) then
-          form = ts_utils.find_local_root(current_element)
-          if not (form and ts_forms.node_is_form(form, context)) then
-            return
+        local bind_7_auto = ts_context.create_context()
+        if (bind_7_auto ~= nil) then
+          local context = bind_7_auto
+          local bind_7_auto0 = ts_forms.get_node_root(context.node, context)
+          if (bind_7_auto0 ~= nil) then
+            local current_element = bind_7_auto0
+            local use_direct_parent = (whitespace.is_whitespace_under_cursor() or ts_utils.node_is_comment(current_element, context))
+            local form = ts_forms.find_nearest_form(current_element, {captures = context.captures, ["use-source"] = false})
+            if not form then
+              return
+            else
+            end
+            if (not use_direct_parent and ("source" ~= form:type())) then
+              form = ts_utils.find_local_root(current_element)
+              if not (form and ts_forms.node_is_form(form, context)) then
+                return
+              else
+              end
+            else
+            end
+            return paredit.cursor.place_cursor(form, {placement = placement, mode = "insert"})
           else
+            return nil
           end
         else
+          return nil
         end
-        return paredit.cursor.place_cursor(form, {placement = placement, mode = "insert"})
       end
       return _23_
     end
     local function enclosing_wrapper_maker(brackets, placement)
       if (nil == placement) then
-        _G.error("Missing argument placement on fnl/noahtheduke/plugins/nvim-paredit.fnl:34", 2)
+        _G.error("Missing argument placement on fnl/noahtheduke/plugins/nvim-paredit.fnl:30", 2)
       else
       end
       if (nil == brackets) then
-        _G.error("Missing argument brackets on fnl/noahtheduke/plugins/nvim-paredit.fnl:34", 2)
+        _G.error("Missing argument brackets on fnl/noahtheduke/plugins/nvim-paredit.fnl:30", 2)
       else
       end
       local function _31_()
-        local context = ts_context.create_context()
-        if not context then
-          return
+        local bind_7_auto = ts_context.create_context()
+        if (bind_7_auto ~= nil) then
+          local context = bind_7_auto
+          local bind_7_auto0 = ts_forms.get_node_root(context.node, context)
+          if (bind_7_auto0 ~= nil) then
+            local current_element = bind_7_auto0
+            if ts_forms.node_is_form(current_element, context) then
+              local buf = vim.api.nvim_get_current_buf()
+              return paredit.cursor.place_cursor(paredit.wrap.wrap_element(buf, current_element, unpack(brackets)), {placement = placement, mode = "insert"})
+            else
+              return paredit.cursor.place_cursor(paredit.wrap.wrap_enclosing_form_under_cursor(unpack(brackets)), {placement = placement, mode = "insert"})
+            end
+          else
+            return nil
+          end
         else
-        end
-        local current_element = ts_forms.get_node_root(context.node, context)
-        if not current_element then
-          return
-        else
-        end
-        if ts_forms.node_is_form(current_element, context) then
-          local buf = vim.api.nvim_get_current_buf()
-          return paredit.cursor.place_cursor(paredit.wrap.wrap_element(buf, current_element, unpack(brackets)), {placement = placement, mode = "insert"})
-        else
-          return paredit.cursor.place_cursor(paredit.wrap.wrap_enclosing_form_under_cursor(unpack(brackets)), {placement = placement, mode = "insert"})
+          return nil
         end
       end
       return _31_
     end
     local function wrapper_maker(brackets, placement)
       if (nil == placement) then
-        _G.error("Missing argument placement on fnl/noahtheduke/plugins/nvim-paredit.fnl:53", 2)
+        _G.error("Missing argument placement on fnl/noahtheduke/plugins/nvim-paredit.fnl:45", 2)
       else
       end
       if (nil == brackets) then
-        _G.error("Missing argument brackets on fnl/noahtheduke/plugins/nvim-paredit.fnl:53", 2)
+        _G.error("Missing argument brackets on fnl/noahtheduke/plugins/nvim-paredit.fnl:45", 2)
       else
       end
       local function _37_()

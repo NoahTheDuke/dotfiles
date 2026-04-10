@@ -13,7 +13,7 @@
          : commit} opts
         path (or path "")
         path (path:gsub "^/" "")]
-    (when (not= nil (remote:find "tangled.sh"))
+    (when (remote:find "tangled.sh")
       (let [parts [(unpack (str-split remote ":") 2)]
             project-path (.. "@" (table.concat parts "/") "/")
             project-url (.. "https://tangled.sh/" project-path)

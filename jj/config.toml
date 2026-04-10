@@ -26,7 +26,8 @@ log = 'present(@) | ancestors(immutable_heads().., 3) | present(trunk())'
 bookmark-advance-to = "closest_pushable(@)"
 
 [aliases]
-mine = ["bookmark", "list", "-r", "mine()"]
+show_mine = ["log", "-r", "mine()"]
+my_bookmarks = ["bookmark", "list", "-r", "mine()"]
 
 [revset-aliases]
 "open()" = "(mine() ~ ::trunk()) ~ heads(empty())"

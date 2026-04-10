@@ -1,6 +1,6 @@
 ;; sexpr editing
 (local utils (require "noahtheduke.utils"))
-(import-macros {: when-require} "noahtheduke.util-macros")
+(import-macros {: when-require : when-let} "noahtheduke.util-macros")
 
 (λ config []
   (when-require [paredit "nvim-paredit"
@@ -10,12 +10,8 @@
                  whitespace "nvim-paredit.api.whitespace"]
     (λ insert-in-list [placement]
       (λ []
-        (let [context (ts-context.create_context)]
-          (if (not context) (lua "return"))
-
-          (let [current-element (ts-forms.get_node_root context.node context)]
-            (if (not current-element) (lua "return"))
-
+        (when-let [context (ts-context.create_context)]
+          (when-let [current-element (ts-forms.get_node_root context.node context)]
             (let [use-direct-parent (or (whitespace.is_whitespace_under_cursor)
                                         (ts-utils.node_is_comment current-element context))]
               (var form (ts-forms.find_nearest_form current-element
@@ -23,7 +19,7 @@
                                                      :use-source false}))
               (when (not form) (lua "return"))
 
-              (when (and (not use-direct-parent) (not= (form:type) "source"))
+              (when (and (not use-direct-parent) (not= :source (form:type)))
                 (set form (ts-utils.find_local_root current-element))
                 (if (not (and form (ts-forms.node_is_form form context)))
                   (lua "return")))
@@ -33,12 +29,8 @@
 
     (λ enclosing-wrapper-maker [brackets placement]
       (λ []
-        (let [context (ts-context.create_context)]
-          (if (not context) (lua "return"))
-
-          (let [current-element (ts-forms.get_node_root context.node context)]
-            (if (not current-element) (lua "return"))
-
+        (when-let [context (ts-context.create_context)]
+          (when-let [current-element (ts-forms.get_node_root context.node context)]
             (if (ts-forms.node_is_form current-element context)
               (let [buf (vim.api.nvim_get_current_buf)]
                 (paredit.cursor.place_cursor
