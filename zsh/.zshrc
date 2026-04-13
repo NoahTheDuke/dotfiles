@@ -14,6 +14,8 @@ source ~/dotfiles/jj/jj-prompt.sh
 NEWLINE=$'\n'
 PS1='$(print "%{$fg[green]%}%n@%m%{$reset_color%} %{$fg[yellow]%}%~%{$reset_color%}${NEWLINE}$(jjgit_prompt)")'
 
+mkdir -p "$XDG_STATE_HOME"/zsh/
+mkdir -p "$XDG_CACHE_HOME"/zsh/
 compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
 export HISTFILE="$XDG_STATE_HOME"/zsh/history
 
