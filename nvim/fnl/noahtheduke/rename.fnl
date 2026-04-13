@@ -7,8 +7,7 @@
         new-name (vim.fn.substitute (.. cur-file-path "/" name) " " "\\\\ " :g)]
     (set vim.v.errmsg "")
     (vim.cmd.saveas {:args [new-name]
-                     :bang bang
-                     :silent true})
+                     :bang bang})
     (if (not (string.find vim.v.errmsg "^$|^E329"))
       (let [new-cur-file (vim.fn.expand "%:p")]
         (when (and (not= cur-file new-cur-file)

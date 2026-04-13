@@ -24,4 +24,19 @@
 (require "noahtheduke.rename")
 (require "noahtheduke.statusline")
 
+(local _base-lua-path (vim.fs.joinpath (vim.fn.stdpath :config) :lua))
+
+(fn glob-require [path]
+  (each [_ f (ipairs (vim.fs.find (fn [f] (= "lua" (vim.fs.ext f)))
+                                {:type :file
+                                 :path path
+                                 :limit math.huge}))]
+    (let [relfilename (-> (f:gsub "lua/" "")
+                          (: :gsub "%.lua" ""))
+          basename (vim.fs.basename relfilename)]
+      (when (and (not= basename "init") (not= (basename:sub 1 1) "_"))
+        (require relfilename)))))
+
+(glob-require "lua/noahtheduke/conf")
+
 nil

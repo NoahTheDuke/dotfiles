@@ -12,3 +12,6 @@ zsh/*
 !zsh/.zshrc
 zsh/conf.d/*
 !zsh/conf.d/.keep
+
+nvim/{fnl,lua}/noahtheduke/conf/*
+!nvim/{fnl,lua}/noahtheduke/conf/.keep

@@ -15,7 +15,7 @@ local function rename(_1_)
   local cur_file_path = vim.fn.expand("%:p:h")
   local new_name = vim.fn.substitute((cur_file_path .. "/" .. name), " ", "\\\\ ", "g")
   vim.v.errmsg = ""
-  vim.cmd.saveas({args = {new_name}, bang = bang, silent = true})
+  vim.cmd.saveas({args = {new_name}, bang = bang})
   if not string.find(vim.v.errmsg, "^$|^E329") then
     local new_cur_file = vim.fn.expand("%:p")
     if ((cur_file ~= new_cur_file) and vim.fn.filewritable(new_cur_file)) then
@@ -34,7 +34,7 @@ local function rename(_1_)
 end
 local function _7_(opts)
   if (nil == opts) then
-    _G.error("Missing argument opts on fnl/noahtheduke/rename.fnl:25", 2)
+    _G.error("Missing argument opts on fnl/noahtheduke/rename.fnl:24", 2)
   else
   end
   return rename(opts)
