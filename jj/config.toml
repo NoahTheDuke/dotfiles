@@ -26,13 +26,6 @@ log = 'present(@) | ancestors(immutable_heads().., 3) | present(trunk())'
 bookmark-advance-to = "closest_pushable(@)"
 
 [aliases]
-tug = ["util", "exec", "--", "sh", "-c", """
-if [ "x$1" = "x" ]; then
-  jj bookmark move --from "closest_bookmark(@)" --to "closest_pushable(@)"
-else
-  jj bookmark move --to "closest_pushable(@)" "$@"
-fi
-""", ""]
 mine = ["bookmark", "list", "-r", "mine()"]
 
 [revset-aliases]
