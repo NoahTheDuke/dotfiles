@@ -19,7 +19,7 @@ local function rename(_1_)
   if not string.find(vim.v.errmsg, "^$|^E329") then
     local new_cur_file = vim.fn.expand("%:p")
     if ((cur_file ~= new_cur_file) and vim.fn.filewritable(new_cur_file)) then
-      vim.cmd.bwipe({args = {cur_file_stripped}, bang = true, silent = true})
+      vim.cmd.bwipe({args = {cur_file_stripped}, bang = true})
       if (0 ~= vim.fn.delete(cur_file)) then
         return vim.notify(("Could not delete " .. cur_file), vim.log.levels.ERROR)
       else
@@ -34,7 +34,7 @@ local function rename(_1_)
 end
 local function _7_(opts)
   if (nil == opts) then
-    _G.error("Missing argument opts on fnl/noahtheduke/rename.fnl:24", 2)
+    _G.error("Missing argument opts on fnl/noahtheduke/rename.fnl:23", 2)
   else
   end
   return rename(opts)

@@ -177,7 +177,7 @@ local function register_commands(commands)
     return vim.notify(errors_29_[1], vim.log.levels.ERROR)
   end
 end
-vim.lsp.config("clojure-lsp", {cmd = {"clojure-lsp"}, filetypes = {"clojure"}, root_markers = {"project.clj", "deps.edn", "build.boot", "shadow-cljs.edn", "bb.edn", ".git"}, init_options = {["log-path"] = "/tmp/clojure-lsp.out"}, trace = "verbose"})
+vim.lsp.config("clojure-lsp", {cmd = {"clojure-lsp"}, filetypes = {"clojure"}, root_markers = {"project.clj", "deps.edn", "build.boot", "shadow-cljs.edn", "bb.edn"}, init_options = {["log-path"] = "/tmp/clojure-lsp.out"}, trace = "verbose"})
 vim.lsp.enable("clojure-lsp")
 if vim.uv.fs_stat(clojure_lsp_commands) then
   local commands = edn.decode(vim.fn.readblob(clojure_lsp_commands))

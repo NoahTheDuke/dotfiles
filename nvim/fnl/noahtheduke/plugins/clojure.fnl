@@ -1,4 +1,5 @@
 (local utils (require "noahtheduke.utils"))
+(import-macros {: when-require} "noahtheduke.util-macros")
 
 (λ config []
   (set vim.g.clojure_fuzzy_indent_patterns
@@ -11,7 +12,17 @@
 (comment
   (config))
 
-[(utils.dep
+[
+ (utils.dep
    "https://github.com/clojure-vim/clojure.vim"
    {:branch "indent-forms"
-    :config config})]
+    :config config})
+ ; (utils.dep
+ ;   {:dir "/Users/noah/programming/clojure.nvim"
+ ;    :config (fn []
+ ;              (when-require [clj-nvim "clojure-nvim"]
+ ;                (clj-nvim.setup {:lsp {:register-keymaps true
+ ;                                       :config {:trace :verbose
+ ;                                                :init_options {:log-path "/tmp/clojure-lsp.out"}}}}))
+ ;              )})
+ ]

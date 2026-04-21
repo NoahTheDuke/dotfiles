@@ -79,7 +79,7 @@
   :clojure-lsp
   {:cmd ["clojure-lsp"]
    :filetypes ["clojure"]
-   :root_markers ["project.clj" "deps.edn" "build.boot" "shadow-cljs.edn" "bb.edn" ".git"]
+   :root_markers ["project.clj" "deps.edn" "build.boot" "shadow-cljs.edn" "bb.edn"]
    :init_options {:log-path "/tmp/clojure-lsp.out"}
    :trace "verbose"})
 

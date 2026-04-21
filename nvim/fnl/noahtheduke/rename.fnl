@@ -13,8 +13,7 @@
         (when (and (not= cur-file new-cur-file)
                    (vim.fn.filewritable new-cur-file))
           (vim.cmd.bwipe {:args [cur-file-stripped]
-                          :bang true
-                          :silent true})
+                          :bang true})
           (when (not= 0 (vim.fn.delete cur-file))
             (vim.notify (.. "Could not delete " cur-file) vim.log.levels.ERROR))))
       (vim.notify vim.v.errmsg vim.log.levels.ERROR))))

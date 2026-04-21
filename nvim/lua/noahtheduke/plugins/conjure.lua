@@ -166,8 +166,29 @@ local function conjure()
     vim.g["conjure#client#clojure#nrepl#test#current_form_names"] = {"deftest", "defexpect", "defdescribe", "defn"}
     vim.g["conjure#client#clojure#nrepl#tap#queue_size"] = 1024
     vim.g["conjure#client#clojure#nrepl#refresh#backend"] = "clj-reload"
-    runners["test-runners"].lazytest = {namespace = "lazytest.repl", ["all-fn"] = "run-all-tests", ["ns-fn"] = "run-tests", ["single-fn"] = "run-test-var", ["default-call-suffix"] = "{:reporter [lazytest.reporters/nested]}", ["name-prefix"] = "#'", ["name-suffix"] = ""}
-    return nil
+    runners["test-runners"].lazytest = {namespace = "lazytest.repl", ["all-fn"] = "run-all-tests", ["ns-fn"] = "run-tests", ["single-fn"] = "run-test-var", ["default-call-suffix"] = "{:reporter [lazytest.reporters/results lazytest.reporters/summary]}", ["name-prefix"] = "#'", ["name-suffix"] = ""}
+    local function _45_(_44_)
+      local args = _44_.args
+      if (args == "clojure") then
+        vim.g["conjure#client#clojure#nrepl#test#runner"] = "kaocha"
+        vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = "{:kaocha/color? false :capture-output? false :kaocha/reporter ['kaocha.report/result]}"
+        return nil
+      elseif (args == "kaocha") then
+        vim.g["conjure#client#clojure#nrepl#test#runner"] = "clojure"
+        vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = ""
+        return nil
+      elseif (args == "lazytest") then
+        vim.g["conjure#client#clojure#nrepl#test#runner"] = "lazytest"
+        vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = ""
+        return nil
+      else
+        return nil
+      end
+    end
+    local function _47_()
+      return {"clojure", "kaocha", "lazytest"}
+    end
+    return vim.api.nvim_create_user_command("ConjureCljSetTestRunner", _45_, {nargs = 1, complete = _47_, desc = "Set Conjure Clojure test runner"})
   else
     return vim.notify(errors_1_[1], vim.log.levels.ERROR)
   end

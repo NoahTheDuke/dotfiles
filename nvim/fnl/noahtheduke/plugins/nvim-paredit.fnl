@@ -51,7 +51,7 @@
 
     (paredit.setup
       {:use_default_keys true
-       :filetypes [ :clojure :scheme :lisp :fennel :basilisp ]
+       :filetypes [ :clojure :scheme :lisp :fennel :basilisp :query ]
        :cursor_behaviour :follow
        :dragging {:auto_drag_pairs false}
        :keys {

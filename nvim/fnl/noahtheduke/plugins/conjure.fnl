@@ -67,17 +67,27 @@
           :all-fn "run-all-tests"
           :ns-fn "run-tests"
           :single-fn "run-test-var"
-          :default-call-suffix "{:reporter [lazytest.reporters/nested]}"
+          :default-call-suffix "{:reporter [lazytest.reporters/results lazytest.reporters/summary]}"
           :name-prefix "#'"
           :name-suffix ""})
 
-    ; (set vim.g.conjure#client#clojure#nrepl#test#call_suffix "")
-    ; (set vim.g.conjure#client#clojure#nrepl#test#runner "clojure")
-    ; (set vim.g.conjure#client#clojure#nrepl#test#call_suffix "{:kaocha/color? false :capture-output? false :kaocha/reporter ['kaocha.report/result]}")
-    ; (set vim.g.conjure#client#clojure#nrepl#test#runner "kaocha")
-    ; (set vim.g.conjure#client#clojure#nrepl#test#call_suffix "")
-    ; (set vim.g.conjure#client#clojure#nrepl#test#runner "lazytest")
-    ))
+    (vim.api.nvim_create_user_command
+      :ConjureCljSetTestRunner
+      (fn [{: args}]
+        (case args
+          :clojure (do
+                     (set vim.g.conjure#client#clojure#nrepl#test#runner "kaocha")
+                     (set vim.g.conjure#client#clojure#nrepl#test#call_suffix
+                          "{:kaocha/color? false :capture-output? false :kaocha/reporter ['kaocha.report/result]}"))
+          :kaocha (do
+                    (set vim.g.conjure#client#clojure#nrepl#test#runner "clojure")
+                    (set vim.g.conjure#client#clojure#nrepl#test#call_suffix ""))
+          :lazytest (do
+                      (set vim.g.conjure#client#clojure#nrepl#test#runner "lazytest")
+                      (set vim.g.conjure#client#clojure#nrepl#test#call_suffix ""))))
+      {:nargs 1
+       :complete (fn [] ["clojure" "kaocha" "lazytest"])
+       :desc "Set Conjure Clojure test runner"})))
 
 (comment
   (conjure))

@@ -52,7 +52,8 @@
                    (vim.lsp.completion.enable true
                                               client-id
                                               args.buf
-                                              {:autotrigger true}))))})
+                                              {:autotrigger true})
+                   )))})
 
 (vim.api.nvim_create_autocmd
   [:CursorHold]
