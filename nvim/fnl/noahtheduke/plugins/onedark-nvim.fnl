@@ -3,7 +3,7 @@
 
 (fn config []
   (when-require [onedark "onedark"]
-    (onedark.setup {:style :light})
+    (onedark.setup)
     (onedark.load)))
 
 [(utils.colorscheme

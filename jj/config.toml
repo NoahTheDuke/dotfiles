@@ -22,19 +22,35 @@ git_push_bookmark = '"nb/push-" ++ change_id.short()'
 auto-track-bookmarks = "*"
 
 [revsets]
-log = 'present(@) | ancestors(immutable_heads().., 3) | present(trunk())'
 bookmark-advance-to = "closest_pushable(@)"
 
 [aliases]
-show_mine = ["log", "-r", "mine()"]
+mine = ["log", "-r", "mine()"]
 my_bookmarks = ["bookmark", "list", "-r", "mine()"]
+praise = ["file", "annotate"]
+blame = ["file", "annotate"]
+difft = ["diff", "--tool", "difft"]
 
 [revset-aliases]
-"open()" = "(mine() ~ ::trunk()) ~ heads(empty())"
-"closest_bookmark(to)" = '''
+# from https://github.com/jj-vcs/jj/discussions/8484#discussioncomment-15425435
+# stack(x, n) is the set of mutable commits reachable from 'x', with 'n'
+# parents. 'n' is often useful to customize the display and return set for
+# certain operations. 'x' can be used to target the set of 'roots' to traverse,
+# e.g. @ is the current stack.
+'stack()' = 'stack(@)'
+'stack(x)' = 'stack(x, 2)'
+'stack(x, n)' = 'ancestors(reachable(x, mutable()), n)'
+
+# The current set of "open" works. It is defined as: all stacks that are
+# reachable from my working copy, or any other commit I wrote.
+# n = 1, meaning that nothing from `trunk()` is included, so all resulting
+# commits are mutable by definition.
+'open()' = 'stack(mine() | @, 1) ~ hidden()'
+
+'closest_bookmark(to)' = '''
   coalesce(
     heads(first_ancestors(to) & bookmarks()),
     heads(ancestors(to) & bookmarks())
   )
 '''
-"closest_pushable(to)" = 'heads(::to & mutable() & ~description(exact:"") & (~empty() | merges()))'
+'closest_pushable(to)' = 'heads(::to & mutable() & ~description(exact:"") & (~empty() | merges()))'

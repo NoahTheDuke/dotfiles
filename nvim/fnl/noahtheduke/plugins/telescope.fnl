@@ -8,9 +8,11 @@
                  builtin "telescope.builtin"]
 
     (telescope.load_extension "fzf")
+    (telescope.load_extension "themes")
     (telescope.setup
       {:defaults
-       {:prompt_prefix " "
+       {;:layout_strategy :vertical
+        :prompt_prefix " "
         :selection_caret " "
         :path_display
         {:shorten {:len 3
@@ -33,7 +35,6 @@
              "<C-k>" actions.move_selection_previous
 
              "<C-c>" actions.close
-             "<esc>" actions.close
 
              "<Down>" actions.move_selection_next
              "<Up>" actions.move_selection_previous
@@ -59,6 +60,7 @@
 
          :n {
              "<esc>" actions.close
+             "<C-c>" actions.close
              "<CR>" actions.select_default
              "<C-x>" actions.select_horizontal
              "<C-v>" actions.select_vertical
@@ -89,7 +91,14 @@
              "?" actions.which_key
              }}}
        :pickers {:find_files
-                 {:find_command ["fd" "--type" "f" "--exclude" "build-tools"]}}})
+                 {:find_command ["fd" "--type" "f" "--exclude" "build-tools"]}}
+       :extensions
+       {:themes {:enable_previewer true
+                 :persist {:enabled true
+                           :path (vim.fs.joinpath (vim.fn.stdpath "config") "lua/current-theme.lua")}
+                 :mappings {:up "<C-k>"
+                            :down "<C-j>"
+                            :accept "<CR>"}}}})
 
     (keyset "n" "<leader>ff" ":lua require('telescope.builtin').find_files()<cr>"
             {:noremap true
@@ -140,5 +149,9 @@
    "https://github.com/nvim-telescope/telescope-fzf-native.nvim.git"
    {:build "make"})
  (utils.dep
-  "https://github.com/nvim-telescope/telescope.nvim"
-  {:config config})]
+   "https://github.com/andrew-george/telescope-themes"
+   {:config config})
+ (utils.dep
+   "https://github.com/nvim-telescope/telescope.nvim"
+   {:config config
+    :lazy false})]

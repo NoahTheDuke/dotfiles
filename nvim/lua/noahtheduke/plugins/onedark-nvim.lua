@@ -15,7 +15,7 @@ local function config()
   end
   _2_, onedark = xpcall(_3_, _4_)
   if _2_ then
-    onedark.setup({style = "light"})
+    onedark.setup()
     return onedark.load()
   else
     return vim.notify(errors_1_[1], vim.log.levels.ERROR)

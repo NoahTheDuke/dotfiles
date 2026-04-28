@@ -88,4 +88,4 @@ local function _20_(_plugin, _opts, run)
     return nil
   end
 end
-return utils.dep("https://github.com/goolord/alpha-nvim", {config = _20_})
+return utils.dep("https://github.com/goolord/alpha-nvim", {config = _20_, lazy = false})

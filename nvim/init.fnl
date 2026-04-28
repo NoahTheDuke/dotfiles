@@ -23,6 +23,7 @@
 (require "noahtheduke.vim-plugins")
 (require "noahtheduke.rename")
 (require "noahtheduke.statusline")
+(require "current-theme")
 
 (local _base-lua-path (vim.fs.joinpath (vim.fn.stdpath :config) :lua))
 

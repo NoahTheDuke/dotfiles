@@ -55,7 +55,8 @@
 ;; Splash screen
 (utils.dep
   "https://github.com/goolord/alpha-nvim"
-  {:config
+  {:lazy false
+   :config
    (fn [_plugin _opts run]
      (if run
        (setup)))})

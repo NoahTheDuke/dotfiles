@@ -44,6 +44,7 @@
   "talon.vim": { "branch": "main", "commit": "1079ba421cc4871808b0875ffac10b9344d2e598" },
   "targets.vim": { "branch": "master", "commit": "4a5e9c09ec2ba63c8cd16b433453e41c22efab22" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "6fea601bd2b694c6f2ae08a6c6fab14930c60e2c" },
+  "telescope-themes": { "branch": "main", "commit": "65721365bd7a04a6c9679e76b6387b60320fd5f3" },
   "telescope.nvim": { "branch": "master", "commit": "5255aa27c422de944791318024167ad5d40aad20" },
   "text-case.nvim": { "branch": "main", "commit": "13daf28a829e6d0646904c94214cb289bb0c6f34" },
   "tokyonight.nvim": { "branch": "main", "commit": "545d72cde6400835d895160ecb5853874fd5156d" },
