@@ -1,24 +1,37 @@
 -- [nfnl] fnl/noahtheduke/utils.fnl
-local function nvim_ex(...)
+local M = {}
+M.nvim_ex = function(...)
   return vim.api.nvim_command(table.concat(vim.iter({...}):flatten():totable(), " "))
 end
-local function dep(name, _3fargs)
-  if (nil == name) then
-    _G.error("Missing argument name on fnl/noahtheduke/utils.fnl:22", 2)
+M.dep = function(url, _3fargs)
+  if (nil == url) then
+    _G.error("Missing argument url on fnl/noahtheduke/utils.fnl:24", 2)
   else
   end
-  local dep0
+  local dep
   if (_3fargs ~= nil) then
-    table.insert(_3fargs, 1, name)
-    dep0 = _3fargs
+    table.insert(_3fargs, 1, url)
+    dep = _3fargs
   else
-    dep0 = {name}
+    dep = {url}
   end
-  return dep0
+  return dep
 end
-local function fennel_includeexpr(mdl)
+M.colorscheme = function(url, _3fargs)
+  if (nil == url) then
+    _G.error("Missing argument url on fnl/noahtheduke/utils.fnl:31", 2)
+  else
+  end
+  local base = {url, priority = 1000, lazy = false}
+  if (_3fargs ~= nil) then
+    return vim.tbl_extend("keep", base, _3fargs)
+  else
+    return base
+  end
+end
+M.fennel_includeexpr = function(mdl)
   if (nil == mdl) then
-    _G.error("Missing argument mdl on fnl/noahtheduke/utils.fnl:29", 2)
+    _G.error("Missing argument mdl on fnl/noahtheduke/utils.fnl:39", 2)
   else
   end
   do
@@ -38,11 +51,11 @@ local function fennel_includeexpr(mdl)
   return ((mod_info and mod_info.modpath) or mdl)
 end
 --[[ (fennel_includeexpr "noahtheduke.util-macros") ]]
-local function ks_opts(desc)
+M["ks-opts"] = function(desc)
   if (nil == desc) then
-    _G.error("Missing argument desc on fnl/noahtheduke/utils.fnl:44", 2)
+    _G.error("Missing argument desc on fnl/noahtheduke/utils.fnl:54", 2)
   else
   end
   return {silent = true, noremap = true, desc = desc}
 end
-return {dep = dep, nvim_ex = nvim_ex, fennel_includeexpr = fennel_includeexpr, ["ks-opts"] = ks_opts}
+return M

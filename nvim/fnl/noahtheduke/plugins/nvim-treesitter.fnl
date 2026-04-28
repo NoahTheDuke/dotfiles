@@ -1,35 +1,37 @@
 (local utils (require "noahtheduke.utils"))
-(import-macros {: when-require} "noahtheduke.util-macros")
+(import-macros {: callback : when-require} "noahtheduke.util-macros")
+
+(local custom-langs
+  (callback []
+    ; (when-require [ts-parsers "nvim-treesitter.parsers"]
+    ;   (set ts-parsers.asciidoc
+    ;        {:install_info
+    ;         {:url "https://github.com/cathaysia/tree-sitter-asciidoc.git"
+    ;          :branch "master"
+    ;          :location "tree-sitter-asciidoc"
+    ;          :queries "queries"}})
+    ;   (set ts-parsers.asciidoc_inline
+    ;        {:install_info
+    ;         {:url "https://github.com/cathaysia/tree-sitter-asciidoc.git"
+    ;          :branch "master"
+    ;          :location "tree-sitter-asciidoc_inline"
+    ;          :queries "queries"}})
+    ;   (set ts-parsers.talon
+    ;        {:install_info
+    ;         {:url "https://github.com/wenkokke/tree-sitter-talon.git"
+    ;          :files ["src/parser.c"
+    ;                  "src/scanner.c"]
+    ;          :branch "dev"}}))
+    ))
 
 (λ setup-custom-langs []
   (vim.api.nvim_create_autocmd
     "User"
     {:pattern ["TSUpdate"]
-     :callback
-     (λ []
-       (when-require [ts-parsers "nvim-treesitter.parsers"]
-         (set ts-parsers.asciidoc
-              {:install_info
-               {:url "https://github.com/cathaysia/tree-sitter-asciidoc.git"
-                :branch "master"
-                :location "tree-sitter-asciidoc"
-                :queries "queries"}})
-         (set ts-parsers.asciidoc_inline
-              {:install_info
-               {:url "https://github.com/cathaysia/tree-sitter-asciidoc.git"
-                :branch "master"
-                :location "tree-sitter-asciidoc_inline"
-                :queries "queries"}})
-         (set ts-parsers.talon
-              {:install_info
-               {:url "https://github.com/wenkokke/tree-sitter-talon.git"
-                :files ["src/parser.c"
-                        "src/scanner.c"]
-                :branch "dev"}})))}))
+     :callback custom-langs}))
 
 (local all-languages
-  ["asciidoc"
-   "asciidoc_inline"
+  [
    "angular"
    "clojure"
    "cooklang"
@@ -51,7 +53,7 @@
    "racket"
    "rust"
    "scheme"
-   "talon"
+   "svelte"
    "typescript"
    "vimdoc"
    "vue"
