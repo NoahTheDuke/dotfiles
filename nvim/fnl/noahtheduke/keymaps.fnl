@@ -1,3 +1,6 @@
+(local utils (require :noahtheduke.utils))
+(import-macros {: when-require : when-let} :noahtheduke.util-macros)
+
 (local opts {:noremap true :silent true})
 (local term-opts {:silent true})
 
@@ -57,7 +60,6 @@
 (vim.api.nvim_set_keymap "n" "<F5>" ":UndotreeToggle<CR>" opts)
 (vim.api.nvim_set_keymap "n" "<F7>" ":MinimapToggle<CR>" opts)
 
-
 (vim.api.nvim_set_keymap
   "n"
   "<F10>"
@@ -72,3 +74,28 @@
   "Splint"
   ":exe 'cexpr system(\"splint '.expand('%').' -o clj-kondo --no-summary\")'"
   {:nargs 0})
+
+(λ show-docs []
+  (vim.lsp.buf.hover {:border "rounded"}))
+
+(vim.keymap.set "n" "K" show-docs (utils.ks-opts "show docs"))
+
+(fn go-to-definition []
+  (or
+    ;; lsp
+    (when (next (vim.lsp.get_clients {:bufnr 0}))
+      (vim.lsp.buf.definition)
+      true)
+    ;; conjure
+    (when-let [ret (when-require [eval :conjure.eval]
+                     (eval.def-word))]
+      (not= "definition not found" (. ret :result)))
+    ;; vim help
+    (when (<= 0 (vim.fn.index ["vim" "help"] vim.bo.filetype))
+      (vim.api.nvim_command (.. "h " (vim.fn.expand "<cword>")))
+      true)
+    ;; default
+    (vim.api.nvim_command (.. "!" vim.o.keywordprg " " (vim.fn.expand "<cword>"))))
+  nil)
+
+(vim.keymap.set "n" "gd" go-to-definition (utils.ks-opts "go to definition"))

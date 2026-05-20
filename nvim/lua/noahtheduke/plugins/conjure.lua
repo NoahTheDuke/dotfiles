@@ -157,6 +157,7 @@ local function conjure()
     vim.api.nvim_create_user_command("Unmap", ns_unmap, {})
     vim.g["conjure#extract#tree_sitter#enabled"] = true
     vim.g["conjure#log#hud#ignore_low_priority"] = true
+    vim.g["conjure#debug"] = false
     vim.g["conjure#log#wrap"] = true
     vim.g["conjure#mapping#def_word"] = false
     vim.g["conjure#mapping#doc_word"] = false
@@ -194,4 +195,4 @@ local function conjure()
   end
 end
 --[[ (conjure) ]]
-return {utils.dep("https://github.com/Olical/conjure.git", {config = conjure}), utils.dep("https://github.com/walterl/conjure-locstack")}
+return {utils.dep("https://github.com/Olical/conjure.git", {config = conjure, commit = "f7a375995a19fbf085707ea0fdb1f9c167e27e27"}), utils.dep("https://github.com/walterl/conjure-locstack")}

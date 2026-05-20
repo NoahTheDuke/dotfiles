@@ -19,26 +19,8 @@
                   vim.diagnostic.severity.INFO ""
                   vim.diagnostic.severity.HINT ""}}})
 
-(vim.keymap.set "n" "K" (λ [] (vim.lsp.buf.hover {:border "rounded"}))
-                (utils.ks-opts "show docs"))
 (vim.keymap.set "i" "<C-o>" (λ [] (vim.lsp.buf.signature_help {:border "rounded"}))
                 (utils.ks-opts "show signature help"))
-
-(λ show-docs []
-  "show vim docs, or show lsp hover, or check keywordprg"
-  (let [cw (vim.fn.expand "<cword>")]
-    (if
-      ;; vim help
-      (<= 0 (vim.fn.index ["vim" "help"] vim.bo.filetype))
-      (vim.api.nvim_command (.. "h " cw))
-      ;; hover
-      (< 0 (length (vim.lsp.get_clients {:bufnr 0})))
-      (vim.lsp.buf.definition)
-      ;; default
-      (vim.api.nvim_command (.. "!" vim.o.keywordprg " " cw))))
-  nil)
-
-(vim.keymap.set "n" "gd" show-docs (utils.ks-opts "go to definition"))
 
 (vim.api.nvim_create_autocmd
   [:LspAttach]

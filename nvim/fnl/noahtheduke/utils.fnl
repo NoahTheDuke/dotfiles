@@ -22,6 +22,7 @@
 ; }
 
 (λ M.dep [url ?args]
+  "Make a table with url in idx 1 and args spread within"
   (let [dep (if (not= ?args nil)
               (do (table.insert ?args 1 url)
                 ?args)

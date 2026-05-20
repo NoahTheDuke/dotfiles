@@ -44,6 +44,7 @@
     ;; conjure settings
     (set vim.g.conjure#extract#tree_sitter#enabled true)
     (set vim.g.conjure#log#hud#ignore_low_priority true)
+    (set vim.g.conjure#debug false)
     (set vim.g.conjure#log#wrap true)
     (set vim.g.conjure#mapping#def_word false)
     (set vim.g.conjure#mapping#doc_word false)
@@ -94,6 +95,7 @@
 
 [(utils.dep
    "https://github.com/Olical/conjure.git"
-   {:config conjure})
+   {:config conjure
+    :commit "f7a375995a19fbf085707ea0fdb1f9c167e27e27"})
  (utils.dep
    "https://github.com/walterl/conjure-locstack")]

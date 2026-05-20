@@ -19,7 +19,7 @@ M.dep = function(url, _3fargs)
 end
 M.colorscheme = function(url, _3fargs)
   if (nil == url) then
-    _G.error("Missing argument url on fnl/noahtheduke/utils.fnl:31", 2)
+    _G.error("Missing argument url on fnl/noahtheduke/utils.fnl:32", 2)
   else
   end
   local base = {url, priority = 1000, lazy = false}
@@ -31,7 +31,7 @@ M.colorscheme = function(url, _3fargs)
 end
 M.fennel_includeexpr = function(mdl)
   if (nil == mdl) then
-    _G.error("Missing argument mdl on fnl/noahtheduke/utils.fnl:39", 2)
+    _G.error("Missing argument mdl on fnl/noahtheduke/utils.fnl:40", 2)
   else
   end
   do
@@ -53,7 +53,7 @@ end
 --[[ (fennel_includeexpr "noahtheduke.util-macros") ]]
 M["ks-opts"] = function(desc)
   if (nil == desc) then
-    _G.error("Missing argument desc on fnl/noahtheduke/utils.fnl:54", 2)
+    _G.error("Missing argument desc on fnl/noahtheduke/utils.fnl:55", 2)
   else
   end
   return {silent = true, noremap = true, desc = desc}
