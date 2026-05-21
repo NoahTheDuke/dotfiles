@@ -197,4 +197,4 @@ local function conjure()
   end
 end
 --[[ (conjure) ]]
-return {utils.dep("https://github.com/Olical/conjure.git", {config = conjure, commit = "f7a375995a19fbf085707ea0fdb1f9c167e27e27"}), utils.dep("https://github.com/walterl/conjure-locstack")}
+return {utils.dep("https://github.com/Olical/conjure", {config = conjure, commit = "fbc9e2b85b924ba678a4e254d4d8911d0461eb91"})}

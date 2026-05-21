@@ -41,10 +41,8 @@
 ;; * jj  -> Escape: Classic input mode remap, for speed and no hand-movement.
 ;; * F1  -> Escape: Obvious, but extremely helpful when the hand misses.
 ;; * Q   -> nop:    I don't use Ex/Command mode, and I hit this a lot on accident. GONE.
-;; * Y   -> y$:     Now matches the other capital letter commands: D, C, etc.
-;; * V   -> v$:     Now matches the other capital letter commands: D, C, etc.
-;; * #   -> #:      All this does is enter a single letter (X), delete the letter, and reenter the comment character.
-;;                  This fixes an issue with smartindent.
+;; * vv  -> V:      Select the entire line.
+;; * V   -> v$:     Select to the end of the current line.
 ;; * Ctrl-a/Ctrl-x: Within a visual selection, increments or decrements the first number on each line selected.
 
 (vim.api.nvim_set_keymap "i" "<F1>" "<ESC>" opts)
@@ -57,28 +55,16 @@
 (vim.api.nvim_set_keymap "v" "<C-a>" ":s#\\%V/-\\=\\d\\+#\\=submatch(0)+1#g" opts)
 (vim.api.nvim_set_keymap "v" "<C-x>" ":s#\\%V/-\\=\\d\\+#\\=submatch(0)-1#g" opts)
 
-(vim.api.nvim_set_keymap "n" "<F5>" ":UndotreeToggle<CR>" opts)
+(vim.api.nvim_set_keymap "n" "<F5>" ":Undotree<CR>" opts)
+(vim.api.nvim_set_keymap "n" "<F6>" ":NvimTreeToggle<CR>" opts)
 (vim.api.nvim_set_keymap "n" "<F7>" ":MinimapToggle<CR>" opts)
-
-(vim.api.nvim_set_keymap
-  "n"
-  "<F10>"
-  (string.format
-    ":echo \"hi<%s> trans<%s> lo<%s>\"<CR>"
-    "synIDattr(synID(line(\".\"), col(\".\"), 1), \"name\")"
-    "synIDattr(synID(line(\".\"), col(\".\"), 0), \"name\")"
-    "synIDattr(synIDtrans(synID(line(\".\"), col(\".\"), 1)), \"name\")")
-  opts)
 
 (vim.api.nvim_create_user_command
   "Splint"
   ":exe 'cexpr system(\"splint '.expand('%').' -o clj-kondo --no-summary\")'"
   {:nargs 0})
 
-(λ show-docs []
-  (vim.lsp.buf.hover {:border "rounded"}))
-
-(vim.keymap.set "n" "K" show-docs (utils.ks-opts "show docs"))
+(vim.keymap.set "n" "K" (vim.lsp.buf.hover {:border "rounded"}) (utils.ks-opts "show docs"))
 
 (fn go-to-definition []
   (or
@@ -87,9 +73,9 @@
       (vim.lsp.buf.definition)
       true)
     ;; conjure
-    (when-let [ret (when-require [eval :conjure.eval]
-                     (eval.def-word))]
-      (not= "definition not found" (. ret :result)))
+    (when-require [eval :conjure.eval]
+      (when-let [ret (eval.def-word)]
+        (not= "definition not found" (. ret :result))))
     ;; vim help
     (when (<= 0 (vim.fn.index ["vim" "help"] vim.bo.filetype))
       (vim.api.nvim_command (.. "h " (vim.fn.expand "<cword>")))

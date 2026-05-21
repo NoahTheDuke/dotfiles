@@ -27,14 +27,11 @@ vim.api.nvim_set_keymap("n", "vv", "V", opts)
 vim.api.nvim_set_keymap("n", "V", "<C-V>$", opts)
 vim.api.nvim_set_keymap("v", "<C-a>", ":s#\\%V/-\\=\\d\\+#\\=submatch(0)+1#g", opts)
 vim.api.nvim_set_keymap("v", "<C-x>", ":s#\\%V/-\\=\\d\\+#\\=submatch(0)-1#g", opts)
-vim.api.nvim_set_keymap("n", "<F5>", ":UndotreeToggle<CR>", opts)
+vim.api.nvim_set_keymap("n", "<F5>", ":Undotree<CR>", opts)
+vim.api.nvim_set_keymap("n", "<F6>", ":NvimTreeToggle<CR>", opts)
 vim.api.nvim_set_keymap("n", "<F7>", ":MinimapToggle<CR>", opts)
-vim.api.nvim_set_keymap("n", "<F10>", string.format(":echo \"hi<%s> trans<%s> lo<%s>\"<CR>", "synIDattr(synID(line(\".\"), col(\".\"), 1), \"name\")", "synIDattr(synID(line(\".\"), col(\".\"), 0), \"name\")", "synIDattr(synIDtrans(synID(line(\".\"), col(\".\"), 1)), \"name\")"), opts)
 vim.api.nvim_create_user_command("Splint", ":exe 'cexpr system(\"splint '.expand('%').' -o clj-kondo --no-summary\")'", {nargs = 0})
-local function show_docs()
-  return vim.lsp.buf.hover({border = "rounded"})
-end
-vim.keymap.set("n", "K", show_docs, utils["ks-opts"]("show docs"))
+vim.keymap.set("n", "K", vim.lsp.buf.hover({border = "rounded"}), utils["ks-opts"]("show docs"))
 local function go_to_definition()
   local _1_
   if next(vim.lsp.get_clients({bufnr = 0})) then
@@ -45,32 +42,29 @@ local function go_to_definition()
   end
   local or_3_ = _1_
   if not or_3_ then
-    local bind_7_auto
-    do
-      local errors_5_ = {}
-      local _6_, eval
-      local function _7_()
-        return require("conjure.eval")
-      end
-      local function _8_(err_2_auto)
-        if (nil == err_2_auto) then
-          _G.error("Missing argument err_2_auto on fnl/noahtheduke/keymaps.fnl:90", 2)
-        else
-        end
-        return table.insert(errors_5_, debug.traceback(err_2_auto))
-      end
-      _6_, eval = xpcall(_7_, _8_)
-      if _6_ then
-        bind_7_auto = eval["def-word"]()
-      elseif next(errors_5_) then
-        bind_7_auto = vim.notify(errors_5_[1], vim.log.levels.ERROR)
-      else
-        bind_7_auto = nil
-      end
+    local errors_4_ = {}
+    local _5_, eval
+    local function _7_()
+      return require("conjure.eval")
     end
-    if (bind_7_auto ~= nil) then
-      local ret = bind_7_auto
-      or_3_ = ("definition not found" ~= ret.result)
+    local function _8_(err_2_auto)
+      if (nil == err_2_auto) then
+        _G.error("Missing argument err_2_auto on fnl/noahtheduke/keymaps.fnl:76", 2)
+      else
+      end
+      return table.insert(errors_4_, debug.traceback(err_2_auto))
+    end
+    _5_, eval = xpcall(_7_, _8_)
+    if _5_ then
+      local bind_7_auto = eval["def-word"]()
+      if (bind_7_auto ~= nil) then
+        local ret = bind_7_auto
+        or_3_ = ("definition not found" ~= ret.result)
+      else
+        or_3_ = nil
+      end
+    elseif next(errors_4_) then
+      or_3_ = vim.notify(errors_4_[1], vim.log.levels.ERROR)
     else
       or_3_ = nil
     end

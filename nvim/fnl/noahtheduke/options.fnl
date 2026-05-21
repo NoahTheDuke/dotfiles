@@ -75,4 +75,5 @@
 (set vim.opt.wildignore [ "*\\tmp\\*" "*\\target\\*" "*\\out\\*" ])
 (set vim.opt.wildignorecase true)
 
+(set vim.g.loaded_netrw 1)
 (set vim.g.loaded_netrwPlugin 1)
