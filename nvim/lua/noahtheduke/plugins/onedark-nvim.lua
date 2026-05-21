@@ -17,8 +17,10 @@ local function config()
   if _2_ then
     onedark.setup()
     return onedark.load()
-  else
+  elseif next(errors_1_) then
     return vim.notify(errors_1_[1], vim.log.levels.ERROR)
+  else
+    return nil
   end
 end
 return {utils.colorscheme("https://github.com/navarasu/onedark.nvim", {config = config})}

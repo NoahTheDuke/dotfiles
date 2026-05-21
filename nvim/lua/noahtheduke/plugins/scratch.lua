@@ -16,8 +16,10 @@ local function _1_()
   _3_, scratch = xpcall(_4_, _5_)
   if _3_ then
     return scratch.setup({use_telescope = true, file_picker = "telescope", filetypes = {"clj", "lua", "js", "md", "sh", "ts", "txt"}})
-  else
+  elseif next(errors_2_) then
     return vim.notify(errors_2_[1], vim.log.levels.ERROR)
+  else
+    return nil
   end
 end
 return {utils.dep("https://github.com/ibhagwan/fzf-lua"), utils.dep("https://github.com/LintaoAmons/scratch.nvim", {config = _1_})}

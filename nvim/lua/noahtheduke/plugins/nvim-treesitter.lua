@@ -44,8 +44,10 @@ local function config()
     vim.treesitter.language.register("clojure", {"basilisp"})
     vim.treesitter.language.register("scheme", {"dune"})
     return nil
-  else
+  elseif next(errors_4_) then
     return vim.notify(errors_4_[1], vim.log.levels.ERROR)
+  else
+    return nil
   end
 end
 --[[ (config) ]]

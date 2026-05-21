@@ -190,8 +190,10 @@ local function conjure()
       return {"clojure", "kaocha", "lazytest"}
     end
     return vim.api.nvim_create_user_command("ConjureCljSetTestRunner", _45_, {nargs = 1, complete = _47_, desc = "Set Conjure Clojure test runner"})
-  else
+  elseif next(errors_1_) then
     return vim.notify(errors_1_[1], vim.log.levels.ERROR)
+  else
+    return nil
   end
 end
 --[[ (conjure) ]]

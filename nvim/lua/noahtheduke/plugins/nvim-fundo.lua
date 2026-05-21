@@ -18,8 +18,9 @@ local function _1_()
     if _3_ then
       fundo.install()
       fundo.setup()
-    else
+    elseif next(errors_2_) then
       vim.notify(errors_2_[1], vim.log.levels.ERROR)
+    else
     end
   end
   return nil

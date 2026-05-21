@@ -54,8 +54,10 @@ local function config()
       keyset("n", v.lhs, v.rhs, {nowait = true, noremap = true, silent = true, desc = v.desc})
     end
     return nil
-  else
+  elseif next(errors_1_) then
     return vim.notify(errors_1_[1], vim.log.levels.ERROR)
+  else
+    return nil
   end
 end
 --[[ (config) ]]

@@ -45,8 +45,10 @@ local function config()
       return handlers.open_url(opts)
     end
     return vim.api.nvim_create_user_command("OpenUrlUnderCursor", _14_, {nargs = 0})
-  else
+  elseif next(errors_1_) then
     return vim.notify(errors_1_[1], vim.log.levels.ERROR)
+  else
+    return nil
   end
 end
 --[[ (config) ]]

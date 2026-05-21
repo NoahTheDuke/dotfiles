@@ -14,6 +14,8 @@ end
 _2_, alpha = xpcall(_3_, _4_)
 if _2_ then
   return alpha.config(nil, nil, true)
-else
+elseif next(errors_1_) then
   return vim.notify(errors_1_[1], vim.log.levels.ERROR)
+else
+  return nil
 end

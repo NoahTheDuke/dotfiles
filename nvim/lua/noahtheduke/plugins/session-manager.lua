@@ -28,8 +28,10 @@ local function _1_()
   _4_, config = xpcall(_8_, _9_)
   if (_3_ and _4_) then
     return session_manager.setup({autoload_mode = config.AutoloadMode.Disabled, autosave_only_in_session = false})
-  else
+  elseif next(errors_2_) then
     return vim.notify(errors_2_[1], vim.log.levels.ERROR)
+  else
+    return nil
   end
 end
 return {utils.dep("https://github.com/nvim-lua/plenary.nvim"), utils.dep("https://github.com/Shatur/neovim-session-manager", {config = _1_})}

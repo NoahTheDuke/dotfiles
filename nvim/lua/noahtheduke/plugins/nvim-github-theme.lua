@@ -16,8 +16,10 @@ local function config()
   _2_, github_theme = xpcall(_3_, _4_)
   if _2_ then
     return github_theme.setup()
-  else
+  elseif next(errors_1_) then
     return vim.notify(errors_1_[1], vim.log.levels.ERROR)
+  else
+    return nil
   end
 end
 return {utils.colorscheme("https://github.com/xzlee3/nvim-github-theme", {config = config})}

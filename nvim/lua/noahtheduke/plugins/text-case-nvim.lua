@@ -31,11 +31,15 @@ local function config()
     _7_, telescope = xpcall(_8_, _9_)
     if _7_ then
       return telescope.load_extension("textcase")
-    else
+    elseif next(errors_6_) then
       return vim.notify(errors_6_[1], vim.log.levels.ERROR)
+    else
+      return nil
     end
-  else
+  elseif next(errors_1_) then
     return vim.notify(errors_1_[1], vim.log.levels.ERROR)
+  else
+    return nil
   end
 end
 --[[ (config) ]]

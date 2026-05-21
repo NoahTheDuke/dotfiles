@@ -16,8 +16,10 @@ local function config()
   _2_, gruvbox = xpcall(_3_, _4_)
   if _2_ then
     return gruvbox.setup()
-  else
+  elseif next(errors_1_) then
     return vim.notify(errors_1_[1], vim.log.levels.ERROR)
+  else
+    return nil
   end
 end
 return utils.colorscheme("https://github.com/ellisonleao/gruvbox.nvim", {config = config})

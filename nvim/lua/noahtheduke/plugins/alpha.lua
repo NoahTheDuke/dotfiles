@@ -77,8 +77,10 @@ local function setup()
     footer.opts.hl = "AlphaFooter"
     local config = {layout = {{type = "padding", val = 2}, header, {type = "padding", val = 2}, buttons, footer}, opts = {margin = 5, noautocmd = true}}
     return alpha.setup(config)
-  else
+  elseif next(errors_2_) then
     return vim.notify(errors_2_[1], vim.log.levels.ERROR)
+  else
+    return nil
   end
 end
 local function _20_(_plugin, _opts, run)

@@ -19,8 +19,10 @@ local function config()
     autopairs.get_rules("'")[1]["not_filetypes"] = {"scheme", "lisp", "clojure", "ocaml"}
     autopairs.get_rules("`")[1]["not_filetypes"] = {"scheme", "lisp", "clojure", "ocaml"}
     return nil
-  else
+  elseif next(errors_1_) then
     return vim.notify(errors_1_[1], vim.log.levels.ERROR)
+  else
+    return nil
   end
 end
 --[[ (config) ]]

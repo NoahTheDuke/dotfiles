@@ -16,8 +16,10 @@ local function _1_()
   _3_, which = xpcall(_4_, _5_)
   if _3_ then
     return which.setup()
-  else
+  elseif next(errors_2_) then
     return vim.notify(errors_2_[1], vim.log.levels.ERROR)
+  else
+    return nil
   end
 end
 return utils.dep("https://github.com/folke/which-key.nvim", {config = _1_})

@@ -16,8 +16,10 @@ local function config()
   _2_, kanagawa = xpcall(_3_, _4_)
   if _2_ then
     return kanagawa.setup()
-  else
+  elseif next(errors_1_) then
     return vim.notify(errors_1_[1], vim.log.levels.ERROR)
+  else
+    return nil
   end
 end
 return {utils.colorscheme("https://github.com/rebelot/kanagawa.nvim", {config = config})}

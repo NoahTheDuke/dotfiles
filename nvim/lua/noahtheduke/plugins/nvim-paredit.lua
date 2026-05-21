@@ -145,8 +145,10 @@ local function config()
       return _37_
     end
     return paredit.setup({use_default_keys = true, filetypes = {"clojure", "scheme", "lisp", "fennel", "basilisp", "query"}, cursor_behaviour = "follow", dragging = {auto_drag_pairs = false}, keys = {["<localleader>i"] = {enclosing_wrapper_maker({"( ", ")"}, "inner_start"), "Wrap form round insert head"}, ["<localleader>I"] = {enclosing_wrapper_maker({"(", " )"}, "inner_end"), "Wrap form round insert tail"}, ["<localleader>["] = {enclosing_wrapper_maker({"[", "]"}, "inner_start"), "Wrap form square insert head"}, ["<localleader>]"] = {enclosing_wrapper_maker({"[", "]"}, "inner_end"), "Wrap form square insert tail"}, ["<localleader>{"] = {enclosing_wrapper_maker({"{", "}"}, "inner_start"), "Wrap form curly insert head"}, ["<localleader>}"] = {enclosing_wrapper_maker({"{", "}"}, "inner_end"), "Wrap form curly insert tail"}, ["<localleader>w"] = {wrapper_maker({"(", ")"}, "inner_start"), "Wrap element with (), insert head"}, ["<localleader>W"] = {wrapper_maker({"(", ")"}, "inner_end"), "Wrap element with (), insert tail"}, ["<localleader>e["] = {wrapper_maker({"[", "]"}, "inner_start"), "Wrap element with [], insert head"}, ["<localleader>e]"] = {wrapper_maker({"[", "]"}, "inner_end"), "Wrap element with [], insert tail"}, ["<localleader>e{"] = {wrapper_maker({"{", "}"}, "inner_start"), "Wrap element with {}, insert head"}, ["<localleader>e}"] = {wrapper_maker({"{", "}"}, "inner_end"), "Wrap element with {}, insert tail"}, ["<localleader>h"] = {insert_in_list("inner_start"), "Enter insert mode at head of current form"}, ["<localleader>l"] = {insert_in_list("inner_end"), "Enter insert mode at tail of current form"}}})
-  else
+  elseif next(errors_1_) then
     return vim.notify(errors_1_[1], vim.log.levels.ERROR)
+  else
+    return nil
   end
 end
 --[[ (config) ]]

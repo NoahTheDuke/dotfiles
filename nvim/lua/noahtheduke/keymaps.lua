@@ -62,8 +62,10 @@ local function go_to_definition()
       _6_, eval = xpcall(_7_, _8_)
       if _6_ then
         bind_7_auto = eval["def-word"]()
-      else
+      elseif next(errors_5_) then
         bind_7_auto = vim.notify(errors_5_[1], vim.log.levels.ERROR)
+      else
+        bind_7_auto = nil
       end
     end
     if (bind_7_auto ~= nil) then

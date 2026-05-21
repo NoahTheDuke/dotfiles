@@ -173,8 +173,10 @@ local function register_commands(commands)
     end
     vim.api.nvim_create_user_command("CljLspProjectTree", _38_, {nargs = 0})
     return nil
-  else
+  elseif next(errors_29_) then
     return vim.notify(errors_29_[1], vim.log.levels.ERROR)
+  else
+    return nil
   end
 end
 vim.lsp.config("clojure-lsp", {cmd = {"clojure-lsp"}, filetypes = {"clojure"}, root_markers = {"project.clj", "deps.edn", "build.boot", "shadow-cljs.edn", "bb.edn"}, init_options = {["log-path"] = "/tmp/clojure-lsp.out"}, trace = "verbose"})
