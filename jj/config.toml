@@ -6,7 +6,7 @@ email = "noah.bogart@hey.com"
 editor = "nvim"
 # diff-editor = "vimdirdiff"
 # diff-formatter = ":git"
-default-command = "-h"
+default-command = "log"
 diff-editor = ":builtin"
 
 [merge-tools.difft]

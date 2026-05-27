@@ -30,6 +30,7 @@ plugins:
   - jellyupdate
   - lastgenre
   - musicbrainz
+  - playlist
   - zero
 
 convert:
@@ -55,6 +56,9 @@ jellyupdate:
 
 lastgenre:
   prefer_specific: yes
+
+playlist:
+  auto: yes
 
 zero:
   fields: artist_sort artists_sort albumartist_sort albumartists_sort
