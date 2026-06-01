@@ -31,53 +31,56 @@ vim.api.nvim_set_keymap("n", "<F5>", ":Undotree<CR>", opts)
 vim.api.nvim_set_keymap("n", "<F6>", ":NvimTreeToggle<CR>", opts)
 vim.api.nvim_set_keymap("n", "<F7>", ":MinimapToggle<CR>", opts)
 vim.api.nvim_create_user_command("Splint", ":exe 'cexpr system(\"splint '.expand('%').' -o clj-kondo --no-summary\")'", {nargs = 0})
-vim.keymap.set("n", "K", vim.lsp.buf.hover({border = "rounded"}), utils["ks-opts"]("show docs"))
+local function _1_()
+  return vim.lsp.buf.hover({border = "rounded"})
+end
+vim.keymap.set("n", "K", _1_, utils["ks-opts"]("show docs"))
 local function go_to_definition()
-  local _1_
+  local _2_
   if next(vim.lsp.get_clients({bufnr = 0})) then
     vim.lsp.buf.definition()
-    _1_ = true
+    _2_ = true
   else
-    _1_ = nil
+    _2_ = nil
   end
-  local or_3_ = _1_
-  if not or_3_ then
-    local errors_4_ = {}
-    local _5_, eval
-    local function _7_()
+  local or_4_ = _2_
+  if not or_4_ then
+    local errors_5_ = {}
+    local _6_, eval
+    local function _8_()
       return require("conjure.eval")
     end
-    local function _8_(err_2_auto)
+    local function _9_(err_2_auto)
       if (nil == err_2_auto) then
         _G.error("Missing argument err_2_auto on fnl/noahtheduke/keymaps.fnl:76", 2)
       else
       end
-      return table.insert(errors_4_, debug.traceback(err_2_auto))
+      return table.insert(errors_5_, debug.traceback(err_2_auto))
     end
-    _5_, eval = xpcall(_7_, _8_)
-    if _5_ then
+    _6_, eval = xpcall(_8_, _9_)
+    if _6_ then
       local bind_7_auto = eval["def-word"]()
       if (bind_7_auto ~= nil) then
         local ret = bind_7_auto
-        or_3_ = ("definition not found" ~= ret.result)
+        or_4_ = ("definition not found" ~= ret.result)
       else
-        or_3_ = nil
+        or_4_ = nil
       end
-    elseif next(errors_4_) then
-      or_3_ = vim.notify(errors_4_[1], vim.log.levels.ERROR)
+    elseif next(errors_5_) then
+      or_4_ = vim.notify(errors_5_[1], vim.log.levels.ERROR)
     else
-      or_3_ = nil
+      or_4_ = nil
     end
   end
-  if not or_3_ then
+  if not or_4_ then
     if (0 <= vim.fn.index({"vim", "help"}, vim.bo.filetype)) then
       vim.api.nvim_command(("h " .. vim.fn.expand("<cword>")))
-      or_3_ = true
+      or_4_ = true
     else
-      or_3_ = nil
+      or_4_ = nil
     end
   end
-  do local _ = (or_3_ or vim.api.nvim_command(("!" .. vim.o.keywordprg .. " " .. vim.fn.expand("<cword>")))) end
+  do local _ = (or_4_ or vim.api.nvim_command(("!" .. vim.o.keywordprg .. " " .. vim.fn.expand("<cword>")))) end
   return nil
 end
 return vim.keymap.set("n", "gd", go_to_definition, utils["ks-opts"]("go to definition"))

@@ -64,7 +64,7 @@
   ":exe 'cexpr system(\"splint '.expand('%').' -o clj-kondo --no-summary\")'"
   {:nargs 0})
 
-(vim.keymap.set "n" "K" (vim.lsp.buf.hover {:border "rounded"}) (utils.ks-opts "show docs"))
+(vim.keymap.set "n" "K" (fn [] (vim.lsp.buf.hover {:border "rounded"})) (utils.ks-opts "show docs"))
 
 (fn go-to-definition []
   (or
