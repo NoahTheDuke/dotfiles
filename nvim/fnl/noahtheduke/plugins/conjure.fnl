@@ -77,12 +77,12 @@
       (fn [{: args}]
         (case args
           :clojure (do
-                     (set vim.g.conjure#client#clojure#nrepl#test#runner "kaocha")
-                     (set vim.g.conjure#client#clojure#nrepl#test#call_suffix
-                          "{:kaocha/color? false :capture-output? false :kaocha/reporter ['kaocha.report/result]}"))
+                     (set vim.g.conjure#client#clojure#nrepl#test#runner "clojure")
+                     (set vim.g.conjure#client#clojure#nrepl#test#call_suffix ""))
           :kaocha (do
-                    (set vim.g.conjure#client#clojure#nrepl#test#runner "clojure")
-                    (set vim.g.conjure#client#clojure#nrepl#test#call_suffix ""))
+                    (set vim.g.conjure#client#clojure#nrepl#test#runner "kaocha")
+                    (set vim.g.conjure#client#clojure#nrepl#test#call_suffix
+                         "{:kaocha/color? false :capture-output? false :kaocha/reporter ['kaocha.report/result]}"))
           :lazytest (do
                       (set vim.g.conjure#client#clojure#nrepl#test#runner "lazytest")
                       (set vim.g.conjure#client#clojure#nrepl#test#call_suffix ""))))

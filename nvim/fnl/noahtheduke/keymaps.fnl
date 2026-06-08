@@ -56,7 +56,7 @@
 (vim.api.nvim_set_keymap "v" "<C-x>" ":s#\\%V/-\\=\\d\\+#\\=submatch(0)-1#g" opts)
 
 (vim.api.nvim_set_keymap "n" "<F5>" ":Undotree<CR>" opts)
-(vim.api.nvim_set_keymap "n" "<F6>" ":NvimTreeToggle<CR>" opts)
+(vim.api.nvim_set_keymap "n" "<F6>" ":NvimTreeFindFileToggle<CR>" opts)
 (vim.api.nvim_set_keymap "n" "<F7>" ":MinimapToggle<CR>" opts)
 
 (vim.api.nvim_create_user_command

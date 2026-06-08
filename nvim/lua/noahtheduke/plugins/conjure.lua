@@ -171,12 +171,12 @@ local function conjure()
     local function _45_(_44_)
       local args = _44_.args
       if (args == "clojure") then
-        vim.g["conjure#client#clojure#nrepl#test#runner"] = "kaocha"
-        vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = "{:kaocha/color? false :capture-output? false :kaocha/reporter ['kaocha.report/result]}"
-        return nil
-      elseif (args == "kaocha") then
         vim.g["conjure#client#clojure#nrepl#test#runner"] = "clojure"
         vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = ""
+        return nil
+      elseif (args == "kaocha") then
+        vim.g["conjure#client#clojure#nrepl#test#runner"] = "kaocha"
+        vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = "{:kaocha/color? false :capture-output? false :kaocha/reporter ['kaocha.report/result]}"
         return nil
       elseif (args == "lazytest") then
         vim.g["conjure#client#clojure#nrepl#test#runner"] = "lazytest"
