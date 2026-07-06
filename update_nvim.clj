@@ -1,3 +1,8 @@
+#!/usr/bin/env bb
+
+;; will download to the folder where it's called, so go to ~/personal or something, and
+;; then run this. symlink ~/.local/bin/nvim to ~/personal/nvim-macos-arm64/bin/nvim
+
 (ns update-nvim
   (:require
    [clojure.java.io :as io]
