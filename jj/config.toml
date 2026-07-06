@@ -30,6 +30,7 @@ my_bookmarks = ["bookmark", "list", "-r", "mine()"]
 praise = ["file", "annotate"]
 blame = ["file", "annotate"]
 difft = ["diff", "--tool", "difft"]
+jj = ["util", "exec", "--", "jj"]
 
 [revset-aliases]
 # from https://github.com/jj-vcs/jj/discussions/8484#discussioncomment-15425435
