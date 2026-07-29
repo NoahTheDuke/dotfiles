@@ -6,5 +6,5 @@
     (github_theme.setup)))
 
 [(utils.colorscheme
-   "https://github.com/xzlee3/nvim-github-theme"
+   "https://tangled.org/noahbogart.com/nvim-github-theme"
    {:config config})]

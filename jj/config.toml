@@ -23,6 +23,7 @@ auto-track-bookmarks = "*"
 
 [revsets]
 bookmark-advance-to = "closest_pushable(@)"
+flat = '::@'
 
 [aliases]
 mine = ["log", "-r", "mine()"]

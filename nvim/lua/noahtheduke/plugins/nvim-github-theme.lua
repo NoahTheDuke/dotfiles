@@ -22,4 +22,4 @@ local function config()
     return nil
   end
 end
-return {utils.colorscheme("https://github.com/xzlee3/nvim-github-theme", {config = config})}
+return {utils.colorscheme("https://tangled.org/noahbogart.com/nvim-github-theme", {config = config})}
