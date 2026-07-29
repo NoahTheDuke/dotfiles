@@ -10,10 +10,10 @@ custom_langs = _1_
 local function setup_custom_langs()
   return vim.api.nvim_create_autocmd("User", {pattern = {"TSUpdate"}, callback = custom_langs})
 end
-local all_languages = {"angular", "clojure", "cooklang", "djot", "fennel", "java", "javascript", "json", "json5", "just", "lua", "markdown", "markdown_inline", "ocaml", "ocaml_interface", "ocamllex", "python", "query", "racket", "rust", "scheme", "svelte", "typescript", "vimdoc", "vue", "xml", "yaml"}
+local all_languages = {"angular", "clojure", "cooklang", "djot", "fennel", "java", "javascript", "json", "json5", "just", "lua", "make", "markdown", "markdown_inline", "ocaml", "ocaml_interface", "ocamllex", "python", "query", "racket", "rust", "scheme", "sql", "svelte", "terraform", "typescript", "vimdoc", "vue", "xml", "yaml"}
 local function start_lang(language)
   if (nil == language) then
-    _G.error("Missing argument language on fnl/noahtheduke/plugins/nvim-treesitter.fnl:63", 2)
+    _G.error("Missing argument language on fnl/noahtheduke/plugins/nvim-treesitter.fnl:66", 2)
   else
   end
   local function _3_()
@@ -29,7 +29,7 @@ local function config()
   end
   local function _7_(err_2_auto)
     if (nil == err_2_auto) then
-      _G.error("Missing argument err_2_auto on fnl/noahtheduke/plugins/nvim-treesitter.fnl:70", 2)
+      _G.error("Missing argument err_2_auto on fnl/noahtheduke/plugins/nvim-treesitter.fnl:73", 2)
     else
     end
     return table.insert(errors_4_, debug.traceback(err_2_auto))

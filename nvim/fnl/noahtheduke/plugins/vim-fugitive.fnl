@@ -37,11 +37,19 @@ endfunction
     if index(g:fugitive_browse_handlers, function('TangledHandler')) < 0
       call insert(g:fugitive_browse_handlers, function('TangledHandler'))
     endif
-    "))
+    ")
+  (vim.api.nvim_create_user_command
+    "Browse"
+    (fn [opts]
+      (vim.print [:opts opts])
+      (vim.fn.system ["open" (. opts.fargs 1)]))
+    {:nargs 1}))
 
 ;; git stuff
 ;; :Git [blah blah]
 [(utils.dep
    "https://github.com/tpope/vim-fugitive"
    {:name "vim-fugitive"
-    :config config})]
+    :config config})
+ (utils.dep
+   "https://github.com/shumphrey/fugitive-gitlab.vim.git")]
