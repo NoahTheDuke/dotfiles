@@ -41,7 +41,6 @@ endfunction
   (vim.api.nvim_create_user_command
     "Browse"
     (fn [opts]
-      (vim.print [:opts opts])
       (vim.fn.system ["open" (. opts.fargs 1)]))
     {:nargs 1}))
 

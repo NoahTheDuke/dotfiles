@@ -44,7 +44,6 @@ vim.cmd("\nfunction! TangledHandler(opts, ...)\n  return v:lua.tangled_handler(a
 local function config()
   vim.cmd("\n    if !exists('g:fugitive_browse_handlers')\n      let g:fugitive_browse_handlers = []\n    endif\n    if index(g:fugitive_browse_handlers, function('TangledHandler')) < 0\n      call insert(g:fugitive_browse_handlers, function('TangledHandler'))\n    endif\n    ")
   local function _6_(opts)
-    vim.print({"opts", opts})
     return vim.fn.system({"open", opts.fargs[1]})
   end
   return vim.api.nvim_create_user_command("Browse", _6_, {nargs = 1})

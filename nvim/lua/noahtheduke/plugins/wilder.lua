@@ -15,7 +15,9 @@ local function _1_()
   end
   _3_, wilder = xpcall(_4_, _5_)
   if _3_ then
-    return wilder.setup({modes = {":", "/", "?"}})
+    wilder.setup({modes = {":", "/", "?"}})
+    wilder.set_option("pipeline", {wilder.branch(wilder.cmdline_pipeline(), wilder.search_pipeline())})
+    return wilder.set_option("renderer", wilder.wildmenu_renderer({highligher = wilder.basic_highlighter()}))
   elseif next(errors_2_) then
     return vim.notify(errors_2_[1], vim.log.levels.ERROR)
   else

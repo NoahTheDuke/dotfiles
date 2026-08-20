@@ -39,6 +39,4 @@ vim.opt.visualbell = true
 vim.opt.whichwrap = {b = true, s = true, h = true, l = true, ["<"] = true, [">"] = true, ["["] = true, ["]"] = true}
 vim.opt.wildignore = {"*\\tmp\\*", "*\\target\\*", "*\\out\\*"}
 vim.opt.wildignorecase = true
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
 return nil

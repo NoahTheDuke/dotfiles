@@ -30,6 +30,7 @@ plugins:
   - jellyupdate
   - lastgenre
   - musicbrainz
+  - playerexport
   - playlist
   - zero
 
@@ -59,6 +60,10 @@ lastgenre:
 
 playlist:
   auto: yes
+  playlist_dir: ~/Music
+
+playerexport:
+  root: '/Volumes/echo mini'
 
 zero:
   fields: artist_sort artists_sort albumartist_sort albumartists_sort
