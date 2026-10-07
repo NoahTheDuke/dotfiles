@@ -42,10 +42,14 @@ _G.tangled_handler = function(opts)
 end
 vim.cmd("\nfunction! TangledHandler(opts, ...)\n  return v:lua.tangled_handler(a:opts)\nendfunction\n")
 local function config()
-  vim.cmd("\n    if !exists('g:fugitive_browse_handlers')\n      let g:fugitive_browse_handlers = []\n    endif\n    if index(g:fugitive_browse_handlers, function('TangledHandler')) < 0\n      call insert(g:fugitive_browse_handlers, function('TangledHandler'))\n    endif\n    ")
-  local function _6_(opts)
+  if (nil == vim.g.fugitive_browse_handlers) then
+    vim.g.fugitive_browse_handlers = {}
+  else
+  end
+  vim.cmd("\n    if index(g:fugitive_browse_handlers, function('TangledHandler')) < 0\n      call insert(g:fugitive_browse_handlers, function('TangledHandler'))\n    endif\n    ")
+  local function _7_(opts)
     return vim.fn.system({"open", opts.fargs[1]})
   end
-  return vim.api.nvim_create_user_command("Browse", _6_, {nargs = 1})
+  return vim.api.nvim_create_user_command("Browse", _7_, {nargs = 1})
 end
 return {utils.dep("https://github.com/tpope/vim-fugitive", {name = "vim-fugitive", config = config}), utils.dep("https://github.com/shumphrey/fugitive-gitlab.vim.git")}

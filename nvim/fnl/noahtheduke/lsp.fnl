@@ -9,8 +9,8 @@
 
 (vim.api.nvim_create_user_command
   :OR
-  #(vim.lsp.buf.code_action {:context {:only ["source.organizeImports"]}
-                             :apply true})
+  (λ [] (vim.lsp.buf.code_action {:context {:only ["source.organizeImports"]}
+                                  :apply true}))
   {:nargs 0})
 
 (vim.diagnostic.config
@@ -47,5 +47,6 @@
                                            :focus false}))})	
 
 (require "noahtheduke.lsp.clojure")
+(require "noahtheduke.lsp.java")
 
 nil

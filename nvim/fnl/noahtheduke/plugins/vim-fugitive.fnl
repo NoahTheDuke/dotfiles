@@ -29,11 +29,10 @@ endfunction
 ")
 
 (λ config []
+  (when (= nil vim.g.fugitive_browse_handlers)
+    (set vim.g.fugitive_browse_handlers []))
   (vim.cmd
     "
-    if !exists('g:fugitive_browse_handlers')
-      let g:fugitive_browse_handlers = []
-    endif
     if index(g:fugitive_browse_handlers, function('TangledHandler')) < 0
       call insert(g:fugitive_browse_handlers, function('TangledHandler'))
     endif

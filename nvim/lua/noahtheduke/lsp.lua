@@ -45,4 +45,5 @@ local function _8_(_args)
 end
 vim.api.nvim_create_autocmd({"CursorHold"}, {group = vim.api.nvim_create_augroup("lsp-cursor-hold", {clear = true}), pattern = "*", callback = _8_})
 require("noahtheduke.lsp.clojure")
+require("noahtheduke.lsp.java")
 return nil

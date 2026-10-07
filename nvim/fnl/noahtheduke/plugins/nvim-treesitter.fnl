@@ -2,37 +2,39 @@
 (import-macros {: callback : when-require} "noahtheduke.util-macros")
 
 (local custom-langs
-  (callback []
-    ; (when-require [ts-parsers "nvim-treesitter.parsers"]
-    ;   (set ts-parsers.asciidoc
-    ;        {:install_info
-    ;         {:url "https://github.com/cathaysia/tree-sitter-asciidoc.git"
-    ;          :branch "master"
-    ;          :location "tree-sitter-asciidoc"
-    ;          :queries "queries"}})
-    ;   (set ts-parsers.asciidoc_inline
-    ;        {:install_info
-    ;         {:url "https://github.com/cathaysia/tree-sitter-asciidoc.git"
-    ;          :branch "master"
-    ;          :location "tree-sitter-asciidoc_inline"
-    ;          :queries "queries"}})
-    ;   (set ts-parsers.talon
-    ;        {:install_info
-    ;         {:url "https://github.com/wenkokke/tree-sitter-talon.git"
-    ;          :files ["src/parser.c"
-    ;                  "src/scanner.c"]
-    ;          :branch "dev"}}))
-    ))
+  {:asciidoc {:install_info
+              {:url "https://github.com/cathaysia/tree-sitter-asciidoc.git"
+               :branch "master"
+               :location "tree-sitter-asciidoc"
+               :queries "tree-sitter-asciidoc/queries"}}
+   :asciidoc_inline {:install_info
+                     {:url "https://github.com/cathaysia/tree-sitter-asciidoc.git"
+                      :branch "master"
+                      :location "tree-sitter-asciidoc_inline"
+                      :queries "tree-sitter-asciidoc_inline/queries"}}
+   ; :cucumber {:install_info
+   ;            {:url "https://github.com/binhtddev/tree-sitter-gherkin.git"
+   ;             :branch "main"
+   ;             :files ["src/parser.c"
+   ;                     "src/scanner.c"]
+   ;             :queries "queries/gherkin"}}
+   :talon {:install_info
+           {:url "https://github.com/wenkokke/tree-sitter-talon.git"
+            :files ["src/parser.c"
+                    "src/scanner.c"]
+            :branch "dev"}}})
 
 (λ setup-custom-langs []
   (vim.api.nvim_create_autocmd
     "User"
     {:pattern ["TSUpdate"]
-     :callback custom-langs}))
+     :callback (callback []
+                 (when-require [ts-parsers "nvim-treesitter.parsers"]
+                   (each [lang cfg (pairs custom-langs)]
+                     (set (. ts-parsers lang) cfg))))}))
 
 (local all-languages
-  [
-   "angular"
+  ["angular"
    "clojure"
    "cooklang"
    "djot"
@@ -72,6 +74,8 @@
 (λ config []
   (when-require [ts "nvim-treesitter"]
     (setup-custom-langs)
+    (each [k _ (pairs custom-langs)]
+      (table.insert all-languages k))
     (ts.install all-languages)
     (each [_ language (ipairs all-languages)]
       (start-lang language))

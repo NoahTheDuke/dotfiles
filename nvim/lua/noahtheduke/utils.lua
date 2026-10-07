@@ -58,4 +58,17 @@ M["ks-opts"] = function(desc)
   end
   return {silent = true, noremap = true, desc = desc}
 end
+M["file-exists"] = function(name)
+  if (nil == name) then
+    _G.error("Missing argument name on fnl/noahtheduke/utils.fnl:61", 2)
+  else
+  end
+  local f = io.open(name, "r")
+  if (f ~= nil) then
+    io.close(f)
+    return true
+  else
+    return false
+  end
+end
 return M

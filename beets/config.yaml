@@ -60,10 +60,8 @@ lastgenre:
 
 playlist:
   auto: yes
+  relative_to: ~/Music
   playlist_dir: ~/Music
-
-playerexport:
-  root: '/Volumes/echo mini'
 
 zero:
   fields: artist_sort artists_sort albumartist_sort albumartists_sort

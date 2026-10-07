@@ -58,4 +58,10 @@
    :noremap true
    : desc})
 
+(λ M.file-exists [name]
+  (let [f (io.open name :r)]
+    (if (not= f nil)
+      (do (io.close f) true)
+      false)))	
+
 M

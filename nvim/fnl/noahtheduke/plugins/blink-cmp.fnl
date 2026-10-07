@@ -6,7 +6,9 @@
     (blink.setup {:keymap {:preset :default}
                   :cmdline {:enabled false}
                   :completion {:list {:selection {:preselect false}}
-                               :menu {:auto_show true}}})))
+                               :menu {:auto_show
+                                      (fn [_ctx _items]
+                                        (~= :markdown vim.bo.filetype))}}})))
 
 (comment
   (config))

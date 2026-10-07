@@ -170,11 +170,7 @@ local function conjure()
     runners["test-runners"].lazytest = {namespace = "lazytest.repl", ["all-fn"] = "run-all-tests", ["ns-fn"] = "run-tests", ["single-fn"] = "run-test-var", ["default-call-suffix"] = "{:reporter [lazytest.reporters/results lazytest.reporters/summary]}", ["name-prefix"] = "#'", ["name-suffix"] = ""}
     local function _45_(_44_)
       local args = _44_.args
-      if (args == "clojure") then
-        vim.g["conjure#client#clojure#nrepl#test#runner"] = "clojure"
-        vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = ""
-        return nil
-      elseif (args == "kaocha") then
+      if (args == "kaocha") then
         vim.g["conjure#client#clojure#nrepl#test#runner"] = "kaocha"
         vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = "{:kaocha/color? false :capture-output? false :kaocha/reporter ['kaocha.report/result]}"
         return nil
@@ -183,11 +179,16 @@ local function conjure()
         vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = ""
         return nil
       else
+        local _ = args
+        vim.g["conjure#client#clojure#nrepl#test#runner"] = "clojure"
+        vim.g["conjure#client#clojure#nrepl#test#call_suffix"] = ""
         return nil
       end
     end
     local function _47_()
-      return {"clojure", "kaocha", "lazytest"}
+      local ks = core.keys(runners["test-runners"])
+      table.sort(ks)
+      return ks
     end
     return vim.api.nvim_create_user_command("ConjureCljSetTestRunner", _45_, {nargs = 1, complete = _47_, desc = "Set Conjure Clojure test runner"})
   elseif next(errors_1_) then
