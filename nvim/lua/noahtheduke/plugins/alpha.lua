@@ -56,7 +56,7 @@ local function setup()
     local footer = _let_15_.footer
     header.val = headers.random()
     header.opts.hl = "AlphaHeader"
-    buttons.val = {dashboard.button("s", "\239\157\138  Load Session", ":SessionManager load_current_dir_session<CR>"), dashboard.button("r", "\239\152\136  Recent Files", ":Telescope oldfiles<CR>"), dashboard.button("n", "\239\133\155  New file", ":ene <BAR> startinsert <CR>"), dashboard.button("f", "\239\144\162  Find File", ":Telescope find_files<CR>"), dashboard.button("t", "\239\158\131  Find Text", ":Telescope live_grep<CR>"), dashboard.button("c", "\238\152\149  Configuration", ":e $MYVIMRC<CR>:cd %:h/../<CR>"), dashboard.button("q", "\239\153\153  Quit Neovim", ":qa!<CR>")}
+    buttons.val = {dashboard.button("s", "\239\157\138  Load Session", ":SessionManager load_current_dir_session<CR>"), dashboard.button("r", "\239\152\136  Recent Files", ":Telescope oldfiles<CR>"), dashboard.button("n", "\239\133\155  New file", ":ene <BAR> startinsert <CR>"), dashboard.button("f f", "\239\144\162  Find File", ":Telescope find_files<CR>"), dashboard.button("f t", "\239\158\131  Find Text", ":Telescope live_grep<CR>"), dashboard.button("c", "\238\152\149  Configuration", ":e $MYVIMRC<CR>:cd %:h/../<CR>"), dashboard.button("q", "\239\153\153  Quit Neovim", ":qa!<CR>")}
     buttons.opts.hl = "AlphaButton"
     do
       local lazy_plugins

@@ -77,7 +77,7 @@
 
 (vim.lsp.config
   :clojure-lsp
-  {:cmd ["/Users/noah/programming/open-source/clojure-lsp/clojure-lsp"]
+  {:cmd ["clojure-lsp"]
    :filetypes ["clojure"]
    :root_markers ["project.clj" "deps.edn" "build.boot" "shadow-cljs.edn" "bb.edn"]
    :init_options {:log-path "/tmp/clojure-lsp.out"}

@@ -12,7 +12,7 @@
               ;; add the following setting to ~/.config/nrepl/nrepl.edn
               ;; {:portal.nrepl/wrap-portal {:all-evals true}}
               ;; that will tap> all REPL evaluations
-              ; ^:optional portal.nrepl/middleware
+              ^:optional portal.nrepl/middleware
               ]
  :print-hook dev.hooks/pprint-values
  :prompt dev.full-width-prompt/prompt

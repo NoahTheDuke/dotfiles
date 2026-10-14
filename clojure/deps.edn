@@ -1,26 +1,14 @@
 
-{:mvn/repos {"central" {:url "https://repo1.maven.org/maven2/"}
+{
+ :mvn/repos {"central" {:url "https://repo1.maven.org/maven2/"}
              "clojars" {:url "https://repo.clojars.org/"}}
  :aliases
  {
-  ;; Rebel Readline enhanced REPL UI
-  ;; REPL UI with syntax highlighting, built in docs and a quit command `:repl/quit`
 
-  ;; Clojure REPL with rebel readline with nrepl for editor connection
-  ;; https://github.com/bhauman/rebel-readline
-  ;; Conjure: opening a Clojure file will automatically connect to the REPL process
-  ;; CIDER: run `cider-connect-clj` and select REPL host and port
-  ;; Calva: connect to REPL command and select build tool, REPL host and port
+  :splint {:extra-deps {io.github.noahtheduke/splint {:mvn/version "1.25.0"}}
+           :main-opts ["-m" "noahtheduke.splint"]}
 
-  ;; clojure -M:repl/rebel
-  :repl/rebel
-  {:extra-deps {nrepl/nrepl                {:mvn/version "1.0.0"}
-                cider/cider-nrepl          {:mvn/version "0.28.7"}
-                com.bhauman/rebel-readline {:mvn/version "0.1.4"}}
-   :main-opts  ["-m" "nrepl.cmdline"
-                "--middleware" "[cider.nrepl/cider-middleware]"
-                "--interactive"
-                "-f" "rebel-readline.main/-main"]}
+  :rephrase {:extra-deps {org.corfield/rephrase {:mvn/version "1.0.7"}}}
 
   :repl/cli {:extra-deps {io.github.clojure/clojure-cli.repl-server {:mvn/version "0.2.3"}}
              :main-opts ["-m" "clojure-cli.repl.server" "repl"]}
@@ -30,4 +18,10 @@
                :replace-deps {io.github.clojure/clojure-cli.repl-client {:mvn/version "0.2.3"}}
                :jvm-opts ["--enable-native-access=ALL-UNNAMED"]
                :main-opts ["-m" "clojure-cli.repl.client"]}
-  }}
+
+  :portal {:extra-deps {djblue/portal {:mvn/version "0.64.1"}}}
+
+  :performance¬ {:extra-deps {criterium/criterium {:mvn/version "0.4.6"}
+                              com.clojure-goes-fast/clj-memory-meter {:mvn/version "0.4.0"}}
+                 :jvm-opts ["-Djdk.attach.allowAttachSelf"]}
+  ,}}
