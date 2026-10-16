@@ -15,3 +15,5 @@ zsh/conf.d/*
 
 nvim/{fnl,lua}/noahtheduke/conf/*
 !nvim/{fnl,lua}/noahtheduke/conf/.keep
+
+.cpcache

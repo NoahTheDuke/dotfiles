@@ -1,0 +1,19 @@
+{:auto-require [[clojure.repl.deps :refer [add-lib]]
+                [dev.uptime :refer [uptime]]]
+ :bracket-pairs true
+ :echo-editor-code false
+ :follow-editor-ns true
+ :history :project
+ :inspect "C-x i"
+ :middleware [dev.heap/middleware
+              dev.timing/middleware
+              ^:optional cider.nrepl/cider-middleware
+              ^:optional org.corfield.rephrase.nrepl/middleware
+              ;; add the following setting to ~/.config/nrepl/nrepl.edn
+              ;; {:portal.nrepl/wrap-portal {:all-evals true}}
+              ;; that will tap> all REPL evaluations
+              ; ^:optional portal.nrepl/middleware
+              ]
+ :print-hook dev.hooks/pprint-values
+ :prompt dev.full-width-prompt/prompt
+ :warn-on-reflection true}

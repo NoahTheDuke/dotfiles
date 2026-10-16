@@ -61,4 +61,4 @@ local function config()
   end
 end
 --[[ (config) ]]
-return {utils.dep("https://github.com/nvim-telescope/telescope-fzf-native.nvim.git", {build = "make"}), utils.dep("https://github.com/andrew-george/telescope-themes", {config = config}), utils.dep("https://github.com/nvim-telescope/telescope.nvim", {config = config, lazy = false})}
+return {utils.dep("https://github.com/nvim-telescope/telescope-fzf-native.nvim.git", {build = "make"}), utils.dep("https://github.com/andrew-george/telescope-themes"), utils.dep("https://github.com/nvim-telescope/telescope.nvim", {config = config, lazy = false})}
